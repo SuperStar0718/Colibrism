@@ -1,0 +1,80 @@
+
+	<div class="welcome-page__body">
+		<div class="row justify-content-center">
+			<div class="col-xxl-3 col-xl-10 col-12">
+				<div class="row welcome-page__row align-items-center">
+					<div class="col-xxl-10 col-xl-7 col-12 welcome-page__lp-wrapper">
+						<div class="welcome-page__lp">
+							<div class="welcome-page__lp-header">
+								<div class="welcome-logo">
+									<a href="<?php echo cl_link('/'); ?>">
+
+									</a>
+								</div>
+								<div class="welcome-title">
+
+								</div>
+								<div class="welcome-text">
+
+								</div>
+							</div>
+
+
+								<?php if (not_empty($cl['follow_suggestion'])): ?>
+									<div class="welcome-members">
+										<div class="welcome-members__title">
+										</div>
+										<div class="welcome-members__list">
+											<?php foreach ($cl['follow_suggestion'] as $user_data): ?>
+												<div class="welcome-members__list-item">
+													</a>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									</div>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+                                       <br>
+                                                                              <br>
+                                                                                                                     <br>
+                                                                                                                                                            <br>
+                                                                                                                                                                                                   <br>
+                                                                                                                                                                                                                                          <br>
+                                                                                                                                                                                                                                                                                 <br>
+                                                                                                                                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                                                                                                                                                                               <br>
+						<div class="welcome-page__rp">
+							<div class="welcome-page__rp-inner">
+								<div class="welcome-page-form">
+									<div class="welcome-page-form__body">
+										<div class="auth-form">
+											<div class="auth-form-holder">
+												<?php if ($cl["auth_type"] == "login"): ?>
+													<?php echo cl_template('auth/login'); ?>
+												<?php elseif($cl["auth_type"] == "forgot_pass"): ?>
+													<?php echo cl_template('auth/reset_password'); ?>
+												<?php elseif($cl["auth_type"] == "reset_pass" && not_empty($cl['em_code'])): ?>
+													<?php echo cl_template('auth/new_password'); ?>
+												<?php else: ?>
+													<?php if ($cl['config']['user_signup'] == "on" || not_empty($cl["invite_code_status"])): ?>
+														<?php echo cl_template('auth/register'); ?>
+													<?php else: ?>
+														<?php echo cl_template('auth/register_off'); ?>
+													<?php endif; ?>
+												<?php endif; ?>
+											</div>	
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<?php //echo cl_template('auth/scripts/app_master_script'); ?>
+

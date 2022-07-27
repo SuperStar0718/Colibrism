@@ -1,0 +1,37 @@
+<div class="modal popup-ticket-modal" id="test-modal" tabindex="-1" role="dialog" data-backdrop="static" data-onclose="remove">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Publication report details
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="user-info">
+                    <div class="avatar">
+                        <img src="<?php echo($cl['rep_data']['avatar']); ?>" alt="Avatar">
+                    </div>
+                    <div class="uname">
+                        <h5><?php echo($cl['rep_data']['name']); ?></h5>
+                        <a><?php echo($cl['rep_data']['email']); ?></a>
+                    </div>
+                </div>
+                <div class="text-message">
+                    <h5>Message from the applicant:</h5>
+                    <p>
+                        <?php if (not_empty($cl['rep_data']['comment'])): ?>
+                            <?php echo $cl['rep_data']['comment']; ?>
+                        <?php else: ?>
+                            This user did not leave comments for this report
+                        <?php endif; ?>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

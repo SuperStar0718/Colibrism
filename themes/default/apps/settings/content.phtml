@@ -1,0 +1,281 @@
+<div class="timeline-container">
+	<div class="timeline-header" data-el="tl-header">
+		<div class="timeline-header__topline">
+			<div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+		</div>
+		<div class="timeline-header__botline">
+			<div class="lp">
+				<div class="nav-link-holder">
+					<a href="<?php echo cl_link("settings"); ?>" data-spa="true">
+						<?php echo cl_translate("Profile settings"); ?>
+					</a>
+				</div>
+			</div>
+			<div class="cp">
+				<a href="<?php echo cl_link("home"); ?>">
+					<img src="{%config site_logo%}" alt="Logo">
+				</a>
+			</div>
+			<div class="rp">
+				<div class="nav-link-holder">
+					<span class="go-back" onclick="SMColibri.go_back();">
+						<?php echo cl_icon('arrow_back'); ?>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="profile-settings">
+		<div class="profile-settings__title">
+			<h4><?php echo cl_translate("General profile settings"); ?></h4>
+		</div>
+		<a href="<?php echo cl_link("settings/name"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("edit_note"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label">
+						<?php echo cl_translate("Username"); ?>
+					</span>
+					<span class="preview-value">
+						<?php echo $me['name']; ?> - @<?php echo $me['username']; ?>
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+		<a href="<?php echo cl_link("settings/email"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("alternate_email"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label"><?php echo cl_translate("Email address"); ?></span>
+					<span class="preview-value">
+						<?php echo $me['email']; ?>
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+		<a href="<?php echo cl_link("settings/siteurl"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("public"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label"><?php echo cl_translate("Website URL address"); ?></span>
+					<span class="preview-value">
+						<?php if (empty($me['website'])): ?>
+							<?php echo cl_translate("You have not yet determined the URL of your site"); ?>
+						<?php else: ?>
+							<?php echo $me['website']; ?>
+						<?php endif; ?>
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+		<a href="<?php echo cl_link("settings/bio"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("info"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label"><?php echo cl_translate("About you"); ?></span>
+					<span class="preview-value">
+						<?php if (empty($me['about'])): ?>
+							<?php echo cl_translate("The field with information about you is still empty"); ?>
+						<?php else: ?>
+							<?php echo $me['about']; ?>
+						<?php endif; ?>
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+	
+		<div class="profile-settings__title">
+			<h4><?php echo cl_translate("User password"); ?></h4>
+		</div>
+		<a href="<?php echo cl_link("settings/password"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("key"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label">
+						<?php echo cl_translate("My password"); ?>
+					</span>
+					<span class="preview-value">
+						<?php echo cl_translate("Click to set your account password"); ?>
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+		<div class="profile-settings__title">
+			<h4><?php echo cl_translate("Language and Country"); ?></h4>
+		</div>
+		<a href="<?php echo cl_link("settings/language"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("translate"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label">
+						<?php echo cl_translate("Display language"); ?>
+					</span>
+					<span class="preview-value">
+						<?php if (isset($cl["languages"][$me['language']])): ?>
+							<?php echo cl_translate($cl["languages"][$me['language']]["name"]); ?>
+						<?php else: ?>
+							<?php echo cl_translate($cl["curr_lang"]["lang_data"]["name"]); ?>
+						<?php endif; ?>
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+
+	
+		<div class="profile-settings__title">
+			<h4><?php echo cl_translate("Account verification"); ?></h4>
+		</div>
+		<a href="<?php echo cl_link("settings/verification"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("verified"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label"><?php echo cl_translate("Verify my account"); ?></span>
+					<span class="preview-value">
+						<?php echo cl_translate("Click to submit a verification request"); ?> 
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+		<div class="profile-settings__title">
+			<h4><?php echo cl_translate("Account privacy settings"); ?></h4>
+		</div>
+		<a href="<?php echo cl_link("settings/privacy"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("security"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label">
+						<?php echo cl_translate("Account privacy"); ?>
+					</span>
+					<span class="preview-value">
+						<?php echo cl_translate("Click to set your account privacy"); ?>
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+		<div class="profile-settings__title">
+			<h4><?php echo cl_translate("Notifications settings"); ?></h4>
+		</div>
+		<a href="<?php echo cl_link("settings/notifications"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item">
+				<div class="lp">
+					<?php echo cl_icon("notifications"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label">
+						<?php echo cl_translate("Notifications"); ?>
+					</span>
+					<span class="preview-value">
+						<?php echo cl_translate("Click to set up account notifications"); ?>
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+		<?php if ($cl["config"]["email_notifications"] == "on"): ?>
+			<a href="<?php echo cl_link("settings/email_notifs"); ?>" class="profile-settings__link" data-spa="true">
+				<div class="nav-list-item">
+					<div class="lp">
+						<?php echo cl_icon("contact_mail"); ?>
+					</div>
+					<div class="mp">
+						<span class="preview-label">
+							<?php echo cl_translate("Email notifications"); ?>
+						</span>
+						<span class="preview-value">
+							<?php echo cl_translate("Click to set up account email notification settings"); ?>
+						</span>
+					</div>
+					<div class="rp">
+						<?php echo cl_icon("navigate_next"); ?>
+					</div>
+				</div>
+			</a>
+		<?php endif; ?>
+		<?php if (not_empty($cl["blocked_users"])): ?>
+			<a href="<?php echo cl_link("settings/blocked"); ?>" class="profile-settings__link" data-spa="true">
+				<div class="nav-list-item">
+					<div class="lp">
+						<?php echo cl_icon("blocked"); ?>
+					</div>
+					<div class="mp">
+						<span class="preview-label">
+							<?php echo cl_translate("Blocked users"); ?>
+						</span>
+						<span class="preview-value">
+							<?php echo cl_translate("Click to manage blocked users"); ?>
+						</span>
+					</div>
+					<div class="rp">
+						<?php echo cl_icon("navigate_next"); ?>
+					</div>
+				</div>
+			</a>
+		<?php endif; ?>
+
+		<div class="profile-settings__title">
+			<h4><?php echo cl_translate("Delete profile"); ?></h4>
+		</div>
+		<a href="<?php echo cl_link("settings/delete"); ?>" class="profile-settings__link" data-spa="true">
+			<div class="nav-list-item nav-list-item-delete">
+				<div class="lp">
+					<?php echo cl_icon("delete"); ?>
+				</div>
+				<div class="mp">
+					<span class="preview-label"><?php echo cl_translate("Delete profile"); ?></span>
+					<span class="preview-value">
+						<?php echo cl_translate("Click to confirm deletion of your profile"); ?> 
+					</span>
+				</div>
+				<div class="rp">
+					<?php echo cl_icon("navigate_next"); ?>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+
+

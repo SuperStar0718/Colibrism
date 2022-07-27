@@ -1,0 +1,88 @@
+<div class="content__inner">
+    <h2>User signup</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/signup"); ?>)</strong> API to access user signup endpoint
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>first_name</td>
+                <td>User first name</td>
+                <td>
+                    E.g. John
+                </td>
+            </tr>
+            <tr>
+                <td>last_name</td>
+                <td>User last name</td>
+                <td>
+                    E.g. Smith
+                </td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>New user's E-mail</td>
+                <td>
+                    This field must also be unique
+                </td>
+            </tr>
+            <tr>
+                <td>username</td>
+                <td>Unique username</td>
+                <td>
+                    Username without any characters other than Latin letters and numbers
+                </td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td>New user's password</td>
+                <td>
+                    User password from 6-20 characters
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 200,
+        "message": "User logged in successfully",
+        "data":[],
+        "auth":{
+            "auth_token": "3b2088ac9367efcdcc7137ccc4906ae2f7a83d8a16013901054632f24af8afb76dac2118870547b0aa",
+            "auth_token_expiry": 1916750105
+        }
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 410,
+        "message": "This username is already taken"
+    }
+    </code></pre>
+        </div>
+    </div>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 410,
+        "message": "This username is already taken"
+    }
+    </code></pre>
+        </div>
+    </div>
+ </div>  

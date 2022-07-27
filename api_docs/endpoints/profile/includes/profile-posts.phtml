@@ -1,0 +1,128 @@
+<div class="content__inner">
+    <h2>Fetch profile posts</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/profile_posts"); ?>)</strong> API to access user profile posts fetching endpoint
+    </p>
+    <br>
+    <h4 class="table-title">Get parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>user_id</td>
+                <td>Profile user ID</td>
+                <td>
+                    In order to get information about the profile, you must send a valid ID
+                </td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>Profile posts type (posts/media/liked)</td>
+                <td>
+                    E.g. `posts` in order to get user publications
+                </td>
+            </tr>
+            <tr>
+                <td>session_id</td>
+                <td>User auth token (Optional)</td>
+                <td>
+                    In this case, authorization is not required, but it is desirable to determine whether you are subscribed to this profile or not, blocked or not, etc.
+                </td>
+            </tr>
+            <tr>
+                <td>offset</td>
+                <td>Last post offset ID</td>
+                <td>
+                    This is only needed when loading posts of the pagination system.
+                </td>
+            </tr>
+            <tr>
+                <td>page_size</td>
+                <td>​Total post limit for each request</td>
+                <td>
+                    Recommended: 20
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+<pre><code class="json">{
+    "code": 200,
+    "message": "Posts fetched successfully",
+    "data": {
+        "posts": [
+            {
+                "id": 74,
+                "user_id": 7,
+                "text": "",
+                "type": "image",
+                "replys_count": "0",
+                "reposts_count": "0",
+                "likes_count": "1",
+                "status": "active",
+                "thread_id": 0,
+                "target": "publication",
+                "og_data": "",
+                "time": "2 minutes ago",
+                "offset_id": 82,
+                "is_repost": false,
+                "is_reposter": false,
+                "attrs": "",
+                "advertising": false,
+                "time_raw": "1605809671",
+                "og_text": "",
+                "og_image": "http://colibri.loc/upload/images/2020/11/FqDafAGzJSkbNHtWlzMZ_19_3ae1e109ba500931d882d2f10e521a31_image_original.jpg",
+                "url": "http://colibri.loc/thread/74",
+                "can_delete": false,
+                "media":[
+                    {
+                        "id": 52,
+                        "pub_id": 74,
+                        "type": "image",
+                        "src": "upload/images/2020/11/FqDafAGzJSkbNHtWlzMZ_19_3ae1e109ba500931d882d2f10e521a31_image_original.jpg",
+                        "json_data": "{\n    \"image_thumb\": \"upload\\/images\\/2020\\/11\\/HM9AjSxebhwUM1xETCWq_19_3ae1e109ba500931d882d2f10e521a31_image_300x300.jpg\"\n}",
+                        "time": "1605809668",
+                        "x":{"image_thumb": "upload/images/2020/11/HM9AjSxebhwUM1xETCWq_19_3ae1e109ba500931d882d2f10e521a31_image_300x300.jpg"}
+                    }
+                ],
+                "is_owner": false,
+                "has_liked": false,
+                "has_saved": false,
+                "has_reposted": false,
+                "reply_to":[],
+                "owner":{"id": 7, "url": "http://colibri.loc/@dan_kassing", "avatar": "http://colibri.loc/upload/default/avatar.png",…}
+            },
+            {"id": 73, "user_id": 7, "text": "", "type": "image",…},
+            {"id": 72, "user_id": 7, "text": "how to get more twitter followers", "type": "text",…},
+            {"id": 7, "user_id": 7, "cover": "http://colibri.loc/upload/covers/2020/09/Y34uzzA8rsQCmhGOC5Qo_18_8cebe1d4683c6defe9fdc69cd94744bc_image_cover.jpg",…}
+        ]
+    }
+}</code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+<pre><code class="json">{
+    "code": 400,
+    "message": "User ID is missing or invalid",
+    "data": []
+}
+
+{
+    "code": 400,
+    "message": "User ID is missing or invalid",
+    "data": []
+}
+</code></pre>
+        </div>
+    </div>
+</div>

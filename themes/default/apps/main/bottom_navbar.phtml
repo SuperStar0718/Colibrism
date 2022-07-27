@@ -1,0 +1,21 @@
+<div class="mobile-bottom-navbar" data-app="mobile-navbar">
+	<div class="mobile-bottom-navbar-inner">
+		<button class="navbar-ctrl" onclick="SMColibri.toggleSB();">
+			<?php echo cl_icon('more_horiz'); ?>
+		</button>
+		<button data-navitem="home" class="navbar-ctrl <?php if($cl['pn'] == 'home') {echo('active');} ?>" data-anchor="<?php echo cl_link("home"); ?>">
+			<?php echo cl_icon('feed'); ?>
+		</button>
+		<button data-navitem="search" class="navbar-ctrl <?php if($cl['pn'] == 'search') {echo('active');} ?>" data-anchor="<?php echo cl_link("search"); ?>">
+			<?php echo cl_icon('tag'); ?>
+		</button>
+		<button data-navitem="notifications" class="navbar-ctrl <?php if($cl['pn'] == 'notifications') {echo('active');} ?>" data-anchor="<?php echo cl_link('notifications'); ?>">
+			<?php echo cl_icon('notifications'); ?>
+			<span class="info-indicators" data-an="new-notifs"><?php echo fetch_or_get($me['new_notifs']); ?></span>
+		</button>
+		<button data-navitem="chat" class="navbar-ctrl <?php if($cl['pn'] == 'chat') {echo('active');} ?>" data-anchor="<?php echo cl_link("chats"); ?>">
+			<?php echo cl_icon('chat'); ?>
+			<span class="info-indicators" data-an="new-messages"><?php echo fetch_or_get($me['new_messages']); ?></span>
+		</button>
+	</div>
+</div>

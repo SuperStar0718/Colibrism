@@ -1,0 +1,178 @@
+<div class="timeline-container" data-app="profile">
+
+
+    <div class="user-profile">
+
+        <div class="user-profile__header" id="vue-profile-cover-app">
+            <div class="user-profile__header-cover">
+
+                <img src="{%config theme_url%}/Site Admin_files/3.png" style="width:100%; height:100px;">
+            </div>
+
+
+
+        </div>
+
+
+        <div class="user-profile__body" style="display:flex;">
+            <img src="{%config theme_url%}/Homepage_files/1.png"
+                style="height: 70px; width:70px;border: 3px solid white;border-radius: 34px;position: relative;top: -17px;left: 43px;z-index: 300;">
+            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
+                <h4>
+                    <span class="user-name-holder">
+                        <span class="user-name-holder__name">
+
+                            <?php echo ("r/".$cl['user_posts'][0]['owner']['username']); ?>
+                            <?php if ($cl['user_posts'][0]['owner']['username'] == "Admin") : ?>
+                            <span
+                                style="font-size: 11px;background: #da5332;color: white;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">A</span>
+                            <?php endif; ?>
+                        </span>
+
+                        <?php if ($cl['prof_user']['verified'] == '1') : ?>
+                        <span class="user-name-holder__badge">
+                            <?php echo cl_icon("verified_user_badge"); ?>
+                        </span>
+                        <?php endif; ?>
+                    </span>
+                </h4>
+                <a href="" data-spa="true">
+                    Karma-&nbsp;&nbsp;
+                    <span><img
+                            src="https://img.icons8.com/external-creatype-blue-field-colourcreatype/64/000000/external-setting-interface-a2-creatype-blue-field-colourcreatype.png"
+                            style="width: 15px; height:15px;" />9562</span>
+                </a>
+
+            </div>
+            <button type="button" class="btn btn-primary" style="
+											margin-left: 60%;
+											margin-top: 2%;
+											border-radius: 16px;
+											text-align: center;
+											font-size: 19px;
+											width: 7%;
+											height: 31px;
+											padding-top: 0px;
+											padding-bottom: 0px;
+											">Join</button>
+            <!-- <div class="user-profile__counter">
+
+                <a class="counter-item" href="<?php echo (cl_strf('%s/posts', $cl['prof_user']['url'])); ?>">
+                    <span>
+                        <?php echo cl_number(0); ?>
+                    </span>
+                    <span>
+                        <?php echo cl_translate("Tweets"); ?>
+                    </span>
+                </a>
+                <a class="counter-item" href="<?php echo (cl_strf('%s/posts', $cl['prof_user']['url'])); ?>">
+                    <span>
+                        <?php echo cl_number(0); ?>
+                    </span>
+                    <span>
+                        <?php echo cl_translate("Retweet"); ?>
+                    </span>
+                </a>
+                <a class="counter-item" href="<?php echo (cl_strf('%s/posts', $cl['prof_user']['url'])); ?>">
+                    <span>
+                        <?php echo cl_number($cl['prof_user']['posts']); ?>
+                    </span>
+                    <span>
+                        <?php echo cl_translate("Comments"); ?>
+                    </span>
+                </a>
+
+                <?php if (not_empty($cl["can_view"])) : ?>
+                <a href="<?php echo (cl_strf('%s/followers', $cl['prof_user']['url'])); ?>" class="counter-item"
+                    data-spa="true">
+                    <?php else : ?>
+                    <a href="" class="counter-item" onclick="SMColibri.PS.profile.privacy_alert();">
+                        <?php endif; ?>
+                        <span>
+                            <?php echo cl_number($cl['prof_user']['followers']); ?>
+                        </span>
+                        <span>
+                            <?php echo cl_translate("Followers"); ?>
+                        </span>
+                    </a>
+
+                    <?php if (not_empty($cl["can_view"])) : ?>
+                    <a href="<?php echo (cl_strf('%s/following', $cl['prof_user']['url'])); ?>" class="counter-item"
+                        data-spa="true">
+                        <?php else : ?>
+                        <a href="" class="counter-item" onclick="SMColibri.PS.profile.privacy_alert();">
+                            <?php endif; ?>
+                            <span>
+                                <?php echo cl_number($cl['prof_user']['following']); ?>
+                            </span>
+                            <span>
+                                <?php echo cl_translate("Following"); ?>
+                            </span>
+                        </a>
+            </div> -->
+
+
+        </div>
+        <div style="background-color:grey;padding-left:5%; padding-bottom:10px;padding-top:10px;">
+            <button type="button" class="btn btn-dark">Button</button>
+            <button type="button" class="btn btn-dark">Button</button>
+            <button type="button" class="btn btn-dark">Button</button>
+            <button type="button" class="btn btn-dark">Button</button>
+        </div>
+    </div>
+
+
+
+    <?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])) : ?>
+    <div class="timeline-posts-container">
+        <div class="timeline-posts-ls">
+            <?php echo cl_template('profile/includes/blocked_profile'); ?>
+        </div>
+    </div>
+    <?php else : ?>
+    <?php if (not_empty($cl["can_view"])) : ?>
+    <?php if (in_array($cl['page_tab'], array('posts', 'media'))) : ?>
+    <div class="timeline-posts-container"
+        style="padding-left:30px; padding-right:30px; background-color:#dae0e6;padding-top:30px;">
+        <div class="timeline-posts-ls" data-an="entry-list">
+            <?php if (not_empty($cl["user_posts"])) : ?>
+            <?php foreach ($cl["user_posts"] as $cl['li']) : ?>
+            <?php echo cl_template('timeline/post_profile'); ?>
+            <?php endforeach; ?>
+            <?php else : ?>
+            <?php echo cl_template('profile/includes/no_posts'); ?>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php else : ?>
+    <div class="timeline-posts-container" style="padding-left:30px; padding-right:30px; background-color:#dae0e6;">
+        <div class="timeline-posts-ls" data-an="entry-list">
+            <?php if (not_empty($cl["user_likes"])) : ?>
+            <?php foreach ($cl["user_likes"] as $cl['li']) : ?>
+            <?php echo cl_template('timeline/post'); ?>
+            <?php endforeach; ?>
+            <?php else : ?>
+            <?php echo cl_template('profile/includes/no_posts'); ?>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php else : ?>
+    <div class="timeline-posts-container">
+        <div class="timeline-posts-ls">
+            <?php echo cl_template('profile/includes/private_profile'); ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php endif; ?>
+
+    <?php //echo cl_template('profile/scripts/app_master_script'); 
+	?>
+
+    <?php if (empty($cl['prof_user']['owner'])) : ?>
+    <?php echo cl_template('profile/modals/report_profile'); ?>
+    <?php endif; ?>
+
+    <?php //echo cl_template("main/includes/inline_statics/app_statics"); 
+	?>
+</div>

@@ -1,0 +1,31 @@
+<div class="timeline-container" data-app="stat_pages">
+	<div class="timeline-header" data-el="tl-header">
+		<div class="timeline-header__topline">
+			<div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+		</div>
+		<div class="timeline-header__botline">
+			<div class="lp">
+				<div class="nav-link-holder">
+					<a href="<?php echo cl_link('faqs'); ?>">
+						F.A.Qs
+					</a>
+				</div>
+			</div>
+			<div class="cp">
+				<a href="<?php echo cl_link('/'); ?>">
+					<img src="{%config site_logo%}" alt="Logo">
+				</a>
+			</div>
+			<div class="rp">
+				<div class="nav-link-holder">
+					<span class="go-back" onclick="SMColibri.go_back();">
+						<?php echo cl_icon('arrow_back'); ?>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="stat-page-content">
+		<?php echo cl_template('faqs/src/source'); ?>
+	</div>
+</div>

@@ -1,0 +1,97 @@
+<div class="user-infobox" data-app="user-info-lbox">
+	<div class="user-infobox__header">
+		<div class="cover">
+			<img src="<?php echo($cl["lbox_usr"]["cover"]); ?>" alt="IMG">
+		</div>
+		<div class="avatar">
+			<img src="<?php echo($cl["lbox_usr"]["avatar"]); ?>" alt="IMG">
+		</div>
+	</div>
+
+	<div class="user-infobox__body">
+		<div class="user-data">
+			<div class="user-data__name">
+				<a href="<?php echo($cl["lbox_usr"]["url"]); ?>">
+					<span class="user-name-holder">
+						<span class="user-name-holder__name">
+							<?php echo($cl["lbox_usr"]["name"]); ?>
+						</span>
+
+						<?php if ($cl["lbox_usr"]['verified'] == '1'): ?>
+							<span class="user-name-holder__badge">
+								<?php echo cl_icon("verified_user_badge"); ?>
+							</span>
+						<?php endif; ?>
+					</span>
+					<span>
+						@<?php echo($cl["lbox_usr"]["username"]); ?>
+					</span>
+				</a>
+			</div>
+			<div class="user-data__counter">
+				<div class="counter-item">
+					<?php if (not_empty($cl["lbox_usr"]['following'])): ?>
+						<a href="<?php echo(cl_strf('%s/following', $cl["lbox_usr"]["url"])); ?>" data-spa="true">
+							<span><?php echo cl_number($cl["lbox_usr"]['following']); ?></span>
+							<span><?php echo cl_translate('Following'); ?></span>
+						</a>
+					<?php else: ?>
+						<span><?php echo cl_number($cl["lbox_usr"]['following']); ?></span>
+						<span><?php echo cl_translate('Following'); ?></span>
+					<?php endif; ?>
+				</div>
+				<div class="counter-item">
+					<?php if (not_empty($cl["lbox_usr"]['followers'])): ?>
+						<a href="<?php echo(cl_strf('%s/followers', $cl["lbox_usr"]["url"])); ?>" data-spa="true">
+							<span><?php echo cl_number($cl["lbox_usr"]['followers']); ?></span>
+							<span><?php echo cl_translate('Followers'); ?></span>
+						</a>
+					<?php else: ?>
+						<span><?php echo cl_number($cl["lbox_usr"]['followers']); ?></span>
+						<span><?php echo cl_translate('Followers'); ?></span>
+					<?php endif; ?>
+				</div>
+			</div>
+			<?php if (not_empty($cl["lbox_usr"]["about"])): ?>
+				<div class="user-data__bio">
+					<?php echo($cl["lbox_usr"]["about"]); ?>
+				</div>
+			<?php endif; ?>
+		</div>		
+	</div>
+	<div class="user-infobox__footer">
+		<?php if (empty($cl['lbox_usr']['owner'])): ?>
+			<?php if ($cl['lbox_usr']['follow_privacy'] == 'approved'): ?>
+				<?php if (not_empty($cl['lbox_usr']['is_following'])): ?>
+					<button onclick="SMColibri.req_follow(this);" data-user-name="<?php echo($cl['lbox_usr']['name']); ?>" class="btn btn-custom btn-block main-inline md" data-action="unfollow" data-id="<?php echo($cl['lbox_usr']['id']); ?>">
+						<?php echo cl_translate("Unfollow"); ?>
+					</button>
+				<?php elseif (not_empty($cl['lbox_usr']['follow_requested'])): ?>
+					<button onclick="SMColibri.req_follow(this);" data-user-name="<?php echo($cl['lbox_usr']['name']); ?>" class="btn btn-custom btn-block main-inline md" data-action="cancel" data-id="<?php echo($cl['lbox_usr']['id']); ?>">
+						<?php echo cl_translate("Pending"); ?>
+					</button>
+				<?php else: ?>
+					<button onclick="SMColibri.req_follow(this);" data-user-name="<?php echo($cl['lbox_usr']['name']); ?>" class="btn btn-custom btn-block main-inline md" data-action="follow" data-id="<?php echo($cl['lbox_usr']['id']); ?>">
+						<?php echo cl_translate("Follow"); ?>
+					</button>
+				<?php endif; ?>
+			<?php else: ?>
+				<?php if (not_empty($cl['lbox_usr']['is_following'])): ?>
+					<button onclick="SMColibri.follow(this);" data-user-name="<?php echo($cl['lbox_usr']['name']); ?>" class="btn btn-custom btn-block main-inline md" data-action="unfollow" data-id="<?php echo($cl['lbox_usr']['id']); ?>">
+						<?php echo cl_translate("Unfollow"); ?>
+					</button>
+				<?php else: ?>
+					<button onclick="SMColibri.follow(this);" data-user-name="<?php echo($cl['lbox_usr']['name']); ?>" class="btn btn-custom btn-block main-inline md" data-action="follow" data-id="<?php echo($cl['lbox_usr']['id']); ?>">
+						<?php echo cl_translate("Follow"); ?>
+					</button>
+				<?php endif; ?>
+			<?php endif; ?>
+		<?php else: ?>
+			<a href="<?php echo($cl["lbox_usr"]["url"]); ?>">
+				<div class="btn btn-custom btn-block main-outline md">
+					<?php echo cl_translate("My profile"); ?>
+				</div>
+			</a>
+		<?php endif; ?>
+	</div>
+</div>

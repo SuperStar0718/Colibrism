@@ -1,0 +1,79 @@
+<div class="cp-app-container" data-app="post-reports">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Publication reports
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Publication reports
+                    </a>
+                </li> 
+            </ol>
+        </div>
+    </div>
+    <div class="d-block" id="vue-cpanel-post-reports-app">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Manage post reports - ({{total_reports}})
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="regular-table">
+                            <table class="table table-hover no-mb">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>
+                                            Report from
+                                        </th>
+                                        <th>
+                                            Reason
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody data-an="reports-list">
+                                    <?php if (not_empty($cl['post_reports'])): ?>
+                                        <?php foreach ($cl['post_reports'] as $cl['li']): ?>
+                                            <?php echo cl_template('cpanel/assets/post_reports/includes/list_item'); ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <?php echo cl_template('cpanel/assets/post_reports/includes/empty_table'); ?>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                            
+                            <div class="table-pagination">
+                                <a v-if="show_ctrls" v-bind:class="{'disabled': dis_prev_ctrl}" v-on:click="paginate('up')" href="" class="pagination-ctrls prev">
+                                    <?php echo cl_ikon("chevron-left"); ?>
+                                </a>
+                                <a v-if="show_ctrls" v-bind:class="{'disabled': dis_next_ctrl}" v-on:click="paginate('down')" href="" class="pagination-ctrls next">
+                                    <?php echo cl_ikon("chevron-right"); ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //echo cl_template('cpanel/assets/post_reports/scripts/app_master_script'); ?>

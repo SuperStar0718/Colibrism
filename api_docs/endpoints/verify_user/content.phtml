@@ -1,0 +1,104 @@
+<div class="content__inner">
+    <h2>Verify user account</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/verify_user"); ?>)</strong> API for accessing a user account verification endpoint
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>text_message</td>
+                <td>​Text message to the reviewer</td>
+                <td>
+                    E.g. "Please verify my account"
+                </td>
+            </tr>
+            <tr>
+                <td>video_message</td>
+                <td>Video message to the reviewer</td>
+                <td>
+                    E.g. "video appeal.mp4"
+                </td>
+            </tr>
+            <tr>
+                <td>full_name</td>
+                <td>​User full name</td>
+                <td>
+                    E.g. John Smith
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+    	"code": 200,
+    	"message": "Verification request sent successfully"
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+    	"code": 400,
+    	"data": [],
+    	"message": "Your account has already been verified"
+    }
+
+    {
+    	"code": 400,
+    	"message": "Error Duplicate request. Please wait until the end of the review of the previous request",
+    	"data": []
+    }
+
+    {
+    	"code": 400,
+    	"message": "Invalid user full name. Please check your details",
+    	"data": []
+    }
+
+    {
+    	"code": 400,
+    	"message": "Text message to the reviewer is incorrect or missing",
+    	"data": []
+    }
+
+    {
+    	"code": 400,
+    	"message": "Video message to the reviewer is incorrect or missing",
+    	"data": []
+    }
+
+    {
+    	"code": 500,
+    	"message": "An error occurred while processing your request. Please try again later.",
+    	"data": []
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

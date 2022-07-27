@@ -1,0 +1,59 @@
+<div class="content__inner">
+    <h2>Publish swift</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/publish_swift"); ?>)</strong> API endpoint for pulishing swift
+    </p>
+    <p>
+        This stage of creating a swift assumes that you have already uploaded a media file, that is, a video or an image of a swift. Since the media file is required when creating a swift, unlike the description, you can send the description or not.
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>swift_text</td>
+                <td>Text text message (Max. 200 chars)</td>
+                <td>
+                    E.g. `Lorem ipsum`
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 400,
+        "code": 200,
+        "message": "Swift published successfully",
+        "data": []
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

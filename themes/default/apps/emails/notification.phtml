@@ -1,0 +1,42 @@
+<div style="font-family: Arial, Helvetica, sans-serif; line-height: 1.4; background: #f6f6f7; padding: 30px;">
+	<div style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 20px;">
+		<div style="height: 50px;">
+			<a href="<?php echo cl_link('/'); ?>">
+				<img style="display: block;" height="50" src="{%config site_logo%}" alt="{%config name%}" title="User avatar"/>
+			</a>
+		</div>
+	</div>
+	<div style="display: flex; justify-content: center;  margin-bottom: 20px;">
+		<div style="background: #fff; border-radius: 2px; padding: 30px; color: #14171a; min-width: 400px;">
+			<div style="display: block; width: 100%; margin-bottom: 20px; line-height: 0px;">
+				<span style="width: 40px; vertical-align: middle; height: 40px; border-radius: 40px; overflow: hidden; display: inline-block; line-height: 0px;">
+					<a href="{%config site_url%}" style="display: block; text-decoration: none;" title="U">
+						<img style="display: block;" width="40" height="40" src="<?php echo($cl['enotif_data']["user_avatar"]); ?>" alt="IMG" title="User avatar"/>
+					</a>
+				</span>
+				<span style="margin-left: 10px; display: inline-block; line-height: 40px; vertical-align: middle;">
+					<b style="font-size: 16px;"><?php echo($cl['enotif_data']["user_name"]); ?></b>
+				</span>
+			</div>
+			<div style="padding: 20px; background: #f6f6f7; overflow: hidden; border-radius: 2px; margin-bottom: 20px;">
+				<p style="color: #42688a; padding: 0; margin: 0px; font-size: 14px;">
+					<?php echo($cl['enotif_data']["notif_text"][$cl['enotif_data']["subject"]]); ?>
+				</p>
+			</div>
+			
+			<div style="display: block; width: 100%;">
+				<a href="<?php echo($cl['enotif_data']['url']); ?>" style="text-decoration: none;">
+					<button style="font-size: 12px; font-weight: 500; cursor: pointer; border-radius: 2px; text-transform: uppercase; padding: 10px 20px; border: none; background: #1ca1f3; color: #fff; box-shadow: none; outline: 0;">
+						<?php echo cl_translate("Go back on {@site_name@}", array("site_name" => $cl["config"]["name"])); ?>
+					</button>
+				</a>
+			</div>
+		</div>
+	</div>
+	<p style="font-size: 13px; color: #5b7083;">
+		<?php echo cl_translate('You received this email because you are a registered <a href="{@site_url@}" style="color: #1b95e0;">{@site_name@}</a> user. <br> If you have any questions, the answers can be found in the F.A.Qs section.', array(
+			"site_name" => $cl["config"]["name"],
+			"site_url" => $cl["config"]["url"]
+		)); ?>
+	</p>
+</div>

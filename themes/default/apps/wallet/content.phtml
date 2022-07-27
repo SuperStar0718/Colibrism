@@ -1,0 +1,130 @@
+<div class="timeline-container" data-app="wallet">
+    <div class="timeline-header" data-el="tl-header">
+        <div class="timeline-header__topline">
+            <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+        </div>
+        <div class="timeline-header__botline">
+            <div class="lp">
+                <div class="nav-link-holder">
+                    <a href="<?php echo cl_link('wallet'); ?>" data-spa="true">
+                        <?php echo cl_translate("Wallet"); ?>
+                    </a>
+                </div>
+            </div>
+            <div class="cp">
+                <a href="<?php echo cl_link('/'); ?>">
+                    <img src="{%config site_logo%}" alt="Logo">
+                </a>
+            </div>
+            <div class="rp">
+                <div class="nav-link-holder">
+                    <span class="go-back" onclick="SMColibri.go_back();">
+                        <?php echo cl_icon('arrow_back'); ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-wallet">
+        <div class="account-wallet__status">
+            <div class="account-wallet__card">
+                <div class="wallet-balance">
+                    <div class="wallet-balance__amount">
+                        <span>
+                            <?php echo cl_money($me['wallet']); ?>
+                        </span>
+                        <span>
+                            <?php echo cl_translate("Your account's available funds"); ?>
+                        </span>
+                    </div>
+                    <div class="wallet-balance__icon">
+                        <?php echo cl_icon("account_balance"); ?>
+                    </div>
+                </div>
+                <div class="wallet-footer">
+                    <div class="wallet-footer__text">
+                        <?php echo cl_translate("Please note that the amount you deposit can only be used within your current account."); ?>
+                    </div>
+
+                    <div class="wallet-footer__ctrls">
+                        <button type="button" class="btn btn-custom main-outline lg"
+                            onclick="SMColibri.PS.topup_wallet();">
+                            <?php echo cl_translate("Top-up my wallet"); ?>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="account-wallet__history">
+            <div class="account-wallet__history-topline">
+                <h4>
+                    <?php echo cl_translate("Wallet transactions"); ?>
+                </h4>
+            </div>
+
+            <?php if (not_empty($cl["wallet_history"])): ?>
+            <div class="wallet-transactions">
+                <?php foreach ($cl["wallet_history"] as $row): ?>
+                <div class="wallet-transactions__item">
+                    <div class="lp">
+                        <div class="lp__icon">
+                            <?php if ($row["operation"] == "paypal_wallet_tup"): ?>
+                            <img src="<?php echo cl_link(cl_strf("themes/%s/statics/img/pgws/avatars/paypal.png", $cl["config"]["theme"])); ?>"
+                                alt="PayPal">
+                            <?php elseif($row["operation"] == "stripe_wallet_tup"): ?>
+                            <img src="<?php echo cl_link(cl_strf("themes/%s/statics/img/pgws/avatars/stripe.png", $cl["config"]["theme"])); ?>"
+                                alt="Stripe">
+                            <?php else: ?>
+                            <img src="<?php echo cl_link(cl_strf("themes/%s/statics/img/pgws/avatars/paystack.png", $cl["config"]["theme"])); ?>"
+                                alt="PayStack">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="rp">
+                        <div class="mp__amount">
+                            <div class="flex-item-left">
+                                +<?php echo cl_money($row['amount']); ?>
+                            </div>
+                            <div class="flex-item-right">
+                                <?php echo $row['time']; ?>
+                            </div>
+                        </div>
+                        <div class="mp__text">
+                            <?php if ($row["operation"] == "paypal_wallet_tup"): ?>
+                            <?php echo cl_translate("Account replenishment via PayPal"); ?>
+                            <?php elseif($row["operation"] == "stripe_wallet_tup"): ?>
+                            <?php echo cl_translate("Account replenishment via Stripe"); ?>
+                            <?php else: ?>
+                            <?php echo cl_translate("Account replenishment via PayStack"); ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <?php else: ?>
+            <div class="timeline-placeholder">
+                <div class="icon">
+                    <div class="icon__bg">
+                        <?php echo cl_icon('currency_exchange'); ?>
+                    </div>
+                </div>
+                <div class="pl-message">
+                    <h4>
+                        <?php echo cl_translate("No transactions"); ?>
+                    </h4>
+                    <p>
+                        <?php echo cl_translate("There are no transactions in your wallet history yet. All information about your wallet transactions will be available here"); ?>
+                    </p>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <?php echo cl_template("wallet/modals/topup"); ?>
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("wallet/scripts/app_master_script"); ?>
+</div>

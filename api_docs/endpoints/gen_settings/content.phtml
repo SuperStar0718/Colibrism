@@ -1,0 +1,128 @@
+<div class="content__inner">
+    <h2>Update user general data</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/gen_settings"); ?>)</strong> API to update profile details of logged in user
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>first_name</td>
+                <td>User user first name</td>
+                <td>
+                    E.g. Mansur
+                </td>
+            </tr>
+            <tr>
+                <td>last_name</td>
+                <td>User user last name</td>
+                <td>
+                    E.g. ATL
+                </td>
+            </tr>
+            <tr>
+                <td>about</td>
+                <td>User bio (Max 140 chars.)</td>
+                <td>
+                    E.g. ATL
+                </td>
+            </tr>
+            <tr>
+                <td>gender</td>
+                <td>User gender (M/F/O/T)</td>
+                <td>
+                    E.g. M
+                </td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>User email address</td>
+                <td>
+                    E.g. email@email.com
+                </td>
+            </tr>
+            <tr>
+                <td>username</td>
+                <td>User new username</td>
+                <td>
+                    E.g. mansurTL
+                </td>
+            </tr>
+            <tr>
+                <td>website</td>
+                <td>User website URL</td>
+                <td>
+                    E.g. <?php echo cl_link(); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>country_id</td>
+                <td>User country ID</td>
+                <td>
+                    E.g. 1 (United States)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+    	"code": 200,
+    	"message": "Profile data updated successfully",
+    	"data":{
+    		"id": 7,
+    		"first_name": "Mansur",
+    		"last_name": "ATL",
+    		"user_name": "sdf",
+    		"email": "peters_roberts@gmail.com",
+    		"is_verified": false,
+    		"website": "",
+    		"about_you": "Lorem ipsum dolor sit amet, consectetur",
+    		"gender": "M",
+    		"country": "United States",
+    		"post_count": 4061,
+    		"ip_address": "192.168.0.106",
+    		"following_count": 1,
+    		"follower_count": 3512,
+    		"language": "english",
+    		"last_active": "1 second ago",
+    		"member_since": "July, 2020"
+    	}
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+    	"data": [],
+    	"message": "",
+    	"code": 400
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

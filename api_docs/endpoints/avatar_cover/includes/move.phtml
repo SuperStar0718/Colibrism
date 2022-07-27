@@ -1,0 +1,66 @@
+<div class="content__inner">
+    <h2>Change user profile cover position</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/cover_reposition"); ?>) API for accessing the endpoint of changing the position of the user's profile cover</strong> 
+    </p>
+    <p>
+        This access point allows you to change the position of the profile cover up or down. The margins are combed from top to bottom in pixels, given the standard cover size of 600 by 200 pixels.
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>cover_position</td>
+                <td>Integer top position offset number</td>
+                <td>
+                    E.g. 10
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 200,
+        "message": "Your changes have been successfully saved",
+        "data":{
+            "cover_url": "http://dev.colibri.loc/upload/covers/2021/02/bp3lj5....ccd9c7_image_cover.jpg"
+        }
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+        "code": 400,
+        "data": [],
+        "message": "Cover position offset number is missing or invalid"
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

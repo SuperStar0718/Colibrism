@@ -1,0 +1,328 @@
+<div class="cp-app-container" data-app="payment-gateways">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Payment gateways
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Payment gateways
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        PayPal gateway API settings
+                    </h2>
+                </div>
+                <div class="body">
+                    <form class="form" data-an="form">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="paypal_api_key-input">
+                                    <label>
+                                        PayPal API Public key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config paypal_api_key%}" name="paypal_api_key" type="text"
+                                            class="form-control" placeholder="Enter paypal API public key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="paypal_api_pass-input">
+                                    <label>
+                                        PayPal API Secret key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config paypal_api_pass%}" name="paypal_api_pass" type="text"
+                                            class="form-control" placeholder="Enter paypal API secret key">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-mb" data-an="paypal_mode-input">
+                                    <label>
+                                        PayPal Payment Mode
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="paypal_mode" class="form-control selectpicker">
+                                            <option value="sandbox"
+                                                <?php if($cl['config']['paypal_mode'] == 'sandbox') { echo('selected'); } ?>>
+                                                Sandbox</option>
+                                            <option value="live"
+                                                <?php if($cl['config']['paypal_mode'] == 'live') { echo('selected'); } ?>>
+                                                Live</option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        Select paypal mode, use SandBox mode for testing. Live mode for operating with
+                                        real money
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group no-mb" data-an="paypal_method_status-input">
+                                    <label>
+                                        PayPal Payment Status
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="paypal_method_status" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['paypal_method_status'] == 'on') { echo('selected'); } ?>>
+                                                Enabled</option>
+                                            <option value="off"
+                                                <?php if($cl['config']['paypal_method_status'] == 'off') { echo('selected'); } ?>>
+                                                Disabled</option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        If you disable this option, then users will not be able to use PayPal as a
+                                        payment gateway.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 no-mb">
+                                <button data-an="submit-ctrl" type="submit"
+                                    class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        PayStack gateway API settings
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox warning">
+                            <div class="icon">
+                                <?php echo cl_ikon("danger"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    Please note that both PayStack API callback URLs must be the following:
+                                    <code><?php echo cl_link("native_api/wallet/pgw2_wallet_tup_verification"); ?></code>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="form" data-an="form">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="paystack_api_key-input">
+                                    <label>
+                                        PayStack API Public key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config paystack_api_key%}" name="paystack_api_key" type="text"
+                                            class="form-control" placeholder="Enter PayStack API public key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="paystack_api_pass-input">
+                                    <label>
+                                        Paystack API Secret key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config paystack_api_pass%}" name="paystack_api_pass" type="text"
+                                            class="form-control" placeholder="Enter Paystack API secret key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group no-mb" data-an="paystack_method_status-input">
+                                    <label>
+                                        Paystack Payment Status
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="paystack_method_status" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['paystack_method_status'] == 'on') { echo('selected'); } ?>>
+                                                Enabled</option>
+                                            <option value="off"
+                                                <?php if($cl['config']['paystack_method_status'] == 'off') { echo('selected'); } ?>>
+                                                Disabled</option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        If you disable this option, then users will not be able to use PayStack as a
+                                        payment gateway.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 no-mb">
+                                <button data-an="submit-ctrl" type="submit"
+                                    class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Stripe gateway API settings
+                    </h2>
+                </div>
+                <div class="body">
+                    <form class="form" data-an="form">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="stripe_api_key-input">
+                                    <label>
+                                        Stripe API Public key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config stripe_api_key%}" name="stripe_api_key" type="text"
+                                            class="form-control" placeholder="Enter Stripe API public key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="stripe_api_pass-input">
+                                    <label>
+                                        Stripe API Secret key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config stripe_api_pass%}" name="stripe_api_pass" type="text"
+                                            class="form-control" placeholder="Enter Stripe API secret key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group no-mb" data-an="stripe_method_status-input">
+                                    <label>
+                                        Stripe Payment Status
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="stripe_method_status" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['stripe_method_status'] == 'on') { echo('selected'); } ?>>
+                                                Enabled</option>
+                                            <option value="off"
+                                                <?php if($cl['config']['stripe_method_status'] == 'off') { echo('selected'); } ?>>
+                                                Disabled</option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        If you disable this option, then users will not be able to use Stripe as a
+                                        payment gateway.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 no-mb">
+                                <button data-an="submit-ctrl" type="submit"
+                                    class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        AliPay gateway (Stripe gateway dependent)
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox warning">
+                            <div class="icon">
+                                <?php echo cl_ikon("danger"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    Please note that this payment gateway works through Stripe, and in order for it to
+                                    work on your site, it is necessary that Stripe is also set up on your site.
+                                </p>
+                                <p>
+                                    Alipay must also be enabled as a stripe pay option in your stripe account settings.
+                                    Here is a link to the configuration page for payment options via stripe: <a
+                                        href="https://dashboard.stripe.com/settings/payment_methods">https://dashboard.stripe.com/settings/payment_methods</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="form" data-an="form">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group no-mb" data-an="alipay_method_status-input">
+                                    <label>
+                                        AliPay Payment Status
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="alipay_method_status" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['alipay_method_status'] == 'on') { echo('selected'); } ?>>
+                                                Enabled</option>
+                                            <option value="off"
+                                                <?php if($cl['config']['alipay_method_status'] == 'off') { echo('selected'); } ?>>
+                                                Disabled</option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        If you disable this option, then users will not be able to use AliPay as a
+                                        payment gateway.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 no-mb">
+                                <button data-an="submit-ctrl" type="submit"
+                                    class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //echo cl_template('cpanel/assets/payment_gateways/scripts/app_master_script'); ?>

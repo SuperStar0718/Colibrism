@@ -1,0 +1,200 @@
+<div class="cp-app-container" data-app="invite-users">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Invite users
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Invite users
+                    </a>
+                </li> 
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Manage user invitation links
+                    </h2>
+                </div>
+                
+                <div class="body">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox info">
+                            <div class="icon">
+                                <?php echo cl_ikon("info"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    Please note that this function makes sense to be used only if you have disabled the user registration system.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table" id="vue-cpanel-user-invites">
+                        <thead>
+                            <th>
+                                Link
+                            </th>
+                            <th>
+                                Clipboard
+                            </th>
+                            <th>
+                                User role
+                            </th>
+                            <th>
+                                Max num of use
+                            </th>
+                            <th>
+                                Registered users
+                            </th>
+                            <th>
+                                Created at
+                            </th>
+                            <th>
+                                Expires at
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </thead>
+                        <tbody v-if="links.length">
+                            <tr v-for="item_data in links">
+                                <td>
+                                    <a v-bind:href="item_data.link">
+                                        {{item_data.link_short}}
+                                    </a>
+                                </td>
+                                <td>
+                                    <span v-bind:data-clipboard-text="item_data.link" class="icon pointer clip-board-copy">
+                                        <?php echo cl_ikon("copy"); ?>
+                                    </span>
+                                </td>   
+                                <td>
+                                    <span v-if="item_data.role == 'admin'" class="badge">
+                                        Admin
+                                    </span>
+                                    <span v-else>
+                                        User
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>{{item_data.mnu}}</b>
+                                </td>
+                                <td>
+                                    <span class="badge bg-grey">
+                                        <b>{{item_data.registered_users}}</b> users
+                                    </span>
+                                </td>
+                                <td>
+                                    {{item_data.time}}
+                                </td>
+                                <td>
+                                    {{item_data.expire_time}}
+                                </td>
+                                <td>
+                                    <span class="icon pointer" v-on:click="delete_link(item_data.id)">
+                                        <?php echo cl_ikon("bin"); ?>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td colspan="8">
+                                    <div class="empty-table">
+                                        <span class="icon">
+                                            <?php echo cl_ikon("person-add"); ?>
+                                        </span>
+                                        <h4>
+                                            No links found
+                                        </h4>
+                                        <p>
+                                            It looks like you don't have invite links yet. Click the (Create) button to create a new link
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Create new invite link
+                    </h2>
+                </div>
+                    <div class="body">
+                        <form class="form" data-an="form">
+                            <div class="form-group">
+                                <label>
+                                    Expire after
+                                </label>
+                                <div class="form-line">
+                                    <select name="expires_at" class="form-control selectpicker">
+                                        <option value="1">
+                                            1 day
+                                        </option>
+                                        <option value="3">
+                                            3 days
+                                        </option>
+                                        <option value="7">
+                                            7 days
+                                        </option>
+                                        <option value="15">
+                                            15 days
+                                        </option>
+                                        <option value="30">
+                                            30 days
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    User role (Admin or User)
+                                </label>
+                                <div class="form-line">
+                                    <select name="role" class="form-control selectpicker">
+                                        <option value="user">
+                                            Regular user
+                                        </option>
+                                        <option value="admin">
+                                            Admin user
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    Max number of use
+                                </label>
+                                <div class="form-line">
+                                    <input value="1" name="mnu" type="number" class="form-control" placeholder="E. g. 5">
+                                </div>
+                            </div>
+                            <div class="form-group no-mb">
+                                <button data-an="submit-ctrl" type="submit" class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                    Create
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //echo cl_template('cpanel/assets/invite_users/scripts/app_master_script'); ?>

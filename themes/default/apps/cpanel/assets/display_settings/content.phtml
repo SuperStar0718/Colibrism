@@ -1,0 +1,91 @@
+<div class="cp-app-container" data-app="display-settings">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Display settings
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        UI Display settings
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Manage UI default display settings
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox info">
+                            <div class="icon">
+                                <?php echo cl_ikon("info"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    The display options defined on this page will apply to registered users by default.
+                                    However, after registration is complete, the user will be able to make changes as
+                                    they see fit.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="form" data-an="form">
+                        <div class="form-group" data-an="default_color_scheme-input">
+                            <label>
+                                Default color scheme
+                            </label>
+                            <div class="form-line">
+                                <select name="default_color_scheme" class="form-control selectpicker">
+                                    <?php foreach ($cl["color_schemes"] as $i => $val): ?>
+                                    <option value="<?php echo($i); ?>"
+                                        <?php if($cl['config']['default_color_scheme'] == $i) { echo('selected'); } ?>>
+                                        <?php echo($val["name"]); ?> <?php if ($i == "default"): ?>(Blue
+                                        color)<?php endif; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" data-an="default_bg_color-input">
+                            <label>
+                                Default BG color
+                            </label>
+                            <div class="form-line">
+                                <select name="default_bg_color" class="form-control selectpicker">
+                                    <?php foreach ($cl["bg_colors"] as $i => $val): ?>
+                                    <option value="<?php echo($i); ?>"
+                                        <?php if($cl['config']['default_bg_color'] == $i) { echo('selected'); } ?>>
+                                        <?php echo($val["name"]); ?> <?php if ($i == "default"): ?>(White
+                                        color)<?php endif; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group no-mb">
+                            <button data-an="submit-ctrl" type="submit"
+                                class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                Save changes
+                            </button>
+                        </div>
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //echo cl_template('cpanel/assets/display_settings/scripts/app_master_script'); ?>

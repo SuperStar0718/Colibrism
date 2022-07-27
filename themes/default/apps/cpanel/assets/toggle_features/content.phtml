@@ -1,0 +1,171 @@
+<div class="cp-app-container" data-app="toggle-features">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Toggle functions (New)
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Toggle functions
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Toggle functions <b>(Enable / Disable)</b>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox info">
+                            <div class="icon">
+                                <?php echo cl_ikon("info"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    Please note that after turning off a specific function, users will not be able to
+                                    use it until you turn them back on.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="form" data-an="form">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="user_signup-input">
+                                    <label>
+                                        User registration system
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="user_signup" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['user_signup'] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off"
+                                                <?php if($cl['config']['user_signup'] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        If you disable this option, then new users will not be able to register on your
+                                        website. <br>
+                                        However, you can still invite users through the invite link. <br>
+
+                                        All users who have an invite link will be able to register on your site: <a
+                                            href="<?php echo cl_link('admin_panel/invite_users'); ?>"><b>Invite users to
+                                                <?php echo($cl['config']['name']); ?></b></a>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="cookie_warning_popup-input">
+                                    <label>
+                                        Cookie warning popup
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="cookie_warning_popup" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['cookie_warning_popup'] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off"
+                                                <?php if($cl['config']['cookie_warning_popup'] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        If you disable this option, the user will not be notified about the use of
+                                        cookies when they enter your site. We strongly recommend that you leave this
+                                        option enabled in order to avoid problems with the law.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="email_notifications-input">
+                                    <label>
+                                        E-Mail Notifications system
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="email_notifications" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl["config"]["email_notifications"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off"
+                                                <?php if($cl["config"]["email_notifications"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        <b class="col-red">IMPORTANT!</b>
+                                        <span class="d-block">
+                                            Please note that if you enable this feature, then be prepared for a heavy
+                                            load on the server, and also make sure that your SMTP server is configured
+                                            and working. SMTP setup can be done on this page
+                                        </span>
+                                        <span class="d-block">
+                                            Here you can setup your SMTP server: <a
+                                                href="<?php cl_link('admin_panel/email_settings'); ?>">SMTP settings</a>
+                                        </span>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="swift_system_status-input">
+                                    <label>
+                                        Swifts system status (Daily stories)
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="swift_system_status" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl["config"]["swift_system_status"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off"
+                                                <?php if($cl["config"]["swift_system_status"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        If you turn off this system, then users will not be able to publish stories and
+                                        also all user stories, including current ones, will be completely hidden for all
+                                        x users.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group no-mb">
+                            <button data-an="submit-ctrl" type="submit"
+                                class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                Save changes
+                            </button>
+                        </div>
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //echo cl_template('cpanel/assets/toggle_features/scripts/app_master_script'); ?>

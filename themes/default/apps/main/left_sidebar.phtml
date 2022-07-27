@@ -1,0 +1,181 @@
+<div class="left-sb-container sidebar" data-app="left-sidebar" style="min-width:200px;">
+    <div class="sidebar__inner" style="position: relative;">
+        <div class="sidebar__nav">
+            <div class="sidebar__nav-group">
+                <div data-navitem="profile"
+                    class="sidebar__nav-item <?php if($cl['pn'] == 'profile' && not_empty($cl["page_xdata"]) && not_empty($cl["page_xdata"]["is_me"])) {echo('active');} ?>">
+                    <span class="icon avatar">
+                        <img src="<?php echo($me['avatar']); ?>" alt="Avatar">
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo($me["url"]); ?>" data-spa="true">
+                            <?php echo($me["name"]); ?>
+                        </a>
+                    </span>
+                </div>
+                <div data-navitem="home" class="sidebar__nav-item <?php if($cl['pn'] == 'home') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('feed'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link('/'); ?>" data-spa="true">
+                            <?php echo cl_translate('Timeline'); ?>
+                        </a>
+                    </span>
+                </div>
+                <div data-navitem="notifications"
+                    class="sidebar__nav-item <?php if($cl['pn'] == 'notifications') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('notifications'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("notifications"); ?>" data-spa="true">
+                            <?php echo cl_translate('Notifications'); ?>
+                            <span class="info-indicators"
+                                data-an="new-notifs"><?php echo fetch_or_get($me['new_notifs']); ?></span>
+                        </a>
+                    </span>
+                </div>
+
+                <div data-navitem="trending"
+                    class="sidebar__nav-item <?php if($cl['pn'] == 'trending') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('whatshot'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link('trending'); ?>" data-spa="true">
+                            <?php echo cl_translate('Trending'); ?>
+                        </a>
+                    </span>
+                </div>
+                <div data-navitem="search"
+                    class="sidebar__nav-item <?php if($cl['pn'] == 'search') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('tag'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("search"); ?>" data-spa="true">
+                            <?php echo cl_translate('Explore'); ?>
+                        </a>
+                    </span>
+                </div>
+                <div data-navitem="chat" class="sidebar__nav-item <?php if($cl['pn'] == 'chat') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('chat'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("chats"); ?>" data-spa="true">
+                            <?php echo cl_translate('Messages'); ?>
+                            <span class="info-indicators"
+                                data-an="new-messages"><?php echo fetch_or_get($me['new_messages']); ?></span>
+                        </a>
+                    </span>
+                </div>
+                <div data-navitem="bookmarks"
+                    class="sidebar__nav-item <?php if($cl['pn'] == 'bookmarks') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('bookmark'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("bookmarks"); ?>" data-spa="true">
+                            <?php echo cl_translate('Bookmarks'); ?>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="sidebar__nav-group ">
+                <div class="sidebar__nav-item-devider"></div>
+                <?php if (not_empty($cl['is_admin'])): ?>
+                <div class="sidebar__nav-item">
+                    <span class="icon">
+                        <?php echo cl_icon('admin_panel'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("admin_panel"); ?>">
+                            <?php echo cl_translate('Control panel'); ?>
+                        </a>
+                    </span>
+                </div>
+                <?php endif; ?>
+
+
+                <?php if ($cl['config']['advertising_system'] == 'on' || 2): ?>
+                <div class="sidebar__nav-item-devider"></div>
+                <div data-navitem="wallet"
+                    class="sidebar__nav-item <?php if($cl['pn'] == 'wallet') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('account_balance'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("wallet"); ?>" data-spa="true">
+                            <?php echo cl_translate('Wallet'); ?> <b
+                                class="wallet">(<?php echo cl_money($me['wallet']); ?>)</b>
+                        </a>
+                    </span>
+                </div>
+                <div data-navitem="ads" class="sidebar__nav-item <?php if($cl['pn'] == 'ads') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('campaign'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("ads"); ?>" data-spa="true">
+                            <?php echo cl_translate('Advertising'); ?>
+                        </a>
+                    </span>
+                </div>
+                <?php endif; ?>
+                <?php if ($cl['config']['affiliates_system'] == 'on'): ?>
+                <div data-navitem="affiliates"
+                    class="sidebar__nav-item <?php if($cl['pn'] == 'affiliates') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('group_work'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("affiliates"); ?>" data-spa="true">
+                            <?php echo cl_translate('Affiliates'); ?>
+                        </a>
+                    </span>
+                </div>
+                <?php endif; ?>
+                <div class="sidebar__nav-item-devider"></div>
+                <div data-navitem="settings"
+                    class="sidebar__nav-item <?php if($cl['pn'] == 'settings') {echo('active');} ?>">
+                    <span class="icon">
+                        <?php echo cl_icon('manage_account'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="<?php echo cl_link("settings"); ?>" data-spa="true">
+                            <?php echo cl_translate('Profile settings'); ?>
+                        </a>
+                    </span>
+                </div>
+                <div class="sidebar__nav-item">
+                    <span class="icon">
+                        <?php echo cl_icon('display_settings'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="" onclick="SMColibri.display_settings();">
+                            <?php echo cl_translate('Display settings'); ?>
+                        </a>
+                    </span>
+                </div>
+                <div class="sidebar__nav-item-devider"></div>
+                <div class="sidebar__nav-item">
+                    <span class="icon">
+                        <?php echo cl_icon('logout'); ?>
+                    </span>
+                    <span class="text">
+                        <a href="" onclick="SMColibri.logout();">
+                            <?php echo cl_translate('Logout'); ?>
+                        </a>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="sidebar__footer">
+            <?php echo cl_template('main/footer'); ?>
+        </div>
+
+    </div>
+</div>

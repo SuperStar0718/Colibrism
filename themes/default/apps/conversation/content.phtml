@@ -1,0 +1,147 @@
+<div class="timeline-container" data-app="conversation">
+    <div class="timeline-header" data-el="tl-header">
+        <div class="timeline-header__topline">
+            <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+        </div>
+        <div class="timeline-header__botline">
+            <div class="lp lp__avatar">
+                <div class="nav-link-avatar">
+                    <?php if (not_empty($cl['interlocutor']['is_online'])): ?>
+                    <a href="<?php echo($cl['interlocutor']['url']); ?>" data-an="last-seen" class="online"
+                        data-spa="true" title="<?php echo cl_translate("Online"); ?>">
+                        <?php else: ?>
+                        <a href="<?php echo($cl['interlocutor']['url']); ?>" data-an="last-seen" data-spa="true">
+                            <?php endif; ?>
+                            <img src="<?php echo($cl['interlocutor']['avatar']); ?>" alt="IMG">
+                        </a>
+                </div>
+                <div class="nav-link-holder">
+                    <a href="<?php echo($cl['interlocutor']['url']); ?>" data-spa="true">
+                        <span class="user-name-holder">
+                            <span class="user-name-holder__name">
+                                <?php echo($cl['interlocutor']['name']); ?>
+                            </span>
+
+                            <?php if ($cl['interlocutor']['verified'] == '1'): ?>
+                            <span class="user-name-holder__badge">
+                                <?php echo cl_icon("verified_user_badge"); ?>
+                            </span>
+                            <?php endif; ?>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="cp">
+                <a href="<?php echo cl_link('/'); ?>">
+                    <img src="{%config site_logo%}" alt="Logo">
+                </a>
+            </div>
+            <div class="rp">
+                <div class="nav-link-holder">
+                    <button class="go-options dropleft">
+                        <div class="dropdown-toggle icon go-options__icon" data-toggle="dropdown">
+                            <?php echo cl_icon('more_horiz'); ?>
+                        </div>
+                        <div class="dropdown-menu dropdown-icons">
+                            <a class="dropdown-item" href="<?php echo($cl['interlocutor']['url']); ?>" data-spa="true">
+                                <span class="flex-item dropdown-item-icon">
+                                    <?php echo cl_icon("account_box"); ?>
+                                </span>
+                                <span class="flex-item">
+                                    <?php echo($cl['interlocutor']['name']); ?>
+                                </span>
+                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
+                                    <?php echo cl_icon('navigate_next'); ?>
+                                </span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item col-red" onclick="SMColibri.PS.chat.delete_chat();">
+                                <span class="flex-item dropdown-item-icon">
+                                    <?php echo cl_icon("delete"); ?>
+                                </span>
+                                <span class="flex-item">
+                                    <?php echo cl_translate("Delete chat"); ?>
+                                </span>
+                            </a>
+                            <a class="dropdown-item" onclick="SMColibri.PS.chat.clear_chat();">
+                                <span class="flex-item dropdown-item-icon">
+                                    <?php echo cl_icon("speaker_notes_off"); ?>
+                                </span>
+                                <span class="flex-item">
+                                    <?php echo cl_translate("Clear chat"); ?>
+                                </span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?php echo cl_link(cl_strf("settings/privacy")); ?>"
+                                data-spa="true">
+                                <span class="flex-item dropdown-item-icon">
+                                    <?php echo cl_icon('manage_account'); ?>
+                                </span>
+                                <span class="flex-item">
+                                    <?php echo cl_translate('Profile settings'); ?>
+                                </span>
+                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
+                                    <?php echo cl_icon('navigate_next'); ?>
+                                </span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="" onclick="SMColibri.go_back();">
+                                <span class="flex-item dropdown-item-icon">
+                                    <?php echo cl_icon('arrow_back'); ?>
+                                </span>
+                                <span class="flex-item">
+                                    <?php echo cl_translate("Go back"); ?>
+                                </span>
+                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
+                                    <?php echo cl_icon('reply_black'); ?>
+                                </span>
+                            </a>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-block" id="vue-conversation-app">
+        <div class="conversation">
+            <div class="conversation__body">
+                <div v-on:scroll="get_old_messages($event)" data-an="messages-list" class="conversation-messages">
+                    <?php if (not_empty($cl["messages"])): ?>
+                    <?php foreach ($cl["messages"] as $cl['li']): ?>
+                    <?php echo cl_template('conversation/includes/list_item'); ?>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="conversation__footer">
+                <?php if (not_empty($cl["can_contact"])): ?>
+                <form class="form" v-on:submit="send_message($event)" data-an="message-form">
+                    <div class="message-input">
+                        <button v-on:click="select_image" type="button" class="message-input__ctrl">
+                            <?php echo cl_icon('image'); ?>
+                        </button>
+                        <div class="message-input__field">
+                            <input data-an="msg-input" type="text" v-model="message" class="form-control"
+                                placeholder="<?php echo cl_translate("Write a message and hit Enter ..."); ?>"
+                                autofocus="true">
+                        </div>
+                        <button data-an="submit-btn" v-bind:disabled="is_invalid_form" type="submit"
+                            class="message-input__ctrl">
+                            <?php echo cl_icon('send'); ?>
+                        </button>
+                    </div>
+                    <input v-on:change="send_image($event)" type="file" class="d-none hidden" name="image"
+                        accept="image/*" data-an="media-input">
+                </form>
+                <?php else: ?>
+                <div class="ghost-form">
+                    <?php echo cl_translate("You do not have permission direct messages to this chat"); ?>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <?php //echo cl_template('conversation/scripts/app_master_script'); ?>
+</div>

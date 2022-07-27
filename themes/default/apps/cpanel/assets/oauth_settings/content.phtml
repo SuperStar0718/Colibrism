@@ -1,0 +1,170 @@
+<div class="cp-app-container" data-app="oauth-settings">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Social login
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Social login
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Manage social login API settings
+                    </h2>
+                </div>
+                <div class="body">
+                    <form class="form" data-an="form">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="facebook_api_id-input">
+                                    <label>
+                                        Facebook API ID
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config facebook_api_id%}" name="facebook_api_id" type="text"
+                                            class="form-control" placeholder="Facebook API ID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="facebook_api_key-input">
+                                    <label>
+                                        Facebook API Key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config facebook_api_key%}" name="facebook_api_key" type="text"
+                                            class="form-control" placeholder="Facebook API Key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="facebook_oauth-input">
+                                    <label>
+                                        Status
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="facebook_oauth" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['facebook_oauth'] == 'on') { echo('selected'); } ?>>
+                                                On</option>
+                                            <option value="off"
+                                                <?php if($cl['config']['facebook_oauth'] == 'off') { echo('selected'); } ?>>
+                                                Off</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="twitter_api_id-input">
+                                    <label>
+                                        Twitter API ID
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config twitter_api_id%}" name="twitter_api_id" type="text"
+                                            class="form-control" placeholder="Twitter API ID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="twitter_api_key-input">
+                                    <label>
+                                        Twitter API Key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config twitter_api_key%}" name="twitter_api_key" type="text"
+                                            class="form-control" placeholder="Twitter API Key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="twitter_oauth-input">
+                                    <label>
+                                        Status
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="twitter_oauth" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['twitter_oauth'] == 'on') { echo('selected'); } ?>>
+                                                On</option>
+                                            <option value="off"
+                                                <?php if($cl['config']['twitter_oauth'] == 'off') { echo('selected'); } ?>>
+                                                Off</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="google_api_id-input">
+                                    <label>
+                                        Google API ID
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config google_api_id%}" name="google_api_id" type="text"
+                                            class="form-control" placeholder="Google API ID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="google_api_key-input">
+                                    <label>
+                                        Google API Key
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config google_api_key%}" name="google_api_key" type="text"
+                                            class="form-control" placeholder="Google API Key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" data-an="google_oauth-input">
+                                    <label>
+                                        Status
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="google_oauth" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['google_oauth'] == 'on') { echo('selected'); } ?>>
+                                                On</option>
+                                            <option value="off"
+                                                <?php if($cl['config']['google_oauth'] == 'off') { echo('selected'); } ?>>
+                                                Off</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 no-mb">
+                                <button data-an="submit-ctrl" type="submit"
+                                    class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //echo cl_template('cpanel/assets/oauth_settings/scripts/app_master_script'); ?>

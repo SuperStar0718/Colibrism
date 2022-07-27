@@ -1,0 +1,18 @@
+<nav class="tab-navigation">
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+		<a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab" aria-controls="nav-1" aria-selected="true">
+			Fetch data - 1
+		</a>
+		<a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2" aria-selected="true">
+			Load replys - 2
+		</a>
+	</div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+	<div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
+		<?php require_once("endpoints/thread_data/includes/fetch-data.phtml"); ?>
+	</div>
+	<div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
+		<?php require_once("endpoints/thread_data/includes/load-replys.phtml"); ?>
+	</div>
+</div>

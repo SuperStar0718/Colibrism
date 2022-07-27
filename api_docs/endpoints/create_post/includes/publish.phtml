@@ -1,0 +1,141 @@
+<div class="content__inner">
+    <h2>Publish Post / Reply</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/publish_post"); ?>)</strong> API endpoint for pulishing port or it's reply
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>post_text</td>
+                <td>​Post text message (Max. 600 chars)</td>
+                <td>
+                    E.g. `Hello world!`
+                </td>
+            </tr>
+            <tr>
+                <td>thread_id</td>
+                <td>​Thered int. ID</td>
+                <td>
+                    Required only for reply
+                </td>
+            </tr>
+            <tr>
+                <td>gif_src</td>
+                <td>​Gif image source URL</td>
+                <td>
+                    Only if the post does not contain other media files (Video or Image)
+                </td>
+            </tr>
+            <tr>
+                <td>og_data</td>
+                <td>​Extracted OG data from URL</td>
+                <td>
+                    Only if the post does not contain other media files (Video or Image or GIF)
+                </td>
+            </tr>
+            <tr>
+                <td>poll_data</td>
+                <td>​Poll JSON data</td>
+                <td>
+                    Json array with poll option objects. E.g. [{"value": "Option 1"}, {"value": "Option 2"}, {..}] From 2 to 4 options
+                </td>
+            </tr>
+            <tr>
+                <td>privacy</td>
+                <td>​Publication privacy settings (Ignored for replies to posts)</td>
+                <td>
+                    One of those values (everyone, followers, mentioned)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+    	"posts_total": 4048,
+    	"data": {
+    		"id": 13,
+    		"user_id": 7,
+    		"text": "video",
+    		"type": "text",
+    		"replys_count": "0",
+    		"reposts_count": "0",
+    		"likes_count": "0",
+    		"status": "active",
+    		"thread_id": 0,
+    		"target": "publication",
+    		"og_data": "",
+    		"time": "just now",
+    		"advertising": false,
+    		"time_raw": "1605602544",
+    		"og_text": "video",
+    		"og_image": "statics/img/logo.png",
+    		"url": "http://colibri.loc/thread/13",
+    		"can_delete": true,
+    		"media": [],
+    		"is_owner": true,
+    		"has_liked": false,
+    		"has_saved": false,
+    		"has_reposted": false,
+    		"reply_to": {
+    			"id": 7,
+    			"url": "http://colibri.loc/@dan_kassing",
+    			"avatar": "http://colibri.loc/upload/default/avatar.png",
+    			"username": "@dan_kassing",
+    			"name": "Dan Kassing",
+    			"gender": "M",
+    			"is_owner": true,
+    			"thread_url": "http://colibri.loc/thread/36"
+    		},
+    		"offset_id": 13,
+    		"owner":{
+    			"id": 7,
+    			"url": "http://colibri.loc/@dan_kassing",
+    			"avatar": "http://colibri.loc/upload/default/avatar.png",
+    			"username": "@dan_kassing",
+    			"name": "Dan Kassing",
+    			"verified": "2"
+    		}
+    	},
+    	"code": 200,
+    	"message": "Post published successfully"
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+    	"code": 400,
+    	"message": "Invalid data for publication. Please check your details",
+    	"data": []
+    }
+
+    </code></pre>
+        </div>
+    </div>
+</div>

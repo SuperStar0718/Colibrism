@@ -1,0 +1,99 @@
+<div class="cp-app-container" data-app="themes">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                UI Themes
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        UI Themes
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Manage UI Themes
+                    </h2>
+                </div>
+                <div class="body responsive">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox warning">
+                            <div class="icon">
+                                <?php echo cl_ikon("danger"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    Please note that for correct operation and functionality, the theme must fully
+                                    comply with the current script update. This is not the case for the default theme.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <th>
+                                Theme name
+                            </th>
+                            <th>
+                                Theme author
+                            </th>
+                            <th>
+                                Version
+                            </th>
+                            <th>
+                                Source
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($cl["themes"] as $theme): ?>
+                            <tr>
+                                <td>
+                                    <?php echo $theme["name"]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $theme["author"]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $theme["version"]; ?>
+                                </td>
+                                <td>
+                                    <code>
+                                            <?php echo cl_strf("themes/%s", $theme["src"]); ?>
+                                        </code>
+                                </td>
+                                <td>
+                                    <?php if ($theme["src"] == $cl["config"]["theme"]): ?>
+                                    <span class="badge bg-red">
+                                        Current theme
+                                    </span>
+                                    <?php else: ?>
+                                    <button class="btn ttup btn-md bg-blue"
+                                        onclick="SMC_CPanel.PS.activate_theme('<?php echo $theme["src"] ?>', this);">
+                                        Activate
+                                    </button>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //echo cl_template('cpanel/assets/themes/scripts/app_master_script'); ?>

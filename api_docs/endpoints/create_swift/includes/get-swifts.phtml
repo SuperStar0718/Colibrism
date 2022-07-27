@@ -1,0 +1,95 @@
+<div class="content__inner">
+    <h2>Get my swifts list</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/get_swifts"); ?>)</strong> API endpoint for fetching user swifts list
+    </p>
+    <p>
+        This endpoint will allow you to get all active swifts of the logged in user
+    </p>
+    <br>
+    <h4 class="table-title">GET parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 200,
+        "data":[
+            {
+                "id": 5,
+                "username": "@admin",
+                "fname": "Mansur",
+                "lname": "ATL",
+                "avatar": "http://colibri.loc/upload/avatars/xx/xx/ZIGRH9xMQ5YXeo7s1FtI_....._thumbnail_512x512.jpeg",
+                "swift":[
+                    {
+                        "views":[
+                            "1": {
+                                "id": 1,
+                                "username": "@testuser",
+                                "fname": "Admin",
+                                "lname": "O'user",
+                                "avatar": "http://colibri.loc/upload/avatars/xx/xx/ZyoImsndzRPftd1UbMW5_24_3126....e6_thumbnail_512x512.jpg",
+                                "name": "Admin O'user",
+                                "url": "http://colibri.loc/@testuser",
+                                "time": "24 seconds ago"
+                            }
+                        ],
+                        "time": "19:24",
+                        "type": "image",
+                        "status": "active",
+                        "media":{
+                            "src": "http://colibri.loc/upload/images/xx/xx/lr4UGK....54450_image_swift.png"
+                        },
+                        "exp_time": 1623947062,
+                        "text": "",
+                        "seen": 0,
+                        "swid": "uNpuf6SrlRzQ3xVg"
+                    }
+                ],
+                "name": "Mansur ATL",
+                "url": "http://colibri.loc/@admin",
+                "is_user": true,
+                "has_unseen": false
+            }
+        ],
+        "message": "Swifts fetched successfully"
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+        "code": 404,
+        "data": [],
+        "message": "No swifts available yet"
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

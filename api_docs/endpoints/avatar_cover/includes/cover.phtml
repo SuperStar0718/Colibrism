@@ -1,0 +1,63 @@
+<div class="content__inner">
+    <h2>Change user profile cover</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/cover"); ?>)</strong> API for accessing user profile cover uploading endpoint
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>cover</td>
+                <td>Image format file (jpg,png,jpeg,gif)</td>
+                <td>
+                    image.jpeg
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 200,
+        "message": "Profile cover changed successfully",
+        "data":{
+            "cover_url": "http://dev.colibri.loc/upload/covers/2021/02/4wWZCl...fd23a4_image_cover_600x200.jpg"
+        }
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+        "code": 400,
+        "data": [],
+        "message": "Cover image is missing or invalid"
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

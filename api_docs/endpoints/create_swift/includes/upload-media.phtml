@@ -1,0 +1,98 @@
+<div class="content__inner">
+    <h2>Upload swift media</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/upload_swift_media"); ?>)</strong> API endpoint for uploading swift media file. I.e Video or Image
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>​Media file type (image/video)</td>
+                <td>
+                    E.g. image
+                </td>
+            </tr>
+            <tr>
+                <td>file</td>
+                <td>​Media file (Image/Video)</td>
+                <td>
+                    E.g. some-selfy-picture.jpeg
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response (Image uplaod)</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 200,
+        "message": "Media file uploaded successfully",
+        "data":{
+            "url": "http://colibri.loc/upload/images/xxxx/xx/e7tHaq16_2d.......c5_image_swift.jpeg",
+            "type": "image"
+        }
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Success response (Video uplaod)</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 200,
+        "message": "Media file uploaded successfully",
+        "data":{
+            "url": "http://colibri.loc/upload/videos/xxxx/xx/e7tHaq16_2d.......c5_image_swift.mp4",
+            "type": "video"
+        }
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+    	"code": 500,
+    	"message": "Media file is missing or invalid",
+    	"data": []
+    }
+
+
+    {
+    	"code": 400,
+    	"message": "Media file type is missing or invalid",
+    	"data": []
+    }
+
+    {
+    	"code": 400,
+    	"message": "You cannot attach more than 10 images to a post",
+    	"data": []
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

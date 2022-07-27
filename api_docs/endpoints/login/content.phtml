@@ -1,0 +1,95 @@
+<div class="content__inner">
+    <h2>User login</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/login"); ?>)</strong> API to access user login endpoint
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>email</td>
+                <td>User e-mail address</td>
+                <td>
+                    E.g. mansurTL@gmail.com
+                </td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td>User password</td>
+                <td>
+                    E.g. 123456
+                </td>
+            </tr>
+            <tr>
+                <td>device_type</td>
+                <td>Client device type</td>
+                <td>
+                    ios/android (Default is android)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 200,
+        "message": "User logged in successfully",
+        "data": {
+            "id": 7,
+            "first_name": "Dan",
+            "last_name": "Kassing",
+            "user_name": "dan_kassing",
+            "email": "dan_kassing@gmail.com",
+            "is_verified": true,
+            "website": "",
+            "about_you": "",
+            "gender": "M",
+            "country": "United States",
+            "post_count": 4045,
+            "last_post": 0,
+            "last_ad": 0,
+            "language": "english",
+            "following_count": 1,
+            "follower_count": 3512,
+            "wallet": "323.56",
+            "ip_address": "127.0.0.1",
+            "last_active": "1601382349",
+            "member_since": "Jul 2020",
+            "profile_privacy": "followers"
+        },
+        "auth": {
+            "auth_token": "c625cc16eb00960f076c1378c7b84ede29c01ed516013823754d476ebd93c709a1bb49b39eba40738a",
+            "refresh_token": "de25cc16eb00960f076c1378c7b84ede29c01ed516013823754d476ebd93c709a1bb49b39eba40738a",
+            "auth_token_expiry": 1916742375
+        }
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 402,
+        "message": "Incorrect Credentials",
+        "data": []
+    }
+
+    {
+        "code": 402,
+        "message": "Incorrect device type",
+        "data": []
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div style="font-family: Arial, Helvetica, sans-serif; line-height: 1.4; background: #f6f6f7; padding: 30px;">
+	<div style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 20px;">
+		<div style="height: 50px;">
+			<a href="<?php echo cl_link('/'); ?>">
+				<img style="height: 100%;" src="{%config site_logo%}" alt="{%config name%}">
+			</a>
+		</div>
+	</div>
+	<div style="display: flex; justify-content: center;  margin-bottom: 20px;">
+		<div style="background: #fff; border-radius: 2px; padding: 30px; color: #14171a; min-width: 400px;">
+			<h1 style="font-size: 32px; font-weight: 700; padding: 0; margin: 0 0 35px 0; text-transform: uppercase;">
+				<?php echo cl_translate("Complete registration"); ?>
+			</h1>
+			<h4 style="font-size: 22px; color: #1ca1f3; padding: 0; margin: 0 0 5px 0;">
+				<?php echo cl_translate("Hello"); ?>, <?php echo($cl['email_data']["name"]); ?>!
+			</h4> 
+			<p style="color: #42688a; padding: 0; margin: 0 0 20px 0; font-size: 16px;">
+				<?php echo cl_translate("Here is your activation code for your account, copy it, then on the account activation page, paste the code in the field and click the registration confirmation button!"); ?>
+			</p>
+			<div style="display: block; width: 100%;">
+				<div style="display: inline-block; padding: 15px 30px; background: #f6f6f7; color: #14171a; letter-spacing: 3px; margin-bottom: 30px; border-radius: 2px;">
+					<b style="font-size: 26px; display: inline-block; text-align: center;">
+						<?php echo($cl['email_data']['code']); ?>
+					</b>
+				</div>
+			</div>
+			<div style="display: block; width: 100%;">
+				<a href="<?php echo cl_link("confirm_registration"); ?>" style="text-decoration: none;">
+					<button style="font-size: 12px; font-weight: 500; cursor: pointer; border-radius: 2px; text-transform: uppercase; padding: 10px 20px; border: none; background: #1ca1f3; color: #fff; box-shadow: none; outline: 0;">
+						<?php echo cl_translate("Go to {@site_name@}", array("site_name" => $cl["config"]["name"])); ?>
+					</button>
+				</a>
+			</div>
+		</div>
+	</div>
+	<p style="font-size: 13px; color: #5b7083;">
+		<?php echo cl_translate('You received this email because you are a registered <a href="{@site_url@}" style="color: #1b95e0;">{@site_name@}</a> user. <br> If you have any questions, the answers can be found in the F.A.Qs section.', array(
+			"site_name" => $cl["config"]["name"],
+			"site_url" => $cl["config"]["url"]
+		)); ?>
+	</p>
+	<p style="font-size: 14px; color: #5b7083; padding: 0; margin: 0;">
+		<span>
+			<a href="{%config site_url%}" style="color: #1b95e0;">{%config name%}</a> - <?php echo cl_translate("Support team"); ?>.
+		</span>
+	</p>
+</div>

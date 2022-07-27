@@ -1,0 +1,115 @@
+<div class="timeline-container" data-app="search">
+    <div class="timeline-header" data-el="tl-header">
+        <div class="timeline-header__topline">
+            <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+        </div>
+        <div class="timeline-header__botline">
+            <div class="lp">
+                <div class="nav-link-holder">
+                    <a href="<?php echo cl_link("search"); ?>" data-spa="true">
+                        <?php echo cl_translate("Search"); ?>
+                    </a>
+                </div>
+            </div>
+            <div class="cp">
+                <a href="<?php echo cl_link('/'); ?>">
+                    <img src="{%config site_logo%}" alt="Logo">
+                </a>
+            </div>
+            <div class="rp">
+                <div class="nav-link-holder">
+                    <span class="go-back" onclick="SMColibri.go_back();">
+                        <?php echo cl_icon('arrow_back'); ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-block" id="vue-search-app">
+        <div class="timeline-searchbar">
+            <form data-an="search-form" class="form timeline-searchbar__form" v-on:submit="search_entries($event)"
+                autocomplete="off">
+                <div class="keyword-input">
+                    <input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')"
+                        type="text"
+                        placeholder="<?php echo cl_translate("Type a query and press Enter. E.g. #hashtag, username, etc.."); ?>"
+                        autofocus="true">
+                    <span class="keyword-input__left-icon">
+                        <?php echo cl_icon('search'); ?>
+                    </span>
+                    <span class="keyword-input__right-spinner" v-if="searching">
+                        <?php //echo cl_icon('spinner-icon'); ?>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="timeline-navbar">
+            <div class="timeline-navbar__item">
+                <a href="<?php echo cl_link("search/htags"); ?>" data-spa="true">
+                    <button
+                        class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "htags") { echo("active");} ?>">
+                        <span class="btn-flex-inner">
+                            <span class="icon">
+                                <?php echo cl_icon("tag"); ?>
+                            </span>
+                            <span class="text">
+                                <?php echo cl_translate("Hashtags"); ?>
+                            </span>
+                        </span>
+                    </button>
+                </a>
+            </div>
+            <div class="timeline-navbar__item">
+                <a href="<?php echo cl_link("search/people"); ?>" data-spa="true">
+                    <button
+                        class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "people") { echo("active");} ?>">
+                        <span class="btn-flex-inner">
+                            <span class="icon">
+                                <?php echo cl_icon("face"); ?>
+                            </span>
+                            <span class="text">
+                                <?php echo cl_translate("People"); ?>
+                            </span>
+                        </span>
+                    </button>
+                </a>
+            </div>
+            <div class="timeline-navbar__item">
+                <a href="<?php echo cl_link("search/posts"); ?>" data-spa="true">
+                    <button
+                        class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "posts") { echo("active");} ?>">
+                        <span class="btn-flex-inner">
+                            <span class="icon">
+                                <?php echo cl_icon("feed"); ?>
+                            </span>
+                            <span class="text">
+                                <?php echo cl_translate("Posts"); ?>
+                            </span>
+                        </span>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <?php if (empty($cl["query_result"]) && empty($cl["search_query"])): ?>
+        <?php echo cl_template('search/includes/empty_list'); ?>
+        <?php else: ?>
+        <?php echo cl_template(cl_strf('search/includes/%s', $cl["page_tab"])); ?>
+        <?php //echo cl_template('search/includes/empty_result'); ?>
+        <?php endif; ?>
+
+        <div class="timeline-data-loader" v-if="show_loader">
+            <button v-if="loading_more" class="btn btn-custom main-outline lg" disabled="true" style="display:none;">
+                <?php echo cl_translate("Please wait"); ?> </button>
+            <button v-else-if="load_more" class="btn btn-custom main-outline lg" v-on:click="" style="width:70%">
+                <?php echo cl_translate("Show more"); ?>
+            </button>
+            <button v-else class="btn btn-custom main-outline lg" disabled="true" style="display:none;">
+                <?php echo cl_translate("That is all for now!"); ?>
+            </button>
+        </div>
+    </div>
+
+    <?php //echo cl_template('search/scripts/app_master_script'); ?>
+</div>

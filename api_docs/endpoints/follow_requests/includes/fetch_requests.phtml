@@ -1,0 +1,86 @@
+<div class="content__inner">
+    <h2>Fetch follow requests</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/follow_requests"); ?>) API for accessing endpoint of user (follow requests) list</strong> 
+    </p>
+    <br>
+    <h4 class="table-title">Get parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>offset</td>
+                <td>Last user offset ID</td>
+                <td>
+                    This is only needed when loading users of the pagination system.
+                </td>
+            </tr>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID (Optional)</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>page_size</td>
+                <td>​Total users limit for each request</td>
+                <td>
+                    Recommended: 20
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 200,
+        "message": "Follow requiests fetched successfully",
+        "data": [
+            {
+                "offset_id": 43,
+                "id": 18,
+                "about": "",
+                "posts": 1,
+                "avatar": "http://colibri.loc/upload/avatars/xxx/xxx/rddNMSoS6S7cEgHO49Ch_20_45...b8_thumbnail_512x512.jpg",
+                "last_active": "21 Jun, 21 02:06 PM",
+                "username": "@john_smith",
+                "fname": "John",
+                "lname": "Smith",
+                "email": "john_smith@gmail.com",
+                "verified": "0",
+                "name": "John Smith",
+                "url": "http://colibri.loc/@john_smith",
+                "pending_req": true
+            },
+            {...}
+        ]
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+        "code": 204,
+        "message": "No data found",
+        "data": []
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>

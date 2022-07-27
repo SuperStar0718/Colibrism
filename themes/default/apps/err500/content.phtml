@@ -1,0 +1,54 @@
+<div class="timeline-container" data-app="err500">
+	<div class="timeline-header" data-el="tl-header">
+		<div class="timeline-header__topline">
+			<div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+		</div>
+		<div class="timeline-header__botline">
+			<div class="lp">
+				<div class="nav-link-holder">
+					<a href="<?php echo cl_link("500"); ?>" data-spa="true">
+						<?php echo cl_translate('Error 500'); ?>
+					</a>
+				</div>
+			</div>
+			<div class="cp">
+				<a href="<?php echo cl_link('/'); ?>">
+					<img src="{%config site_logo%}" alt="Logo">
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="timeline-placeholder">
+		<div class="icon">
+			<div class="icon__bg icon__bg_danger">
+				<?php echo cl_icon('report_problem'); ?>
+			</div>
+		</div>
+		<div class="pl-message">
+			<?php if (not_empty($cl["err_msg"])): ?>
+				<h4>
+					<?php echo $cl["err_msg"]["title"]; ?>
+				</h4>
+				<p>
+					<?php echo $cl["err_msg"]["desc"]; ?>
+				</p>
+			<?php else: ?>
+				<h4>
+					<?php echo cl_translate('Server error 500!'); ?>
+				</h4>
+				<p>
+					<?php echo cl_translate("There was a technical error while trying to process your request. Please go back to the main page or contact us by {@site_email@}", array(
+						"site_email" => cl_html_el('a', $cl['config']['email'], array('href' => cl_strf("mailto:%s", $cl['config']['email'])))
+					)); ?>
+				</p>
+			<?php endif; ?>
+		</div>
+		<div class="c2action-single">
+			<a href="<?php echo cl_link('/'); ?>" data-spa="true">
+				<button class="btn btn-custom main-outline lg">
+					<?php echo cl_translate("Go to your feed"); ?>
+				</button>
+			</a>
+		</div>
+	</div>
+</div>

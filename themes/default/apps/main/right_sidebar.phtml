@@ -1,0 +1,158 @@
+<div class="right-sb-container sidebar" data-app="right-sidebar">
+    <div class="sidebar__inner">
+        <div class="right-sidebar">
+            <div class="right-sidebar__header">
+                <form id="vue-main-search-app" autocomplete="off" class="form sidebar-searchbar">
+                    <div class="sidebar-searchbar__input">
+                        <input type="text" placeholder="Search for people, hashtags.." class="form-control">
+                        <span class="keyword-input__left-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                                fill="#000000">
+                                <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                <path
+                                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                </path>
+                            </svg>
+                        </span>
+                        <!---->
+                    </div>
+                    <div class="sidebar-searchbar__result" style="display: none;">
+                        <div class="search-result">
+                            <div class="search-result__body">
+                                <div data-an="result" class="search-result__list"></div>
+                            </div>
+                            <div class="search-result__footer disabled">
+                                <a href="" data-spa="true">
+                                    <button class="btn btn-custom main-outline md btn-block">
+                                        Advanced search
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card" style="font-size: 17px">
+                <div class="card-header"
+                    style="background-image: url({%config theme_url%}/Homepage_files/banner.png);height: 60px;">
+                </div>
+
+
+                <!-- /.card-header -->
+                <div style="text-align-last: center; position: relative">
+                    <div style="font-size:20px;"><br></div>
+                    <a href="<?php echo cl_link("create_post"); ?>"> <button type="button" class="btn btn-primary"
+                            style="border-radius: 16px;
+											text-align: center;
+											font-size: 19px;
+											width: 256px;
+											height: 31px;
+											padding-top: 0px;
+											padding-bottom: 0px;">Create Post</button></a>
+                    <div style="font-size:10px;"><br></div>
+                    <button type="button" class="btn btn-outline-primary" style="border-radius: 16px;
+											text-align: center;
+											font-size: 19px;
+											width: 256px;
+											height: 31px;
+											padding-top: 0px;
+											padding-bottom: 0px;">Create Community</button>
+                    <div style="font-size:20px;"><br></div>
+
+                    <div style="font-size:6px;"><br></div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <div class="right-sidebar__body">
+                <div style="font-size:15px;"><br></div>
+                <div class="sidebar-content sidebar-content_hashtags"
+                    style="border-bottom: unset; margin-bottom: unset;">
+                    <div class="sidebar-content__header">
+                        Hot topics for you
+                    </div>
+                    <div class="sidebar-content__body">
+                        <div class="sidebar-content-empty">
+                            Here will be a (#hashtag) list of the most relevant topics and events
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-header"
+                style="background-image: url({%config theme_url%}/Homepage_files/banner2.png);height: 67px;"></div>
+            <div style="font-size:20px;"><br></div>
+            <div class="card" style="font-size: 17px">
+
+                <div class="card-header"
+                    style="background-image: url({%config theme_url%}/Homepage_files/2.png);height: 67px;">
+                    <h3 class="card-title" style="position: relative;top: 36px;font-size: 14px;color: white;">Top News
+                        Communities</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0" style="text-align-last: center;">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td><img style="width: 24px; height:24px"
+                                        src="{%config theme_url%}/Homepage_files/1.png" alt="avatar"></td>
+                                <td>r/worldnews</td>
+                                <td><button type="button" class="btn btn-primary"
+                                        style="border-radius: 15px;width: 40px;font-size: 12px;">Join</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td><img style="width: 24px; height:24px"
+                                        src="{%config theme_url%}/Homepage_files/apple-touch-icon.png" alt="avatar">
+                                </td>
+                                <td>r/nottheonion</td>
+                                <td><button type="button" class="btn btn-primary"
+                                        style="border-radius: 15px;width: 40px;font-size: 12px;">Join</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td><img style="width: 24px; height:24px"
+                                        src="{%config theme_url%}/Homepage_files/1.png" alt="avatar"></td>
+                                <td>r/savedyouaclick</td>
+                                <td><button type="button" class="btn btn-primary"
+                                        style="border-radius: 15px;width: 40px;font-size: 12px;">Join</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td><img style="width: 24px; height:24px"
+                                        src="{%config theme_url%}/Homepage_files/apple-touch-icon.png" alt="avatar">
+                                </td>
+                                <td>r/olympics</td>
+                                <td><button type="button" class="btn btn-primary"
+                                        style="border-radius: 15px;width: 40px;font-size: 12px;">Join</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="font-size:6px;"><br></div>
+                    <button type="button" class="btn btn-primary" style="border-radius: 16px;
+												text-align: center;
+												font-size: 19px;
+												width: 256px;
+												height: 31px;
+												padding-top: 0px;
+												padding-bottom: 0px;">View All</button>
+                    <div style="font-size:6px;"><br></div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <div style="font-size:6px;"><br></div>
+        </div>
+        <div class="right-sidebar__footer">
+            <?php //echo cl_template('main/footer'); ?>
+        </div>
+        <?php if (not_empty($cl["gads_vert"])): ?>
+        <div class="right-sidebar__ads">
+            <div class="cl-google-ads">
+                <?php echo $cl["gads_vert"]; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+</div>

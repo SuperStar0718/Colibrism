@@ -1,0 +1,99 @@
+<div class="cp-app-container" data-app="posts">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Publications
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Publications
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Manage site publications
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="regular-table">
+                        <table class="table table-hover no-mb">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>
+                                        Post type
+                                    </th>
+                                    <th>
+                                        Target
+                                    </th>
+                                    <th>
+                                        Replys
+                                    </th>
+                                    <th>
+                                        Likes
+                                    </th>
+                                    <th>
+                                        Reposts
+                                    </th>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody data-an="posts-list">
+                                <?php if (not_empty($cl['posts'])): ?>
+                                <?php foreach ($cl['posts'] as $cl['li']): ?>
+                                <?php echo cl_template('cpanel/assets/publications/includes/list_item'); ?>
+                                <?php endforeach; ?>
+                                <?php else: ?>
+                                <tr>
+                                    <td colspan="8">
+                                        <div class="empty-table">
+                                            <span class="icon">
+                                                <?php echo cl_ikon("feed"); ?>
+                                            </span>
+                                            <h4>
+                                                No posts found
+                                            </h4>
+                                            <p>
+                                                It looks like there are no posts in your database yet. All publications
+                                                of your site will be displayed here.
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                        <div class="table-pagination">
+                            <?php if (not_empty($cl['posts'])): ?>
+                            <a data-an="pagination" data-dir="prev" href="" class="pagination-ctrls prev">
+                                <?php echo cl_ikon("chevron-left"); ?>
+                            </a>
+                            <a data-an="pagination" data-dir="next" href="" class="pagination-ctrls next">
+                                <?php echo cl_ikon("chevron-right"); ?>
+                            </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //echo cl_template('cpanel/assets/publications/scripts/app_master_script'); ?>

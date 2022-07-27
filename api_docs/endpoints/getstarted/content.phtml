@@ -1,0 +1,60 @@
+<div class="content__inner">
+    <div class="overflow-hidden content-section">
+        <h1 id="get-started">Get started</h1>
+        <p>
+            Welcome to the ColibriSM API. This guide will help you use our API to access ColibriSM API endpoints, therefore, we recommend that you use this particular documentation and contact us for assistance in case of unclear questions. <a href="mailto:vayart.help@gmail.com" class="link">vayart.help@gmail.com</a>
+        </p>
+    </div>
+    <h2>Important terminology</h2>
+    <p>
+        Please understand the terminology of our API before you start using it.
+    </p>
+    <br>
+    <h4 class="table-title">Basic definitions</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Title</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>API Access URL</td>
+                <td>[YOUR-SITE-URL]/mobile_api/[ENDPOINT_TYPE]</td>
+                <td>
+                    URL address for access to API Must be as shown in the example. E.g. <a href="#"><?php echo cl_link("mobile_api/login"); ?></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Auth token</td>
+                <td>
+                    <a href="#"><?php echo cl_link("mobile_api?session_id=[YOUR-SESSION-ID]"); ?></a>
+                </td>
+                <td>
+                    Most of the user's actions require his authorization, for example, like, or determine whether the user follows some kind of profile, etc. Therefore, we recommend that you always send a user's session on a get request if the user is logged in.
+
+                </td>
+            </tr>
+            <tr>
+                <td>API Access key</td>
+                <td>
+                    <a href="#"><?php echo cl_link("mobile_api?api_key=[YOUR-API-KEY]"); ?></a>
+                </td>
+                <td>
+                    To access the API, the most important point is a unique API key that is specific to each instance of this script.
+                </td>
+            </tr>
+            <tr>
+                <td>Response data type</td>
+                <td>
+                    {...}
+                </td>
+                <td>
+                    The server response to your API request will be in JSON format
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

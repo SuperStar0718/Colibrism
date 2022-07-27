@@ -1,0 +1,144 @@
+<div class="modal-content" style="border: unset; box-shadow:unset;">
+
+    <div class="modal-body">
+        <div class="timeline-pubbox-container">
+            <form id="vue-pubbox-app-2" class="form" method="post" enctype="multipart/form-data"
+                action="<?php echo cl_link("native_api/main/publish_new_post") ?> ">
+                <div class="timeline-pubbox">
+                    <div class="timeline-pubbox__header">
+                        <div class="timeline-pubbox__textinput">
+                            <div class="pubbox-avatar"><img
+                                    src="http://localhost/ColibriSM_old/upload/default/avatar-1.png" alt="Avatar"
+                                    data-xblocker="passed" style="visibility: visible;"></div>
+                            <div class="pubbox-input" style="margin-bottom:unset;">
+                                <textarea style="padding-top:10px;" name="post_text"
+                                    placeholder="Please enter your title here"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-pubbox__header">
+                        <div class="timeline-pubbox__textinput" style="display: block;height:100px;">
+
+                            <div class="pubbox-input" style="margin-bottom:unset;">
+                                <textarea style="padding-top:10px; height:100px;" name="post_description"
+                                    placeholder="Please enter your post description here"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-pubbox__body">
+                        <div class="timeline-pubbox__autocomplete">
+                            <!---->
+                            <!---->
+                        </div>
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <input type="checkbox" id="poll">
+                        <div class="timeline-pubbox__poll">
+                            <div class="pubbox-poll">
+                                <div class="pubbox-poll__header">
+                                    <h4>
+                                        Create a new poll </h4>
+                                </div>
+                                <div class="pubbox-poll__body">
+                                    <div class="pubbox-poll__inputs">
+                                        <div class="pubbox-poll__input-item">
+                                            <div class="form-group"><input type="text" placeholder="Option - 1"
+                                                    class="form-control" name="option_1">
+
+                                            </div>
+                                        </div>
+                                        <div class="pubbox-poll__input-item">
+                                            <div class="form-group"><input type="text" placeholder="Option - 2"
+                                                    class="form-control" name="option_2">
+
+                                            </div>
+                                        </div>
+                                        <div class="pubbox-poll__input-item">
+                                            <div class="form-group"><input type="text" placeholder="Option - 3"
+                                                    class="form-control" name="option_3">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class=" pubbox-poll__footer">
+                                    <button type="button" title="Cancel poll" class="btn btn-custom main-grey md">
+                                        Cancel poll
+                                    </button>
+                                    <button type="button" class="btn btn-custom main-inline md">
+                                        Add option
+                                    </button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-pubbox__footer">
+                        <input type="file" id="upload_image" name="image">
+
+                        <div class=" timeline-pubbox__footer-topline">
+                            <button type="button" class="ctrl-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                    <path
+                                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z">
+                                    </path>
+                                </svg>
+                            </button>
+
+
+                            <button type="button" class="ctrl-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px"
+                                    viewBox="0 0 24 24" width="24px" fill="#000000">
+                                    <g>
+                                        <rect fill="none" height="24" width="24"></rect>
+                                    </g>
+                                    <g>
+                                        <g></g>
+                                        <g>
+                                            <circle cx="15.5" cy="9.5" r="1.5"></circle>
+                                            <circle cx="8.5" cy="9.5" r="1.5"></circle>
+                                            <path d="M12,18c2.28,0,4.22-1.66,5-4H7C7.78,16.34,9.72,18,12,18z">
+                                            </path>
+                                            <path
+                                                d="M11.99,2C6.47,2,2,6.48,2,12c0,5.52,4.47,10,9.99,10C17.52,22,22,17.52,22,12C22,6.48,17.52,2,11.99,2z M12,20 c-4.42,0-8-3.58-8-8c0-4.42,3.58-8,8-8s8,3.58,8,8C20,16.42,16.42,20,12,20z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </button>
+
+                            <button type="button" class="ctrl-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <path d="M0 0h24v24H0V0z" fill="none"></path>
+
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9
+                                        2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z">
+                                    </path>
+
+                                </svg>
+
+                            </button>
+                            <label for="poll"
+                                style="position:relative; left:-35px; width:35px;height:35px; cursor:pointer"></label>
+                            <label for="upload_image"
+                                style="position:relative; left:-148px; width:35px;height:35px; cursor:pointer"></label>
+
+                        </div>
+                        <div class="timeline-pubbox__footer-botline">
+                            <div class="post-publication"><button type="submit" class="btn-custom main-inline md">
+                                    Publish </button></div>
+                        </div>
+                    </div>
+                </div> <input multiple="multiple" type="file" data-an="images-input" accept="image/*" class="d-none">
+                <input type="file" data-an="video-input" accept="video/*" class="d-none"> <input type="hidden"
+                    value="1658755717:209e73b950e3a2f3640808ed14fca53bca827a90" name="hash" class="d-none">
+            </form>
+        </div>
+    </div>
+</div>

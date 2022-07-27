@@ -1,0 +1,87 @@
+<div class="cp-app-container" data-app="dashboard">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Dashboard
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Dashboard
+                    </a>
+                </li> 
+            </ol>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-pink hover-expand-effect">
+                <div class="icon">
+                    <?php echo cl_ikon('people'); ?>
+                </div>
+                <div class="content">
+                    <div class="text">
+                        Users
+                    </div>
+                    <div class="number count-to" data-from="0" data-to="<?php echo($cl['total_users']); ?>" data-speed="15" data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-blue hover-expand-effect">
+                <div class="icon">
+                    <?php echo cl_ikon('feed'); ?>
+                </div>
+                <div class="content">
+                    <div class="text">Posts</div>
+                    <div class="number count-to" data-from="0" data-to="<?php echo($cl['total_posts']); ?>" data-speed="1000" data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-light-green hover-expand-effect">
+                <div class="icon">
+                    <?php echo cl_ikon('image'); ?>
+                </div>
+                <div class="content">
+                    <div class="text">Images</div>
+                    <div class="number count-to" data-from="0" data-to="<?php echo($cl['total_images']); ?>" data-speed="1000" data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-orange hover-expand-effect">
+                <div class="icon">
+                    <?php echo cl_ikon('video'); ?>
+                </div>
+                <div class="content">
+                    <div class="text">Videos</div>
+                    <div class="number count-to" data-from="0" data-to="<?php echo($cl['total_videos']); ?>" data-speed="1000" data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Annual statistics of new users and published media content
+                    </h2>
+                </div>
+                <div class="body">
+                    <canvas id="annual_media_content_statistics" height="500"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php //echo cl_template('cpanel/assets/dashboard/scripts/app_master_script'); ?>

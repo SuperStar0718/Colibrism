@@ -1,0 +1,79 @@
+<div class="cp-app-container" data-app="ads-settings">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Advertising settings
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Advertising settings
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Manage advertising system settings
+                    </h2>
+                </div>
+                <div class="body">
+                    <form class="form" data-an="form">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group" data-an="ad_conversion_rate-input">
+                                    <label>
+                                        Ad conversion rate
+                                    </label>
+                                    <div class="form-line">
+                                        <input value="{%config ad_conversion_rate%}" name="ad_conversion_rate"
+                                            type="text" class="form-control" placeholder="E. g. 0.05">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group" data-an="advertising_system-input">
+                                    <label>
+                                        Advertising system
+                                    </label>
+                                    <div class="form-line">
+                                        <select name="advertising_system" class="form-control selectpicker">
+                                            <option value="on"
+                                                <?php if($cl['config']['advertising_system'] == 'on') { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off"
+                                                <?php if($cl['config']['advertising_system'] == 'off') { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 no-mb">
+                                <button data-an="submit-ctrl" type="submit" class="btn bg-blue btn-block btn-lg ttup">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php //echo cl_template('cpanel/assets/ads_settings/scripts/app_master_script'); ?>

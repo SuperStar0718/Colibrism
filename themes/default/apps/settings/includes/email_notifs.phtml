@@ -1,0 +1,245 @@
+<div class="timeline-container">
+	<div class="timeline-header" data-el="tl-header">
+        <div class="timeline-header__topline">
+            <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+        </div>
+        <div class="timeline-header__botline">
+    		<div class="lp">
+    			<div class="nav-link-holder">
+    				<a href="<?php echo cl_link("settings/email_notifs"); ?>" data-spa="true">
+    					<?php echo cl_translate("Email notifications"); ?>
+    				</a>
+    			</div>
+    		</div>
+    		<div class="cp">
+    			<a href="<?php echo cl_link("home"); ?>">
+    				<img src="{%config site_logo%}" alt="Logo">
+    			</a>
+    		</div>
+    		<div class="rp">
+    			<div class="nav-link-holder">
+    				<span class="go-back" onclick="SMColibri.go_back();">
+    					<?php echo cl_icon('arrow_back'); ?>
+    				</span>
+    			</div>
+    		</div>
+        </div>
+	</div>
+	<div class="profile-settings">
+		<div class="profile-settings__title">
+			<h4>
+				<?php echo cl_translate("Email notifications settings"); ?>
+			</h4>
+		</div>
+		<div class="profile-settings__content profile-settings__content_no-padding">
+			<div class="settings-form">
+				<form class="form" id="cl-enotifs-settings-vue-app" v-on:submit="submit_form($event)">
+					<div class="form-group no-mb">
+                        <div class="form-toggle">
+                            <div class="form-toggle__lp">
+                                <?php echo cl_icon("thumb_up"); ?>
+                            </div>
+                            <div class="form-toggle__mp">
+                                <span class="form-toggle__title">
+                                    <?php echo cl_translate("Liked my post"); ?>
+                                </span>
+                                <span class="form-toggle__desc">
+                                    <?php echo cl_translate("Notify me when someone like my post"); ?>
+                                </span>
+                            </div>
+                            <div class="form-toggle__rp">
+                                <div class="form-check">
+                                    <input name="like" type="checkbox" class="form-check-input" <?php if(not_empty($me["settings"]["enotifs"]["like"])) {echo("checked");} ?>>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group no-mb">
+                        <div class="form-toggle">
+                            <div class="form-toggle__lp">
+                                <?php echo cl_icon("person_add"); ?>
+                            </div>
+                            <div class="form-toggle__mp">
+                                <span class="form-toggle__title">
+                                    <?php echo cl_translate("Followed me"); ?>
+                                </span>
+                                <span class="form-toggle__desc">
+                                    <?php echo cl_translate("Notify me when someone followed me"); ?>
+                                </span>
+                            </div>
+                            <div class="form-toggle__rp">
+                                <div class="form-check">
+                                    <input name="subscribe" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["enotifs"]["subscribe"])) {echo("checked");} ?>>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group no-mb">
+                        <div class="form-toggle">
+                            <div class="form-toggle__lp">
+                                <?php echo cl_icon("emoji_people"); ?>
+                            </div>
+                            <div class="form-toggle__mp">
+                                <span class="form-toggle__title">
+                                    <?php echo cl_translate("Follow request"); ?>
+                                </span>
+                                <span class="form-toggle__desc">
+                                    <?php echo cl_translate("Notify me when someone sends a follow request"); ?>
+                                </span>
+                            </div>
+                            <div class="form-toggle__rp">
+                                <div class="form-check">
+                                    <input name="subscribe_request" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["enotifs"]["subscribe_request"])) {echo("checked");} ?>>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group no-mb">
+                        <div class="form-toggle">
+                            <div class="form-toggle__lp">
+                                <?php echo cl_icon("how_to_reg"); ?>
+                            </div>
+                            <div class="form-toggle__mp">
+                                <span class="form-toggle__title">
+                                    <?php echo cl_translate("Subscription acceptance"); ?>
+                                </span>
+                                <span class="form-toggle__desc">
+                                    <?php echo cl_translate("Notify me when my subscription request is accepted"); ?>
+                                </span>
+                            </div>
+                            <div class="form-toggle__rp">
+                                <div class="form-check">
+                                    <input name="subscribe_accept" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["enotifs"]["subscribe_accept"])) {echo("checked");} ?>>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group no-mb">
+                        <div class="form-toggle">
+                            <div class="form-toggle__lp">
+                                <?php echo cl_icon('post_reply'); ?>
+                            </div>
+                            <div class="form-toggle__mp">
+                                <span class="form-toggle__title">
+                                    <?php echo cl_translate("Replied me"); ?>
+                                </span>
+                                <span class="form-toggle__desc">
+                                    <?php echo cl_translate("Notify me when someone replied me"); ?>
+                                </span>
+                            </div>
+                            <div class="form-toggle__rp">
+                                <div class="form-check">
+                                    <input name="reply" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["enotifs"]["reply"])) {echo("checked");} ?>>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group no-mb">
+                        <div class="form-toggle">
+                            <div class="form-toggle__lp">
+                                <?php echo cl_icon('repeat'); ?>
+                            </div>
+                            <div class="form-toggle__mp">
+                                <span class="form-toggle__title">
+                                    <?php echo cl_translate("Publication repost"); ?>
+                                </span>
+                                <span class="form-toggle__desc">
+                                    <?php echo cl_translate("Notify me when someone re-posts my publication"); ?>
+                                </span>
+                            </div>
+                            <div class="form-toggle__rp">
+                                <div class="form-check">
+                                    <input name="repost" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["enotifs"]["repost"])) {echo("checked");} ?>>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group no-mb">
+                        <div class="form-toggle">
+                            <div class="form-toggle__lp">
+                                <?php echo cl_icon('alternate_email'); ?>
+                            </div>
+                            <div class="form-toggle__mp">
+                                <span class="form-toggle__title">
+                                    <?php echo cl_translate("Mentioned me"); ?>
+                                </span>
+                                <span class="form-toggle__desc">
+                                    <?php echo cl_translate("Notify me when someone mentioned me"); ?>
+                                </span>
+                            </div>
+                            <div class="form-toggle__rp">
+                                <div class="form-check">
+                                    <input name="mention" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["enotifs"]["mention"])) {echo("checked");} ?>>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group padding-x-offset" v-if="unsuccessful_attempt">
+                        <div class="invalid-main-feedback">
+                            <?php echo cl_translate("Something went wrong while trying to save your changes, please try again later"); ?>
+                        </div>
+                    </div>
+                    <div class="form-group padding-x-offset" v-else>
+                        <div class="form-info-label">
+                            <?php echo cl_translate("Choose which email notifications about your (actions, events) related to your account you want to receive"); ?>
+                        </div>
+                    </div>
+                    <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    <div class="form-group padding-x-offset no-mb">
+                    	<button v-if="submitting != true" type="submit" class="btn btn-block btn-custom main-inline lg">
+	                        <?php echo cl_translate("Save changes"); ?>
+	                    </button>
+	                    <button v-else disabled="true" type="button" class="btn btn-block btn-custom main-inline lg">
+	                        <?php echo cl_translate("Please wait"); ?>
+	                    </button>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		"use strict";
+
+		$(document).ready(function($) {
+			Vue.use(window.vuelidate.default);
+			var VueValids = window.validators;
+
+			new Vue({
+				el: "#cl-enotifs-settings-vue-app",
+				data: {
+					submitting: false,
+					unsuccessful_attempt: false
+				},
+				methods: {
+					submit_form: function(_self = null) {
+						_self.preventDefault();
+
+						var _app_ = this;
+
+						$(_self.target).ajaxSubmit({
+							url: "<?php echo cl_link("native_api/settings/save_enotif_settings"); ?>",
+							type: 'POST',
+							dataType: 'json',
+							beforeSend: function() {
+								_app_.submitting = true;
+								_app_.unsuccessful_attempt = false;
+							},
+							success: function(data) {
+								if (data.status == 200) {
+									cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>");
+								}
+								else{
+									_app_.unsuccessful_attempt = true;
+								}
+							},
+							complete: function() {
+								_app_.submitting = false;
+							}
+						});
+					}
+				}
+			});
+		});
+	</script>
+</div>

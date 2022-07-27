@@ -1,0 +1,64 @@
+<form class="form" id="cl-login-vue-app" v-on:submit="submit_form($event)" autocomplete="off">
+	<div class="form-title">
+		<h2>
+			<?php echo cl_translate("Sign in"); ?>
+		</h2>
+	</div>
+	<div class="form-group">
+		<label class="input-label">
+			<?php echo cl_translate("Username"); ?>
+		</label>
+		<input name="email" v-model.trim.lazy="$v.email.$model" type="text" class="form-control" placeholder="<?php echo cl_translate("Username"); ?>">
+		<div class="invalid-main-feedback" v-if="is_valid_email">
+			{{invalid_feedback_email}}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="input-label">
+			<?php echo cl_translate("Password"); ?>
+		</label>
+		<div class="password-ctrl">
+			<input name="password" v-model.trim="$v.password.$model" v-bind:type="password_display" class="form-control" placeholder="<?php echo cl_translate("Password"); ?>">
+			
+			<button class="password-ctrl" type="button" v-on:click="password_display_toggle">
+				<span v-if="password_display == 'password'">
+					<?php echo cl_icon("visibility"); ?>
+				</span>
+				<span v-else>
+					<?php echo cl_icon("visibility_off"); ?>
+				</span>
+			</button>
+		</div>
+		<div class="invalid-main-feedback" v-if="is_valid_password">
+			{{invalid_feedback_pass}}
+		</div>
+		<div v-else-if="unsuccessful_attempt" class="form-group invalid-main-feedback mb-20">
+			<?php echo cl_translate("A user with such credentials is not found. Check the data entered and try again."); ?>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<button v-if="submitting" disabled="true" type="button" class="btn btn-custom main-inline lg btn-block">
+			<?php echo cl_translate("Please wait"); ?>
+		</button>
+		<button v-else-if="done" disabled="true" type="button" class="btn btn-custom main-inline lg btn-block">
+			<?php echo cl_translate("Loading.."); ?>
+		</button>
+		<button  v-else v-bind:disabled="($v.$invalid == true)" class="btn btn-custom main-inline lg btn-block">
+			<?php echo cl_translate("Login"); ?>
+		</button>
+	</div>
+	
+
+	<div class="form-group no-mb">
+		<div class="form-cta-link">
+			<span>
+				<?php echo cl_translate("Don't have an account?"); ?>
+			</span>
+			<a href="<?php echo cl_link('guest?auth=signup'); ?>">
+				<?php echo cl_translate("Sign up"); ?>
+			</a>
+		</div>
+	</div>
+	<input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+</form>

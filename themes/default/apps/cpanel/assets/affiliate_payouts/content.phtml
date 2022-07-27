@@ -1,0 +1,112 @@
+<div class="cp-app-container" data-app="affiliate-payouts">
+    <div class="current-page-name">
+        <div class="lp">
+            <h2>
+                Affiliate payouts
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="<?php echo cl_link('admin_panel'); ?>">
+                        Control panel
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="">
+                        Affiliate payouts
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card" id="vue-cpanel-affiliate-payouts-app">
+                <div class="header">
+                    <h2>
+                        Manage affiliate payout requests - ({{total_requests}})
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox info">
+                            <div class="icon">
+                                <?php echo cl_ikon("info"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    Please note: When paying or refusing to pay, do not forget to send a notification to
+                                    the user by email, informing him about the result of his request.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="regular-table">
+                        <table class="table table-hover no-mb">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>
+                                        Username
+                                    </th>
+                                    <th>
+                                        E-mail address
+                                    </th>
+                                    <th>
+                                        Paypal
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Requested at
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody data-an="requests-list">
+                                <?php if (not_empty($cl['requests'])): ?>
+                                <?php foreach ($cl['requests'] as $cl['li']): ?>
+                                <?php echo cl_template('cpanel/assets/affiliate_payouts/includes/list_item'); ?>
+                                <?php endforeach; ?>
+                                <?php else: ?>
+                                <tr>
+                                    <td colspan="8">
+                                        <div class="empty-table">
+                                            <span class="icon">
+                                                <?php echo cl_ikon("support-alt"); ?>
+                                            </span>
+                                            <h4><?php echo('No requests found'); ?></h4>
+                                            <p>
+                                                <?php echo('It looks like there are no affiliate payout requests in your database yet. All affiliate payout requests will be displayed here.'); ?>
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+
+                        <div class="table-pagination">
+                            <a v-if="show_ctrls" v-bind:class="{'disabled': dis_prev_ctrl}" v-on:click="paginate('up')"
+                                href="" class="pagination-ctrls prev">
+                                <?php echo cl_ikon("chevron-left"); ?>
+                            </a>
+                            <a v-if="show_ctrls" v-bind:class="{'disabled': dis_next_ctrl}"
+                                v-on:click="paginate('down')" href="" class="pagination-ctrls next">
+                                <?php echo cl_ikon("chevron-right"); ?>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php //echo cl_template('cpanel/assets/affiliate_payouts/scripts/app_master_script'); ?>

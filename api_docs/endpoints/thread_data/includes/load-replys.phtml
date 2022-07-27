@@ -1,0 +1,152 @@
+<div class="content__inner">
+	<h2>Load thread replys</h2>
+	<p>
+	    Please use this <strong>(<?php echo cl_link("mobile_api/thread_replys"); ?>)</strong> API for accessing endpoint of post thread replys
+	</p>
+	<h3>
+		Description of the data structure
+	</h3>
+	<br>
+	<p>
+		Please note that each post item in `data` array can also contain `replys` variable with first few replys to it (see above)
+	</p>
+	<h4 class="table-title">GET parameters</h4>
+	<table class="table table-bordered">
+	    <thead>
+	    <tr>
+	        <th width="15%">Field</th>
+	        <th width="25%">Value</th>
+	        <th width="45%">Remarks</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>session_id</td>
+	            <td>​Access token ID</td>
+	            <td>
+	                E.g. de25cc16eb00960f076...
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>thread_id</td>
+	            <td>Thread int ID</td>
+	            <td>
+	                E.g. 123456 (ID of any post to view replies and all details)
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>page_size</td>
+	            <td>​Total post limit for each request (Optional)</td>
+	            <td>
+	                Recommended: 20
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>offset</td>
+	            <td>Last post offset ID</td>
+	            <td>
+	                This variable must be the id of the last post (Reply) object in the `next` array (see above)
+	            </td>
+	        </tr>
+	    </tbody>
+	</table>
+	<h4 class="table-title">Success response</h4>
+	<div class="code-holder">
+	    <div class="code-holder-inner">
+	<pre><code class="json">{
+		"message": "Replies fetched successfully",
+		"code": 200,
+		"data":[
+			{
+				"id": 44,
+				"user_id": 7,
+				"text": "sdfrw",
+				"type": "text",
+				"replys_count": "0",
+				"reposts_count": "0",
+				"likes_count": "0",
+				"status": "active",
+				"thread_id": 41,
+				"target": "pub_reply",
+				"og_data": "",
+				"time": "50 minutes ago",
+				"replys":[],
+				"advertising": false,
+				"time_raw": "1605617624",
+				"og_text": "sdfrw",
+				"og_image": "statics/img/logo.png",
+				"url": "http://colibri.loc/thread/44",
+				"can_delete": true,
+				"media":[],
+				"is_owner": true,
+				"has_liked": false,
+				"has_saved": false,
+				"has_reposted": false,
+				"reply_to":{"id": 7, "url": "http://colibri.loc/@dan_kassing", "avatar": "http://colibri.loc/upload/default/avatar.png",…},
+				"owner":{"id": 7, "url": "http://colibri.loc/@dan_kassing", "avatar": "http://colibri.loc/upload/default/avatar.png",…},
+				"offset_id": 44
+			},
+			{
+				"id": 43,
+				"user_id": 7,
+				"text": "sdf",
+				"type": "text",
+				"replys_count": "0",
+				"reposts_count": "0",
+				"likes_count": "0",
+				"status": "active",
+				"thread_id": 41,
+				"target": "pub_reply",
+				"og_data": "",
+				"time": "50 minutes ago",
+				"replys":[],
+				"advertising": false,
+				"time_raw": "1605617612",
+				"og_text": "sdf",
+				"og_image": "statics/img/logo.png",
+				"url": "http://colibri.loc/thread/43",
+				"can_delete": true,
+				"media":[],
+				"is_owner": true,
+				"has_liked": false,
+				"has_saved": false,
+				"has_reposted": false,
+				"reply_to":{"id": 7, "url": "http://colibri.loc/@dan_kassing", "avatar": "http://colibri.loc/upload/default/avatar.png",…},
+				"owner":{"id": 7, "url": "http://colibri.loc/@dan_kassing", "avatar": "http://colibri.loc/upload/default/avatar.png",…},
+				"offset_id": 43
+			}
+		]
+	}
+	</code></pre>
+	    </div>
+	</div>
+	<h4 class="table-title">Error responses</h4>
+	<div class="code-holder">
+	    <div class="code-holder-inner">
+	<pre><code class="json">{
+	    "code": 401,
+	    "data": [],
+	    "message": "Unauthorized Access"
+	}
+
+	{
+		"message": "No data found",
+		"code": 404,
+		"data": []
+	}
+
+	{
+		"code": 400,
+		"message": "Thread ID is missing or invalid. Please check your details",
+		"data": []
+	}
+
+	{
+		"code": 400,
+		"message": "The paging offset ID is missing or invalid. Please check your details",
+		"data": []
+	}
+	</code></pre>
+	    </div>
+	</div>
+</div>

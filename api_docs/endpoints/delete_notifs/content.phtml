@@ -1,0 +1,61 @@
+<div class="content__inner">
+    <h2>Delete Notifications & Mentions</h2>
+    <p>
+        Please use this <strong>(<?php echo cl_link("mobile_api/delete_notifs"); ?>) API for access (notifications & mentions) deleting endpoint</strong> 
+    </p>
+    <br>
+    <h4 class="table-title">Post parameters</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th width="15%">Field</th>
+            <th width="25%">Value</th>
+            <th width="45%">Remarks</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>session_id</td>
+                <td>​Access token ID</td>
+                <td>
+                    E.g. de25cc16eb00960f076...
+                </td>
+            </tr>
+            <tr>
+                <td>scope</td>
+                <td>​Array of notification ID (Integer)</td>
+                <td>
+                    E.g. [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...]
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="table-title">Success response</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "data": [],
+        "code": 200,
+        "message": "Notifications deleted successfully"
+    }
+    </code></pre>
+        </div>
+    </div>
+    <h4 class="table-title">Error responses</h4>
+    <div class="code-holder">
+        <div class="code-holder-inner">
+    <pre><code class="json">{
+        "code": 401,
+        "data": [],
+        "message": "Unauthorized Access"
+    }
+
+    {
+        "code": 400,
+        "message": "Notification IDs are missing or invalid",
+        "data": []
+    }
+    </code></pre>
+        </div>
+    </div>
+</div>
