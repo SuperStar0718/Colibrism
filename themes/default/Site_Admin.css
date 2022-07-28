@@ -126,7 +126,9 @@
     fill: #5b7083;
     --cl-secondary-text-color: #5b7083;
   }
-
+.card{
+  border:3px solid rgba(0, 0, 0, .125);
+}
 
   #file {
     width: 36px;
