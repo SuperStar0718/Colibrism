@@ -1,0 +1,66 @@
+<div class="timeline-container" data-app="homepage">
+
+    <div class="user-profile">
+
+
+        <div class="user-profile__body" style="display:flex;">
+            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
+                <h4>
+                    <span class="user-name-holder">
+                        <span class="user-name-holder__name" style="font-weight:bold">
+
+                            <?php echo ("c/Torify Approved users"); ?>
+
+                        </span>
+
+
+                    </span>
+                </h4>
+
+            </div>
+
+
+
+
+        </div>
+
+        <div style="background-color:#edeff1;padding-left:3%; padding-bottom:5px;padding-top:5px;">
+            <form action="" class="">
+                <div class="input-group col-sm-4  ">
+                    <input type="text" class="form-control form-control-sm" placeholder="Search Here">
+                    <button type="submit" class="input-group-text btn-success"><i class="fa fa-search"
+                            style="z-index: 10;"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container"
+        style="padding-left:30px; padding-right:30px;padding-top:10px;padding-bottom:10px;display:flex;">
+
+        <img src="{%config theme_url%}/Homepage_files/1.png"
+            style="height: 40px; width:40px;border: 3px solid white;border-radius: 34px;z-index: 300;">
+        <div style="padding-top:10px;">Ok-Manufacturer3200</div>
+        <div style="padding-top:10px;padding-left:40px;padding-right:24%;">2 days ago</div>
+        <div>
+            <button type="button" class="btn" style="color:#3f48ce;font-weight:bold;">Message User</button>|
+            <button type="button" class="btn" style="color:#3f48ce;font-weight:bold;">Muter User</button>|
+            <button type="button" class="btn" style="color:#3f48ce;font-weight:bold;">Ban User</button>
+        </div>
+
+    </div>
+    <div class="container"
+        style="padding-left:30px; padding-right:30px; background-color:#dae0e6;padding-top:30px;height:400px;">
+
+
+
+    </div>
+
+    <?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+    <?php echo cl_template("home/modals/swift_lightbox"); ?>
+    <?php echo cl_template("home/modals/swift_pubbox"); ?>
+    <?php endif; ?>
+
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); ?>
+</div>

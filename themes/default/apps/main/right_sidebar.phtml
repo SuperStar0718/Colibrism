@@ -1,5 +1,5 @@
 <div class="right-sb-container sidebar" data-app="right-sidebar">
-    <div class="sidebar__inner">
+    <div class="sidebar__inner;padding-left:usnet;">
         <div class="right-sidebar">
 
             <div class="card" style="font-size: 17px">
@@ -17,6 +17,22 @@
                         </svg>
 
                     </button>
+                </div>
+                <div style="display:flex;">
+                    <img src="{%config theme_url%}/Homepage_files/1.png"
+                        style="height: 70px; width:70px;border: 3px solid white;border-radius: 34px;z-index: 300;">
+                    <h4 style="padding-bottom:9px;    align-self: self-end;
+ ">
+                        <span class="user-name-holder">
+                            <span class="user-name-holder__name" style="font-weight:bold">
+
+                                <?php echo ("r/"."Torify"); ?>
+
+                            </span>
+
+
+                        </span>
+                    </h4>
                 </div>
                 <div style="font-size:13px;padding-left:10px;padding-right:10px;padding-top:10px;">
                     A place for major news from around the world, excluding US-internal news.
@@ -57,176 +73,93 @@
 											padding-bottom: 0px;">Create Community</button> -->
 
                 </div>
-                <div class="dropdown" style="font-size:13px;">
-                    <button data-bs-toggle="collapse" data-bs-target="#demo" class="dropdown-toggle" type="button"
-                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-                        style="font-size:13px;background-color:white;color:black;border:0px;padding-left:10px;width:100%; ">
+                <div class="dropdown" style="display:flex;font-size:13px;border-bottom:1px;">
+                    <img src="https://img.icons8.com/ios/50/000000/visible--v1.png" style="width: 20px;height:20px;" />
+                    <button data-bs-toggle="collapse" data-bs-target="#option" type="button" id=""
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
                         Community Options
+
                     </button>
-                    <div id="demo" class="collapse" style="border:0px;">
+                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                        <label class="custom-control-label" for="customSwitch3"></label>
+                    </div>
+                    <div id="option" class="collapse" style="border:0px;">
                         Lorem ipsum dolor text....
                     </div>
                 </div>
-                <!-- /.card-body -->
+
             </div>
             <div class="card-header"
                 style="margin-top:10px;margin-bottom:10px;background-image: url({%config theme_url%}/Homepage_files/banner.png);height: 60px;">
             </div>
 
             <div class="card" style="font-size: 17px">
-
                 <div
-                    style="font-size:13px;background-color:#0b5ed7; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
-                    r/worldnews Rules
-
+                    style="font-size:17px;padding-left:10px;padding-top:10px;padding-bottom:10px;padding-right:10px;text-align: -webkit-center;">
+                    <img src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/000000/external-settings-seo-4.-1-sbts2018-outline-sbts2018.png"
+                        style="width: 20px; height:20px;" />Manage
                 </div>
-
-
-
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            1. No US InternalNews or Politics
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="first" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
+                <div style="text-align: -webkit-right;font-size:14px;">
+                    <div style="font-size: 10px;">
+                        QUEUES
+                        <img src="https://img.icons8.com/external-tal-revivo-bold-tal-revivo/24/000000/external-online-streaming-platform-media-group-curated-list-music-bold-tal-revivo.png"
+                            style="width:20px;height:20px;" />
+                    </div>
+                    <div style="padding-right:20px;">
+                        <div>Mod Mail</div>
+                        <div>Unmoderated Posts</div>
+                        <div>Reports</div>
+                        <div>Spam</div>
                     </div>
                 </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#second" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            2. No Editorialized or Misleading &nbsp;&nbsp;&nbsp;Titles
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="second" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
+                <div style="text-align: -webkit-right;font-size:14px;padding-top:10px;">
+                    <div style="font-size: 10px;">
+                        USER MANAGEMENT
+                        <img src="https://img.icons8.com/ios/50/000000/contacts.png" style="width:20px;height:20px;" />
+                    </div>
+                    <div style="padding-right:20px;">
+                        <div>Banning</div>
+                        <div>Moderators</div>
                     </div>
                 </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#third" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            3. No Feature stories
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="third" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
+                <div style="text-align: -webkit-right;font-size:14px;padding-top:10px;">
+                    <div style="font-size: 10px;">
+                        FLAIR EMOJIS
+                        <img src="https://img.icons8.com/fluency-systems-regular/48/000000/wi-fi-fair.png"
+                            style="width:20px;height:20px;" />
+                    </div>
+                    <div style="padding-right:20px;">
+                        <div>Grant Use Flair</div>
+                        <div>Post Flair</div>
                     </div>
                 </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#fourth" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            4. No Editorials, Opinion or Analysis Pieces
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="fourth" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
+                <div style="text-align: -webkit-right;font-size:14px;padding-top:10px;">
+                    <div style="font-size: 10px;">
+                        RULES AND REGULATIONS
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/rules.png"
+                            style="width:20px;height:20px;" />
+                    </div>
+                    <div style="padding-right:20px;">
+                        <div>Community Rules</div>
+                        <div>Automod</div>
                     </div>
                 </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#fifth" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            5. No Articles In Languages Other Than English
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="fifth" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
+                <div style="text-align: -webkit-right;font-size:14px;padding-top:10px;">
+                    <div style="font-size: 10px;">
+                        USER MANAGEMENT
+                        <img src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/000000/external-setting-advertising-xnimrodx-lineal-xnimrodx.png"
+                            style="width:20px;height:20px;" />
                     </div>
-                </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#sixth" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            6. No Images, Videos or Audio Clips
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="sixth" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
-                    </div>
-                </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#seventh" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            7. No Bigotry or Other Offensive Content
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="seventh" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
-                    </div>
-                </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#eightth" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            8. No Personal Attacks On Other Users
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="eightth" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
-                    </div>
-                </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#nineth" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            9. No Memes, Gifs, unlabeled NSFW images
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="nineth" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
-                    </div>
-                </div>
-                <div
-                    style="position:relative; left:10px; width:93%; border-bottom:1px solid #e4eaef; padding-top:5px; padding-bottom:5px;">
-                    <div class="dropdown" style="font-size:13px;border-bottom:1px;">
-                        <button data-bs-toggle="collapse" data-bs-target="#tenth" type="button" id=""
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                            10. No Old News Articles (> 1 Week old)
-                            <img src="https://img.icons8.com/officel/16/000000/expand-arrow.png" />
-                        </button>
-                        <div id="tenth" class="collapse" style="border:0px;">
-                            Lorem ipsum dolor text....
-                        </div>
+                    <div style="padding-right:20px;">
+                        <div>Banning</div>
+                        <div>Moderators</div>
                     </div>
                 </div>
             </div>
-            <div class="card-header"
-                style="margin-top:10px;margin-bottom:10px;background-image: url({%config theme_url%}/Homepage_files/banner.png);height: 60px;">
-            </div>
+
+
             <div class="card" style="font-size: 17px">
 
                 <div
@@ -253,6 +186,9 @@
                     <div style="text-align-last: left;padding-top:10px;padding-bottom:10px;color:#3a719c;">
                         u/WorldNewsMods
                     </div>
+                    <button style="float:right; color:#3a719c;font-size:13px;font-weight:bold;" type="button"
+                        class="btn">VIEW ALL
+                        MODERATORS</button>
                 </div>
 
             </div>
