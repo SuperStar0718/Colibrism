@@ -1,197 +1,140 @@
 <div class="right-sb-container sidebar" data-app="right-sidebar">
-    <div class="sidebar__inner;padding-left:usnet;">
+    <div class="sidebar__inner; padding-left:unset;">
         <div class="right-sidebar">
+            <div class="right-sidebar__header">
+                <form id="vue-main-search-app" autocomplete="off" class="form sidebar-searchbar">
+                    <div class="sidebar-searchbar__input" style="padding-bottom:10px;">
+                        <input type="text" placeholder="Search for people, hashtags.." class="form-control">
 
+                        <!---->
+                    </div>
+                    <div class="sidebar-searchbar__result" style="display: none;">
+                        <div class="search-result">
+                            <div class="search-result__body">
+                                <div data-an="result" class="search-result__list"></div>
+                            </div>
+                            <div class="search-result__footer disabled">
+                                <a href="" data-spa="true">
+                                    <button class="btn btn-custom main-outline md btn-block">
+                                        Advanced search
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="card" style="font-size: 17px">
-
-                <div
-                    style="font-size:13px;background-color:#0b5ed7; color:white;padding-left:10px;padding-top:5px;padding-bottom:5px;display: flex;justify-content: space-between;padding-right:10px;">
-                    About Community
-                    <button style="border:none; background-color:#0b5ed7;color:white;">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
-                            fill="#ffffff">
-                            <path d="M0 0h24v24H0V0z" fill="none"></path>
-                            <path
-                                d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-                            </path>
-                        </svg>
-
-                    </button>
+                <div class="card-header"
+                    style="background-image: url({%config theme_url%}/Homepage_files/banner.png);height: 60px;">
                 </div>
-                <div style="display:flex;">
-                    <img src="{%config theme_url%}/Homepage_files/1.png"
-                        style="height: 70px; width:70px;border: 3px solid white;border-radius: 34px;z-index: 300;">
-                    <h4 style="padding-bottom:9px;    align-self: self-end;
- ">
-                        <span class="user-name-holder">
-                            <span class="user-name-holder__name" style="font-weight:bold">
-
-                                <?php echo ("r/"."Torify"); ?>
-
-                            </span>
 
 
-                        </span>
-                    </h4>
-                </div>
-                <div style="font-size:13px;padding-left:10px;padding-right:10px;padding-top:10px;">
-                    A place for major news from around the world, excluding US-internal news.
-                </div>
-                <div
-                    style="left:10px;position:relative;border-bottom:1px solid #e4eaef;padding-bottom:10px;font-weight:bold;font-size:13px;line-height:normal;width:90%;padding-top:10px;display:flex;">
-                    <div>
-                        29.3m<br>Members
-                    </div>
-                    <div style="padding-left:60px;">
-                        61.4k<br>Online
-                    </div>
-                </div>
                 <!-- /.card-header -->
-                <div style="font-size: 13px;padding-left:10px;padding-bottom:10px;">
-                    <img style="height: 15px;width:15px;"
-                        src="https://img.icons8.com/external-bearicons-flat-bearicons/64/000000/external-DATE-capsule-hotel-bearicons-flat-bearicons.png" />
-                    Created July 28, 2022
-                </div>
-                <div
-                    style="text-align-last: center; position: relative;left:10px;width:90%; padding-bottom:10px;border-bottom:1px solid #e4eaef;">
-
+                <div style="text-align-last: center; position: relative">
+                    <div style="font-size:20px;"><br></div>
                     <a href="<?php echo cl_link("create_post"); ?>"> <button type="button" class="btn btn-primary"
                             style="border-radius: 16px;
-											text-align: center;
-											font-size: 15px;
-											width: 100%;
-											height: 31px;
-											padding-top: 0px;
-											padding-bottom: 0px;">Create Post</button></a>
-                    <!-- <div style="font-size:10px;"><br></div>
-                    <button type="button" class="btn btn-outline-primary" style="border-radius: 16px;
 											text-align: center;
 											font-size: 19px;
 											width: 256px;
 											height: 31px;
 											padding-top: 0px;
-											padding-bottom: 0px;">Create Community</button> -->
+											padding-bottom: 0px;">Create Post</button></a>
+                    <div style="font-size:10px;"><br></div>
+                    <a href="<?php echo cl_link("create_community"); ?>"><button type="button"
+                            class="btn btn-outline-primary" style="border-radius: 16px;
+											text-align: center;
+											font-size: 19px;
+											width: 256px;
+											height: 31px;
+											padding-top: 0px;
+											padding-bottom: 0px;">Create Community</button></a>
+                    <div style="font-size:20px;"><br></div>
 
+                    <div style="font-size:6px;"><br></div>
                 </div>
-                <div class="dropdown" style="display:flex;font-size:13px;border-bottom:1px;">
-                    <img src="https://img.icons8.com/ios/50/000000/visible--v1.png" style="width: 20px;height:20px;" />
-                    <button data-bs-toggle="collapse" data-bs-target="#option" type="button" id=""
-                        data-bs-toggle="dropdown" aria-expanded="false"
-                        style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
-                        Community Options
+                <!-- /.card-body -->
+            </div>
+            <div class="right-sidebar__body">
+                <div style="font-size:15px;"><br></div>
+                <div class="sidebar-content sidebar-content_hashtags"
+                    style="border-bottom: unset;padding-left:10px; margin-bottom: unset;">
+                    <div class="sidebar-content__header" style="font-weight: bold;margin-bottom:20px;">
+                        HOT TOPICS FOR YOU
+                    </div>
+                    <div class="sidebar-content__body">
+                        <div class="sidebar-content-empty" style="color: grey;margin-bottom:20px;">
+                            Here will be a (#hashtag) list of the most relevant topics and events
+                        </div>
+                    </div>
+                </div>
 
-                    </button>
-                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                        <label class="custom-control-label" for="customSwitch3"></label>
-                    </div>
-                    <div id="option" class="collapse" style="border:0px;">
-                        Lorem ipsum dolor text....
-                    </div>
-                </div>
 
             </div>
             <div class="card-header"
-                style="margin-top:10px;margin-bottom:10px;background-image: url({%config theme_url%}/Homepage_files/banner.png);height: 60px;">
-            </div>
-
-            <div class="card" style="font-size: 17px">
-                <div
-                    style="font-size:17px;padding-left:10px;padding-top:10px;padding-bottom:10px;padding-right:10px;text-align: -webkit-center;">
-                    <img src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/000000/external-settings-seo-4.-1-sbts2018-outline-sbts2018.png"
-                        style="width: 20px; height:20px;" />Manage
-                </div>
-                <div style="text-align: -webkit-right;font-size:14px;">
-                    <div style="font-size: 10px;">
-                        QUEUES
-                        <img src="https://img.icons8.com/external-tal-revivo-bold-tal-revivo/24/000000/external-online-streaming-platform-media-group-curated-list-music-bold-tal-revivo.png"
-                            style="width:20px;height:20px;" />
-                    </div>
-                    <div style="padding-right:20px;">
-                        <div>Mod Mail</div>
-                        <div>Unmoderated Posts</div>
-                        <div>Reports</div>
-                        <div>Spam</div>
-                    </div>
-                </div>
-                <div style="text-align: -webkit-right;font-size:14px;padding-top:10px;">
-                    <div style="font-size: 10px;">
-                        USER MANAGEMENT
-                        <img src="https://img.icons8.com/ios/50/000000/contacts.png" style="width:20px;height:20px;" />
-                    </div>
-                    <div style="padding-right:20px;">
-                        <div>Banning</div>
-                        <div>Moderators</div>
-                    </div>
-                </div>
-                <div style="text-align: -webkit-right;font-size:14px;padding-top:10px;">
-                    <div style="font-size: 10px;">
-                        FLAIR EMOJIS
-                        <img src="https://img.icons8.com/fluency-systems-regular/48/000000/wi-fi-fair.png"
-                            style="width:20px;height:20px;" />
-                    </div>
-                    <div style="padding-right:20px;">
-                        <div>Grant Use Flair</div>
-                        <div>Post Flair</div>
-                    </div>
-                </div>
-                <div style="text-align: -webkit-right;font-size:14px;padding-top:10px;">
-                    <div style="font-size: 10px;">
-                        RULES AND REGULATIONS
-                        <img src="https://img.icons8.com/carbon-copy/100/000000/rules.png"
-                            style="width:20px;height:20px;" />
-                    </div>
-                    <div style="padding-right:20px;">
-                        <div>Community Rules</div>
-                        <div>Automod</div>
-                    </div>
-                </div>
-                <div style="text-align: -webkit-right;font-size:14px;padding-top:10px;">
-                    <div style="font-size: 10px;">
-                        USER MANAGEMENT
-                        <img src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/000000/external-setting-advertising-xnimrodx-lineal-xnimrodx.png"
-                            style="width:20px;height:20px;" />
-                    </div>
-                    <div style="padding-right:20px;">
-                        <div>Banning</div>
-                        <div>Moderators</div>
-                    </div>
-                </div>
-            </div>
-
-
+                style="background-image: url({%config theme_url%}/Homepage_files/banner2.png);height: 67px;"></div>
+            <div style="font-size:20px;"><br></div>
             <div class="card" style="font-size: 17px">
 
-                <div
-                    style="font-size:13px;background-color:#0b5ed7; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
-                    Moderators
+                <div class="card-header"
+                    style="background-image: url({%config theme_url%}/Homepage_files/2.png);height: 67px;">
+                    <h3 class="card-title" style="position: relative;top: 36px;font-size: 14px;color: white;">Top News
+                        Communities</h3>
                 </div>
-                <div style="text-align-last: center; position: relative;left:10px;width:90%;
-                    padding-bottom:10px;border-bottom:1px solid #e4eaef;padding-top:10px;">
-                    <button type="button" class="btn btn-outline-primary" style="border-radius: 16px;
-											text-align: center;
-											font-size: 15px;
-											width: 100%;
-											height: 31px;
-											padding-top: 0px;
-											padding-bottom: 0px;"><i class="fa fa-envelope-o" style="font-size:20px;padding-right:5px;"></i>Message the
-                        mods
-                    </button>
-                    <div style="text-align-last: left;padding-top:10px;padding-bottom:10px; color:#3a719c;">
-                        u/green_flash
-                    </div>
-                    <div style="text-align-last: left;padding-top:10px;padding-bottom:10px;color:#3a719c;">
-                        u/PraiseBeToScience
-                    </div>
-                    <div style="text-align-last: left;padding-top:10px;padding-bottom:10px;color:#3a719c;">
-                        u/WorldNewsMods
-                    </div>
-                    <button style="float:right; color:#3a719c;font-size:13px;font-weight:bold;" type="button"
-                        class="btn">VIEW ALL
-                        MODERATORS</button>
+                <!-- /.card-header -->
+                <div class="card-body p-0" style="text-align-last: center;">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td><img style="width: 24px; height:24px"
+                                        src="{%config theme_url%}/Homepage_files/1.png" alt="avatar"></td>
+                                <td>r/worldnews</td>
+                                <td><button type="button" class="btn btn-primary"
+                                        style="border-radius: 15px;width: 50px;font-size: 12px;">Join</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td><img style="width: 24px; height:24px"
+                                        src="{%config theme_url%}/Homepage_files/apple-touch-icon.png" alt="avatar">
+                                </td>
+                                <td>r/nottheonion</td>
+                                <td><button type="button" class="btn btn-primary"
+                                        style="border-radius: 15px;width: 50px;font-size: 12px;">Join</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td><img style="width: 24px; height:24px"
+                                        src="{%config theme_url%}/Homepage_files/1.png" alt="avatar"></td>
+                                <td>r/savedyouaclick</td>
+                                <td><button type="button" class="btn btn-primary"
+                                        style="border-radius: 15px;width: 50px;font-size: 12px;">Join</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td><img style="width: 24px; height:24px"
+                                        src="{%config theme_url%}/Homepage_files/apple-touch-icon.png" alt="avatar">
+                                </td>
+                                <td>r/olympics</td>
+                                <td><button type="button" class="btn btn-primary"
+                                        style="border-radius: 15px;width: 50px;font-size: 12px;">Join</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="font-size:6px;"><br></div>
+                    <button type="button" class="btn btn-primary" style="border-radius: 16px;
+												text-align: center;
+												font-size: 19px;
+												width: 256px;
+												height: 31px;
+												padding-top: 0px;
+												padding-bottom: 0px;">View All</button>
+                    <div style="font-size:6px;"><br></div>
                 </div>
-
+                <!-- /.card-body -->
             </div>
+            <div style="font-size:6px;"><br></div>
         </div>
         <div class="right-sidebar__footer">
             <?php //echo cl_template('main/footer'); ?>

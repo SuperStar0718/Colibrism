@@ -1,0 +1,96 @@
+<div class="timeline-container" data-app="homepage">
+
+    <div class="user-profile">
+
+
+        <div class="user-profile__body" style="display:flex;">
+            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
+                <h4>
+                    <span class="user-name-holder">
+                        <span class="user-name-holder__name" style="font-weight:bold">
+
+                            <?php echo ("c/Torify Community Appearance"); ?>
+
+                        </span>
+
+
+                    </span>
+                </h4>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+    <div class="container"
+        style="display:flex;flex-direction: column;padding-left:30px; padding-right:30px;padding-top:10px;text-align: -webkit-left;padding-bottom:10px;border: 7px solid #d3d3d8; padding-bottom:100px;font-size:13px;">
+        <div class="col-sm-4"
+            style="padding-left:0px;padding-bottom:5px;border-bottom:1px solid grey;font-size:19px;margin-bottom:20px;">
+            Appearance
+        </div>
+        <div style="display: flex;flex-direction: column;margin-bottom:40px;">
+            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
+                data-bs-toggle="dropdown" aria-expanded="false"
+                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                Color theme
+                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                    style="width: 20px;height:20px;" />
+            </button>
+            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
+                data-bs-toggle="dropdown" aria-expanded="false"
+                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                Banner & icon
+                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                    style="width: 20px;height:20px;" />
+            </button>
+            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
+                data-bs-toggle="dropdown" aria-expanded="false"
+                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                Menu
+                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                    style="width: 20px;height:20px;" />
+            </button>
+            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
+                data-bs-toggle="dropdown" aria-expanded="false"
+                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                Posts
+                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                    style="width: 20px;height:20px;" />
+            </button>
+        </div>
+        <div class="col-sm-4"
+            style="padding-left:0px;padding-bottom:5px;border-bottom:1px solid grey;font-size:19px;margin-bottom:20px;">
+            Structure
+        </div>
+        <div style="display: flex;flex-direction: column;">
+            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
+                data-bs-toggle="dropdown" aria-expanded="false"
+                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                Menu Links
+                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                    style="width: 20px;height:20px;" />
+            </button>
+            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
+                data-bs-toggle="dropdown" aria-expanded="false"
+                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                Sidebar widgets
+                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                    style="width: 20px;height:20px;" />
+            </button>
+
+        </div>
+    </div>
+
+
+    <?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+    <?php echo cl_template("home/modals/swift_lightbox"); ?>
+    <?php echo cl_template("home/modals/swift_pubbox"); ?>
+    <?php endif; ?>
+
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); ?>
+</div>

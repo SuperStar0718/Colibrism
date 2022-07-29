@@ -1,0 +1,100 @@
+<div class="timeline-container" data-app="homepage">
+
+    <div class="user-profile">
+
+
+        <div class="user-profile__body" style="display:flex;">
+            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
+                <h4>
+                    <span class="user-name-holder">
+                        <span class="user-name-holder__name" style="font-weight:bold">
+
+                            <?php echo ("c/Torify Community Settings"); ?>
+
+                        </span>
+
+
+                    </span>
+                </h4>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+    <div class="container"
+        style="padding-left:0px; padding-right:30px;padding-top:10px;padding-bottom:10px;border: 7px solid #d3d3d8; ">
+
+        <div class="container" style="padding-left:30px; padding-right:30px;padding-top:30px;">
+            <p style="font-size: 13px;border-bottom:1px solid #d3d3d8;margin-bottom:unset;">COMMUITY PROFILE</p>
+
+            <p style="font-weight: bold;padding-top:10px;margin-bottom:5px;">Community name</p>
+            <input type="text" class="col-sm-12" placeholder="Torify">
+            <p style=" font-weight: bold;padding-top:20px;display:inline-table;margin-bottom:5px;">
+                Community Alias (<span style="color:red;">Not Editable</span>)</p>
+            <input type="text" class="col-sm-12" placeholder="c/Torify">
+            <p style=" font-weight: bold;padding-top:20px;display:table;margin-bottom:5px;">
+                Community description</p>
+            <p style="font-size: 13px;">This is how new members come to understand your community.</p>
+            <textarea type="text" class="col-sm-12"></textarea>
+            <p style="font-size: 13px;">500 Character remaining</p>
+            <p style="font-size: 13px;border-bottom:1px solid #d3d3d8;margin-bottom:unset;">COMMUNITY TYPE</p>
+            <p style=" font-weight: bold;padding-top:20px;display:table;margin-bottom:5px;">
+                Type of Community</p>
+
+            <div class="form-check">
+                <input style="border-radius: 50%;" type="radio" class="form-check-input" id="radio1" name="optradio"
+                    value="option1" checked>
+                <img src="https://img.icons8.com/ios-filled/50/737373/contacts.png"
+                    style="position: relative;top: -7px;width: 20px; height:20px;" />
+                <label class="form-check-label" for="radio1">
+                    <p style="font-weight: bolder;font-size:15px;display:inline-table">Public</p>
+                    Anyone can view, post, and comment to this community
+                </label>
+            </div>
+            <div class="form-check">
+                <input style="border-radius: 50%;" type="radio" class="form-check-input" id="radio1" name="optradio"
+                    value="option1" checked>
+                <img src="https://img.icons8.com/ios-glyphs/30/737373/lock--v1.png"
+                    style="position: relative;top: -7px;width: 20px; height:20px;" />
+                <label class="form-check-label" for="radio1">
+                    <p style="font-weight: bolder;font-size:15px;display:inline-table;margin-bottom:unset;">Private</p>
+                    Only approved users can view and submit to this community
+                </label>
+            </div>
+            <p style="padding-top:20px;font-size: 13px;border-bottom:1px solid #d3d3d8;margin-bottom:unset;">PRIVATE
+                COMMUNTIY
+                SETTINGS</p>
+            <p style=" font-weight: bold;padding-top:20px;display:table;margin-bottom:5px;">
+                Accepting requests to join</p>
+            <div style="display: flex;">
+                <p style="font-size: 13px;">Display a button on your private subreddit that allows users to request to
+                    join. Users maystill send your subreddit modmail whether this is on or off.
+                </p>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch1" checked>
+                    <label class="custom-control-label" for="switch1"></label>
+                </div>
+            </div>
+
+        </div>
+        <div
+            style="background-color:#efefed;text-align:center;padding-top:10px;padding-bottom:10px;padding-right:20px;margin-left:20px;">
+            <button type="submit" class="btn btn-primary " style="border-radius: 30px;">Save changes</button>
+        </div>
+
+    </div>
+
+
+    <?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+    <?php echo cl_template("home/modals/swift_lightbox"); ?>
+    <?php echo cl_template("home/modals/swift_pubbox"); ?>
+    <?php endif; ?>
+
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); ?>
+</div>

@@ -1,0 +1,92 @@
+<div class="timeline-container" data-app="homepage">
+
+    <div class="user-profile">
+
+
+        <div class="user-profile__body" style="display:flex;">
+            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
+                <h4>
+                    <span class="user-name-holder">
+                        <span class="user-name-holder__name" style="font-weight:bold">
+
+                            <?php echo ("AutoModerator settings"); ?>
+
+                        </span>
+
+
+                    </span>
+                </h4>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+    <div class="container"
+        style="padding-left:30px; padding-right:30px;padding-top:10px;padding-bottom:10px;border: 7px solid #d3d3d8; ">
+
+        <div style="padding-top:10px;">Posts/comments from Dread staff and your community moderators are not affected by
+            these settings
+        </div>
+        <div style="display:flex;    flex-direction: column;padding-top:20px;padding-bottom:10px;">
+            <div style="padding-bottom:10px;">Status </div>
+            <div style="padding-bottom:20px;">
+                <select class="form-select col-sm-7" aria-label="Default select example">
+                    <option selected>Enabled</option>
+                    <option value="1">Disabled</option>
+                </select>
+            </div>
+            <button type="button" style="margin-bottom:60px;"
+                class="btn form-control-lg btn-dark col-lg-2">UPDATE</button>
+            <div style="padding-bottom:20px;">Configuration </div>
+            <button style="margin-bottom:20px;" type="button" style="margin-bottom:60px;"
+                class="btn form-control-lg btn-dark col-lg-3">ADD NEW
+                ENTRY</button>
+            <div style="display:flex; background-color:#efefed;">
+                <div style="width: 200px;padding-left: 10px;padding-top: 10px;">
+                    <div style="font-weight: bold;">String to match</div>
+                    <div
+                        style=" padding-bottom: 5px;    padding-left: 5px;   padding-top: 5px;    background-color: #cccccc;">
+                        Scam</div>
+                </div>
+                <div style="width: 140px;padding-top: 30px;padding-left: 20px;">
+                    <div style="  padding-bottom: 5px;  font-weight: bold;">Action</div>
+                    <div>None</div>
+                </div>
+                <div style="width: 360px;padding-top: 30px;padding-left: 20px;">
+                    <div style="  padding-bottom: 5px;  font-weight: bold;">Reply message</div>
+                    <div style="padding-bottom: 10px;">Have you ever made love with a man? do you know what that is
+                        called? or those men who fuck me
+                        are
+                        called? Let me teach you!</div>
+                    <div style="padding-bottom: 10px;">They are called GAY!</div>
+                    <div style="line-height: normal;">SQUID IS GAY!<br>LMFAO!
+                    </div>
+                </div>
+                <div style="padding-top: 30px;padding-left: 40px;">
+                    <div style="font-weight: bold;">Modify</div>
+                    <button style="margin-bottom:10px;" type="button" style="margin-bottom:60px;"
+                        class="btn btn-dark ">EDIT</button>
+                    <br>
+                    <button style="margin-bottom:20px;color:white;background-color:#e74c3c;" type="button"
+                        style="margin-bottom:60px;" class="btn  ">DELETE</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+    <?php echo cl_template("home/modals/swift_lightbox"); ?>
+    <?php echo cl_template("home/modals/swift_pubbox"); ?>
+    <?php endif; ?>
+
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); ?>
+</div>

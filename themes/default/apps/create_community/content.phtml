@@ -1,0 +1,79 @@
+<div class="timeline-container" data-app="homepage">
+
+    <div class="user-profile">
+        <div class="user-profile__body" style="text-align: -webkit-center;color:red;border: 3px solid black;">
+            <h4 style="margin-bottom:unset;">
+                <?php echo ("Create a New Community"); ?>
+            </h4>
+        </div>
+
+        <div style="padding-left:0%; padding-bottom:5px;padding-top:5px;">
+            <p style="font-weight:bold;display:contents;">There are requirements to create a subdread.</p> For more
+            information
+            read the
+            <a href="" style="text-decoration: underline;color:#c06bb8">FAQ Area.</a>
+            If you have questions message the
+            <a href="" style="text-decoration: underline;color:#c06bb8">global mods,</a>
+
+            When you create a subdread your name will be permarently attached to it. If you don't want to be
+            associated
+            with a subdread
+            <p style="font-weight:bold;display:contents;">don't create it.</p>
+            If you are creating a subdread for a marcket read and
+            follow the
+            <a href="" style="text-decoration: underline;color:#c06bb8">Marcket Standards</a>
+            before doing so.
+        </div>
+    </div>
+    <form action="" style="border: 3px solid black;">
+        <div class="container" style="padding-left:30px; padding-right:30px;padding-top:30px;">
+
+            <div>Name</div>
+            <div style="display: flex;">
+                <div>Community names including capitalization cannot be changed. </div>
+                <img src="https://img.icons8.com/ios/50/737373/info--v1.png" style="width: 20px; height:20px;" />
+            </div>
+            <p style="font-weight: bold;padding-top:10px;margin-bottom:5px;">Title *</p>
+            <input type="text" class="col-sm-12">
+            <p style=" font-weight: bold;padding-top:20px;display:inline-table;margin-bottom:5px;">c/Name *</p>
+            <input type="text" class="col-sm-12" placeholder="c/">
+            <div style="padding-top:10px;display:table;">21 Characters remaining</div>
+            <div style="font-weight: bold;margin-top:20px;">Community type</div>
+
+            <div class="form-check">
+                <input style="border-radius: 50%;" type="radio" class="form-check-input" id="radio1" name="optradio"
+                    value="option1" checked>
+                <img src="https://img.icons8.com/ios-filled/50/737373/contacts.png"
+                    style="position: relative;top: -7px;width: 20px; height:20px;" />
+                <label class="form-check-label" for="radio1">
+                    <p style="font-weight: bolder;font-size:15px;display:inline-table">Public</p>
+                    Anyone can view, post, and comment to this community
+                </label>
+            </div>
+            <div class="form-check">
+                <input style="border-radius: 50%;" type="radio" class="form-check-input" id="radio1" name="optradio"
+                    value="option1" checked>
+                <img src="https://img.icons8.com/ios-glyphs/30/737373/lock--v1.png"
+                    style="position: relative;top: -7px;width: 20px; height:20px;" />
+                <label class="form-check-label" for="radio1">
+                    <p style="font-weight: bolder;font-size:15px;display:inline-table">Private</p>
+                    Only approved users can view and submit to this community
+                </label>
+            </div>
+
+
+        </div>
+        <div style="background-color:#efefed;text-align:right;padding-top:10px;padding-bottom:10px;padding-right:20px;">
+            <button type="submit" class="btn btn-outline-primary " style="border-radius: 30px;">Cancel</button>
+            <button type="submit" class="btn btn-primary " style="border-radius: 30px;">Create Community</button>
+        </div>
+    </form>
+
+    <?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+    <?php echo cl_template("home/modals/swift_lightbox"); ?>
+    <?php echo cl_template("home/modals/swift_pubbox"); ?>
+    <?php endif; ?>
+
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); ?>
+</div>

@@ -1,0 +1,44 @@
+<div class="timeline-container" data-app="homepage">
+
+    <div class="user-profile">
+
+
+        <div class="user-profile__body" style="display:flex;">
+            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
+                <h4>
+                    <span class="user-name-holder">
+                        <span class="user-name-holder__name" style="font-weight:bold">
+
+                            <?php echo ("c/Torify Modmail"); ?>
+
+                        </span>
+
+
+                    </span>
+                </h4>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+    <div class="container"
+        style="padding-left:30px; padding-right:30px;padding-top:10px;text-align: -webkit-center;padding-bottom:10px;border: 7px solid #d3d3d8; padding-bottom:100px;">
+        <img src="{%config theme_url%}/Homepage_files/bird.png" style="width:510px;height:300px;">
+        <p style="font-weight:bold;font-size:22px;margin-bottom: unset;">This mail is empty! </p>
+        <p style="color:grey;">Lock before you leap</p>
+    </div>
+
+
+    <?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+    <?php echo cl_template("home/modals/swift_lightbox"); ?>
+    <?php echo cl_template("home/modals/swift_pubbox"); ?>
+    <?php endif; ?>
+
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); ?>
+</div>

@@ -45,6 +45,14 @@ $applications       = array(
   "start_up"      => true,
   "spa_load"      => true,
   "create_post" => true,
+  "create_community"=>true,
+  "community_mod_mail"=>true,
+  "community_settings" => true,
+  "automod"=>true,
+  "moderators"=> true,
+  "community_appearance"=>true,
+  "approved_users"=> true,
+
 );
 
 $cl['profile_report_types'] = array(

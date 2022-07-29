@@ -66,9 +66,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{%config theme_url%}/adminlte.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    </script> -->
 
     <?php if ($cl["pn"] == "guest" && $cl["auth_type"] == "signup"): ?>
     <?php if ($cl["config"]["google_recaptcha"] == "on"): ?>
@@ -158,8 +158,8 @@
                 </div>
 
                 <?php if (not_empty($cl["sbr"])): ?>
-                <?php if ( $cl['me']['username']=="Admin"): ?>
-                <?php echo cl_template('main/right_sidebar_admin'); ?>
+                <?php if ($cl["pn"]=="create_post" || $cl['pn']=="create_community"): ?>
+                <?php echo cl_template('main/right_sidebar_other'); ?>
                 <?php else: ?>
                 <?php echo cl_template('main/right_sidebar'); ?>
                 <?php endif; ?>

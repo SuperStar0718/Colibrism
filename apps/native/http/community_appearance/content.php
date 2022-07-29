@@ -13,12 +13,12 @@ if (empty($cl['is_logged'])) {
 	cl_redirect("guest");
 } else {
 	require_once(cl_full_path("core/apps/bookmarks/app_ctrl.php"));
-	$cl["page_title"] = cl_translate("Create post");
+	$cl["page_title"] = cl_translate("Community appearance");
 	$cl["page_desc"]  = $cl["config"]["description"];
 	$cl["page_kw"]    = $cl["config"]["keywords"];
-	$cl["pn"]         = "create_post";
+	$cl["pn"]         = "community_appearance";
 	$cl["sbr"]        = true;
 	$cl["sbl"]        = true;
-	$cl["bookmarks"]  = cl_get_bookmarks($me['id'], 30);
-	$cl["http_res"]   = cl_template("create_post/content");
+	//$cl["bookmarks"]  = cl_get_bookmarks($me['id'], 30);
+	$cl["http_res"]   = cl_template("community_appearance/content");
 }
