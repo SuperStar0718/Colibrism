@@ -1,0 +1,83 @@
+body.cl-app-start_up div.startup div.startup__header div.timeline-placeholder {
+  padding-bottom: 0px !important;
+}
+body.cl-app-start_up div.startup div.startup__body {
+  margin-bottom: 20px;
+}
+body.cl-app-start_up div.startup div.startup__body.no-mb {
+  margin-bottom: 0px;
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-avatar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-avatar div.startup-avatar__image {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  margin-bottom: 20px;
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-avatar div.startup-avatar__image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-avatar div.startup-avatar__image button.upload-avatar {
+  background-color: var(--cl-primary-color);
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  border-radius: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.27s ease;
+  box-shadow: var(--cl-primary-box-shadow);
+  outline: 0;
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-avatar div.startup-avatar__image button.upload-avatar svg {
+  width: 24px;
+  height: 24px;
+  fill: #ffffff;
+  transition: inherit;
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-avatar div.startup-avatar__image button.upload-avatar:disabled {
+  cursor: wait !important;
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-avatar div.startup-avatar__image button.upload-avatar:hover, body.cl-app-start_up div.startup div.startup__body div.startup-avatar div.startup-avatar__image button.upload-avatar:active {
+  transform: scale(1.1);
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-avatar div.startup-avatar__desc {
+  font-size: 16px;
+  color: var(--cl-primary-color);
+  text-align: center;
+  font-weight: 500;
+}
+body.cl-app-start_up div.startup div.startup__body div.startup__form {
+  padding: 0px var(--cl-primary-offset-size);
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-suggested {
+  border-top: 1px solid var(--cl-primary-border-color);
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-suggested div.startup-suggested__skip {
+  padding: var(--cl-primary-offset-size);
+  border-bottom: 1px solid var(--cl-primary-border-color);
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-suggested div.startup-suggested__skip button.btn {
+  margin-bottom: var(--cl-primary-offset-size);
+}
+body.cl-app-start_up div.startup div.startup__body div.startup-suggested div.startup-suggested__skip button.btn:last-child {
+  margin-bottom: 0px;
+}
+body.cl-app-start_up div.startup div.startup__footer {
+  padding: var(--cl-primary-offset-size);
+}/*# sourceMappingURL=style.master.css.map */

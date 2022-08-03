@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -21,7 +21,7 @@ require_once("components/tools.php");
 require_once("components/shortcuts.php");
 require_once("components/compilers.php");
 require_once("components/localization.php");
-require_once("components/glob_context.php");
+require("components/glob_context.php");
 require_once("components/user.php");
 require_once("components/post.php");
 require_once("components/ad.php");
@@ -54,14 +54,14 @@ $db            = new MysqliDb($mysqli);
 $url           = $site_url;
 $config        = cl_get_configurations();
 $config["url"]       = $url;
-$config["theme_url"] = cl_strf("%s/themes/%s",$url,$config["theme"]);
-$config["site_logo"] = cl_strf("%s/%s",$config["theme_url"],$config["site_logo"]);
-$config["site_fav"]  = cl_strf("%s/%s",$config["theme_url"],$config["site_favicon"]);
+$config["theme_url"] = cl_strf("%s/themes/%s", $url, $config["theme"]);
+$config["site_logo"] = cl_strf("%s/%s", $config["theme_url"], $config["site_logo"]);
+$config["site_fav"]  = cl_strf("%s/%s", $config["theme_url"], $config["site_favicon"]);
 $cl["is_logged"]     = false;
 $cl["is_admin"]      = false;
 $cl["config"]        = $config;
-$cl["server_mode"]   = "prod"; 
-$cl['csrf_token']    = cl_generate_csrf_token(); 
+$cl["server_mode"]   = "prod";
+$cl['csrf_token']    = cl_generate_csrf_token();
 $cl['ref_url']       = http_referer();
 $cl['auth_status']   = cl_is_logged();
 $cl["languages"]     = cl_get_ui_langs();
@@ -88,8 +88,7 @@ if (isset($_COOKIE["lang"])) {
             "lang_text" => cl_get_langs($_COOKIE["lang"])
         );
     }
-}
-else if(isset($cl["languages"][$config["language"]])) {
+} else if (isset($cl["languages"][$config["language"]])) {
     $cl["curr_lang"] = array(
         "lang_data" => $cl["languages"][$config["language"]],
         "lang_text" => cl_get_langs($config["language"])
@@ -108,7 +107,7 @@ if (not_empty($cl['auth_status']['auth'])) {
                 "lang_text" => cl_get_langs($me['language'])
             );
         }
-        
+
         $cl['is_logged']    = true;
         $me['draft_post']   = array();
         $me['new_notifs']   = cl_total_new_notifs();
@@ -117,13 +116,13 @@ if (not_empty($cl['auth_status']['auth'])) {
         $me['new_messages'] = ((is_posnum($me['new_messages'])) ? $me['new_messages'] : '');
         $cl["is_admin"]     = (($me['admin'] == '1') ? true : false);
         $cl["display_set"]  = json($me["display_settings"]);
-        
+
         if (is_posnum($me['last_post'])) {
             $me['draft_post'] = cl_get_orphan_post($me['last_post']);
 
             if (empty($me['draft_post'])) {
                 cl_delete_orphan_posts($me['id']);
-                cl_update_user_data($me['id'],array(
+                cl_update_user_data($me['id'], array(
                     'last_post' => 0
                 ));
             }
@@ -136,9 +135,7 @@ if (not_empty($cl['auth_status']['auth'])) {
             ));
         }
     }
-}
-
-else {
+} else {
     if ($cl['config']['affiliates_system'] == 'on') {
         if (not_empty($_GET['ref'])) {
             $ref_uname = cl_text_secure($_GET['ref']);
@@ -163,8 +160,7 @@ if (not_empty($_GET['language'])) {
 
             if ($cl['ref_url']) {
                 cl_location($cl['ref_url']);
-            }
-            else {
+            } else {
                 cl_redirect_after('/', 0.05);
             }
         }
@@ -178,3 +174,18 @@ if (not_empty($cl["config"]["google_ad_horiz"])) {
 if (not_empty($cl["config"]["google_ad_vert"])) {
     $cl["gads_vert"] = htmlspecialchars_decode($cl["config"]["google_ad_vert"]);
 }
+
+global $db, $me, $cl;
+if (not_empty($me['id'])) :
+    $id = $me['id'];
+    $sql = "select name, community_id, banner, icon from cl_community where moderator='$id'";
+    $query_res = $db->rawQuery($sql);
+    cl_queryset($query_res);
+    if (count($query_res) > 0)
+        foreach ($query_res as $row) {
+            $me['community'] = $row['name'];
+            $me['community_id'] = $row['community_id'];
+            $me['community_banner'] = $row['banner'];
+            $me['community_icon'] = $row['icon'];
+        }
+endif;

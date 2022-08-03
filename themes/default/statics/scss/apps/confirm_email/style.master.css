@@ -1,0 +1,9 @@
+body.cl-app-confirm_email div.confirm-email div.timeline-placeholder {
+  padding-bottom: 0px !important;
+}
+body.cl-app-confirm_email div.confirm-email div.timeline-placeholder div.pl-message {
+  margin-bottom: 0px !important;
+}
+body.cl-app-confirm_email div.confirm-email form.form {
+  padding: var(--cl-primary-offset-size);
+}/*# sourceMappingURL=style.master.css.map */

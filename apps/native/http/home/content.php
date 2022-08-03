@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -11,8 +11,7 @@
 
 if (empty($cl["is_logged"])) {
 	cl_redirect("guest");
-}
-else {
+} else {
 	require_once(cl_full_path("core/apps/home/app_ctrl.php"));
 
 	$cl["app_statics"] = array(

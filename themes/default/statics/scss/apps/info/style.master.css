@@ -1,0 +1,767 @@
+html {
+  scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+body {
+  font-family: inherit !important;
+  overflow-x: hidden;
+}
+
+.ov-h {
+  overflow: hidden;
+}
+
+main.main-content-container {
+  width: 100%;
+  background: #f6f6f7;
+  min-width: 320px;
+  transition: right 0.5s;
+}
+main.main-content-container div.user-data-container {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 30px;
+}
+main.main-content-container div.user-data-container div.user-data-section {
+  width: 100%;
+  display: block;
+  margin-bottom: 30px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body {
+  display: block;
+  width: 100%;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-cover {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-cover img {
+  width: 100%;
+  display: block;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-cover div.user-avatar {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 10em;
+  bottom: -75px;
+  left: calc(50% - 75px);
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
+  border: 2px solid #fff;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-cover div.user-avatar img {
+  width: 100%;
+  display: block;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-name {
+  width: 100%;
+  display: block;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-name h3 {
+  color: #14171a;
+  font-size: 26px;
+  line-height: 32px;
+  padding: 0;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-name p {
+  color: #5b7083;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-info {
+  width: 100%;
+  display: block;
+  padding: 30px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-info span.info-label {
+  display: block;
+  width: 100%;
+  text-align: right;
+  font-size: 14px;
+  color: #14171a;
+  line-height: 20px;
+  font-weight: 700;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-info span.info-value {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: #14171a;
+  line-height: 20px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history {
+  width: 100%;
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 30px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e4eaef;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record:last-child {
+  margin-bottom: 0px;
+  border-bottom: none;
+  padding-bottom: 0px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.lp {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.lp div.icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #999999;
+  border-radius: 10em;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.lp div.icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.mp {
+  padding-left: 15px;
+  padding-right: 15px;
+  flex: 1;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.mp div.amount {
+  width: 100%;
+  display: block;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.mp div.amount span {
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 500;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.mp div.trans-info {
+  width: 100%;
+  display: block;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.mp div.trans-info p {
+  font-size: 13px;
+  color: #14171a;
+  line-height: 18px;
+  padding: 0;
+  margin: 0;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-wallet-history div.history-record div.rp time {
+  font-size: 13px;
+  line-height: 18px;
+  color: #5b7083;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections {
+  width: 100%;
+  display: block;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 30px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid #e4eaef;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item div.avatar {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  min-width: 40px;
+  max-width: 40px;
+  border-radius: 10em;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item div.avatar img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item div.user-info-holder {
+  flex: 1;
+  padding: 0 0 0 10px;
+  position: relative;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item div.user-info-holder div.user-data {
+  width: 100%;
+  display: block;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item div.user-info-holder div.user-data h4 {
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  line-height: 13px;
+  font-weight: 700;
+  color: #14171a;
+  white-space: nowrap;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item div.user-info-holder div.user-data a {
+  display: block;
+  text-decoration: none;
+  color: #5b7083;
+  font-size: 13px;
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item div.user-info-holder div.user-data p {
+  font-size: 13px;
+  line-height: 18px;
+  padding: 0;
+  margin: 5px 0 0 0;
+  padding-right: 40px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item:hover, main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.user-connections div.list-item:active {
+  background: #f5f8fa;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls {
+  width: 100%;
+  display: block;
+  max-height: 500px;
+  overflow-y: auto;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item {
+  width: 100%;
+  display: block;
+  padding: 15px;
+  border-bottom: 1px solid #e4eaef;
+  transition: all 0.27s ease-in-out;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item:hover {
+  background: rgba(245, 248, 250, 0.6117647059);
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-header {
+  width: 100%;
+  display: flex;
+  margin-bottom: 5px;
+  padding-left: 50px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-header div.publication-repost {
+  line-height: 0;
+  border-radius: 5px;
+  padding: 0px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-header div.publication-repost svg {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+  display: inline-block;
+  stroke-width: 2.5;
+  fill: var(--cl-secondary-text-color);
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-header div.publication-repost a {
+  font-size: 10px;
+  line-height: 10px;
+  color: var(--cl-secondary-text-color);
+  display: inline-block;
+  text-transform: uppercase;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publisher-avatar {
+  width: 40px;
+  flex-basis: 40px;
+  max-width: 40px;
+  min-width: 40px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publisher-avatar div.avatar-holder {
+  display: block;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  background: #e4eaef;
+  border-radius: 10em;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publisher-avatar div.avatar-holder img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: none;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data {
+  flex: 1;
+  padding-left: 15px;
+  overflow: hidden;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-target {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  margin-top: 5px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-target div.post-reply {
+  width: 100%;
+  display: block;
+  line-height: 0;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-target div.post-reply span {
+  font-size: 11px;
+  line-height: 11px;
+  color: #5b7083;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-target div.post-reply span a {
+  color: #1b95e0;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info {
+  width: 100%;
+  line-height: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp {
+  flex: 1;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a {
+  line-height: 0;
+  padding: 0;
+  margin: 0;
+  text-decoration: none !important;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a b {
+  font-size: 13px;
+  line-height: 13px;
+  color: #14171a;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a b:hover, main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a b:focus, main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a b:active {
+  text-decoration: underline;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a span {
+  font-size: 13px;
+  line-height: 13px;
+  color: #5b7083;
+  text-transform: lowercase;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a span:hover, main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a span:focus, main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp a span:active {
+  text-decoration: underline;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.rp span.posted-time {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.rp span.posted-time svg {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  vertical-align: middle;
+  fill: var(--cl-secondary-text-color);
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.rp span.posted-time time {
+  color: var(--cl-secondary-text-color);
+  opacity: 0.9;
+  font-size: 12px;
+  line-height: 12px;
+  vertical-align: middle;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content {
+  margin-top: 10px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-text {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-text p {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  color: #14171a;
+  word-break: break-word;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-media {
+  width: 100%;
+  display: block;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-image {
+  width: 100%;
+  border: 1px solid #e4eaef;
+  display: block;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #e6ecf0;
+  position: relative;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-image img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-image div.video-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-image div.video-icon span {
+  width: 55px;
+  height: 55px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10em;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-image div.video-icon span svg {
+  width: 100%;
+  height: 100%;
+  fill: #fff;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-images-slider {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-images-slider div.carousel {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-images-slider div.carousel div.carousel-item {
+  transition: transform 0.2s ease-in-out !important;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-images-slider div.carousel a.cr-slide-ctrl svg {
+  width: 25px;
+  height: 25px;
+  fill: #5b7083;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-images-slider div.carousel:hover a.cr-slide-ctrl, main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-images-slider div.carousel:active a.cr-slide-ctrl {
+  background: #14171a;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e4eaef;
+  position: relative;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-image {
+  width: 100px;
+  min-width: 100px;
+  min-height: 100px;
+  overflow: hidden;
+  border-right: 1px solid #e4eaef;
+  background: #f5f8fa;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-image div.og-image-holder {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-image div.og-icon-holder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  background: #f5f8fa;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-image div.og-icon-holder svg {
+  width: 40px;
+  height: 40px;
+  fill: #0084f5;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-url-data {
+  flex: 1;
+  padding: 15px;
+  overflow: hidden;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-url-data h5, main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-url-data p, main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-url-data a {
+  width: 100%;
+  display: block;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-url-data h5 {
+  padding: 0;
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  line-height: 20px;
+  color: #14171a;
+  word-wrap: break-word;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-url-data p {
+  font-size: 11px;
+  color: #5b7083;
+  line-height: 18px;
+  padding: 0;
+  margin: 0 0 5px 0;
+  word-wrap: break-word;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-og-data div.publication-og-data-inner div.og-url-data a {
+  font-size: 13px;
+  line-height: 18px;
+  color: #0084f5;
+  padding: 0;
+  margin: 0;
+  word-wrap: break-word;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner div.poll-option-bar {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 30px;
+  padding: 20px 15px;
+  background: rgba(29, 161, 242, 0.1);
+  margin-bottom: 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner div.poll-option-bar div.bar-icon {
+  width: 22px;
+  height: 22px;
+  line-height: 0;
+  min-height: 20px;
+  min-width: 20px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner div.poll-option-bar div.bar-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: #0084f5;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner div.poll-option-bar div.bar-text {
+  flex-grow: 1;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: hidden;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner div.poll-option-bar div.bar-text p {
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  font-size: 14px;
+  line-height: 14px;
+  color: #14171a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner div.poll-option-bar div.bar-num b {
+  font-size: 14px;
+  line-height: 14px;
+  color: #0084f5;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner div.poll-option-bar:last-child {
+  margin-bottom: 0px;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data div.publication-poll-data-inner div.poll-option-bar span.bar-slider {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(29, 161, 242, 0.2);
+  max-width: 100%;
+  min-width: 10px;
+  border-radius: 0px;
+  z-index: 3;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-body div.posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publication-content div.publication-poll-data[data-status="1"] div.publication-poll-data-inner div.poll-option-bar {
+  cursor: default;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-header {
+  width: 100%;
+  display: block;
+  padding: 15px;
+  background: #0084f5;
+}
+main.main-content-container div.user-data-container div.user-data-section div.user-data-header h3 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+}
+
+button.btn-custom {
+  text-transform: uppercase;
+}
+button.btn-custom.main-inline {
+  border-radius: 5em;
+  color: #fff;
+  background: #0084f5;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
+  border: 1px solid #0084f5;
+  outline: 0;
+}
+button.btn-custom.main-inline:not([disabled]):hover, button.btn-custom.main-inline:not([disabled]):active, button.btn-custom.main-inline:not([disabled]):focus {
+  background: #008de4;
+  border-color: #008de4;
+}
+button.btn-custom.main-outline {
+  border-radius: 5em;
+  color: #0084f5;
+  background: transparent;
+  font-weight: 500;
+  box-shadow: none;
+  border: 1px solid #0084f5;
+  outline: 0;
+}
+button.btn-custom.main-outline:not([disabled]):hover, button.btn-custom.main-outline:not([disabled]):active, button.btn-custom.main-outline:not([disabled]):focus {
+  background: #008de4;
+  border-color: #008de4;
+  color: #fff;
+}
+button.btn-custom.lg {
+  padding: 10px 15px;
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 500;
+}
+button.btn-custom.md {
+  padding: 7px 15px;
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 500;
+}
+button.btn-custom.sm {
+  padding: 6px 15px;
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 500;
+}
+button.btn-custom.main-red {
+  border-radius: 5em;
+  color: #fff;
+  background: #f6546a;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
+  border: 1px solid #f6546a;
+  outline: 0;
+}
+button.btn-custom.main-grey {
+  border-radius: 5em;
+  color: rgba(20, 23, 26, 0.6705882353);
+  background-color: #e6ecf0;
+  box-shadow: none;
+  border: 1px solid #e6ecf0;
+  outline: 0;
+}
+button.btn-custom.btn-block {
+  width: 100%;
+}
+
+span.user-name-holder.verified-badge {
+  font-size: inherit !important;
+  color: inherit !important;
+  line-height: inherit !important;
+  display: inline-block !important;
+  position: relative !important;
+  margin-right: 15px !important;
+  width: auto !important;
+  font-weight: inherit !important;
+}
+span.user-name-holder.verified-badge:after {
+  color: #0084f5;
+  content: url("data:image/svg+xml; utf8, <svg style='vertical-align: middle;'  xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24'><path fill='dodgerblue' d='M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z'></path></svg>");
+  position: absolute;
+  top: calc(50% - 7px);
+  right: -17px;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  line-height: 0px;
+}
+
+span.badge {
+  background: #666;
+  color: #fff;
+}
+
+a.block-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+a.block-link.mb-20 {
+  margin-bottom: 20px;
+}/*# sourceMappingURL=style.master.css.map */

@@ -27,70 +27,226 @@
 
     </div>
     <div class="container"
-        style="display:flex;flex-direction: column;padding-left:30px; padding-right:30px;padding-top:10px;text-align: -webkit-left;padding-bottom:10px;border: 7px solid #d3d3d8; padding-bottom:100px;font-size:13px;">
-        <div class="col-sm-4"
-            style="padding-left:0px;padding-bottom:5px;border-bottom:1px solid grey;font-size:19px;margin-bottom:20px;">
-            Appearance
-        </div>
-        <div style="display: flex;flex-direction: column;margin-bottom:40px;">
-            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
-                data-bs-toggle="dropdown" aria-expanded="false"
-                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
-                Color theme
-                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
-                    style="width: 20px;height:20px;" />
-            </button>
-            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
-                data-bs-toggle="dropdown" aria-expanded="false"
-                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
-                Banner & icon
-                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
-                    style="width: 20px;height:20px;" />
-            </button>
-            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
-                data-bs-toggle="dropdown" aria-expanded="false"
-                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
-                Menu
-                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
-                    style="width: 20px;height:20px;" />
-            </button>
-            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
-                data-bs-toggle="dropdown" aria-expanded="false"
-                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
-                Posts
-                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
-                    style="width: 20px;height:20px;" />
-            </button>
-        </div>
-        <div class="col-sm-4"
-            style="padding-left:0px;padding-bottom:5px;border-bottom:1px solid grey;font-size:19px;margin-bottom:20px;">
-            Structure
-        </div>
-        <div style="display: flex;flex-direction: column;">
-            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
-                data-bs-toggle="dropdown" aria-expanded="false"
-                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
-                Menu Links
-                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
-                    style="width: 20px;height:20px;" />
-            </button>
-            <button class="col-sm-4" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
-                data-bs-toggle="dropdown" aria-expanded="false"
-                style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
-                Sidebar widgets
-                <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
-                    style="width: 20px;height:20px;" />
-            </button>
+        style="display:flex;flex-direction: row;padding-left:30px; padding-right:30px;padding-top:10px;text-align: -webkit-left;padding-bottom:10px;border: 7px solid #d3d3d8; padding-bottom:100px;font-size:13px;">
 
+        <div class="col-sm-4">
+            <div
+                style="padding-left:0px;padding-bottom:5px;border-bottom:1px solid grey;font-size:19px;margin-bottom:20px;">
+                Appearance
+            </div>
+            <div style="display: flex;flex-direction: column;margin-bottom:40px;">
+                <label for="color_theme" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
+                    data-bs-toggle="dropdown" aria-expanded="false"
+                    style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                    Color theme
+                    <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                        style="width: 20px;height:20px;" />
+                </label>
+
+                <label for="banner_icon" data-bs-toggle="collapse" data-bs-target="#first" type="button" id=""
+                    data-bs-toggle="dropdown" aria-expanded="false"
+                    style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                    Banner & icon
+                    <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                        style="width: 20px;height:20px;" />
+                </label>
+                <label data-bs-toggle="collapse" data-bs-target="#first" type="button" id="" data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                    Menu
+                    <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                        style="width: 20px;height:20px;" />
+                </label>
+
+            </div>
+            <div
+                style="padding-left:0px;padding-bottom:5px;border-bottom:1px solid grey;font-size:19px;margin-bottom:20px;">
+                Structure
+            </div>
+            <div style="display: flex;flex-direction: column;">
+                <button data-bs-toggle="collapse" data-bs-target="#first" type="button" id="" data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                    Menu Links
+                    <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                        style="width: 20px;height:20px;" />
+                </button>
+                <button data-bs-toggle="collapse" data-bs-target="#first" type="button" id="" data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%;border-bottom:1px solid grey;padding-bottom:10px;padding-left:0px;margin-bottom:10px; ">
+                    Sidebar widgets
+                    <img src="https://img.icons8.com/glyph-neue/64/737373/chevron-right.png"
+                        style="width: 20px;height:20px;" />
+                </button>
+
+            </div>
         </div>
+        <input id="banner_icon" type="radio" class="visuallyhidden" name="toggle">
+        <div class="col-sm-8" id="banner_icon_body">
+            <form action="native_api/main/upload_community_banner_and_icon" method="POST" enctype="multipart/form-data">
+                <div style=" padding-top:20px;">
+                    <p style="font-weight:bold; font-size:18px;border-bottom:1px solid grey;padding-bottom:20px;">
+                        Banner & Icon
+                    </p>
+                    <p style="font-weight:bold;font-size:18px;">
+                        Community Icon
+                    </p>
+                    <p style="font-size:18px;">
+                        Custom Image
+                    </p>
+
+                    <div class="box has-advanced-upload">
+                        <div class="box__input ">
+                            <svg class="box__icon" xmlns="http://www.w3.org/2000/svg" width="50" height="43"
+                                viewBox="0 0 50 43">
+                                <path
+                                    d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                                </path>
+                            </svg>
+                            <input type="file" name="icon" id="icon" class="box__file">
+                            <label for="icon"><strong>Choose a file</strong>.</label>
+
+                        </div>
+                    </div>
+                    <p style="padding-top:10px;padding-bottom:20px;border-bottom:1px solid grey;">Required
+                        Size:256&#215;256px</p>
+                    <p style="font-weight:bold; font-size:18px;border-bottom:1px solid grey;padding-bottom:20px;">
+                        Banner
+                    </p>
+                    <p style="font-weight:bold;font-size:18px;">
+                        Height
+                    </p>
+
+                    <div class="custom-radio form-check">
+                        <input type="radio" class="custom-control-input" id="customRadio" name="example"
+                            value="customEx">
+                        <label class="custom-control-label" for="customRadio">Small &#9913; 64px
+                            (4,000&#215;64px)</label>
+                    </div>
+                    <div class="custom-radio  form-check">
+                        <input type="radio" class="custom-control-input" id="customRadio2" name="example"
+                            value="customEx">
+                        <label class="custom-control-label" for="customRadio2">Medium &#9913; 128px
+                            (4,000&#215;128px)</label>
+                    </div>
+                    <div class="custom-radio  form-check" style="padding-bottom:10px;">
+                        <input type="radio" class="custom-control-input" id="customRadio3" name="example"
+                            value="customEx" checked>
+                        <label class="custom-control-label" for="customRadio3">Large &#9913; 192px
+                            (4,000&#215;192px)</label>
+                    </div>
+
+                    <p style="font-size:18px;">
+                        Image
+                    </p>
+                    <div class="box has-advanced-upload">
+                        <div class="box__input ">
+                            <svg class="box__icon" xmlns="http://www.w3.org/2000/svg" width="50" height="43"
+                                viewBox="0 0 50 43">
+                                <path
+                                    d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                                </path>
+                            </svg>
+                            <input type="file" name="banner" id="banner" class="box__file">
+                            <label for="banner"><strong>Choose a file</strong>.</label>
+
+                        </div>
+                    </div>
+                    <p style="padding-top:10px;padding-bottom:20px;border-bottom:1px solid grey;">Recommended upload
+                        Size:4,000&#215;192px
+                    </p>
+                    <div style="text-align: -webkit-center;">
+                        <button type="submit" class="btn btn-primary"
+                            style="width: 80%;border-radius: 30px;margin-bottom:10px;">Save</button>
+                        <button type="button" class="btn btn-outline-primary"
+                            style="width: 80%;border-radius: 30px;">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <input type="radio" name="toggle" id="color_theme" class="visuallyhidden">
+
+        <div class="col-sm-4 color_theme" id="color_theme_body">
+            <form method="post" action="native_api/main/save_display_settings">
+                <p class="title">Menu</p>
+                <div class="component">
+                    <hr>
+                    <div class="link_color">
+                        <p class="head">Link Colors</p>
+                        <div class="item">
+                            <p>Links</p>
+                            <input type="color" name="links" value="<?php if (not_empty($cl["display_set"]["links"]))  echo $cl["display_set"]["links"];
+                                                                    else echo "#0000ff"; ?>">
+                        </div>
+                    </div>
+                    <div class="title_color">
+                        <p class="head">Title Color</p>
+                        <div class="item">
+                            <p>Color</p>
+                            <input type="color" name="title" value="<?php if (not_empty($cl["display_set"]["title"]))  echo $cl["display_set"]["title"];
+                                                                    else echo "#0000ff"; ?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="component">
+                    <hr>
+                    <div class="theme_color">
+                        <p class="head">Theme Colors</p>
+                        <div class="base">
+                            <p>Base</p>
+                            <input type="color" name="base" value="<?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["base"];
+                                                                    else echo "#0000ff"; ?>">
+                        </div>
+                        <div class="highlight">
+                            <p>Highlight</p>
+                            <input type="color" name="highlight" value="<?php if (not_empty($cl["display_set"]["highlight"]))  echo $cl["display_set"]["highlight"];
+                                                                        else echo "#0000ff"; ?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="component">
+                    <hr>
+                    <div class="main_menu">
+                        <p class="head">Main Menu Background</p>
+                        <div class="base">
+                            <p>Color</p>
+                            <input type="color" name="main_menu" value="<?php if (not_empty($cl["display_set"]["highlight"]))  echo $cl["display_set"]["highlight"];
+                                                                        else echo "#0000ff"; ?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="component">
+                    <hr>
+                    <div class="sub_menu">
+                        <p class="head">Submenu Background</p>
+                        <div class="custom-radio form-check">
+                            <input type="radio" class="custom-control-input" id="main_menu" name="example"
+                                value="customEx" checked>
+                            <label class="custom-control-label" for="main_menu">Match Main Menu Background</label>
+                        </div>
+                        <div class="custom-radio  form-check">
+                            <input type="radio" class="custom-control-input" id="solid" name="example" value="customEx">
+                            <label class="custom-control-label" for="solid">Solid Color</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-outline-primary">Cancel</button>
+                </div>
+            </form>
+        </div>
+
     </div>
 
 
-    <?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+
+    <?php if ($cl["config"]["swift_system_status"] == "on") : ?>
     <?php echo cl_template("home/modals/swift_lightbox"); ?>
     <?php echo cl_template("home/modals/swift_pubbox"); ?>
     <?php endif; ?>
 
     <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
-    <?php //echo cl_template("home/scripts/app_master_script"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); 
+    ?>
 </div>

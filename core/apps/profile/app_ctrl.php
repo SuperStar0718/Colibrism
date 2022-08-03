@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)							@
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -9,7 +9,8 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-function cl_get_profile_posts($user_id = false, $limit = 30, $media = false,$post_title=false, $offset = false) {
+function cl_get_profile_posts($user_id = false, $limit = 30, $media = false, $post_title = false, $offset = false)
+{
 	global $db, $cl, $me;
 
 	if (not_num($user_id)) {
@@ -17,15 +18,15 @@ function cl_get_profile_posts($user_id = false, $limit = 30, $media = false,$pos
 	}
 
 	$data         = array();
-	$sql          = cl_sqltepmlate("apps/profile/sql/fetch_profile_posts",array(
+	$sql          = cl_sqltepmlate("apps/profile/sql/fetch_profile_posts", array(
 		"t_posts" => T_POSTS,
 		"t_pubs"  => T_PUBS,
 		"media"   => $media,
 		"limit"   => $limit,
 		"offset"  => $offset,
 		"user_id" => $user_id,
-		"post_title"=>$post_title
- 	));
+		"post_title" => $post_title
+	));
 
 	$query_res = $db->rawQuery($sql);
 	$counter   = 0;
@@ -68,8 +69,7 @@ function cl_get_profile_posts($user_id = false, $limit = 30, $media = false,$pos
 						if (not_empty($ad)) {
 							$data[] = $ad;
 						}
-					}
-					else {
+					} else {
 						$counter += 1;
 					}
 				}
@@ -90,7 +90,8 @@ function cl_get_profile_posts($user_id = false, $limit = 30, $media = false,$pos
 	return $data;
 }
 
-function cl_get_profile_likes($user_id = false, $limit = 30, $offset = false) {
+function cl_get_profile_likes($user_id = false, $limit = 30, $offset = false)
+{
 	global $db, $cl, $me;
 
 	if (not_num($user_id)) {
@@ -116,7 +117,8 @@ function cl_get_profile_likes($user_id = false, $limit = 30, $offset = false) {
 	return $data;
 }
 
-function cl_can_view_profile($user_id = false) {
+function cl_can_view_profile($user_id = false)
+{
 	global $db, $cl;
 
 	if (not_num($user_id)) {
@@ -129,25 +131,16 @@ function cl_can_view_profile($user_id = false) {
 	if (not_empty($udata)) {
 		if (not_empty($myid) && $myid == $user_id) {
 			return true;
-		}
-
-		else if (not_empty($myid) && $myid != $user_id && $udata['profile_privacy'] == 'nobody') {
+		} else if (not_empty($myid) && $myid != $user_id && $udata['profile_privacy'] == 'nobody') {
+			return false;
+		} else if ($udata['profile_privacy'] == 'everyone') {
+			return true;
+		} else if (not_empty($myid) && $udata['profile_privacy'] == 'followers' && cl_is_following($myid, $user_id)) {
+			return true;
+		} else {
 			return false;
 		}
-
-		else if($udata['profile_privacy'] == 'everyone') {
-			return true;
-		}
-
-		else if(not_empty($myid) && $udata['profile_privacy'] == 'followers' && cl_is_following($myid, $user_id)) {
-			return true;
-		}
-
-		else {
-			return false;
-		}
-	}
-	else {
+	} else {
 		return false;
 	}
 }

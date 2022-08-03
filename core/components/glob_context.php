@@ -10,6 +10,8 @@
 # @*************************************************************************@
 
 $cl                 = array();
+
+$me = array();
 $applications       = array(
   "main"          => true,
   "home"          => true,
@@ -45,14 +47,15 @@ $applications       = array(
   "start_up"      => true,
   "spa_load"      => true,
   "create_post" => true,
-  "create_community"=>true,
-  "community_mod_mail"=>true,
+  "create_community" => true,
+  "community_mod_mail" => true,
   "community_settings" => true,
-  "automod"=>true,
-  "moderators"=> true,
-  "community_appearance"=>true,
-  "approved_users"=> true,
-
+  "automod" => true,
+  "moderators" => true,
+  "community_appearance" => true,
+  "approved_users" => true,
+  "community_rules" => true,
+  "join_community" => true,
 );
 
 $cl['profile_report_types'] = array(

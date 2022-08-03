@@ -39,7 +39,8 @@
                         <?php echo cl_icon('search'); ?>
                     </span>
                     <span class="keyword-input__right-spinner" v-if="searching">
-                        <?php //echo cl_icon('spinner-icon'); ?>
+                        <?php //echo cl_icon('spinner-icon'); 
+                        ?>
                     </span>
                 </div>
             </form>
@@ -47,8 +48,9 @@
         <div class="timeline-navbar">
             <div class="timeline-navbar__item">
                 <a href="<?php echo cl_link("search/htags"); ?>" data-spa="true">
-                    <button
-                        class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "htags") { echo("active");} ?>">
+                    <button class="timeline-navbar__item-btn <?php if ($cl["page_tab"] == "htags") {
+                                                                    echo ("active");
+                                                                } ?>">
                         <span class="btn-flex-inner">
                             <span class="icon">
                                 <?php echo cl_icon("tag"); ?>
@@ -62,8 +64,9 @@
             </div>
             <div class="timeline-navbar__item">
                 <a href="<?php echo cl_link("search/people"); ?>" data-spa="true">
-                    <button
-                        class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "people") { echo("active");} ?>">
+                    <button class="timeline-navbar__item-btn <?php if ($cl["page_tab"] == "people") {
+                                                                    echo ("active");
+                                                                } ?>">
                         <span class="btn-flex-inner">
                             <span class="icon">
                                 <?php echo cl_icon("face"); ?>
@@ -77,8 +80,9 @@
             </div>
             <div class="timeline-navbar__item">
                 <a href="<?php echo cl_link("search/posts"); ?>" data-spa="true">
-                    <button
-                        class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "posts") { echo("active");} ?>">
+                    <button class="timeline-navbar__item-btn <?php if ($cl["page_tab"] == "posts") {
+                                                                    echo ("active");
+                                                                } ?>">
                         <span class="btn-flex-inner">
                             <span class="icon">
                                 <?php echo cl_icon("feed"); ?>
@@ -92,11 +96,12 @@
             </div>
         </div>
 
-        <?php if (empty($cl["query_result"]) && empty($cl["search_query"])): ?>
+        <?php if (empty($cl["query_result"]) && empty($cl["search_query"])) : ?>
         <?php echo cl_template('search/includes/empty_list'); ?>
-        <?php else: ?>
+        <?php else : ?>
         <?php echo cl_template(cl_strf('search/includes/%s', $cl["page_tab"])); ?>
-        <?php //echo cl_template('search/includes/empty_result'); ?>
+        <?php //echo cl_template('search/includes/empty_result'); 
+            ?>
         <?php endif; ?>
 
         <div class="timeline-data-loader" v-if="show_loader">
@@ -111,5 +116,6 @@
         </div>
     </div>
 
-    <?php //echo cl_template('search/scripts/app_master_script'); ?>
+    <?php //echo cl_template('search/scripts/app_master_script'); 
+    ?>
 </div>

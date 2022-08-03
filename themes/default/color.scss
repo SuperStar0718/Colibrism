@@ -1,0 +1,12 @@
+@for $i from 1 to 4 {  
+    .p#{$i} { padding-left : $i * 10px; }  
+  }   
+
+  
+
+    @for $i from #000000 to #ffffff {  
+        body[data-skin="$i"] {
+            --cl-primary-color: $i;
+            --cl-primary-color-darken-5: $i;
+            --cl-primary-link-color: $i; }
+      } 

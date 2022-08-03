@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -29,13 +29,9 @@ if (not_empty($cl["search_query"])) {
 
 if ($cl["page_tab"] == 'htags') {
 	$cl["query_result"] = cl_search_hashtags($cl["search_query"], false, 15);
-}
-
-else if($cl["page_tab"] == 'people') {
+} else if ($cl["page_tab"] == 'people') {
 	$cl["query_result"] = cl_search_people($cl["search_query"], false, 15);
-}
-
-else {
+} else {
 	$cl["query_result"] = cl_search_posts($cl["search_query"], false, 15);
 }
 

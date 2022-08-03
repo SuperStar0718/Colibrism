@@ -5,12 +5,13 @@
 
         <div class="user-profile__header" id="vue-profile-cover-app">
             <div class="user-profile__header-cover">
-
-                <img src="{%config theme_url%}/Site Admin_files/3.png" style="width:100%; height:100px;">
+                <?php if (not_empty($me['community_banner'])) : ?>
+                <img src="<?php echo $me['community_banner']; ?>" style="width:100%; height:100px;">
+                <?php else : ?>
+                <div style="background-color: <?php echo $cl["display_set"]["base"]; ?>; width:968px;height:100px;">
+                </div>
+                <?php endif; ?>
             </div>
-
-
-
         </div>
 
 
@@ -22,19 +23,16 @@
                     <span class="user-name-holder">
                         <span class="user-name-holder__name">
 
-                            <?php echo ("r/".$cl['user_posts'][0]['owner']['username']); ?>
-                            <?php if ($cl['user_posts'][0]['owner']['username'] == "Admin") : ?>
-                            <span
-                                style="font-size: 11px;background: #da5332;color: white;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">A</span>
+                            <?php echo $me['community']; ?>
+
+
+
+                            <?php if ($cl['prof_user']['verified'] == '1') : ?>
+                            <span class="user-name-holder__badge">
+                                <?php echo cl_icon("verified_user_badge"); ?>
+                            </span>
                             <?php endif; ?>
                         </span>
-
-                        <?php if ($cl['prof_user']['verified'] == '1') : ?>
-                        <span class="user-name-holder__badge">
-                            <?php echo cl_icon("verified_user_badge"); ?>
-                        </span>
-                        <?php endif; ?>
-                    </span>
                 </h4>
                 <a href="" data-spa="true">
                     Karma-&nbsp;&nbsp;
@@ -167,12 +165,12 @@
     <?php endif; ?>
 
     <?php //echo cl_template('profile/scripts/app_master_script'); 
-	?>
+    ?>
 
     <?php if (empty($cl['prof_user']['owner'])) : ?>
     <?php echo cl_template('profile/modals/report_profile'); ?>
     <?php endif; ?>
 
     <?php //echo cl_template("main/includes/inline_statics/app_statics"); 
-	?>
+    ?>
 </div>

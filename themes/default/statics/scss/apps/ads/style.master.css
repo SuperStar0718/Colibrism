@@ -1,0 +1,29 @@
+body.cl-app-ads div.ads-management div.ads-management__upsert {
+  padding: var(--cl-primary-offset-size);
+}
+body.cl-app-ads div.ads-management div.ads-management__upsert div.form-group.tos-agreement {
+  margin-bottom: 20px;
+}
+body.cl-app-ads div.ads-management div.ads-management__upsert div.form-group.tos-agreement div.form-check label.form-check-label {
+  font-size: 13px;
+  font-weight: normal;
+  cursor: pointer;
+}
+body.cl-app-ads div.ads-management div.ads-management__upsert div.form-group.tos-agreement div.form-check label.form-check-label a {
+  color: var(--cl-primary-color);
+}
+body.cl-app-ads div.ads-management div.ads-management__upsert div.form-group p.form-info-label {
+  margin-top: 5px;
+}
+body.cl-app-ads div.ads-management div.ads-management__upsert div.form-group div.multiselect-toggle-all {
+  margin-top: var(--cl-primary-offset-size);
+}
+body.cl-app-ads div.ads-management div.ads-management__upsert div.form-group div.multiselect-toggle-all div.form-check {
+  display: flex;
+  align-items: center;
+}
+body.cl-app-ads div.ads-management div.ads-management__upsert div.form-group div.multiselect-toggle-all div.form-check label {
+  font-size: 14px;
+  line-height: 1;
+  line-height: 20px;
+}/*# sourceMappingURL=style.master.css.map */

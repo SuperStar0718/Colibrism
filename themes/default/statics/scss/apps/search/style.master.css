@@ -1,0 +1,6 @@
+body.cl-app-search[data-page-tab=htags] div.right-sb-container div.sidebar-content_hashtags {
+  display: none;
+}
+body.cl-app-search[data-page-tab=people] div.right-sb-container div.sidebar-content_users {
+  display: none;
+}/*# sourceMappingURL=style.master.css.map */

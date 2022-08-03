@@ -34,7 +34,7 @@
                 <div style="text-align-last: center; position: relative">
                     <div style="font-size:20px;"><br></div>
                     <a href="<?php echo cl_link("create_post"); ?>"> <button type="button" class="btn btn-primary"
-                            style="border-radius: 16px;
+                            style="border-radius: 16px;background-color:<?php echo $cl["display_set"]["highlight"]; ?>;
 											text-align: center;
 											font-size: 19px;
 											width: 256px;
@@ -43,7 +43,7 @@
 											padding-bottom: 0px;">Create Post</button></a>
                     <div style="font-size:10px;"><br></div>
                     <a href="<?php echo cl_link("create_community"); ?>"><button type="button"
-                            class="btn btn-outline-primary" style="border-radius: 16px;
+                            class="btn btn-outline-primary" style="border-radius: 16px;color:<?php echo $cl["display_set"]["highlight"]; ?>;
 											text-align: center;
 											font-size: 19px;
 											width: 256px;
@@ -124,7 +124,7 @@
                     </table>
                     <div style="font-size:6px;"><br></div>
                     <button type="button" class="btn btn-primary" style="border-radius: 16px;
-												text-align: center;
+												text-align: center;background-color:<?php echo $cl["display_set"]["highlight"]; ?>;
 												font-size: 19px;
 												width: 256px;
 												height: 31px;
@@ -137,9 +137,10 @@
             <div style="font-size:6px;"><br></div>
         </div>
         <div class="right-sidebar__footer">
-            <?php //echo cl_template('main/footer'); ?>
+            <?php //echo cl_template('main/footer'); 
+            ?>
         </div>
-        <?php if (not_empty($cl["gads_vert"])): ?>
+        <?php if (not_empty($cl["gads_vert"])) : ?>
         <div class="right-sidebar__ads">
             <div class="cl-google-ads">
                 <?php echo $cl["gads_vert"]; ?>

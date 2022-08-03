@@ -1,0 +1,61 @@
+<div class="timeline-container" data-app="homepage">
+
+
+    <div class="join_community">
+        <div class="key">
+            <img src="https://img.icons8.com/ios-filled/50/737373/heart-key.png" />
+        </div>
+        <p class="title">
+            r/torify is a private community
+        </p>
+        <p class="body">
+            The moderators of r/torify have set this community as private.<br>
+            Only approved members can view and take part in its discussions
+        </p>
+        <input type="checkbox" id="message_mod" class="visuallyhidden">
+        <div class="buttons">
+            <label type="button" class="btn btn-outline-primary">Request to join</label>
+            <label for="message_mod" type="button" class="btn btn-outline-primary">Message Mods</label>
+            <label type="button" class="btn btn-primary">Browse Reddit</label>
+        </div>
+        <div class="overlay overlay-hugeinc">
+            <div class="req_join">
+
+                <div class="header">
+                    <p>REQUEST TO JOIN </p>
+                    <label for="message_mod"><img src="https://img.icons8.com/ios-filled/50/737373/delete-sign--v1.png "
+                            style="width: 20px;height:20px;"></label>
+                </div>
+                <p class="title">r/torify</p>
+                <hr>
+                <div class="component">
+                    <div class="text">Write a short message to the moderators explaining why you watn to join.</div>
+                    <textarea placeholder="MESSAGE TO MODERATORS."></textarea>
+
+                </div>
+                <div class="footer">
+                    <button type="button" class="btn btn-outline-primary">Cancel</button>
+                    <button type="button" class="btn btn-primary">Send Request</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            Use of this site constitutes acceptance of our
+            <a href="">User Agreement</a>
+            and
+            <a href="">Privacy Policy</a>
+            @2022 reddit inc. All rigths reserved. REDDIT and the ALIEN Logo are registered trademarks of reddit inc.
+        </div>
+    </div>
+
+
+    <?php if ($cl["config"]["swift_system_status"] == "on") : ?>
+    <?php echo cl_template("home/modals/swift_lightbox"); ?>
+    <?php echo cl_template("home/modals/swift_pubbox"); ?>
+    <?php endif; ?>
+
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); 
+    ?>
+</div>

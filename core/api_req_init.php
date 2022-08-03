@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)							@
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -10,7 +10,7 @@
 # @*************************************************************************@
 
 ini_set('display_errors', 1);
-ini_set('display_startup_errors',1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once("settings.php");
@@ -70,7 +70,6 @@ $cl["curr_lang"] = array(
     ),
     "lang_text" => cl_get_langs("default")
 );
-
 if (not_empty($cl['auth_status']['auth'])) {
     $user_data_ = cl_user_data($cl['auth_status']['id']);
     $me         = $cl['me'] = ((empty($user_data_)) ? false : $user_data_);
@@ -79,9 +78,7 @@ if (not_empty($cl['auth_status']['auth'])) {
         header('Content-Type: application/json');
         echo json(array('status' => 400, "error" => 'Invalid access token'), true);
         exit();
-    }
-
-    else {
+    } else {
 
         if (isset($cl["languages"][$me['language']])) {
             $cl["curr_lang"] = array(
@@ -93,13 +90,13 @@ if (not_empty($cl['auth_status']['auth'])) {
         $cl['is_logged']  = true;
         $me['draft_post'] = array();
         $cl["is_admin"]   = (($me['admin'] == '1') ? true : false);
-        
+
         if (is_posnum($me['last_post'])) {
             $me['draft_post'] = cl_get_orphan_post($me['last_post']);
 
             if (empty($me['draft_post'])) {
                 cl_delete_orphan_posts($me['id']);
-                cl_update_user_data($me['id'],array(
+                cl_update_user_data($me['id'], array(
                     'last_post' => 0
                 ));
             }

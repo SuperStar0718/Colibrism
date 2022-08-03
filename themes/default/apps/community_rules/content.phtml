@@ -1,0 +1,107 @@
+<div class="timeline-container" data-app="homepage">
+
+    <div class="user-profile">
+
+
+        <div class="user-profile__body" style="display:flex;">
+            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
+                <h4>
+
+                    <span class="user-name-holder__name" style="font-weight:bold">
+                        <?php echo ("c/Torify Community Rules"); ?>
+                    </span>
+
+                </h4>
+            </div>
+        </div>
+
+
+    </div>
+    <input id="op" type="checkbox">
+    <div class="overlay overlay-hugeinc">
+
+        <div class="overlay_body">
+
+            <div class="title">
+                <div>Add rule </div>
+                <label for="op"><img src="https://img.icons8.com/ios-filled/50/737373/delete-sign--v1.png "
+                        style="width: 20px;height:20px;"></label>
+            </div>
+            <hr>
+            <div class="component">
+                <div>Rule</div>
+                <textarea placeholder="Rule displayed (e.g. &#34; No photos&#34; )"></textarea>
+                <span>100 Charactiers remaining
+                </span>
+            </div>
+            <div class="component">
+                <div>Full description</div>
+                <textarea placeholder="Enter the full description of the rule."></textarea>
+                <span>500 Charactiers remaining
+                </span>
+            </div>
+            <div class="footer">
+                <button type="button" class=" delete">Delete Rule</button>
+                <div>
+                    <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                    <button type="button" class="btn btn-secondary">Add new rule</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div
+        style="display: flex;justify-content: space-between;align-items: center;background-color:#edeff1;padding-left:3%; padding-top:7px;padding-bottom:7px;">
+        <p style="font-weight:bold;margin-bottom:unset;">Rules:</p>
+        <div style="padding-right:3%;"><button type="button" class="btn" style="color:#007bff;">Reorder
+                rules</button>
+            <label for="op" class="btn btn-primary" style="    border-radius: 20px;">Add rule</label>
+        </div>
+    </div>
+    <div class="list"
+        style="background-color:#dae0e6;padding-left:10px;padding-top:10px;padding-right:10px;padding-bottom:10px;">
+        <p>These are rules that visitors must follow to participate. They can be used as reasons to reportor ban
+            posts,comments, and user. Communities can have a maximum of 15 rules.
+        </p>
+        <div
+            style="justify-content: space-between;padding-left:30px; align-items: center;padding-right:30px;padding-top:5px;padding-bottom:10px;padding-top:10px;display:flex;background-color:white;border-bottom:1px solid #dae0e6;">
+            <div style="display: flex;">
+                <div style=" padding-right:30px;">1</div>
+                <div>No repeated content</div>
+            </div>
+            <label for="op">
+                <img src="https://img.icons8.com/ios-glyphs/30/737373/edit--v1.png" style="width:20px;height:20px;" />
+            </label>
+        </div>
+        <div
+            style="justify-content: space-between;padding-left:30px; align-items: center;padding-right:30px;padding-top:5px;padding-bottom:10px;padding-top:10px;display:flex;background-color:white;border-bottom:1px solid #dae0e6;">
+            <div style="display: flex;">
+                <div style=" padding-right:30px;">2</div>
+                <div>No FUD spreading</div>
+            </div>
+            <label for="op">
+                <img src="https://img.icons8.com/ios-glyphs/30/737373/edit--v1.png" style="width:20px;height:20px;" />
+            </label>
+        </div>
+        <div
+            style="justify-content: space-between;padding-left:30px; align-items: center;padding-right:30px;padding-top:5px;padding-bottom:10px;padding-top:10px;display:flex;background-color:white;border-bottom:1px solid #dae0e6;">
+            <div style="display: flex;">
+                <div style=" padding-right:30px;">3</div>
+                <div>No shilling </div>
+            </div>
+            <label for="op">
+                <img src="https://img.icons8.com/ios-glyphs/30/737373/edit--v1.png" style="width:20px;height:20px;" />
+            </label>
+        </div>
+
+        <div style="height: 300px;"></div>
+    </div>
+    <?php if ($cl["config"]["swift_system_status"] == "on") : ?>
+    <?php echo cl_template("home/modals/swift_lightbox"); ?>
+    <?php echo cl_template("home/modals/swift_pubbox"); ?>
+    <?php endif; ?>
+
+    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
+    <?php //echo cl_template("home/scripts/app_master_script"); 
+    ?>
+</div>

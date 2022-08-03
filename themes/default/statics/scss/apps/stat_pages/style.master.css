@@ -1,0 +1,4 @@
+body.cl-app-stat_pages div.stat-page-content {
+  padding: var(--cl-primary-offset-size);
+  color: var(--cl-primary-text-color);
+}/*# sourceMappingURL=style.master.css.map */

@@ -24,4 +24,3 @@ $sql_db_name = "maindb";
 
 # Site URL
 $site_url    = "http://localhost/ColibriSM"; // E.g (https://www.mysite.com)
-?>

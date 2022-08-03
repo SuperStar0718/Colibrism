@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        <?php if (not_empty($me['new_notifs'])): ?>
+        <?php if (not_empty($me['new_notifs'])) : ?>
         (<?php echo fetch_or_get($me['new_notifs']); ?>)
         <?php endif; ?>
 
-        <?php echo fetch_or_get($cl["page_title"],$cl["config"]["title"]); ?>
+        <?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>
     </title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="title" content="<?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>" />
     <meta name="description" content="<?php echo fetch_or_get($cl["page_desc"], $cl["config"]["description"]); ?>" />
-    <meta name="keywords" content="<?php echo fetch_or_get($cl['page_kw'], $cl["config"]["keywords"]);?>" />
-    <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]);?>" />
+    <meta name="keywords" content="<?php echo fetch_or_get($cl['page_kw'], $cl["config"]["keywords"]); ?>" />
+    <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <?php if ($cl["pn"] == 'thread'): ?>
+    <?php if ($cl["pn"] == 'thread') : ?>
     <meta property="og:type" content="article" />
     <meta property="og:image" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
     <meta property="og:image:secure_url" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
@@ -33,8 +33,8 @@
     <meta name="twitter:image" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
     <?php endif; ?>
 
-    <?php if (in_array($cl["pn"], array("profile", "connections"))): ?>
-    <?php if ($cl['prof_user']['index_privacy'] == 'N'): ?>
+    <?php if (in_array($cl["pn"], array("profile", "connections"))) : ?>
+    <?php if ($cl['prof_user']['index_privacy'] == 'N') : ?>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
     <?php endif; ?>
@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/css-libs.css">
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/master.styles.css?v={%config version%}">
 
-    <?php if ($cl["curr_lang"]["lang_data"]["is_rtl"] == "Y"): ?>
+    <?php if ($cl["curr_lang"]["lang_data"]["is_rtl"] == "Y") : ?>
     <!-- RTL IS TEMPORARILY NOT SUPPORTED. 
 			IF YOU HAVE QUESTIONS ABOUT THIS, 
 			PLEASE CONTACT THE DEVELOPER OF THIS SCRIPT (MANSUR_TL| vayart.help@gmail.com) 
@@ -69,20 +69,35 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script> -->
-
-    <?php if ($cl["pn"] == "guest" && $cl["auth_type"] == "signup"): ?>
-    <?php if ($cl["config"]["google_recaptcha"] == "on"): ?>
+    <!-- <link rel='stylesheet' type='text/css' href='{%config theme_url%}/style.php' /> -->
+    <?php if ($cl["pn"] == "guest" && $cl["auth_type"] == "signup") : ?>
+    <?php if ($cl["config"]["google_recaptcha"] == "on") : ?>
     <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     <?php endif; ?>
     <?php endif; ?>
 
 </head>
 
-<body <?php if ($cl["curr_lang"]["lang_data"]["is_rtl"] == "Y"){echo('dir="ltr"');} else{echo('dir="ltr"');} ?>
-    class="cl-app-<?php echo fetch_or_get($cl["pn"], "none"); ?>"
+<body <?php if ($cl["curr_lang"]["lang_data"]["is_rtl"] == "Y") {
+            echo ('dir="ltr"');
+        } else {
+            echo ('dir="ltr"');
+        } ?> class="cl-app-<?php echo fetch_or_get($cl["pn"], "none"); ?>"
     data-page-tab="<?php echo fetch_or_get($cl["page_tab"], "none"); ?>"
-    data-skin="<?php if($cl["pn"] != "guest") {echo($cl["display_set"]["color_scheme"]);} else{echo("default");} ?>"
-    data-bg="<?php if($cl["pn"] != "guest") {echo($cl["display_set"]["background"]);} else{echo("default");} ?>">
+    data-skin="<?php if ($cl["pn"] != "guest") {
+
+                                                                                                                                                                echo ($cl["display_set"]["color_scheme"]);
+                                                                                                                                                            } else {
+                                                                                                                                                                echo ("default");
+                                                                                                                                                            } ?>"
+    data-bg="<?php if ($cl["pn"] != "guest") {
+                                                                                                                                                                                echo ($cl["display_set"]["background"]);
+                                                                                                                                                                            } else {
+                                                                                                                                                                                echo ("default");
+                                                                                                                                                                            } ?>">
+
+
+    <?php if ($cl["pn"] != "guest") : ?>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="" style="position: relative; left:160px;margin: unset; padding: unset;">
@@ -127,17 +142,18 @@
         </div>
     </nav>
 
-
+    <?php endif; ?>
     <div data-el="main-content-holder" class="main_body">
-        <main class="main-content-container <?php echo (($cl["is_logged"]) ? "" : "guest-mode" ); ?>">
-            <?php if ($cl["pn"] == "guest"): ?>
+        <main class="main-content-container <?php echo (($cl["is_logged"]) ? "" : "guest-mode"); ?>">
+            <?php if ($cl["pn"] == "guest") : ?>
             <?php echo $cl["http_res"]; ?>
-            <?php else: ?>
+            <?php else : ?>
+
             <div class="main-content-container-inner" style="margin-left:330px;">
-                <?php if (not_empty($cl["sbl"])): ?>
-                <?php if (not_empty($cl["is_logged"])): ?>
+                <?php if (not_empty($cl["sbl"])) : ?>
+                <?php if (not_empty($cl["is_logged"])) : ?>
                 <?php echo cl_template('main/left_sidebar'); ?>
-                <?php else: ?>
+                <?php else : ?>
                 <?php echo cl_template('main/left_sidebar_guest'); ?>
                 <?php endif; ?>
                 <?php endif; ?>
@@ -157,10 +173,12 @@
                     </div>
                 </div>
 
-                <?php if (not_empty($cl["sbr"])): ?>
-                <?php if ($cl["pn"]=="create_post" || $cl['pn']=="create_community"): ?>
+                <?php if (not_empty($cl["sbr"])) : ?>
+                <?php if ($cl["pn"] == "create_post" || $cl['pn'] == "create_community" || $cl['pn'] == "approved_users" || $cl['pn'] == "moderators" || $cl['pn'] == "join_community" || $cl['pn'] == "community_rules" || $cl['pn'] == "community_settings" || $cl['pn'] == "community_appearance" || $cl['pn'] == "community_mod_mail" || $cl['pn'] == "automod") : ?>
                 <?php echo cl_template('main/right_sidebar_other'); ?>
-                <?php else: ?>
+                <?php elseif ($cl["pn"] == "home") : ?>
+                <?php echo cl_template('main/right_sidebar_admin'); ?>
+                <?php else : ?>
                 <?php echo cl_template('main/right_sidebar'); ?>
                 <?php endif; ?>
                 <?php endif; ?>
@@ -169,14 +187,14 @@
             <?php endif; ?>
         </main>
 
-        <?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true): ?>
+        <?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true) : ?>
         <?php echo cl_template('main/bottom_navbar'); ?>
         <?php endif; ?>
 
         <input id="csrf-token" type="hidden" class="hidden d-none"
-            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>">
+            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>">
 
-        <?php if ($cl['is_logged']): ?>
+        <?php if ($cl['is_logged']) : ?>
         <div class="modal fade modal-pubbox " data-app="modal-pubbox" id="add_new_post" tabindex="-1" role="dialog"
             aria-hidden="false">
             <div class="modal-dialog" role="document">
@@ -192,40 +210,66 @@
                         </div>
                     </div>
                     <div class="modal-body">
-                        <?php $cl['pb_id'] = 2; echo cl_template('timeline/pubbox'); ?>
+                        <?php $cl['pb_id'] = 2;
+                            echo cl_template('timeline/pubbox'); ?>
                     </div>
                 </div>
             </div>
         </div>
-        <?php // echo cl_template('timeline/scripts/pubbox_master_script'); ?>
+        <?php // echo cl_template('timeline/scripts/pubbox_master_script'); 
+            ?>
         <?php endif; ?>
         <div data-app="black-hole"></div>
-        <?php if (not_empty($cl['config']['google_analytics'])): ?>
+        <?php if (not_empty($cl['config']['google_analytics'])) : ?>
         <?php echo htmlspecialchars_decode($cl['config']['google_analytics']); ?>
         <?php endif; ?>
 
-        <?php if ($cl["pn"] != 'guest'): ?>
-        <?php //echo cl_template("main/scripts/app_master_script"); ?>
+        <?php if ($cl["pn"] != 'guest') : ?>
+        <?php //echo cl_template("main/scripts/app_master_script"); 
+            ?>
         <?php endif; ?>
 
-        <?php if ($cl['is_logged']): ?>
-        <?php if (in_array($cl["pn"], array("bookmarks", "home", "profile", "search", "thread"))): ?>
-        <?php //echo cl_template("main/modals/report_post"); ?>
+        <?php if ($cl['is_logged']) : ?>
+        <?php if (in_array($cl["pn"], array("bookmarks", "home", "profile", "search", "thread"))) : ?>
+        <?php //echo cl_template("main/modals/report_post"); 
+                ?>
         <?php endif; ?>
 
-        <?php //echo cl_template("main/modals/display_settings"); ?>
+        <?php //echo cl_template("main/modals/display_settings"); 
+            ?>
         <?php endif; ?>
     </div>
 
-    <?php if ($cl['config']['cookie_warning_popup'] == "on"): ?>
-    <?php if (empty($_COOKIE['__c_u_a__'])): ?>
-    <?php if ($cl["pn"] != "stat_pages"): ?>
+    <?php if ($cl['config']['cookie_warning_popup'] == "on") : ?>
+    <?php if (empty($_COOKIE['__c_u_a__'])) : ?>
+    <?php if ($cl["pn"] != "stat_pages") : ?>
     <?php echo cl_template("main/modals/cookies_alert"); ?>
     <?php endif; ?>
     <?php endif; ?>
     <?php endif; ?>
+    <input id="logout" type="checkbox">
+    <div class="overlay overlay-hugeinc">
 
-    <?php if ($cl["server_mode"] == "dev"): ?>
+        <div class="overlay_body_logout">
+
+
+
+            <div class="modal-body">
+                <h4>Leaving already?</h4>
+                <p>Are you sure that you want to log out from your account?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="logout" class="btn btn-custom main-red md btn-block">
+                    <button id="confirm-actions-confirm" type="submit"
+                        class="btn btn-custom main-red md btn-block">Logout</button></a>
+                <label id="confirm-actions-cancel" for="logout"
+                    class="btn btn-custom main-grey md btn-block">Cancel</label>
+            </div>
+
+        </div>
+
+    </div>
+    <?php if ($cl["server_mode"] == "dev") : ?>
     <!-- <div class="bootstrap-bp-display">
 		    <div class="d-block d-sm-none">Extra Small (xs)</div>
 		    <div class="d-none d-sm-block d-md-none">Small (sm)</div>
@@ -235,6 +279,8 @@
 		    <div class="d-none d-xxl-block" >XX-Large (xxl)</div>
 		</div> -->
     <?php endif; ?>
+
+
 </body>
 
 </html>
