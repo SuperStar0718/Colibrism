@@ -57,6 +57,7 @@ $applications       = array(
   "community_rules" => true,
   "join_community" => true,
   "community" => true,
+  "show_post_details" => true,
 );
 
 $cl['profile_report_types'] = array(

@@ -30,6 +30,11 @@
     left: 0%;
   }
 
+  .user-name-holder img {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
   #media.timeline-navbar__item-btn {
     display: block;
     width: 196px;
@@ -505,6 +510,14 @@
   }
 
   #drop_menu:checked~#dropdown_menu {
+    display: block !important;
+  }
+
+  #dropdown_1 {
+    display: none !important;
+  }
+
+  #drop_menu_1:checked~#dropdown_1 {
     display: block !important;
   }
 

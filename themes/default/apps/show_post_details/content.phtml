@@ -1,22 +1,23 @@
+<?php global $community, $is_joined; ?>
 <div class="timeline-container" data-app="homepage">
 
-    <!-- <div class="user-profile"> -->
+    <div class="user-profile">
 
-    <!-- <div class="user-profile__header" id="vue-profile-cover-app">
+        <div class="user-profile__header" id="vue-profile-cover-app">
             <div class="user-profile__header-cover">
-                <?php if (not_empty($me['community_banner'])) : ?>
-                <img src="<?php echo $me['community_banner']; ?>" style="width:100%; height:100px;">
+                <?php if (not_empty($community['banner'])) : ?>
+                <img src="<?php echo $community['banner']; ?>" style="width:100%; height:100px;">
                 <?php else : ?>
                 <div style="background-color: <?php echo $cl["display_set"]["base"]; ?>; width:968px;height:100px;">
                 </div>
                 <?php endif; ?>
             </div>
-        </div> -->
+        </div>
 
-    <!-- <?php if (not_empty($me['community'])) : ?>
+        <?php if (not_empty($community['name'])) : ?>
         <div class="user-profile__body" style="display:flex;">
-            <?php if (not_empty($me['community_icon'])) : ?>
-            <img src="<?php echo $me['community_icon']; ?>"
+            <?php if (not_empty($community['icon'])) : ?>
+            <img src="<?php echo $community['icon']; ?>"
                 style="height: 70px; width:70px;border: 3px solid white;border-radius: 34px;position: relative;top: -17px;left: 43px;z-index: 300;">
             <?php else : ?>
             <div
@@ -29,7 +30,7 @@
                     <span class="user-name-holder">
                         <span class="user-name-holder__name" style="font-weight:bold">
 
-                            <?php echo $me['community']; ?>
+                            <?php echo $community['name']; ?>
 
                         </span>
 
@@ -48,7 +49,16 @@
                 </a>
 
             </div>
-
+            <?php if (!not_empty($is_joined)) : ?>
+            <form method="POST" action="native_api/main/join_community">
+                <input type="hidden" name="community_id" value="<?php echo $community['community_id']; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $me['id']; ?>">
+                <button type="submit" class="btn btn-outline-primary">Join</button>
+            </form>
+            <?php else : ?>
+            <form>
+                <button type="button" class="btn btn-outline-primary">Joined</button>
+            </form> <?php endif; ?>
             <!-- <div class="user-profile__counter">
 
                 <a class="counter-item" href="<?php echo (cl_strf('%s/posts', $cl['prof_user']['url'])); ?>">
@@ -106,76 +116,76 @@
             </div> -->
 
 
-    <!-- </div> -->
-    <?php endif; ?>
-    <!-- <div style="background-color:grey;padding-left:5%; padding-bottom:10px;padding-top:10px;">
+        </div>
+        <?php endif; ?>
+        <div style="background-color:grey;padding-left:5%; padding-bottom:10px;padding-top:10px;">
             <button type="button" class="btn btn-dark">Button</button>
             <button type="button" class="btn btn-dark">Button</button>
             <button type="button" class="btn btn-dark">Button</button>
             <button type="button" class="btn btn-dark">Button</button>
         </div>
-    </div> -->
-    <!-- <div class="homepage"> -->
-    <!-- <div class="homepage__pubbox">
+    </div>
+    <div class="homepage">
+        <!-- <div class="homepage__pubbox">
 			<?php // $cl['pb_id'] = 1; //echo cl_template('timeline/pubbox'); 
             ?>
 		</div> -->
 
-    <!-- <?php if ($cl["config"]["swift_system_status"] == "on") : ?>
-    <div class="homepage__swifts">
-        <div class="swifts-slider">
-            <div class="swiper" id="homepage-swifts-slider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
-                            <div class="swift-item__body create-swift">
-                                <div class="swift-item__avatar">
-                                    <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+        <?php if ($cl["config"]["swift_system_status"] == "on") : ?>
+        <div class="homepage__swifts">
+            <div class="swifts-slider">
+                <div class="swiper" id="homepage-swifts-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
+                                <div class="swift-item__body create-swift">
+                                    <div class="swift-item__avatar">
+                                        <img src="<?php echo ($community['avatar']); ?>" alt="Avatar">
+                                    </div>
+                                    <span class="add-ikon">
+                                        <?php echo cl_icon("add"); ?>
+                                    </span>
                                 </div>
-                                <span class="add-ikon">
-                                    <?php echo cl_icon("add"); ?>
-                                </span>
-                            </div>
-                            <div class="swift-item__footer">
-                                <?php echo cl_translate("Create new swift"); ?>
+                                <div class="swift-item__footer">
+                                    <?php echo cl_translate("Create new swift"); ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <?php if (not_empty($cl["tl_swifts"])) : ?>
-                    <?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data) : ?>
-                    <div class="swiper-slide">
-                        <div data-an="swift-item-<?php echo ($swift_data['id']); ?>"
-                            class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
-                                                    echo ('active');
-                                                } ?>"
-                            onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
-                            <div class="swift-item__body">
-                                <div class="swift-item__avatar">
-                                    <img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
+                        <?php if (not_empty($cl["tl_swifts"])) : ?>
+                        <?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data) : ?>
+                        <div class="swiper-slide">
+                            <div data-an="swift-item-<?php echo ($swift_data['id']); ?>"
+                                class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
+                                                                                                                            echo ('active');
+                                                                                                                        } ?>"
+                                onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
+                                <div class="swift-item__body">
+                                    <div class="swift-item__avatar">
+                                        <img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
+                                    </div>
+                                </div>
+                                <div class="swift-item__footer">
+                                    <?php if (not_empty($swift_data["is_user"])) : ?>
+                                    <?php echo cl_translate("Your swifts"); ?>
+                                    <?php else : ?>
+                                    <?php echo ($swift_data['name']); ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                            <div class="swift-item__footer">
-                                <?php if (not_empty($swift_data["is_user"])) : ?>
-                                <?php echo cl_translate("Your swifts"); ?>
-                                <?php else : ?>
-                                <?php echo ($swift_data['name']); ?>
-                                <?php endif; ?>
-                            </div>
                         </div>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
-                    <?php endforeach; ?>
-                    <?php endif; ?>
+                </div>
+                <div class="swifts-slider__footer">
+                    <div class="swiper-scrollbar" id="homepage-swifts-scrollbar"></div>
                 </div>
             </div>
-            <div class="swifts-slider__footer">
-                <div class="swiper-scrollbar" id="homepage-swifts-scrollbar"></div>
-            </div>
         </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?> -->
-    <!-- </div> -->
-    <div class="container" style="padding:unset;">
+    <div class="container" style="padding-left:30px; padding-right:30px; background-color:#dae0e6;padding-top:30px;">
 
         <div class="timeline-header" data-el="tl-header"
             style="border: 3px solid #dddfe4; margin-bottom: 14px;font-size: 13px;">
@@ -199,10 +209,10 @@
             </div>
         </div>
         <div class="timeline-posts-container">
-            <?php if (not_empty($cl["tl_feed"])) : ?>
+            <?php if (not_empty($cl["user_posts"])) : ?>
             <div class="timeline-posts-ls" data-an="entry-list">
-                <?php foreach ($cl["tl_feed"] as $cl["li"]) : ?>
-                <?php echo cl_template('timeline/post'); ?>
+                <?php foreach ($cl["user_posts"] as $cl["li"]) : ?>
+                <?php echo cl_template('timeline/post_profile'); ?>
                 <?php endforeach; ?>
             </div>
             <?php else : ?>
@@ -218,5 +228,5 @@
 
     <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
     <?php //echo cl_template("home/scripts/app_master_script"); 
-?>
+    ?>
 </div>

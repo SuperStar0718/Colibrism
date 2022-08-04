@@ -1,200 +1,188 @@
 <?php if ($cl['li']['advertising']) : ?>
-<?php echo cl_template('timeline/ad'); ?>
-<?php else : ?>
-<div class="post-list-item"
-    style="border: 7px solid #d3d3d8; padding-bottom: unset; padding-top:unset;background:white;"
-    data-list-item="<?php echo ($cl['li']['id']); ?>" data-post-offset="<?php echo ($cl['li']['offset_id']); ?>"
-    <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>>
-    <div style="display:flex;">
-        <div class=" post-data__avatar" style="left:-15px; width:50px;text-align:center;position: relative;">
-            <!-- <div style="position: relative;height: 135px;top: 4px;background: #f8f8f8;width: 55px;left: -15px;">
+    <?php echo cl_template('timeline/ad'); ?>
+<?php else :
+?>
+    <div class="post-list-item" style="border: 7px solid #d3d3d8; padding-bottom: unset; padding-top:unset;background:white;" data-list-item="<?php echo ($cl['li']['id']); ?>" data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>>
+        <div style="display:flex;">
+            <div class=" post-data__avatar" style="left:-15px; width:50px;text-align:center;position: relative;">
+                <!-- <div style="position: relative;height: 135px;top: 4px;background: #f8f8f8;width: 55px;left: -15px;">
                 </div> -->
-            <div
-                style="position: relative;left: 0px;background: #f8f8f8;height:150px;display: flex;flex-direction: column;justify-content: space-around;align-items: center;">
-                <img src="https://img.icons8.com/dusk/64/000000/thumb-up.png" style="width: 25px;height: 30px;" />
-                <div style="font-size: 19px; padding-left: 2px;">79</div>
-                <img src="https://img.icons8.com/dusk/64/000000/thumbs-down.png" style="width: 25px;height: 30px;" />
-            </div>
-        </div>
-        <div style="width:-webkit-fill-available;padding-top:16px;padding-right:30px;">
-            <div class="post-list-item__header" style="padding-left:15px;">
-                <div class="publication-repost" style="font-size: 12px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z" />
-                    </svg>
-                    PINED BY MODERATORS
+                <div style="position: relative;left: 0px;background: #f8f8f8;height:150px;display: flex;flex-direction: column;justify-content: space-around;align-items: center;">
+                    <img src="https://img.icons8.com/dusk/64/000000/thumb-up.png" style="width: 25px;height: 30px;" />
+                    <div style="font-size: 19px; padding-left: 2px;">79</div>
+                    <img src="https://img.icons8.com/dusk/64/000000/thumbs-down.png" style="width: 25px;height: 30px;" />
                 </div>
             </div>
-            <?php if (not_empty($cl['li']['me_blocked'])) : ?>
-            <div class="post-placeholder">
-                <div class="d-flex flex-wn align-items-center">
-                    <div class="flex-item">
-                        <div class="icon">
-                            <?php echo cl_icon("blocked"); ?>
-                        </div>
+            <div style="width:-webkit-fill-available;padding-top:16px;padding-right:30px;">
+                <div class="post-list-item__header" style="padding-left:15px;">
+                    <div class="publication-repost" style="font-size: 12px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
+                            <path d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z" />
+                        </svg>
+                        PINED BY MODERATORS
                     </div>
-                    <div class="felx-item">
-                        <p>
-                            <?php echo cl_translate("This user ({@uname@}) has blocked you from accessing their posts", array(
+                </div>
+                <?php if (not_empty($cl['li']['me_blocked'])) : ?>
+                    <div class="post-placeholder">
+                        <div class="d-flex flex-wn align-items-center">
+                            <div class="flex-item">
+                                <div class="icon">
+                                    <?php echo cl_icon("blocked"); ?>
+                                </div>
+                            </div>
+                            <div class="felx-item">
+                                <p>
+                                    <?php echo cl_translate("This user ({@uname@}) has blocked you from accessing their posts", array(
                                         "uname" => cl_html_el("a", $cl['li']['owner']['username'], array(
                                             "href" => $cl['li']['owner']['url'],
                                             "data-spa" => "true"
                                         ))
                                     )); ?>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <?php elseif (empty($cl['li']['can_see'])) : ?>
-            <div class="post-placeholder">
-                <div class="d-flex flex-wn align-items-center">
-                    <div class="flex-item">
-                        <div class="icon">
-                            <?php echo cl_icon("visibility_off"); ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="felx-item">
-                        <p>
-                            <?php echo cl_translate("Only followers of this user ({@uname@}) can see their posts", array(
+                <?php elseif (empty($cl['li']['can_see'])) : ?>
+                    <div class="post-placeholder">
+                        <div class="d-flex flex-wn align-items-center">
+                            <div class="flex-item">
+                                <div class="icon">
+                                    <?php echo cl_icon("visibility_off"); ?>
+                                </div>
+                            </div>
+                            <div class="felx-item">
+                                <p>
+                                    <?php echo cl_translate("Only followers of this user ({@uname@}) can see their posts", array(
                                         "uname" => cl_html_el("a", $cl['li']['owner']['username'], array(
                                             "href" => $cl['li']['owner']['url'],
                                             "data-spa" => "true"
                                         ))
                                     )); ?>
-                        </p>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <?php else : ?>
-            <?php if (not_empty($cl['li']['is_repost'])) : ?>
+                <?php else : ?>
+                    <?php if (not_empty($cl['li']['is_repost'])) : ?>
 
-            <?php endif; ?>
+                    <?php endif; ?>
 
-            <div class="post-list-item__content">
-                <div class="post-data">
-                    <div class="post-data__content">
-                        <?php if (not_empty($cl['li']['is_blocked'])) : ?>
-                        <div class="post-data__content-hidden" data-softhidden-post="<?php echo ($cl['li']['id']); ?>">
-                            <div class="soft-hidden-post">
-                                <div class="d-flex align-items-center flex-wn">
-                                    <div class="flex-item flex-grow-1">
-                                        <p><?php echo cl_translate('This is a message from the user you blocked'); ?>
-                                        </p>
+                    <div class="post-list-item__content">
+                        <div class="post-data">
+                            <div class="post-data__content">
+                                <?php if (not_empty($cl['li']['is_blocked'])) : ?>
+                                    <div class="post-data__content-hidden" data-softhidden-post="<?php echo ($cl['li']['id']); ?>">
+                                        <div class="soft-hidden-post">
+                                            <div class="d-flex align-items-center flex-wn">
+                                                <div class="flex-item flex-grow-1">
+                                                    <p><?php echo cl_translate('This is a message from the user you blocked'); ?>
+                                                    </p>
+                                                </div>
+                                                <div class="flex-item">
+                                                    <button class="btn btn-custom main-outline sm" onclick="SMColibri.show_post(<?php echo ($cl['li']['id']); ?>, 'blocked');">
+                                                        <?php echo cl_translate('View'); ?>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="flex-item">
-                                        <button class="btn btn-custom main-outline sm"
-                                            onclick="SMColibri.show_post(<?php echo ($cl['li']['id']); ?>, 'blocked');">
-                                            <?php echo cl_translate('View'); ?>
-                                        </button>
+                                <?php elseif (not_empty($cl['li']['is_reported'])) : ?>
+                                    <div class="post-data__content-hidden" data-softhidden-post="<?php echo ($cl['li']['id']); ?>">
+                                        <div class="soft-hidden-post">
+                                            <div class="d-flex align-items-center flex-wn">
+                                                <div class="flex-item flex-grow-1">
+                                                    <p>
+                                                        <?php echo cl_translate('This post is currently under review'); ?>
+                                                    </p>
+                                                </div>
+                                                <div class="flex-item">
+                                                    <button class="btn btn-custom main-outline sm" onclick="SMColibri.show_post(<?php echo ($cl['li']['id']); ?>, 'reported');">
+                                                        <?php echo cl_translate('View'); ?>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php elseif (not_empty($cl['li']['is_reported'])) : ?>
-                        <div class="post-data__content-hidden" data-softhidden-post="<?php echo ($cl['li']['id']); ?>">
-                            <div class="soft-hidden-post">
-                                <div class="d-flex align-items-center flex-wn">
-                                    <div class="flex-item flex-grow-1">
-                                        <p>
-                                            <?php echo cl_translate('This post is currently under review'); ?>
-                                        </p>
-                                    </div>
-                                    <div class="flex-item">
-                                        <button class="btn btn-custom main-outline sm"
-                                            onclick="SMColibri.show_post(<?php echo ($cl['li']['id']); ?>, 'reported');">
-                                            <?php echo cl_translate('View'); ?>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endif; ?>
+                                <?php endif; ?>
 
-                        <div class="post-data__content-inner">
-                            <div class="post-data-layout">
-                                <div class="post-data-layout__publisher">
-                                    <div class="post-username">
+                                <div class="post-data__content-inner">
+                                    <div class="post-data-layout">
+                                        <div class="post-data-layout__publisher">
+                                            <div class="post-username">
 
-                                        <span class="user-name-holder__name" style="font-size: 13px;">
-                                            Posted by
-                                            <a href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true"
-                                                data-uinfo-lbox="<?php echo ($cl['li']['owner']['id']); ?>"
-                                                data-toggle="popover" data-placement="bottom">
+                                                <span class="user-name-holder">
+                                                    <span class="user-name-holder__name" style="font-size: 13px;">
+                                                        Posted by
 
-                                                @<?php echo ("u/" . $cl['li']['owner']['username']); ?>
-                                            </a>
-                                            <span class="user-name-holder"> <img
-                                                    src="https://img.icons8.com/android/24/228BE6/ok.png"
-                                                    style="width: 12px; height:12px;" />&nbsp;&nbsp;
+                                                        <a href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true" data-uinfo-lbox="<?php echo ($cl['li']['owner']['id']); ?>" data-toggle="popover" data-placement="bottom">
 
-                                            </span>
-                                            <div class="post-time">
-                                                <?php $now = new DateTime();
+                                                            @<?php echo ("u/" . $cl['li']['owner']['username']); ?>
+                                                        </a>
+                                                        <img src="https://img.icons8.com/android/24/228BE6/ok.png" style="width: 12px; height:12px;margin-left:5px;" />&nbsp;
+
+                                                    </span>
+                                                    <div class="post-time">
+                                                        <?php $now = new DateTime();
                                                         $date = new DateTime($cl['li']['time']);
-                                                        $year = $date->diff($now)->format("%y");
+                                                        //echo $date->diff($now)->format("%h Hours %i Minute %s Seconds");
+                                                        $year =  $date->diff($now)->format("%y");
                                                         $day = $date->diff($now)->format("%d");
                                                         $hour = $date->diff($now)->format("%h");
                                                         $min = $date->diff($now)->format("%i");
+                                                        $sec = $date->diff($now)->format("%s");
                                                         if ($year != "0") echo $year . "years ago";
                                                         elseif ($day != "0") echo $day . "days ago";
                                                         elseif ($hour != "0") echo $hour . "hours ago";
                                                         elseif ($min != "0") echo $min . "mins ago";
+                                                        else echo $sec . "seconds ago";
                                                         // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
                                                         ?>
 
-                                                <?php if (not_empty($cl['li']['edited'])) : ?>
-                                                <span
-                                                    title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited'], true); ?>">
-                                                    (E)
+                                                        <?php if (not_empty($cl['li']['edited'])) : ?>
+                                                            <span title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited'], true); ?>">
+                                                                (E)
+                                                            </span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <img src="https://img.icons8.com/ios-filled/50/7950F2/public-safety.png" style="width: 18px; height:18px;" />
+                                                    <img src="https://img.icons8.com/arcade/64/000000/experimental-lock-arcade.png" style="width: 18px; height:18px;" />
+                                                    <img src="https://img.icons8.com/fluency/48/000000/favorites.png" style="width: 18px; height:18px;" />
+                                                    <img src="https://img.icons8.com/dotty/80/000000/add-bookmark.png" style="width: 18px; height:18px;" />
+
                                                 </span>
-                                                <?php endif; ?>
+
+
+
+
                                             </div>
-                                            <img src="https://img.icons8.com/ios-filled/50/7950F2/public-safety.png"
-                                                style="width: 18px; height:18px;" />&nbsp;&nbsp;
-                                            <img src="https://img.icons8.com/arcade/64/000000/experimental-lock-arcade.png"
-                                                style="width: 18px; height:18px;" />&nbsp;&nbsp;
+                                            <?php if ($cl['li']['og_data'] == "false") : ?>
+                                                <div>
+                                                    <form method="POST" action="native_api/main/join_community">
+                                                        <input type="hidden" name="community_id" value="<?php echo $cl['li']['community_id']; ?>">
+                                                        <input type="hidden" name="user_id" value="<?php echo $me['id']; ?>">
+                                                        <button type="submit" class="btn btn-primary">Join</button>
+                                                    </form>
+                                                </div>
+                                            <?php endif; ?>
 
-
-                                            <img src="https://img.icons8.com/fluency/48/000000/favorites.png"
-                                                style="width: 18px; height:18px;" />
-                                            <img src="https://img.icons8.com/dotty/80/000000/add-bookmark.png"
-                                                style="width: 18px; height:18px;" />
-
-                                        </span>
-
-
-                                    </div>
-                                    <?php if ($cl['li']['og_data'] == "false") : ?>
-                                    <div>
-                                        <form method="POST" action="native_api/main/join_community">
-                                            <input type="hidden" name="community_id"
-                                                value="<?php echo $cl['li']['community_id']; ?>">
-                                            <input type="hidden" name="user_id" value="<?php echo $me['id']; ?>">
-                                            <button type="submit" class="btn btn-primary">Join</button>
-                                        </form>
-                                    </div>
-                                    <?php endif; ?>
-
-                                </div>
-                                <?php if ($cl['li']['target'] == 'pub_reply' && not_empty($cl['li']['reply_to'])) : ?>
-                                <div class="post-data-layout__target">
-                                    <?php if (not_empty($cl['li']['reply_to']['is_owner'])) : ?>
-                                    <div class="post-reply">
-                                        <span>
-                                            <?php echo cl_translate('In response to your {@post_url@}', array(
+                                        </div>
+                                        <?php if ($cl['li']['target'] == 'pub_reply' && not_empty($cl['li']['reply_to'])) : ?>
+                                            <div class="post-data-layout__target">
+                                                <?php if (not_empty($cl['li']['reply_to']['is_owner'])) : ?>
+                                                    <div class="post-reply">
+                                                        <span>
+                                                            <?php echo cl_translate('In response to your {@post_url@}', array(
                                                                 'post_url' => cl_html_el('a', cl_translate('post'), array(
                                                                     'href' => $cl['li']['reply_to']['thread_url'],
                                                                     'data-spa' => 'true'
                                                                 ))
                                                             )); ?>
-                                        </span>
-                                    </div>
-                                    <?php else : ?>
-                                    <div class="post-reply">
-                                        <span>
-                                            <?php
+                                                        </span>
+                                                    </div>
+                                                <?php else : ?>
+                                                    <div class="post-reply">
+                                                        <span>
+                                                            <?php
                                                             if ($cl['li']['reply_to']['gender'] == 'M') {
                                                                 $text_temp = 'In response {@uname@} to his {@post_url@}';
                                                             } else if ($cl['li']['reply_to']['gender'] == 'F') {
@@ -214,218 +202,183 @@
                                                                 ))
                                                             ));
                                                             ?>
-                                        </span>
-                                    </div>
-                                    <?php endif; ?>
-                                </div>
-                                <?php endif; ?>
-                                <div class="post-data-layout__content">
-                                    <?php if (not_empty($cl['li']['text'])) : ?>
-                                    <?php
+                                                        </span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <div class="post-data-layout__content">
+                                            <?php if (not_empty($cl['li']['text'])) : ?>
+                                                <?php
                                                 $cl['li']['text'] = cl_rn2br($cl['li']['text']);
                                                 $cl['li']['text'] = cl_strip_brs($cl['li']['text']);
                                                 //print_r($me);
                                                 ?>
 
-                                    <!-- <input type="checkbox" id="title" class="visuallyhidden"> -->
-                                    <a href="<?php echo (htmlentities($cl['li']['owner']['url'] . "?post_title=" . $cl['li']['text'])); ?>"
-                                        style="text-decoration:none; ">
-                                        <div class="publication-text"
-                                            style="color:<?php echo not_empty($cl["display_set"]["title"]) ? $cl["display_set"]["title"] : "#0000ff"; ?>;margin-bottom:20px;font-weight:bold;">
-                                            <?php echo ($cl['li']['text']); ?>
-                                            <?php if (not_empty($cl['li']['image'])) : ?>
-                                            <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-image-user-interface-anggara-flat-anggara-putra-4.png"
-                                                style="width: 18px; height:18px;" />
+                                                <!-- <input type="checkbox" id="title" class="visuallyhidden"> -->
+                                                <a href="<?php echo (htmlentities("show_post_details" . "?post_title=" . $cl['li']['text'] . "&community_id=" . $cl['li']['community_id'])); ?>" style="text-decoration:none; ">
+                                                    <div class="publication-text" style="color:<?php echo not_empty($cl["display_set"]["title"]) ? $cl["display_set"]["title"] : "#0000ff"; ?>;margin-bottom:20px;font-weight:bold;">
+                                                        <?php echo ($cl['li']['text']); ?>
+                                                        <?php if (not_empty($cl['li']['image'])) : ?>
+                                                            <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-image-user-interface-anggara-flat-anggara-putra-4.png" style="width: 18px; height:18px;" />
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </a>
+                                                <div style="background: #f8f8f8;margin-box;" id="description" class="description">
+                                                    <?php echo str_replace('\r\n', "<br>", $cl['li']['description']); ?>
+                                                </div>
                                             <?php endif; ?>
-                                        </div>
-                                    </a>
-                                    <div style="background: #f8f8f8;margin-box;" id="description" class="description">
-                                        <?php echo str_replace('\r\n', "<br>", $cl['li']['description']); ?>
-                                    </div>
-                                    <?php endif; ?>
-                                    <?php if ($cl['li']['type'] == 'image' && not_empty($cl['li']['media'])) : ?>
-                                    <?php if (count($cl['li']['media']) == 1) : ?> <div class="lozad-media">
-                                        <div class="publication-image">
-                                            <a href="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
-                                                class="fbox-media">
-                                                <img class="lozad"
-                                                    data-src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
-                                                    alt="Picture">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <?php else : ?>
-                                    <div class="publication-images-collage">
-                                        <?php foreach ($cl['li']['media'] as $i => $row) : ?>
-                                        <a href="<?php echo cl_get_media($row['src']); ?>" class="fbox-media"
-                                            data-fancybox="fbox-media-<?php echo ($cl['li']['id']); ?>">
-                                            <div class="image-collage-item">
+                                            <?php if ($cl['li']['type'] == 'image' && not_empty($cl['li']['media'])) : ?>
+                                                <?php if (count($cl['li']['media']) == 1) : ?> <div class="lozad-media">
+                                                        <div class="publication-image">
+                                                            <a href="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>" class="fbox-media">
+                                                                <img class="lozad" data-src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>" alt="Picture">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                <?php else : ?>
+                                                    <div class="publication-images-collage">
+                                                        <?php foreach ($cl['li']['media'] as $i => $row) : ?>
+                                                            <a href="<?php echo cl_get_media($row['src']); ?>" class="fbox-media" data-fancybox="fbox-media-<?php echo ($cl['li']['id']); ?>">
+                                                                <div class="image-collage-item">
+                                                                    <div class="lozad-media">
+                                                                        <div class="publication-image">
+                                                                            <img class="d-block w-100 lozad" data-src="<?php echo cl_get_media($row['x']['image_thumb']); ?>" alt="Image">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php elseif ($cl['li']['type'] == 'video' && not_empty($cl['li']['media'])) : ?>
                                                 <div class="lozad-media">
                                                     <div class="publication-image">
-                                                        <img class="d-block w-100 lozad"
-                                                            data-src="<?php echo cl_get_media($row['x']['image_thumb']); ?>"
-                                                            alt="Image">
+                                                        <a href="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>" class="fbox-media">
+                                                            <img class="lozad" src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['x']['poster_thumb'], '')); ?>" alt="Video">
+                                                            <div class="video-play-button">
+                                                                <span class="video-play-button__arrow">
+                                                                    <?php echo cl_icon("play_arrow"); ?>
+                                                                </span>
+                                                            </div>
+                                                        </a>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                        <?php endforeach; ?>
-                                    </div>
-                                    <?php endif; ?>
-                                    <?php elseif ($cl['li']['type'] == 'video' && not_empty($cl['li']['media'])) : ?>
-                                    <div class="lozad-media">
-                                        <div class="publication-image">
-                                            <a href="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
-                                                class="fbox-media">
-                                                <img class="lozad"
-                                                    src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['x']['poster_thumb'], '')); ?>"
-                                                    alt="Video">
-                                                <div class="video-play-button">
-                                                    <span class="video-play-button__arrow">
-                                                        <?php echo cl_icon("play_arrow"); ?>
+                                            <?php elseif ($cl['li']['type'] == 'audio' && not_empty($cl['li']['media'])) : ?>
+                                                <div class="publication-audio">
+                                                    <audio controls preload="metadata">
+                                                        <source src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>" type="audio/mpeg">
+                                                        <source src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>" type="audio/wav">
+                                                    </audio>
+                                                </div>
+                                            <?php elseif ($cl['li']['type'] == 'gif' && not_empty($cl['li']['media'])) : ?>
+                                                <div class="lozad-media">
+                                                    <div class="publication-image">
+                                                        <a href="<?php echo fetch_or_get($cl['li']['media'][0]['src'], ''); ?>" class="fbox-media">
+                                                            <img class="lozad" data-src="<?php echo fetch_or_get($cl['li']['media'][0]['src'], ''); ?>" alt="GIF-Image">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            <?php elseif ($cl['li']['type'] == 'poll' && not_empty($cl['li']['poll'])) : ?>
+                                                <!-- POLL items in hidden -->
+                                                <div class="publication-poll" id="poll" data-post-poll="<?php echo ($cl['li']['id']); ?>" data-status="<?php echo ($cl['li']['poll']['has_voted']); ?>">
+                                                    <div class="publication-poll__inner">
+                                                        <?php foreach ($cl['li']['poll']['options'] as $i => $poll_data) : ?>
+                                                            <div class="publication-poll__option" onclick="SMColibri.vote_poll(<?php echo ($cl['li']['id']); ?>, <?php echo ($i); ?>);" data-poll-option="<?php echo ($i); ?>">
+                                                                <div class="bar-icon">
+                                                                    <?php echo cl_icon("check_circle"); ?>
+                                                                </div>
+                                                                <div class="bar-text">
+                                                                    <p>
+                                                                        <?php echo $poll_data["option"]; ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="bar-num">
+                                                                    <b>
+                                                                        <?php if (not_empty($cl['li']['poll']['has_voted'])) : ?>
+                                                                            <?php echo $poll_data["percentage"]; ?>%
+                                                                        <?php endif; ?>
+                                                                    </b>
+                                                                </div>
+
+                                                                <?php if (not_empty($cl['li']['poll']['has_voted'])) : ?>
+                                                                    <span class="bar-slider" style="width: <?php echo $poll_data["percentage"]; ?>%;"></span>
+                                                                <?php else : ?>
+                                                                    <span class="bar-slider"></span>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <div class="post-data-layout__controls" style="margin-top: unset;">
+                                            <button class="ctrls-item">
+                                                <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>" data-spa="true">
+                                                    <span class="ctrls-item__icon">
+                                                        <?php echo cl_icon('post_reply'); ?>
                                                     </span>
-                                                </div>
-                                            </a>
+                                                    <span class="num"><?php echo $cl['li']['replys_count']; ?></span>
+                                                </a>
+                                            </button>
+                                            <button class="ctrls-item">
+                                                <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>" data-spa="true">
+                                                    <span class="ctrls-item__icon">
+                                                        <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-award-business-kiranshastry-lineal-kiranshastry.png" style="width:25px;height:25px;" /> </span>
+                                                    <span class="num">Award</span>
+                                                </a>
+                                            </button>
+                                            <button class="ctrls-item">
+                                                <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>" data-spa="true">
+                                                    <span class="ctrls-item__icon">
+                                                        <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/000000/external-share-social-media-tanah-basah-basic-outline-tanah-basah-2.png" style="width:25px;height:25px;" /> </span>
+                                                    <span class="num">Share</span>
+                                                </a>
+                                            </button>
+                                            <button class="ctrls-item">
+                                                <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>" data-spa="true">
+                                                    <span class="ctrls-item__icon">
+                                                        <img src="https://img.icons8.com/windows/32/000000/assessments.png" style="width:25px;height:25px;" /> </span>
+                                                    <span class="num">Approve</span>
+                                                </a>
+                                            </button>
+                                            <button class="ctrls-item">
+                                                <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>" data-spa="true">
+                                                    <span class="ctrls-item__icon">
+                                                        <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/32/000000/external-remove-interface-dreamstale-lineal-dreamstale.png" style="width:25px;height:25px;" /> </span>
+                                                    <span class="num">Remove</span>
+                                                </a>
+                                            </button>
+                                            <button class="ctrls-item">
+                                                <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>" data-spa="true">
+                                                    <span class="ctrls-item__icon">
+                                                        <img src="https://img.icons8.com/wired/64/000000/spam-can.png" style="width:25px;height:25px;" /> </span>
+                                                    <span class="num">Spam</span>
+                                                </a>
+                                            </button>
+
+
+
+
+
                                         </div>
                                     </div>
-                                    <?php elseif ($cl['li']['type'] == 'audio' && not_empty($cl['li']['media'])) : ?>
-                                    <div class="publication-audio">
-                                        <audio controls preload="metadata">
-                                            <source
-                                                src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
-                                                type="audio/mpeg">
-                                            <source
-                                                src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
-                                                type="audio/wav">
-                                        </audio>
-                                    </div>
-                                    <?php elseif ($cl['li']['type'] == 'gif' && not_empty($cl['li']['media'])) : ?>
-                                    <div class="lozad-media">
-                                        <div class="publication-image">
-                                            <a href="<?php echo fetch_or_get($cl['li']['media'][0]['src'], ''); ?>"
-                                                class="fbox-media">
-                                                <img class="lozad"
-                                                    data-src="<?php echo fetch_or_get($cl['li']['media'][0]['src'], ''); ?>"
-                                                    alt="GIF-Image">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <?php elseif ($cl['li']['type'] == 'poll' && not_empty($cl['li']['poll'])) : ?>
-                                    <!-- POLL items in hidden -->
-                                    <div class="publication-poll" id="poll"
-                                        data-post-poll="<?php echo ($cl['li']['id']); ?>"
-                                        data-status="<?php echo ($cl['li']['poll']['has_voted']); ?>">
-                                        <div class="publication-poll__inner">
-                                            <?php foreach ($cl['li']['poll']['options'] as $i => $poll_data) : ?>
-                                            <div class="publication-poll__option"
-                                                onclick="SMColibri.vote_poll(<?php echo ($cl['li']['id']); ?>, <?php echo ($i); ?>);"
-                                                data-poll-option="<?php echo ($i); ?>">
-                                                <div class="bar-icon">
-                                                    <?php echo cl_icon("check_circle"); ?>
-                                                </div>
-                                                <div class="bar-text">
-                                                    <p>
-                                                        <?php echo $poll_data["option"]; ?>
-                                                    </p>
-                                                </div>
-                                                <div class="bar-num">
-                                                    <b>
-                                                        <?php if (not_empty($cl['li']['poll']['has_voted'])) : ?>
-                                                        <?php echo $poll_data["percentage"]; ?>%
-                                                        <?php endif; ?>
-                                                    </b>
-                                                </div>
-
-                                                <?php if (not_empty($cl['li']['poll']['has_voted'])) : ?>
-                                                <span class="bar-slider"
-                                                    style="width: <?php echo $poll_data["percentage"]; ?>%;"></span>
-                                                <?php else : ?>
-                                                <span class="bar-slider"></span>
-                                                <?php endif; ?>
-                                            </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-
-                                    <?php endif; ?>
-                                </div>
-
-                                <div class="post-data-layout__controls" style="margin-top: unset;">
-                                    <button class="ctrls-item">
-                                        <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>"
-                                            data-spa="true">
-                                            <span class="ctrls-item__icon">
-                                                <?php echo cl_icon('post_reply'); ?>
-                                            </span>
-                                            <span class="num"><?php echo $cl['li']['replys_count']; ?></span>
-                                        </a>
-                                    </button>
-                                    <button class="ctrls-item">
-                                        <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>"
-                                            data-spa="true">
-                                            <span class="ctrls-item__icon">
-                                                <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-award-business-kiranshastry-lineal-kiranshastry.png"
-                                                    style="width:25px;height:25px;" /> </span>
-                                            <span class="num">Award</span>
-                                        </a>
-                                    </button>
-                                    <button class="ctrls-item">
-                                        <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>"
-                                            data-spa="true">
-                                            <span class="ctrls-item__icon">
-                                                <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/000000/external-share-social-media-tanah-basah-basic-outline-tanah-basah-2.png"
-                                                    style="width:25px;height:25px;" /> </span>
-                                            <span class="num">Share</span>
-                                        </a>
-                                    </button>
-                                    <button class="ctrls-item">
-                                        <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>"
-                                            data-spa="true">
-                                            <span class="ctrls-item__icon">
-                                                <img src="https://img.icons8.com/windows/32/000000/assessments.png"
-                                                    style="width:25px;height:25px;" /> </span>
-                                            <span class="num">Approve</span>
-                                        </a>
-                                    </button>
-                                    <button class="ctrls-item">
-                                        <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>"
-                                            data-spa="true">
-                                            <span class="ctrls-item__icon">
-                                                <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/32/000000/external-remove-interface-dreamstale-lineal-dreamstale.png"
-                                                    style="width:25px;height:25px;" /> </span>
-                                            <span class="num">Remove</span>
-                                        </a>
-                                    </button>
-                                    <button class="ctrls-item">
-                                        <a class="ctrls-item__inner-link" href="<?php echo $cl['li']['url']; ?>"
-                                            data-spa="true">
-                                            <span class="ctrls-item__icon">
-                                                <img src="https://img.icons8.com/wired/64/000000/spam-can.png"
-                                                    style="width:25px;height:25px;" /> </span>
-                                            <span class="num">Spam</span>
-                                        </a>
-                                    </button>
-
-
-
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
-</div>
-<div><br></div>
-<?php if (not_empty($cl["gads_horiz"])) : ?>
-<?php if (cl_show_feed_gad()) : ?>
-<div class="cl-google-ads centered">
-    <?php echo $cl["gads_horiz"]; ?>
-</div>
-<?php endif; ?>
-<?php endif; ?>
+    </div>
+    <div><br></div>
+    <?php if (not_empty($cl["gads_horiz"])) : ?>
+        <?php if (cl_show_feed_gad()) : ?>
+            <div class="cl-google-ads centered">
+                <?php echo $cl["gads_horiz"]; ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
 <?php endif; ?>

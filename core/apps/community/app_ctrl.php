@@ -125,8 +125,7 @@ function cl_get_community($limit = false, $offset = false, $onset = false)
 				}
 			}
 		}
-	}
-
+	};
 	return $data;
 }
 

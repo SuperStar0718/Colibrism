@@ -178,7 +178,7 @@
                 <?php if ($cl["pn"] == "create_post" || $cl['pn'] == "create_community" || $cl['pn'] == "approved_users" || $cl['pn'] == "moderators" || $cl['pn'] == "join_community" || $cl['pn'] == "community_rules" || $cl['pn'] == "community_settings" || $cl['pn'] == "community_appearance" || $cl['pn'] == "community_mod_mail" || $cl['pn'] == "automod") : ?>
                 <?php echo cl_template('main/right_sidebar_other'); ?>
                 <?php elseif ($cl["pn"] == "home") : ?>
-                <?php echo cl_template('main/right_sidebar_community_moderator'); ?>
+                <?php echo cl_template('main/right_sidebar'); ?>
                 <?php elseif ($cl["pn"] == "community") : ?>
                 <?php if (not_empty($is_moderator)) : ?>
                 <?php echo cl_template('main/right_sidebar_community_moderator'); ?>

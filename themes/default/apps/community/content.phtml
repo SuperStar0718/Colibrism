@@ -217,7 +217,7 @@
             </div>
         </div>
         <div class="timeline-posts-container">
-            <?php if (not_empty($cl["tl_feed"])) : ?>
+            <?php if (not_empty($cl["tl_feed"])) :  ?>
             <div class="timeline-posts-ls" data-an="entry-list">
                 <?php foreach ($cl["tl_feed"] as $cl["li"]) : ?>
                 <?php echo cl_template('timeline/post_community'); ?>

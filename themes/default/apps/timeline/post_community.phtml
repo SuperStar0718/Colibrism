@@ -219,7 +219,7 @@
                                                 ?>
 
                                     <!-- <input type="checkbox" id="title" class="visuallyhidden"> -->
-                                    <a href="<?php echo (htmlentities($cl['li']['owner']['url'] . "?post_title=" . $cl['li']['text'])); ?>"
+                                    <a href="<?php echo (htmlentities("show_post_details" . "?post_title=" . $cl['li']['text'] . "&community_id=" . $cl['li']['community_id'])); ?>"
                                         style="text-decoration:none; ">
                                         <div class="publication-text"
                                             style="color:<?php echo not_empty($cl["display_set"]["title"]) ? $cl["display_set"]["title"] : "unset"; ?>;margin-bottom:20px;font-weight:bold;">
