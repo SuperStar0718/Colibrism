@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -9,23 +9,22 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-function cl_get_ip() {
+function cl_get_ip()
+{
     if (not_empty($_SERVER['HTTP_CLIENT_IP']) && filter_var($_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP)) {
         return $_SERVER['HTTP_CLIENT_IP'];
     }
-    
+
     if (not_empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         if (strpos($_SERVER['HTTP_X_FORWARDED_FOR'], ',') !== false) {
             $iplist = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
             foreach ($iplist as $ip) {
-                if (filter_var($ip, FILTER_VALIDATE_IP)){
+                if (filter_var($ip, FILTER_VALIDATE_IP)) {
                     return $ip;
                 }
             }
-        } 
-
-        else {
-            if (filter_var($_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)){
+        } else {
+            if (filter_var($_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)) {
                 return $_SERVER['HTTP_X_FORWARDED_FOR'];
             }
         }
@@ -34,23 +33,24 @@ function cl_get_ip() {
     if (not_empty($_SERVER['HTTP_X_FORWARDED']) && filter_var($_SERVER['HTTP_X_FORWARDED'], FILTER_VALIDATE_IP)) {
         return $_SERVER['HTTP_X_FORWARDED'];
     }
-        
+
     if (not_empty($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']) && filter_var($_SERVER['HTTP_X_CLUSTER_CLIENT_IP'], FILTER_VALIDATE_IP)) {
         return $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
     }
-        
+
     if (not_empty($_SERVER['HTTP_FORWARDED_FOR']) && filter_var($_SERVER['HTTP_FORWARDED_FOR'], FILTER_VALIDATE_IP)) {
         return $_SERVER['HTTP_FORWARDED_FOR'];
     }
-        
+
     if (not_empty($_SERVER['HTTP_FORWARDED']) && filter_var($_SERVER['HTTP_FORWARDED'], FILTER_VALIDATE_IP)) {
         return $_SERVER['HTTP_FORWARDED'];
     }
-        
+
     return $_SERVER['REMOTE_ADDR'];
 }
 
-function cl_create_user_session($user_id = 0, $platform = 'web') {
+function cl_create_user_session($user_id = 0, $platform = 'web')
+{
     global $db;
     if (empty($user_id)) {
         return false;
@@ -66,10 +66,10 @@ function cl_create_user_session($user_id = 0, $platform = 'web') {
         'lifespan'   => $data_exp
     );
 
-    
+
     $insert = $db->insert(T_SESSIONS, $insert_data);
-    
-    
+
+
     if ($platform == "web") {
         setcookie("user_id", $session_id, $data_exp, '/') or die('unable to create cookie');
     }
@@ -77,7 +77,8 @@ function cl_create_user_session($user_id = 0, $platform = 'web') {
     return $session_id;
 }
 
-function cl_is_logged() {
+function cl_is_logged()
+{
 
     if (isset($_POST['session_id'])) {
         $id = cl_get_userfromsession_id($_POST['session_id'], false);
@@ -88,17 +89,14 @@ function cl_is_logged() {
                 "token"    => fetch_or_get($_POST['session_id'], 'none'),
                 "platform" => "mobile"
             );
-        }
-        else {
+        } else {
             return array(
                 "auth"     => false,
                 "token"    => false,
                 "platform" => "mobile"
             );
         }
-    }
-
-    else if (isset($_GET['session_id'])) {
+    } else if (isset($_GET['session_id'])) {
         $id = cl_get_userfromsession_id($_GET['session_id'], false);
         if (is_numeric($id) && not_empty($id)) {
             return array(
@@ -107,17 +105,14 @@ function cl_is_logged() {
                 "token"    => fetch_or_get($_GET['session_id'], 'none'),
                 "platform" => "mobile"
             );
-        }
-        else {
+        } else {
             return array(
                 "auth"     => false,
                 "token"    => false,
                 "platform" => "mobile"
             );
         }
-    }
-    
-    else if (isset($_COOKIE['user_id']) && not_empty($_COOKIE['user_id'])) {
+    } else if (isset($_COOKIE['user_id']) && not_empty($_COOKIE['user_id'])) {
         $id = cl_get_userfromsession_id($_COOKIE['user_id'], "web");
         if (is_numeric($id) && not_empty($id)) {
             return array(
@@ -127,9 +122,7 @@ function cl_is_logged() {
                 "platform" => "web"
             );
         }
-    }
-
-    else {
+    } else {
         return array(
             "auth"     => false,
             "token"    => false,
@@ -138,12 +131,13 @@ function cl_is_logged() {
     }
 }
 
-function cl_get_userfromsession_id($session_id, $platform = 'web') {
+function cl_get_userfromsession_id($session_id, $platform = 'web')
+{
     global $db;
     if (empty($session_id)) {
         return false;
     }
-    
+
     $platform     = cl_text_secure($platform);
     $session_id   = cl_text_secure($session_id);
     $return       = $db->where('session_id', $session_id);
@@ -154,38 +148,44 @@ function cl_get_userfromsession_id($session_id, $platform = 'web') {
     if (cl_queryset($session_data)) {
         return $session_data["user_id"];
     }
-    
+
 
     return false;
 }
 
-function cl_update_user_data($user_id = null,$data = array()) {
+function cl_update_user_data($user_id = null, $data = array())
+{
     global $db;
     if ((not_num($user_id)) || (empty($data) || is_array($data) != true)) {
         return false;
-    } 
+    }
 
     $db     = $db->where('id', $user_id);
-    $update = $db->update(T_USERS,$data);
+    $update = $db->update(T_USERS, $data);
+
     return ($update == true) ? true : false;
 }
 
-function cl_uname_exists($uname = "") {
+function cl_uname_exists($uname = "")
+{
     global $db;
     return ($db->where('username', cl_text_secure($uname))->getValue(T_USERS, 'count(*)') > 0) ? true : false;
 }
 
-function cl_email_exists($email = "") {
+function cl_email_exists($email = "")
+{
     global $db;
     return ($db->where('email', cl_text_secure($email))->getValue(T_USERS, 'count(*)') > 0) ? true : false;
 }
 
-function cl_verify_emcode($emcode = "") {
+function cl_verify_emcode($emcode = "")
+{
     global $db;
     return ($db->where('em_code', cl_text_secure($emcode))->getValue(T_USERS, 'count(*)') > 0) ? true : false;
 }
 
-function cl_verify_invite_code($invite_code = "") {
+function cl_verify_invite_code($invite_code = "")
+{
     global $db;
 
     $db = $db->where("code", cl_text_secure($invite_code));
@@ -202,11 +202,12 @@ function cl_verify_invite_code($invite_code = "") {
     return false;
 }
 
-function cl_user_data($user_id = 0) {
+function cl_user_data($user_id = 0)
+{
     global $db, $cl;
     if (not_num($user_id)) {
         return false;
-    } 
+    }
 
     $db        = $db->where('id', $user_id);
     $user_data = $db->getOne(T_USERS);
@@ -214,29 +215,29 @@ function cl_user_data($user_id = 0) {
     if (empty($user_data)) {
         return false;
     }
-  
-    $user_data['name']         = cl_strf("%s %s",$user_data['fname'],$user_data['lname']);
-    $user_data['name']         = cl_rn_strip($user_data['name']);  
-    $user_data['name']         = stripcslashes($user_data['name']);  
-    $user_data['name']         = htmlspecialchars_decode($user_data['name'], ENT_QUOTES);   
-    $user_data['about']        = cl_rn_strip($user_data['about']);  
-    $user_data['about']        = stripcslashes($user_data['about']);  
-    $user_data['about']        = htmlspecialchars_decode($user_data['about'], ENT_QUOTES);   
+
+    $user_data['name']         = cl_strf("%s %s", $user_data['fname'], $user_data['lname']);
+    $user_data['name']         = cl_rn_strip($user_data['name']);
+    $user_data['name']         = stripcslashes($user_data['name']);
+    $user_data['name']         = htmlspecialchars_decode($user_data['name'], ENT_QUOTES);
+    $user_data['about']        = cl_rn_strip($user_data['about']);
+    $user_data['about']        = stripcslashes($user_data['about']);
+    $user_data['about']        = htmlspecialchars_decode($user_data['about'], ENT_QUOTES);
     $user_data['raw_uname']    = $user_data['username'];
     $user_data['raw_avatar']   = $user_data['avatar'];
     $user_data['raw_cover']    = $user_data['cover'];
     $user_data['avatar']       = cl_get_media($user_data['avatar']);
     $user_data['cover']        = cl_get_media($user_data['cover']);
     $user_data['url']          = cl_link($user_data['raw_uname']);
-    $user_data['chaturl']      = cl_link(cl_strf("conversation/%s",$user_data['raw_uname']));
+    $user_data['chaturl']      = cl_link(cl_strf("conversation/%s", $user_data['raw_uname']));
     $user_data['is_online']    = ($user_data['last_active'] > (time() - 60));
     $user_data['last_active']  = cl_time2str($user_data['last_active']);
     $user_data['joined']       = cl_date("F Y", $user_data['joined'], false);
     $user_data['settings']     = json($user_data['settings']);
     $user_data['swift']        = cl_init_swift($user_data['swift']);
-    $user_data['country_a2c']  = fetch_or_get($cl['country_codes'][$user_data['country_id']],'us');
+    $user_data['country_a2c']  = fetch_or_get($cl['country_codes'][$user_data['country_id']], 'us');
     $user_data['country_name'] = cl_translate($cl['countries'][$user_data['country_id']], 'Unknown');
-    
+
 
     if ($user_data["start_up"] != "done") {
         $user_data["start_up"] = json($user_data["start_up"]);
@@ -249,24 +250,24 @@ function cl_user_data($user_id = 0) {
     return $user_data;
 }
 
-function cl_init_swift($json = false) {
+function cl_init_swift($json = false)
+{
 
     try {
         $swift = json($json);
 
         if (is_array($swift)) {
             return $swift;
-        }
-        else {
+        } else {
             return array();
         }
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         return array();
     }
 }
 
-function cl_can_swift($swift = array()) {
+function cl_can_swift($swift = array())
+{
     if (is_array($swift)) {
         $active_posts = 0;
 
@@ -277,14 +278,13 @@ function cl_can_swift($swift = array()) {
         }
 
         return ($active_posts >= 20) ? false : true;
-    }
-
-    else {
+    } else {
         return false;
     }
 }
 
-function cl_delete_swift($swift_id = array()) {
+function cl_delete_swift($swift_id = array())
+{
     global $me, $cl;
 
     if (not_empty($cl["is_logged"])) {
@@ -293,8 +293,7 @@ function cl_delete_swift($swift_id = array()) {
         if (is_array($swift_data)) {
             if ($swift_data["type"] == "image") {
                 cl_delete_media($swift_data["media"]["src"]);
-            }
-            else if($swift_data["type"] == "video") {
+            } else if ($swift_data["type"] == "video") {
                 cl_delete_media($swift_data["media"]["source"]);
             }
 
@@ -302,13 +301,13 @@ function cl_delete_swift($swift_id = array()) {
 
             return $me["swift"];
         }
-    }
-    else{
+    } else {
         return false;
     }
 }
 
-function cl_is_junked_swift($swift_data = array()) {
+function cl_is_junked_swift($swift_data = array())
+{
 
     if (is_array($swift_data)) {
         if ($swift_data["status"] != "active" || $swift_data["exp_time"] <= time()) {
@@ -319,12 +318,13 @@ function cl_is_junked_swift($swift_data = array()) {
     return false;
 }
 
-function cl_raw_user_data($user_id = 0) {
+function cl_raw_user_data($user_id = 0)
+{
     global $db;
-    
+
     if (not_num($user_id)) {
         return false;
-    } 
+    }
 
     $db        = $db->where('id', $user_id);
     $user_data = $db->getOne(T_USERS);
@@ -336,12 +336,13 @@ function cl_raw_user_data($user_id = 0) {
     return $user_data;
 }
 
-function cl_get_user_settings($user_id = 0) {
+function cl_get_user_settings($user_id = 0)
+{
     global $db;
-    
+
     if (not_num($user_id)) {
         return false;
-    } 
+    }
 
     $user_data = cl_raw_user_data($user_id);
 
@@ -352,7 +353,8 @@ function cl_get_user_settings($user_id = 0) {
     return json($user_data["settings"]);
 }
 
-function cl_signout_user() {
+function cl_signout_user()
+{
     global $db;
     if (not_empty($_SESSION['user_id'])) {
         $db->where('session_id', cl_text_secure($_SESSION['user_id']));
@@ -374,7 +376,8 @@ function cl_signout_user() {
     cl_redirect('/');
 }
 
-function cl_signout_user_by_id($user_id = false) {
+function cl_signout_user_by_id($user_id = false)
+{
     global $db;
 
     if (not_num($user_id)) {
@@ -387,206 +390,205 @@ function cl_signout_user_by_id($user_id = false) {
     return $qr;
 }
 
-function cl_delete_user_data($user_id = false) {
+function cl_delete_user_data($user_id = false)
+{
     global $db;
     if (not_num($user_id)) {
         return false;
-    }
-
-    else {
+    } else {
         $db        = $db->where('id', $user_id);
         $user_data = $db->getOne(T_USERS);
 
         if (cl_queryset($user_data)) {
 
             /*===== Delete user notifications =====*/
-                $db = $db->where('notifier_id', $user_id);
-                $qr = $db->delete(T_NOTIFS);
+            $db = $db->where('notifier_id', $user_id);
+            $qr = $db->delete(T_NOTIFS);
 
-                $db = $db->where('recipient_id', $user_id);
-                $qr = $db->delete(T_NOTIFS);
+            $db = $db->where('recipient_id', $user_id);
+            $qr = $db->delete(T_NOTIFS);
             /*====================================*/
 
             /*===== Delete user bookmarks =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->delete(T_BOOKMARKS);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->delete(T_BOOKMARKS);
             /*====================================*/
 
             /*===== Delete user reports =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->delete(T_PROF_REPORTS);
-                
-                $db = $db->where('profile_id', $user_id);
-                $qr = $db->delete(T_PROF_REPORTS);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->delete(T_PROF_REPORTS);
+
+            $db = $db->where('profile_id', $user_id);
+            $qr = $db->delete(T_PROF_REPORTS);
             /*====================================*/
 
             /*===== Delete user blocks =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->delete(T_BLOCKS);
-                
-                $db = $db->where('profile_id', $user_id);
-                $qr = $db->delete(T_BLOCKS);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->delete(T_BLOCKS);
+
+            $db = $db->where('profile_id', $user_id);
+            $qr = $db->delete(T_BLOCKS);
             /*====================================*/
 
             /*===== Delete user aff payouts =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->delete(T_AFF_PAYOUTS);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->delete(T_AFF_PAYOUTS);
             /*====================================*/
 
             /*===== Delete user wallet history =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->delete(T_WALLET_HISTORY);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->delete(T_WALLET_HISTORY);
             /*====================================*/
 
             /*===== Delete user post reposts =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->delete(T_PUB_REPORTS);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->delete(T_PUB_REPORTS);
             /*====================================*/
 
             /*===== Delete user ads =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->get(T_ADS);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->get(T_ADS);
 
-                if (cl_queryset($qr)) {
-                    foreach ($qr as $row) {
-                        cl_delete_media($row['cover']);
-                    }
-
-                    $db = $db->where('user_id', $user_id);
-                    $qr = $db->delete(T_ADS);
+            if (cl_queryset($qr)) {
+                foreach ($qr as $row) {
+                    cl_delete_media($row['cover']);
                 }
+
+                $db = $db->where('user_id', $user_id);
+                $qr = $db->delete(T_ADS);
+            }
             /*====================================*/
 
             /*===== Delete user likes =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->get(T_LIKES);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->get(T_LIKES);
 
-                if (cl_queryset($qr)) {
-                    foreach ($qr as $row) {
-                        $post_data = cl_raw_post_data($row['pub_id']);
+            if (cl_queryset($qr)) {
+                foreach ($qr as $row) {
+                    $post_data = cl_raw_post_data($row['pub_id']);
 
-                        if (not_empty($post_data) && ($post_data['user_id'] != $user_id)) {
-                            $num = ($post_data['likes_count'] -= 1);
-                            $num = (is_posnum($num)) ? $num : 0;
-                            cl_update_post_data($row['pub_id'], array(
-                                'likes_count' => $num
-                            ));
-                        }
+                    if (not_empty($post_data) && ($post_data['user_id'] != $user_id)) {
+                        $num = ($post_data['likes_count'] -= 1);
+                        $num = (is_posnum($num)) ? $num : 0;
+                        cl_update_post_data($row['pub_id'], array(
+                            'likes_count' => $num
+                        ));
                     }
-
-                    $db = $db->where('user_id', $user_id);
-                    $qr = $db->delete(T_LIKES);
                 }
+
+                $db = $db->where('user_id', $user_id);
+                $qr = $db->delete(T_LIKES);
+            }
             /*====================================*/
 
             /*===== Delete user reposts =====*/
+            $db = $db->where('user_id', $user_id);
+            $db = $db->where('type', 'repost');
+            $qr = $db->get(T_POSTS);
+
+            if (cl_queryset($qr)) {
+                foreach ($qr as $row) {
+                    $post_data = cl_raw_post_data($row['publication_id']);
+
+                    if (not_empty($post_data) && ($post_data['user_id'] != $user_id)) {
+                        $num = ($post_data['reposts_count'] -= 1);
+                        $num = (is_posnum($num)) ? $num : 0;
+                        cl_update_post_data($row['publication_id'], array(
+                            'reposts_count' => $num
+                        ));
+                    }
+                }
+
                 $db = $db->where('user_id', $user_id);
                 $db = $db->where('type', 'repost');
-                $qr = $db->get(T_POSTS);
-
-                if (cl_queryset($qr)) {
-                    foreach ($qr as $row) {
-                        $post_data = cl_raw_post_data($row['publication_id']);
-
-                        if (not_empty($post_data) && ($post_data['user_id'] != $user_id)) {
-                            $num = ($post_data['reposts_count'] -= 1);
-                            $num = (is_posnum($num)) ? $num : 0;
-                            cl_update_post_data($row['publication_id'], array(
-                                'reposts_count' => $num
-                            ));
-                        }
-                    }
-
-                    $db = $db->where('user_id', $user_id);
-                    $db = $db->where('type', 'repost');
-                    $qr = $db->delete(T_POSTS);
-                }
+                $qr = $db->delete(T_POSTS);
+            }
             /*====================================*/
-            
+
             /*===== Delete user publications =====*/
-                $db = $db->where('user_id', $user_id);
-                $qr = $db->get(T_PUBS);
+            $db = $db->where('user_id', $user_id);
+            $qr = $db->get(T_PUBS);
 
-                if (cl_queryset($qr)) {
-                    foreach ($qr as $row) {
-                        if ($row['target'] == 'pub_reply') {
-                            cl_update_thread_replys($row['thread_id'], 'minus');
-                        }
-
-                        $db = $db->where('publication_id', $row['id']);
-                        $qr = $db->delete(T_POSTS);
-
-                        cl_recursive_delete_post($row['id']);
+            if (cl_queryset($qr)) {
+                foreach ($qr as $row) {
+                    if ($row['target'] == 'pub_reply') {
+                        cl_update_thread_replys($row['thread_id'], 'minus');
                     }
+
+                    $db = $db->where('publication_id', $row['id']);
+                    $qr = $db->delete(T_POSTS);
+
+                    cl_recursive_delete_post($row['id']);
                 }
+            }
             /*====================================*/
 
             /*===== Delete user chats =====*/
-                $db = $db->where('user_one', $user_id);
-                $qr = $db->delete(T_CHATS);
+            $db = $db->where('user_one', $user_id);
+            $qr = $db->delete(T_CHATS);
 
-                $db = $db->where('user_two', $user_id);
-                $qr = $db->delete(T_CHATS);
+            $db = $db->where('user_two', $user_id);
+            $qr = $db->delete(T_CHATS);
+
+            $db = $db->where('sent_by', $user_id);
+            $db = $db->where('sent_to', $user_id, '=', 'OR');
+            $qr = $db->get(T_MSGS);
+
+            if (cl_queryset($qr)) {
+                foreach ($qr as $row) {
+                    if (not_empty($row['media_file'])) {
+                        cl_delete_media($row['media_file']);
+                    }
+                }
 
                 $db = $db->where('sent_by', $user_id);
                 $db = $db->where('sent_to', $user_id, '=', 'OR');
-                $qr = $db->get(T_MSGS);
-
-                if (cl_queryset($qr)) {
-                    foreach ($qr as $row) {
-                        if (not_empty($row['media_file'])) {
-                            cl_delete_media($row['media_file']);
-                        }
-                    }
-
-                    $db = $db->where('sent_by', $user_id);
-                    $db = $db->where('sent_to', $user_id, '=', 'OR');
-                    $qr = $db->delete(T_MSGS);
-                }
+                $qr = $db->delete(T_MSGS);
+            }
             /*====================================*/
 
             /*===== Delete user connections =====*/
-                $db = $db->where('follower_id', $user_id);
-                $qr = $db->get(T_CONNECTIONS);
+            $db = $db->where('follower_id', $user_id);
+            $qr = $db->get(T_CONNECTIONS);
 
-                if (cl_queryset($qr)) {
-                    foreach ($qr as $row) {
-                        $user_data = cl_raw_user_data($row['following_id']);
+            if (cl_queryset($qr)) {
+                foreach ($qr as $row) {
+                    $user_data = cl_raw_user_data($row['following_id']);
 
-                        if (not_empty($user_data)) {
-                            $num = ($user_data['followers'] -= 1);
-                            $num = (is_posnum($num)) ? $num : 0;
-                            
-                            cl_update_user_data($user_data['id'], array(
-                                'followers' => $num
-                            ));
-                        }
+                    if (not_empty($user_data)) {
+                        $num = ($user_data['followers'] -= 1);
+                        $num = (is_posnum($num)) ? $num : 0;
+
+                        cl_update_user_data($user_data['id'], array(
+                            'followers' => $num
+                        ));
                     }
+                }
 
-                    $db = $db->where('follower_id', $user_id);
-                    $qr = $db->delete(T_CONNECTIONS);
+                $db = $db->where('follower_id', $user_id);
+                $qr = $db->delete(T_CONNECTIONS);
+            }
+
+            $db = $db->where('following_id', $user_id);
+            $qr = $db->get(T_CONNECTIONS);
+
+            if (cl_queryset($qr)) {
+                foreach ($qr as $row) {
+                    $user_data = cl_raw_user_data($row['follower_id']);
+
+                    if (not_empty($user_data)) {
+                        $num = ($user_data['following'] -= 1);
+                        $num = (is_posnum($num)) ? $num : 0;
+
+                        cl_update_user_data($user_data['id'], array(
+                            'following' => $num
+                        ));
+                    }
                 }
 
                 $db = $db->where('following_id', $user_id);
-                $qr = $db->get(T_CONNECTIONS);
-
-                if (cl_queryset($qr)) {
-                    foreach ($qr as $row) {
-                        $user_data = cl_raw_user_data($row['follower_id']);
-
-                        if (not_empty($user_data)) {
-                            $num = ($user_data['following'] -= 1);
-                            $num = (is_posnum($num)) ? $num : 0;
-
-                            cl_update_user_data($user_data['id'], array(
-                                'following' => $num
-                            ));
-                        }
-                    }
-
-                    $db = $db->where('following_id', $user_id);
-                    $qr = $db->delete(T_CONNECTIONS);
-                }
+                $qr = $db->delete(T_CONNECTIONS);
+            }
             /*====================================*/
 
             $swift_data = cl_init_swift($user_data["swift"]);
@@ -595,8 +597,7 @@ function cl_delete_user_data($user_id = false) {
                 foreach ($swift_data as $row) {
                     if ($row["type"] == "image") {
                         cl_delete_media($row["media"]["src"]);
-                    }
-                    else if($row["type"] == "video") {
+                    } else if ($row["type"] == "video") {
                         cl_delete_media($row["media"]["source"]);
                     }
                 }
@@ -608,22 +609,21 @@ function cl_delete_user_data($user_id = false) {
             $qr = $db->delete(T_USERS);
 
             return true;
-        }
-
-        else {
+        } else {
             return false;
         }
     }
 }
 
-function cl_get_user_by_name($uname = null) {
-    global $cl,$db;
+function cl_get_user_by_name($uname = null)
+{
+    global $cl, $db;
 
     if (empty($uname)) {
         return false;
     }
 
-    $db    = $db->where('username',$uname);
+    $db    = $db->where('username', $uname);
     $udata = $db->getOne(T_USERS, 'id');
 
     if (cl_queryset($udata)) {
@@ -634,7 +634,8 @@ function cl_get_user_by_name($uname = null) {
     return $udata;
 }
 
-function cl_get_user_id_by_name($uname = null) {
+function cl_get_user_id_by_name($uname = null)
+{
     global $cl, $db;
 
     if (empty($uname)) {
@@ -652,33 +653,31 @@ function cl_get_user_id_by_name($uname = null) {
     return $user_id;
 }
 
-function cl_is_following($follower_id = false, $following_id = false) {
+function cl_is_following($follower_id = false, $following_id = false)
+{
     global $db;
 
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
-    }
-
-    else if($follower_id == $following_id) {
+    } else if ($follower_id == $following_id) {
         return false;
     }
 
     $db  = $db->where('follower_id', $follower_id);
     $db  = $db->where('following_id', $following_id);
     $db  = $db->where('status', 'active');
-    $res = $db->getValue(T_CONNECTIONS,'COUNT(id)');
-    
+    $res = $db->getValue(T_CONNECTIONS, 'COUNT(id)');
+
     return is_posnum($res);
 }
 
-function cl_follow_requested($follower_id = false, $following_id = false) {
+function cl_follow_requested($follower_id = false, $following_id = false)
+{
     global $db;
 
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
-    }
-
-    else if($follower_id == $following_id) {
+    } else if ($follower_id == $following_id) {
         return false;
     }
 
@@ -686,29 +685,29 @@ function cl_follow_requested($follower_id = false, $following_id = false) {
     $db  = $db->where('following_id', $following_id);
     $db  = $db->where('status', 'pending');
     $res = $db->getValue(T_CONNECTIONS, 'COUNT(id)');
-    
+
     return is_posnum($res);
 }
 
-function cl_is_blocked($user_id = false, $profile_id = false) {
+function cl_is_blocked($user_id = false, $profile_id = false)
+{
     global $db;
 
     if (is_posnum($user_id) != true || is_posnum($profile_id) != true) {
         return false;
-    }
-
-    else if($user_id == $profile_id) {
+    } else if ($user_id == $profile_id) {
         return false;
     }
 
     $db  = $db->where('user_id', $user_id);
     $db  = $db->where('profile_id', $profile_id);
     $res = $db->getValue(T_BLOCKS, 'COUNT(id)');
-    
+
     return is_posnum($res);
 }
 
-function cl_is_reported($user_id = false, $post_id = false) {
+function cl_is_reported($user_id = false, $post_id = false)
+{
     global $db;
 
     if (is_posnum($user_id) != true || is_posnum($post_id) != true) {
@@ -718,11 +717,12 @@ function cl_is_reported($user_id = false, $post_id = false) {
     $db  = $db->where('user_id', $user_id);
     $db  = $db->where('post_id', $post_id);
     $res = $db->getValue(T_PUB_REPORTS, 'COUNT(id)');
-    
+
     return is_posnum($res);
 }
 
-function cl_unfollow($follower_id = false, $following_id = false){
+function cl_unfollow($follower_id = false, $following_id = false)
+{
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
     }
@@ -731,16 +731,17 @@ function cl_unfollow($follower_id = false, $following_id = false){
         'follower_id'  => $follower_id,
         'following_id' => $following_id
     ));
-    
+
     return $rm;
 }
 
-function cl_follow($follower_id = false, $following_id = false){
+function cl_follow($follower_id = false, $following_id = false)
+{
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
     }
 
-    $insert_id         = cl_db_insert(T_CONNECTIONS,array(
+    $insert_id         = cl_db_insert(T_CONNECTIONS, array(
         'follower_id'  => $follower_id,
         'following_id' => $following_id,
         'time'         => time()
@@ -749,7 +750,8 @@ function cl_follow($follower_id = false, $following_id = false){
     return $insert_id;
 }
 
-function cl_follow_increase($follower_id = false, $following_id = false){
+function cl_follow_increase($follower_id = false, $following_id = false)
+{
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
     }
@@ -779,7 +781,8 @@ function cl_follow_increase($follower_id = false, $following_id = false){
     return true;
 }
 
-function cl_follow_decrease($follower_id = false, $following_id = false){
+function cl_follow_decrease($follower_id = false, $following_id = false)
+{
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
     }
@@ -809,12 +812,13 @@ function cl_follow_decrease($follower_id = false, $following_id = false){
     return true;
 }
 
-function cl_follow_request($follower_id = false, $following_id = false){
+function cl_follow_request($follower_id = false, $following_id = false)
+{
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
     }
 
-    $insert_id         = cl_db_insert(T_CONNECTIONS,array(
+    $insert_id         = cl_db_insert(T_CONNECTIONS, array(
         'follower_id'  => $follower_id,
         'following_id' => $following_id,
         'status'       => "pending",
@@ -824,7 +828,8 @@ function cl_follow_request($follower_id = false, $following_id = false){
     return $insert_id;
 }
 
-function cl_get_followers($user_id = false, $limit = 30, $offset = false) {
+function cl_get_followers($user_id = false, $limit = 30, $offset = false)
+{
     global $db, $cl;
 
     if (is_posnum($user_id) != true) {
@@ -832,7 +837,7 @@ function cl_get_followers($user_id = false, $limit = 30, $offset = false) {
     }
 
     $data         = array();
-    $sql          = cl_sqltepmlate('components/sql/user/fetch_followers',array(
+    $sql          = cl_sqltepmlate('components/sql/user/fetch_followers', array(
         't_users' => T_USERS,
         't_conns' => T_CONNECTIONS,
         'user_id' => $user_id,
@@ -846,10 +851,10 @@ function cl_get_followers($user_id = false, $limit = 30, $offset = false) {
         foreach ($query_result as $row) {
             $row['about']            = cl_rn_strip($row['about']);
             $row['about']            = stripslashes($row['about']);
-            $row['name']             = cl_strf("%s %s",$row['fname'],$row['lname']);      
+            $row['name']             = cl_strf("%s %s", $row['fname'], $row['lname']);
             $row['avatar']           = cl_get_media($row['avatar']);
             $row['url']              = cl_link($row['username']);
-            $row['last_active']      = date("d M, y h:m A",$row['last_active']);
+            $row['last_active']      = date("d M, y h:m A", $row['last_active']);
             $row['is_following']     = false;
             $row['follow_requested'] = false;
             $row['is_user']          = false;
@@ -861,7 +866,7 @@ function cl_get_followers($user_id = false, $limit = 30, $offset = false) {
                 $row['is_following'] = cl_is_following($cl['me']['id'], $row['id']);
 
                 if ($cl['me']['id'] == $row['id']) {
-                    $row['is_user'] = true; 
+                    $row['is_user'] = true;
                 }
 
                 if (empty($row['is_following'])) {
@@ -878,7 +883,8 @@ function cl_get_followers($user_id = false, $limit = 30, $offset = false) {
     return $data;
 }
 
-function cl_get_followings($user_id = false, $limit = 30, $offset = false) {
+function cl_get_followings($user_id = false, $limit = 30, $offset = false)
+{
     global $db, $cl;
 
     if (is_posnum($user_id) != true) {
@@ -900,10 +906,10 @@ function cl_get_followings($user_id = false, $limit = 30, $offset = false) {
         foreach ($query_result as $row) {
             $row['about']            = cl_rn_strip($row['about']);
             $row['about']            = stripslashes($row['about']);
-            $row['name']             = cl_strf("%s %s",$row['fname'],$row['lname']);      
+            $row['name']             = cl_strf("%s %s", $row['fname'], $row['lname']);
             $row['avatar']           = cl_get_media($row['avatar']);
             $row['url']              = cl_link($row['username']);
-            $row['last_active']      = date("d M, y h:m A",$row['last_active']);
+            $row['last_active']      = date("d M, y h:m A", $row['last_active']);
             $row['is_following']     = false;
             $row['follow_requested'] = false;
             $row['is_user']          = false;
@@ -915,7 +921,7 @@ function cl_get_followings($user_id = false, $limit = 30, $offset = false) {
                 $row['is_following'] = cl_is_following($cl['me']['id'], $row['id']);
 
                 if ($cl['me']['id'] == $row['id']) {
-                    $row['is_user'] = true; 
+                    $row['is_user'] = true;
                 }
 
                 if (empty($row['is_following'])) {
@@ -932,12 +938,13 @@ function cl_get_followings($user_id = false, $limit = 30, $offset = false) {
     return $data;
 }
 
-function cl_get_follow_suggestions($limit = 10, $offset = false) {
+function cl_get_follow_suggestions($limit = 10, $offset = false)
+{
     global $db, $cl, $me;
 
     $data          = array();
     $user_id       = ((not_empty($cl['is_logged'])) ? $me['id'] : false);
-    $sql           = cl_sqltepmlate('components/sql/user/fetch_follow_suggestions',array(
+    $sql           = cl_sqltepmlate('components/sql/user/fetch_follow_suggestions', array(
         't_users'  => T_USERS,
         't_conns'  => T_CONNECTIONS,
         't_blocks' => T_BLOCKS,
@@ -952,12 +959,12 @@ function cl_get_follow_suggestions($limit = 10, $offset = false) {
         foreach ($query_result as $row) {
             $row['about']            = cl_rn_strip($row['about']);
             $row['about']            = stripslashes($row['about']);
-            $row['name']             = cl_strf("%s %s",$row['fname'],$row['lname']);
+            $row['name']             = cl_strf("%s %s", $row['fname'], $row['lname']);
             $row['name']             = cl_rn_strip($row['name']);
-            $row['name']             = stripslashes($row['name']);      
+            $row['name']             = stripslashes($row['name']);
             $row['avatar']           = cl_get_media($row['avatar']);
             $row['url']              = cl_link($row['username']);
-            $row['last_active']      = date("d M, y h:m A",$row['last_active']);
+            $row['last_active']      = date("d M, y h:m A", $row['last_active']);
             $row['follow_requested'] = false;
             $row['country_a2c']      = fetch_or_get($cl['country_codes'][$row['country_id']], 'us');
             $row['country_name']     = cl_translate($cl['countries'][$row['country_id']], 'Unknown');
@@ -967,7 +974,7 @@ function cl_get_follow_suggestions($limit = 10, $offset = false) {
                 $row['follow_requested'] = cl_follow_requested($user_id, $row['id']);
                 $row['common_follows']   = cl_get_common_follows($row['id']);
             }
-            
+
             $data[] = $row;
         }
     }
@@ -975,7 +982,8 @@ function cl_get_follow_suggestions($limit = 10, $offset = false) {
     return $data;
 }
 
-function cl_get_common_follows($user_id = false) {
+function cl_get_common_follows($user_id = false)
+{
     global $db, $cl;
 
     if ($user_id == $cl["me"]["id"]) {
@@ -994,7 +1002,7 @@ function cl_get_common_follows($user_id = false) {
 
     if (cl_queryset($query_result)) {
         foreach ($query_result as $row) {
-            $row['name']   = cl_strf("%s %s",$row['fname'],$row['lname']);      
+            $row['name']   = cl_strf("%s %s", $row['fname'], $row['lname']);
             $row['avatar'] = cl_get_media($row['avatar']);
             $row['url']    = cl_link($row['username']);
             $data[]        = $row;
@@ -1004,7 +1012,8 @@ function cl_get_common_follows($user_id = false) {
     return $data;
 }
 
-function cl_get_follow_requests($limit = 30, $offset = false) {
+function cl_get_follow_requests($limit = 30, $offset = false)
+{
     global $db, $cl, $me;
 
     $data         = array();
@@ -1022,10 +1031,10 @@ function cl_get_follow_requests($limit = 30, $offset = false) {
         foreach ($query_result as $row) {
             $row['about']          = cl_rn_strip($row['about']);
             $row['about']          = stripslashes($row['about']);
-            $row['name']           = cl_strf("%s %s",$row['fname'],$row['lname']);      
+            $row['name']           = cl_strf("%s %s", $row['fname'], $row['lname']);
             $row['avatar']         = cl_get_media($row['avatar']);
             $row['url']            = cl_link($row['username']);
-            $row['last_active']    = date("d M, y h:m A",$row['last_active']);
+            $row['last_active']    = date("d M, y h:m A", $row['last_active']);
             $row['pending_req']    = true;
             $row['common_follows'] = cl_get_common_follows($row['id']);
             $row['country_a2c']    = fetch_or_get($cl['country_codes'][$row['country_id']], 'us');
@@ -1037,7 +1046,8 @@ function cl_get_follow_requests($limit = 30, $offset = false) {
     return $data;
 }
 
-function cl_get_follow_requests_total() {
+function cl_get_follow_requests_total()
+{
     global $db, $me;
 
     $db = $db->where("following_id", $me["id"]);
@@ -1047,14 +1057,15 @@ function cl_get_follow_requests_total() {
     return (is_posnum($qr)) ? $qr : 0;
 }
 
-function cl_notify_user($data = array()) {
+function cl_notify_user($data = array())
+{
     global $db, $cl, $me;
 
     if (empty($data)) {
         return false;
     }
 
-    if(cl_allow_user_notification($data['user_id'], $data['subject'])) {
+    if (cl_allow_user_notification($data['user_id'], $data['subject'])) {
         $total = cl_db_get_total(T_NOTIFS, array(
             'notifier_id' => $me['id'],
             'recipient_id' => $data['user_id'],
@@ -1071,8 +1082,7 @@ function cl_notify_user($data = array()) {
                 'subject' => $data['subject'],
                 'time' => time()
             ));
-        }
-        else {
+        } else {
             cl_db_update(T_NOTIFS, array(
                 'notifier_id' => $me['id'],
                 'recipient_id' => $data['user_id'],
@@ -1093,7 +1103,7 @@ function cl_notify_user($data = array()) {
     }
 
     if ($cl["config"]["email_notifications"] == "on") {
-        if(cl_allow_user_email_notification($data['user_id'], $data['subject'])) {
+        if (cl_allow_user_email_notification($data['user_id'], $data['subject'])) {
             $my_curr_lang      = $cl["curr_lang"];
             $cl['enotif_user'] = cl_user_data($data['user_id']);
             $cl["curr_lang"]   = array(
@@ -1134,12 +1144,10 @@ function cl_notify_user($data = array()) {
 
             if (in_array($data['subject'], array('reply', 'repost', 'like', 'mention'))) {
                 $cl['enotif_data']['url'] = cl_link(cl_strf("thread/%d", $data['entry_id']));
-            }
-
-            else if ($data['subject'] == "ad_approval") {
+            } else if ($data['subject'] == "ad_approval") {
                 $cl['enotif_data']['url'] = cl_link(cl_strf("ads/%d", $data['entry_id']));
             }
-            
+
             $send_email_data = array(
                 'from_email'   => $cl['config']['email'],
                 'from_name'    => $cl['config']['name'],
@@ -1153,16 +1161,16 @@ function cl_notify_user($data = array()) {
 
             try {
                 cl_send_mail($send_email_data);
+            } catch (Exception $e) {/*PASS*/
             }
-
-            catch (Exception $e) {/*PASS*/}
 
             $cl["curr_lang"] = $my_curr_lang;
         }
     }
 }
 
-function cl_push_notify_user($data = array()) {
+function cl_push_notify_user($data = array())
+{
     global $db, $cl;
 
     if ($cl["config"]["push_notifs"] == "on") {
@@ -1180,18 +1188,16 @@ function cl_push_notify_user($data = array()) {
             "chat_message" => cl_translate('Sent you a new message')
         );
 
-        if(in_array($data['type'], array("post_created", "chat_message")) != true && cl_allow_user_notification($data['recipient_id'], $data['type']) != true) {
-           return false; 
-        }
-
-        else {
+        if (in_array($data['type'], array("post_created", "chat_message")) != true && cl_allow_user_notification($data['recipient_id'], $data['type']) != true) {
+            return false;
+        } else {
             $recipient_data = cl_raw_user_data($data["recipient_id"]);
             $firebase_kye   = $cl["config"]["firebase_api_key"];
             $firebase_url   = "https://fcm.googleapis.com/fcm/send";
 
             if (not_empty($recipient_data)) {
                 $pnotif_token = json($recipient_data["pnotif_token"]);
-                
+
                 if (is_array($pnotif_token) && not_empty($pnotif_token["token"])) {
 
                     try {
@@ -1207,9 +1213,7 @@ function cl_push_notify_user($data = array()) {
 
                             if ($data["type"] == "chat_message") {
                                 $notif_body["chat_message"] = $data["chat_message"];
-                            }
-
-                            else {
+                            } else {
                                 $notif_body["data"] = array(
                                     "type" => str_replace('_', '-', $data["type"]),
                                     "title" => $cl["me"]["name"],
@@ -1219,9 +1223,7 @@ function cl_push_notify_user($data = array()) {
 
                             if (in_array($data["type"], array("subscribe", "subscribe_accept", "subscribe_request", "visit"))) {
                                 $notif_body["user_id"] = $data["entry_id"];
-                            }
-
-                            else {
+                            } else {
                                 if ($data["type"] != "chat_message") {
                                     $notif_body["post_id"] = $data["entry_id"];
                                 }
@@ -1229,7 +1231,7 @@ function cl_push_notify_user($data = array()) {
 
                             $req_fields = array(
                                 "collapse_key" => "type_a",
-                                "to" => $pnotif_token["token"], 
+                                "to" => $pnotif_token["token"],
                                 "notification" => $notif_body
                             );
 
@@ -1248,8 +1250,7 @@ function cl_push_notify_user($data = array()) {
                             $result = curl_exec($http_req);
 
                             curl_close($http_req);
-                        }
-                        else {
+                        } else {
                             $notif_body = array(
                                 "type" => $data["type"],
                                 "title" => $cl["me"]["name"],
@@ -1263,9 +1264,7 @@ function cl_push_notify_user($data = array()) {
 
                             if (in_array($data["type"], array("subscribe", "subscribe_accept", "subscribe_request", "visit"))) {
                                 $notif_body["user_id"] = $data["entry_id"];
-                            }
-
-                            else {
+                            } else {
                                 if ($data["type"] != "chat_message") {
                                     $notif_body["post_id"] = $data["entry_id"];
                                 }
@@ -1273,7 +1272,7 @@ function cl_push_notify_user($data = array()) {
 
                             $req_fields = array(
                                 "collapse_key" => "type_a",
-                                "to" => $pnotif_token["token"], 
+                                "to" => $pnotif_token["token"],
                                 "data" => $notif_body
                             );
 
@@ -1293,34 +1292,28 @@ function cl_push_notify_user($data = array()) {
 
                             curl_close($http_req);
                         }
-                    } 
-
-                    catch (Exception $e) {
-                        /*pass*/ 
+                    } catch (Exception $e) {
+                        /*pass*/
                     }
-                }  
-            } 
+                }
+            }
         }
     }
 }
 
-function cl_allow_user_notification($user_id = false, $subject = false) {
+function cl_allow_user_notification($user_id = false, $subject = false)
+{
     if (not_num($user_id)) {
         return false;
-    }
-
-    else if(in_array($subject, array("ad_approval"))) {
+    } else if (in_array($subject, array("ad_approval"))) {
         return true;
-    }
-
-    else {
+    } else {
         $udata_settings = cl_get_user_settings($user_id);
 
         if (not_empty($udata_settings) && is_array($udata_settings)) {
             if (not_empty($udata_settings["notifs"][$subject])) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -1329,23 +1322,19 @@ function cl_allow_user_notification($user_id = false, $subject = false) {
     }
 }
 
-function cl_allow_user_email_notification($user_id = false, $subject = false) {
+function cl_allow_user_email_notification($user_id = false, $subject = false)
+{
     if (not_num($user_id)) {
         return false;
-    }
-
-    else if(in_array($subject, array("ad_approval"))) {
+    } else if (in_array($subject, array("ad_approval"))) {
         return true;
-    }
-
-    else {
+    } else {
         $udata_settings = cl_get_user_settings($user_id);
 
         if (not_empty($udata_settings) && is_array($udata_settings)) {
             if (not_empty($udata_settings["enotifs"][$subject])) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -1354,7 +1343,8 @@ function cl_allow_user_email_notification($user_id = false, $subject = false) {
     }
 }
 
-function cl_get_user_mentions($text = "") {
+function cl_get_user_mentions($text = "")
+{
     if (empty($text) || is_string($text) != true) {
         return array();
     }
@@ -1362,7 +1352,7 @@ function cl_get_user_mentions($text = "") {
     $users = array();
 
     preg_match_all('/@([a-zA-Z0-9_]{3,32})/is', $text, $mentions);
-    
+
     if (is_array($mentions) && not_empty($mentions[1])) {
         $users = $mentions[1];
     }
@@ -1370,7 +1360,8 @@ function cl_get_user_mentions($text = "") {
     return $users;
 }
 
-function cl_notify_mentioned_users($users = array(), $post_id = false) {
+function cl_notify_mentioned_users($users = array(), $post_id = false)
+{
     global $db, $cl, $me;
 
     if (empty($cl['is_logged']) || is_posnum($post_id) != true) {
@@ -1390,8 +1381,9 @@ function cl_notify_mentioned_users($users = array(), $post_id = false) {
     }
 }
 
-function cl_likify_mentions($text = "") {
-    $text = preg_replace_callback('/@([a-zA-Z0-9_]{3,32})/is', function($m) {
+function cl_likify_mentions($text = "")
+{
+    $text = preg_replace_callback('/@([a-zA-Z0-9_]{3,32})/is', function ($m) {
 
         $uname = fetch_or_get($m[1]);
 
@@ -1401,17 +1393,16 @@ function cl_likify_mentions($text = "") {
                 'target' => '_blank',
                 'class'  => 'inline-link',
             )) . " ");
-        }
-        else{
+        } else {
             return $uname;
         }
-
     }, $text);
 
     return $text;
 }
 
-function cl_total_new_notifs() {
+function cl_total_new_notifs()
+{
     global $db, $cl;
 
     if (empty($cl['is_logged'])) {
@@ -1433,7 +1424,8 @@ function cl_total_new_notifs() {
     return 0;
 }
 
-function cl_total_new_messages() {
+function cl_total_new_messages()
+{
     global $db, $cl;
 
     if (empty($cl['is_logged'])) {
@@ -1455,14 +1447,13 @@ function cl_total_new_messages() {
     return 0;
 }
 
-function cl_get_blocked_user_ids($user_id = false) {
+function cl_get_blocked_user_ids($user_id = false)
+{
     global $db, $cl;
 
     if (not_num($user_id)) {
         return array();
-    }
-
-    else {
+    } else {
         $db    = $db->where('user_id', $user_id);
         $users = $db->get(T_BLOCKS, null, array('profile_id'));
         $data  = array();
@@ -1477,7 +1468,8 @@ function cl_get_blocked_user_ids($user_id = false) {
     }
 }
 
-function cl_get_blocked_users() {
+function cl_get_blocked_users()
+{
     global $db, $cl;
 
     $data          = array();
@@ -1493,7 +1485,7 @@ function cl_get_blocked_users() {
         foreach ($users as $row) {
             $row['about']          = cl_rn_strip($row['about']);
             $row['about']          = stripslashes($row['about']);
-            $row['name']           = cl_strf("%s %s",$row['fname'],$row['lname']);      
+            $row['name']           = cl_strf("%s %s", $row['fname'], $row['lname']);
             $row['avatar']         = cl_get_media($row['avatar']);
             $row['url']            = cl_link($row['username']);
             $row['common_follows'] = array();
@@ -1511,14 +1503,13 @@ function cl_get_blocked_users() {
     return $data;
 }
 
-function cl_calc_affiliate_bonuses() {
+function cl_calc_affiliate_bonuses()
+{
     global $cl;
 
     if (empty($cl['is_logged'])) {
         return "0.00";
-    }
-
-    else {
+    } else {
         $money      = "0.00";
         $bonus_rate = $cl['config']['aff_bonus_rate'];
 
@@ -1530,7 +1521,8 @@ function cl_calc_affiliate_bonuses() {
     }
 }
 
-function cl_aff_request_exists() {
+function cl_aff_request_exists()
+{
     global $db, $cl;
 
     $db = $db->where('user_id', $cl['me']['id']);
@@ -1540,7 +1532,8 @@ function cl_aff_request_exists() {
     return ($qr > 0);
 }
 
-function cl_mention_ac_search($username = false) {
+function cl_mention_ac_search($username = false)
+{
     global $db, $cl;
 
     $db = $db->where("username", "%$username%", "LIKE");
@@ -1553,7 +1546,7 @@ function cl_mention_ac_search($username = false) {
         $data = array();
 
         foreach ($qr as $row) {
-            $row['name']     = cl_strf("%s %s", $row['fname'], $row['lname']);      
+            $row['name']     = cl_strf("%s %s", $row['fname'], $row['lname']);
             $row['avatar']   = cl_get_media($row['avatar']);
             $row['url']      = cl_link($row['username']);
             $row['name']     = cl_rn_strip($row['name']);
@@ -1574,7 +1567,8 @@ function cl_mention_ac_search($username = false) {
     return false;
 }
 
-function cl_hashtag_ac_search($hashtag = false) {
+function cl_hashtag_ac_search($hashtag = false)
+{
     global $db, $cl;
 
     $db = $db->where("tag", "%$hashtag%", "LIKE");
@@ -1597,7 +1591,8 @@ function cl_hashtag_ac_search($hashtag = false) {
     return false;
 }
 
-function cl_get_ui_langs() {
+function cl_get_ui_langs()
+{
     global $db;
 
     $db = $db->where("status", "1");
@@ -1606,7 +1601,7 @@ function cl_get_ui_langs() {
     if (cl_queryset($qr)) {
         $langs = array();
 
-        foreach($qr as $lang_data) {
+        foreach ($qr as $lang_data) {
             $langs[$lang_data["slug"]] = $lang_data;
         }
 

@@ -1,3 +1,4 @@
+<?php global $community, $me; ?>
 <div class="right-sb-container sidebar" data-app="right-sidebar">
     <div class="sidebar__inner; padding-left:unset; ">
         <div class="right-sidebar">
@@ -20,10 +21,11 @@
                     </button>
                 </div>
                 <div class="header">
-                    <?php if (not_empty($me['community_icon'])) : ?>
-                    <img src="<?php echo $me['community_icon']; ?>"
+                    <?php if (not_empty($community['icon'])) : ?>
+                    <img src="<?php echo $community['icon']; ?>"
                         style="height: 70px; width:70px;border: 3px solid white;border-radius: 34px;z-index: 300;">
                     <?php else : ?>
+
                     <div
                         style="font-size:50px; color:white; background-color: <?php echo $cl["display_set"]["base"]; ?>;height: 70px; width:70px;border: 3px solid white;border-radius: 34px;z-index: 300;">
                         <div class="icon_name">r/</div>
@@ -33,7 +35,7 @@
                         <span class="user-name-holder">
                             <span class="user-name-holder__name" style="font-weight:bold">
 
-                                <?php echo $me['community']; ?>
+                                <?php echo $community['name']; ?>
 
                             </span>
 
@@ -47,7 +49,7 @@
                 <div
                     style="left:10px;position:relative;border-bottom:1px solid #e4eaef;padding-bottom:10px;font-weight:bold;font-size:13px;line-height:normal;width:90%;padding-top:10px;display:flex;">
                     <div>
-                        29.3m<br>Members
+                        29.4m<br>Members
                     </div>
                     <div style="padding-left:60px;">
                         61.4k<br>Online
@@ -256,9 +258,8 @@
                     style="font-size:13px;background-color:<?php echo $cl["display_set"]["base"]; ?>; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
                     Moderators
                 </div>
-                <div
-                    style="text-align-last: center; position: relative;left:10px;width:90%;
-                    padding-bottom:10px;border-bottom:1px solid #e4eaef;padding-top:10px;color:<?php echo not_empty($cl["display_set"]["title"]) ? $cl["display_set"]["title"] : "#0000ff"; ?>;">
+                <div style="text-align-last: center; position: relative;left:10px;width:90%;
+                    padding-bottom:10px;border-bottom:1px solid #e4eaef;padding-top:10px;">
                     <button type="button" class="btn btn-outline-primary" style="border-radius: 16px;
 											text-align: center;
 											font-size: 15px;

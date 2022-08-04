@@ -189,3 +189,10 @@ if (not_empty($me['id'])) :
             $me['community_icon'] = $row['icon'];
         }
 endif;
+// $cl["display_set"]["color_scheme"]
+// $cl["display_set"]["background"];
+// $cl["display_set"]["base"] = "#0000ff";
+// $cl["display_set"]["links"]
+// $cl["display_set"]["title"]
+// $cl["display_set"]["highlight"] = "#0000ff";
+// $cl["display_set"]["main_menu"]

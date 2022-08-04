@@ -13,12 +13,15 @@
 SELECT posts.`id` as offset_id, posts.`publication_id`, posts.`type`, posts.`user_id` FROM `<?php echo($data['t_posts']); ?>` posts
 	
 	INNER JOIN `<?php echo($data['t_pubs']); ?>` pubs ON posts.`publication_id` = pubs.`id`
-
+<?php if($data['community_id']): ?>
+		WHERE pubs.`community_id`= "<?php echo($_GET['community_id']); ?>"
+	<?php else: ?>
 	WHERE posts.`user_id` = <?php echo($data['user_id']); ?>
-
+<?php endif; ?>
 	<?php if($data['post_title']): ?>
 		AND pubs.`text`= "<?php echo($_GET['post_title']); ?>"
 	<?php endif; ?>
+	
 
 	<?php if($data['media']): ?>
 		AND pubs.`type` IN ('video','image','gif', 'audio')

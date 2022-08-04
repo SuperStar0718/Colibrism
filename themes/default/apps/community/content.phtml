@@ -1,22 +1,30 @@
 <div class="timeline-container" data-app="homepage">
+    <?php global $community, $is_joined;
 
+    ?>
     <div class="user-profile">
 
         <div class="user-profile__header" id="vue-profile-cover-app">
             <div class="user-profile__header-cover">
-                <?php if (not_empty($me['community_banner'])) : ?>
-                <img src="<?php echo $me['community_banner']; ?>" style="width:100%; height:100px;">
-                <?php else : ?>
+                <?php
+                if ($community['banner'] != "") :
+
+                ?>
+                <img src="<?php
+                                echo $community['banner']; ?>" style="width:100%; height:100px;">
+                <?php else :
+
+                ?>
+
                 <div style="background-color: <?php echo $cl["display_set"]["base"]; ?>; width:968px;height:100px;">
                 </div>
                 <?php endif; ?>
             </div>
         </div>
 
-        <?php if (not_empty($me['community'])) : ?>
         <div class="user-profile__body" style="display:flex;">
-            <?php if (not_empty($me['community_icon'])) : ?>
-            <img src="<?php echo $me['community_icon']; ?>"
+            <?php if (not_empty($community['icon'])) : ?>
+            <img src="<?php echo $community['icon']; ?>"
                 style="height: 70px; width:70px;border: 3px solid white;border-radius: 34px;position: relative;top: -17px;left: 43px;z-index: 300;">
             <?php else : ?>
             <div
@@ -24,12 +32,12 @@
                 <div class="icon_name">r/</div>
             </div>
             <?php endif; ?>
-            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
+            <div class="user-profile__name" style="padding-left:60px; ">
                 <h4>
                     <span class="user-name-holder">
                         <span class="user-name-holder__name" style="font-weight:bold">
 
-                            <?php echo $me['community']; ?>
+                            <?php echo $community['name']; ?>
 
                         </span>
 
@@ -48,6 +56,16 @@
                 </a>
 
             </div>
+            <?php if (!not_empty($is_joined)) : ?>
+            <form method="POST" action="native_api/main/join_community">
+                <input type="hidden" name="community_id" value="<?php echo $community['community_id']; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $me['id']; ?>">
+                <button type="submit" class="btn btn-outline-primary">Join</button>
+            </form>
+            <?php else : ?>
+            <form>
+                <button type="button" class="btn btn-outline-primary">Joined</button>
+            </form> <?php endif; ?>
 
             <!-- <div class="user-profile__counter">
 
@@ -107,7 +125,7 @@
 
 
         </div>
-        <?php endif; ?>
+
         <div style="background-color:grey;padding-left:5%; padding-bottom:10px;padding-top:10px;">
             <button type="button" class="btn btn-dark">Button</button>
             <button type="button" class="btn btn-dark">Button</button>
@@ -130,7 +148,7 @@
                             <div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
                                 <div class="swift-item__body create-swift">
                                     <div class="swift-item__avatar">
-                                        <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+                                        <img src="" alt="Avatar">
                                     </div>
                                     <span class="add-ikon">
                                         <?php echo cl_icon("add"); ?>
@@ -202,7 +220,7 @@
             <?php if (not_empty($cl["tl_feed"])) : ?>
             <div class="timeline-posts-ls" data-an="entry-list">
                 <?php foreach ($cl["tl_feed"] as $cl["li"]) : ?>
-                <?php echo cl_template('timeline/post'); ?>
+                <?php echo cl_template('timeline/post_community'); ?>
                 <?php endforeach; ?>
             </div>
             <?php else : ?>

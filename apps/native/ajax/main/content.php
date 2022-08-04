@@ -695,7 +695,8 @@ if ($action == 'upload_post_image') {
         //             }
         //         }
     }
-    cl_redirect("home");
+    $temp = $me['community_id'];
+    cl_redirect("community?community_id=$temp");
 } else if ($action == 'get_draft_post') {
     $data['status']   = 404;
     $data['err_code'] = 0;
@@ -1333,6 +1334,8 @@ if ($action == 'upload_post_image') {
     $highlight = fetch_or_get($_POST["highlight"], "#0000ff");
     $main_menu = fetch_or_get($_POST["main_menu"], "#0000ff");
 
+    echo $base;
+
 
     if (in_array($bg_color, array_keys($cl["bg_colors"])) && in_array($skin_color, array_keys($cl["color_schemes"]))) {
         $data['status'] = 200;
@@ -1369,10 +1372,15 @@ if ($action == 'upload_post_image') {
     $sql = "select community_id from cl_community where title='$title' and name = '$name'";
     $query_res = $db->rawQuery($sql);
     cl_queryset($query_res);
-    $me['communtiy_id'] = $query_res[0]['community_id'];
+    $me['community_id'] = $query_res[0]['community_id'];
+
+    $temp_com_id = $me['community_id'];
+    $sql = "insert into cl_join_list(community_id,user_id) values ('$temp_com_id','$user') ";
+    $query_res = $db->rawQuery($sql);
+    cl_queryset($query_res);
     // print_r($query_res);
 
-    return cl_redirect("home");
+    return cl_redirect("community?community_id=$temp_com_id");
 } else if ($action == "upload_community_banner_and_icon") {
     $data['err_code'] = 0;
     $data['status']   = 400;
@@ -1437,6 +1445,6 @@ if ($action == 'upload_post_image') {
         $sql = "insert into cl_join_list(community_id, user_id) values ('$community_id','$user_id') ";
         $query_res = $db->rawQuery($sql);
         cl_queryset($query_res);
-        return cl_redirect("home");
+        return cl_redirect("community?community_id=$community_id");
     }
 }

@@ -9,7 +9,7 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-function cl_get_profile_posts($user_id = false, $limit = 30, $media = false, $post_title = false, $offset = false)
+function cl_get_profile_posts($user_id = false, $limit = 30, $media = false, $post_title = false, $community_id = false, $offset = false)
 {
 	global $db, $cl, $me;
 
@@ -25,7 +25,8 @@ function cl_get_profile_posts($user_id = false, $limit = 30, $media = false, $po
 		"limit"   => $limit,
 		"offset"  => $offset,
 		"user_id" => $user_id,
-		"post_title" => $post_title
+		"post_title" => $post_title,
+		"community_id" => $community_id
 	));
 
 	$query_res = $db->rawQuery($sql);

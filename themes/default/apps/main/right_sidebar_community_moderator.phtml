@@ -1,0 +1,240 @@
+<?php global $community; ?>
+<div class="right-sb-container sidebar" data-app="right-sidebar">
+    <div class="sidebar__inner;padding-left:usnet;">
+        <div class="right-sidebar">
+
+            <div class="card" style="font-size: 17px">
+
+                <div
+                    style="font-size:13px;background-color:<?php echo ($cl["display_set"]["base"]); ?>; color:white;padding-left:10px;padding-top:5px;padding-bottom:5px;display: flex;justify-content: space-between;padding-right:10px;">
+                    About Community
+                    <button
+                        style="border:none; background-color:<?php echo ($cl["display_set"]["base"]); ?>;color:white;">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                            fill="#ffffff">
+                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                            <path
+                                d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                            </path>
+                        </svg>
+
+                    </button>
+                </div>
+                <div class="header">
+                    <?php if (not_empty($me['community_icon'])) : ?>
+                    <img src="<?php echo $me['community_icon']; ?>"
+                        style="height: 70px; width:70px;border: 3px solid white;border-radius: 34px;z-index: 300;">
+                    <?php else : ?>
+                    <div
+                        style="font-size:50px; color:white; background-color: <?php echo $cl["display_set"]["base"]; ?>;height: 70px; width:70px;border: 3px solid white;border-radius: 34px;z-index: 300;">
+                        <div class="icon_name">r/</div>
+                    </div>
+                    <?php endif; ?>
+                    <h4>
+                        <span class="user-name-holder">
+                            <span class="user-name-holder__name" style="font-weight:bold">
+
+                                <?php
+                                if (not_empty($community['name'])) :
+                                    echo $community['name'];
+                                else :
+                                    echo $me['community'];
+                                endif;
+                                ?>
+
+                            </span>
+
+
+                        </span>
+                    </h4>
+                </div>
+                <div style="font-size:13px;padding-left:10px;padding-right:10px;padding-top:10px;">
+                    A place for major news from around the world, excluding US-internal news.
+                </div>
+                <div
+                    style="left:10px;position:relative;border-bottom:1px solid #e4eaef;padding-bottom:10px;font-weight:bold;font-size:13px;line-height:normal;width:90%;padding-top:10px;display:flex;">
+                    <div>
+                        29.3m<br>Members
+                    </div>
+                    <div style="padding-left:60px;">
+                        61.4k<br>Online
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div style="font-size: 13px;padding-left:10px;padding-bottom:10px;">
+                    <img style="height: 15px;width:15px;"
+                        src="https://img.icons8.com/external-bearicons-flat-bearicons/64/000000/external-DATE-capsule-hotel-bearicons-flat-bearicons.png" />
+                    Created July 28, 2022
+                </div>
+                <div
+                    style="text-align-last: center; position: relative;left:10px;width:90%; padding-bottom:10px;border-bottom:1px solid #e4eaef;">
+
+                    <a href="<?php echo cl_link("create_post"); ?>"> <button type="button" class="btn btn-primary"
+                            style="border-radius: 16px;background-color:<?php echo $cl["display_set"]["highlight"]; ?>;
+											text-align: center;
+											font-size: 15px;
+											width: 100%;
+											height: 31px;
+											padding-top: 0px;
+											padding-bottom: 0px;">Create Post</button></a>
+                    <!-- <div style="font-size:10px;"><br></div>
+                    <button type="button" class="btn btn-outline-primary" style="border-radius: 16px;
+											text-align: center;
+											font-size: 19px;
+											width: 256px;
+											height: 31px;
+											padding-top: 0px;
+											padding-bottom: 0px;">Create Community</button> -->
+
+                </div>
+                <div class="dropdown" style="display:flex;font-size:13px;border-bottom:1px;">
+                    <img src="https://img.icons8.com/ios/50/000000/visible--v1.png" style="width: 20px;height:20px;" />
+                    <button data-bs-toggle="collapse" data-bs-target="#option" type="button" id=""
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        style="text-align: -webkit-left;justify-content: space-between;display:flex;font-size:13px;background-color:white;color:black;border:0px;width:100%; ">
+                        Community Options
+
+                    </button>
+                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                        <label class="custom-control-label" for="customSwitch3"></label>
+                    </div>
+                    <div id="option" class="collapse" style="border:0px;">
+                        Lorem ipsum dolor text....
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-header"
+                style="margin-top:10px;margin-bottom:10px;background-image: url({%config theme_url%}/Homepage_files/banner.png);height: 60px;">
+            </div>
+
+            <div class="card" style="font-size: 17px;padding-left:10px;padding-bottom:10px;">
+                <div
+                    style="font-size:17px;padding-left:10px;padding-top:10px;padding-bottom:10px;padding-right:10px;text-align: -webkit-center;">
+                    <img src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/000000/external-settings-seo-4.-1-sbts2018-outline-sbts2018.png"
+                        style="width: 20px; height:20px;" />Manage
+                </div>
+                <div style="text-align: -webkit-left;font-size:14px;">
+                    <div style="font-size: 10px;">
+                        <img src="https://img.icons8.com/external-tal-revivo-bold-tal-revivo/24/000000/external-online-streaming-platform-media-group-curated-list-music-bold-tal-revivo.png"
+                            style="width:20px;height:20px;" />QUEUES
+
+                    </div>
+                    <div style="padding-left:20px;">
+                        <a href="<?php echo cl_link("community_mod_mail"); ?>">Mod Mail
+                        </a>
+                        <div>Unmoderated Posts</div>
+                        <div>Reports</div>
+                        <div>Spam</div>
+                    </div>
+                </div>
+                <div style="text-align: -webkit-left;font-size:14px;padding-top:10px;">
+                    <div style="font-size: 10px;">
+                        <img src="https://img.icons8.com/ios/50/000000/contacts.png" style="width:20px;height:20px;" />
+                        USER MANAGEMENT
+                    </div>
+                    <div style="padding-left:20px;">
+                        <div>Banning</div>
+                        <a href="<?php echo cl_link("moderators"); ?>">Moderators
+                        </a><br>
+                        <a href="<?php echo cl_link("approved_users"); ?>">Approved Users
+                        </a>
+                    </div>
+                </div>
+                <div style="text-align: -webkit-left;font-size:14px;padding-top:10px;">
+                    <div style="font-size: 10px;">
+                        <img src="https://img.icons8.com/fluency-systems-regular/48/000000/wi-fi-fair.png"
+                            style="width:20px;height:20px;" />
+                        FLAIR EMOJIS
+                    </div>
+                    <div style="padding-left:20px;">
+                        <div>Grant Use Flair</div>
+                        <div>Post Flair</div>
+                    </div>
+                </div>
+                <div style="text-align: -webkit-left;font-size:14px;padding-top:10px;">
+                    <div style="font-size: 10px;">
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/rules.png"
+                            style="width:20px;height:20px;" />
+                        RULES AND REGULATIONS
+                    </div>
+                    <div style="padding-left:20px;">
+                        <a href="<?php echo cl_link("community_rules"); ?>">Community Rules
+                        </a><br>
+                        <a href="<?php echo cl_link("automod"); ?>">Automod
+                        </a>
+                    </div>
+                </div>
+                <div style="text-align: -webkit-left;font-size:14px;padding-top:10px;">
+                    <div style="font-size: 10px;">
+                        <img src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/000000/external-setting-advertising-xnimrodx-lineal-xnimrodx.png"
+                            style="width:17px;height:17px;" />
+                        OTHER
+                    </div>
+                    <div style="padding-left:20px;">
+                        <div>Create Awards</div>
+                        <div>Wiki Pages</div>
+                        <a href="<?php echo cl_link("community_settings"); ?>">Community Settings
+                        </a>
+                        <br>
+                        <a href="<?php echo cl_link("community_appearance"); ?>">Community Appearance
+                        </a>
+                        <div>Post Settings</div>
+                        <div>Traffic Statistics</div>
+                        <div>Moderation log</div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card" style="font-size: 17px">
+
+                <div
+                    style="font-size:13px;background-color:<?php echo ($cl["display_set"]["base"]); ?>; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
+                    Moderators
+                </div>
+                <div
+                    style="text-align-last: center; position: relative;left:10px;width:90%;
+                    padding-bottom:10px;border-bottom:1px solid #e4eaef;padding-top:10px;color:<?php echo not_empty($cl["display_set"]["highlight"]) ? $cl["display_set"]["highlight"] : "#0000ff"; ?>;">
+                    <button type="button" class="btn btn-outline-primary" style="border-radius: 16px; border-color:<?php echo not_empty($cl["display_set"]["highlight"]) ? $cl["display_set"]["highlight"] : "#0000ff"; ?>;
+											text-align: center;color:<?php echo $cl["display_set"]["highlight"]; ?>;
+											font-size: 15px;
+											width: 100%;
+											height: 31px;
+											padding-top: 0px;
+											padding-bottom: 0px;"><i class="fa fa-envelope-o" style="font-size:20px;padding-right:5px;"></i>Message the
+                        mods
+                    </button>
+                    <div style="text-align-last: left;padding-top:10px;padding-bottom:10px; ">
+                        u/green_flash
+                    </div>
+                    <div style="text-align-last: left;padding-top:10px;padding-bottom:10px;">
+                        u/PraiseBeToScience
+                    </div>
+                    <div style="text-align-last: left;padding-top:10px;padding-bottom:10px;">
+                        u/WorldNewsMods
+                    </div>
+                    <button
+                        style="float:right; font-size:13px;font-weight:bold;color:<?php echo not_empty($cl["display_set"]["highlight"]) ? $cl["display_set"]["highlight"] : "#0000ff"; ?>; "
+                        type="button" class="btn">VIEW ALL
+                        MODERATORS</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="right-sidebar__footer">
+            <?php //echo cl_template('main/footer'); 
+            ?>
+        </div>
+        <?php if (not_empty($cl["gads_vert"])) : ?>
+        <div class="right-sidebar__ads">
+            <div class="cl-google-ads">
+                <?php echo $cl["gads_vert"]; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+</div>

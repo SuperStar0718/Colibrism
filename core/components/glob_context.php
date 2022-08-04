@@ -56,6 +56,7 @@ $applications       = array(
   "approved_users" => true,
   "community_rules" => true,
   "join_community" => true,
+  "community" => true,
 );
 
 $cl['profile_report_types'] = array(

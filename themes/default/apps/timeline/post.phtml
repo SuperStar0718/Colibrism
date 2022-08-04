@@ -231,7 +231,7 @@
                                     <a href="<?php echo (htmlentities($cl['li']['owner']['url'] . "?post_title=" . $cl['li']['text'])); ?>"
                                         style="text-decoration:none; ">
                                         <div class="publication-text"
-                                            style="color:<?php echo $cl["display_set"]["title"]; ?>;margin-bottom:20px;font-weight:bold;">
+                                            style="color:<?php echo not_empty($cl["display_set"]["title"]) ? $cl["display_set"]["title"] : "#0000ff"; ?>;margin-bottom:20px;font-weight:bold;">
                                             <?php echo ($cl['li']['text']); ?>
                                             <?php if (not_empty($cl['li']['image'])) : ?>
                                             <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-image-user-interface-anggara-flat-anggara-putra-4.png"
@@ -409,116 +409,7 @@
 
 
 
-                                    <button class="ctrls-item"
-                                        onclick="SMColibri.share_post('<?php echo $cl['li']['url']; ?>','<?php echo urlencode($cl['li']['url']); ?>');">
-                                        <span class="ctrls-item__icon">
-                                            <?php echo cl_icon('ios_share'); ?>
-                                        </span>
-                                    </button>
-                                    <button class="ctrls-item dropleft">
-                                        <div class="dropdown-toggle ctrls-item__icon" data-toggle="dropdown">
-                                            <?php echo cl_icon('more_horiz'); ?>
-                                        </div>
-                                        <div class="dropdown-menu dropdown-icons">
-                                            <a class="dropdown-item" href="<?php echo $cl['li']['url']; ?>"
-                                                data-spa="true">
-                                                <span class="flex-item dropdown-item-icon">
-                                                    <?php echo cl_icon('wysiwyg'); ?>
-                                                </span>
-                                                <span class="flex-item">
-                                                    <?php echo cl_translate('Show thread'); ?>
-                                                </span>
-                                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
-                                                    <?php echo cl_icon('navigate_next'); ?>
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <?php if (not_empty($cl['li']['can_edit'])) : ?>
-                                            <a onclick="SMColibri.edit_post('<?php echo $cl['li']['id']; ?>');"
-                                                class="dropdown-item" href="">
-                                                <span class="flex-item dropdown-item-icon">
-                                                    <?php echo cl_icon('edit_note'); ?>
-                                                </span>
-                                                <span class="flex-item">
-                                                    <?php echo cl_translate('Edit post'); ?>
-                                                </span>
-                                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
-                                                    <?php echo cl_icon('looks_one'); ?>
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <?php endif; ?>
-                                            <?php if (not_empty($cl['li']['can_delete'])) : ?>
-                                            <a onclick="SMColibri.delete_post('<?php echo $cl['li']['id']; ?>');"
-                                                class="dropdown-item col-red" href="">
-                                                <span class="flex-item dropdown-item-icon">
-                                                    <?php echo cl_icon('delete'); ?>
-                                                </span>
-                                                <span class="flex-item">
-                                                    <?php echo cl_translate('Delete'); ?>
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <?php endif; ?>
-                                            <a onclick="SMColibri.show_likes('<?php echo $cl['li']['id']; ?>');"
-                                                class="dropdown-item" href="">
-                                                <span class="flex-item dropdown-item-icon">
-                                                    <?php echo cl_icon('sentiment_satisfied'); ?>
-                                                </span>
-                                                <span class="flex-item">
-                                                    <?php echo cl_translate('Show likes'); ?>
-                                                </span>
-                                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
-                                                    <?php echo cl_icon('list_custom'); ?>
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="">
-                                                <span class="flex-item dropdown-item-icon">
-                                                    <?php echo cl_icon('bookmark'); ?>
-                                                </span>
-                                                <span class="flex-item"
-                                                    onclick="SMColibri.bookmark_post('<?php echo $cl['li']['id']; ?>', this);">
-                                                    <?php echo ((empty($cl['li']['has_saved'])) ? cl_translate('Bookmark') : cl_translate('Unbookmark')); ?>
-                                                </span>
-                                            </a>
-                                            <a data-clipboard-text="<?php echo ($cl['li']['url']); ?>"
-                                                class="dropdown-item clip-board-copy" href="">
-                                                <span class="flex-item dropdown-item-icon">
-                                                    <?php echo cl_icon('content_copy'); ?>
-                                                </span>
-                                                <span class="flex-item">
-                                                    <?php echo cl_translate('Copy link'); ?>
-                                                </span>
-                                            </a>
 
-                                            <?php if (empty($cl['li']['is_owner'])) : ?>
-                                            <div class="dropdown-divider"></div>
-                                            <a onclick="SMColibri.report_post(<?php echo ($cl['li']['id']); ?>);"
-                                                class="dropdown-item" href="">
-                                                <span class="flex-item dropdown-item-icon">
-                                                    <?php echo cl_icon('flag'); ?>
-                                                </span>
-                                                <span class="flex-item">
-                                                    <?php echo cl_translate('Report post'); ?>
-                                                </span>
-                                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
-                                                    <?php echo cl_icon('info'); ?>
-                                                </span>
-                                            </a>
-                                            <?php endif; ?>
-                                            <div class="dropdown-divider"></div>
-                                            <a onclick="SMColibri.share_post('<?php echo $cl['li']['url']; ?>','<?php echo urlencode($cl['li']['url']); ?>');"
-                                                class="dropdown-item" href="">
-                                                <span class="flex-item dropdown-item-icon">
-                                                    <?php echo cl_icon('ios_share'); ?>
-                                                </span>
-                                                <span class="flex-item">
-                                                    <?php echo cl_translate('Share'); ?>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -9,59 +9,65 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-function fetch_or_get(&$var, $alt = null) {
+function fetch_or_get(&$var, $alt = null)
+{
     if (empty($var) != true) {
         return $var;
-    }
-    else {
+    } else {
         return $alt;
     }
 }
 
-function cl_strf() { 
-	return call_user_func_array("sprintf", func_get_args());
+function cl_strf()
+{
+    return call_user_func_array("sprintf", func_get_args());
 }
 
-function not_num(&$var) {
+function not_num(&$var)
+{
     return (empty($var) || is_numeric($var) != true || $var < 1) ? true : false;
 }
 
-function not_empty(&$var) {
+function not_empty(&$var)
+{
     return (empty($var) != true);
 }
 
-function json($array = array(), $seril = null) {
+function json($array = array(), $seril = null)
+{
     if ($seril) {
-        return json_encode($array,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-    }
-    else {
-        return json_decode($array,true);
+        return json_encode($array, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    } else {
+        return json_decode($array, true);
     }
 }
 
-function len($string = '') {
+function len($string = '')
+{
     return mb_strlen($string);
 }
 
-function len_between($string = '',$s = 0, $e = 0) {
+function len_between($string = '', $s = 0, $e = 0)
+{
     return ((mb_strlen($string) >= $s) && (mb_strlen($string) <= $e));
 }
 
-function is_posnum($var) {
+function is_posnum($var)
+{
     return (is_numeric($var) == true && $var >= 1) ? true : false;
 }
 
-function is_url($url = null) {
+function is_url($url = null)
+{
     return filter_var($url, FILTER_VALIDATE_URL);
 }
 
-function are_all($arr = array(), $type = none) {
+function are_all($arr = array(), $type = none)
+{
 
     if (empty($arr) || is_array($arr) != true) {
         return false;
-    }
-
-    else if(empty($type) || in_array($type, array('numeric', 'string')) != true) {
+    } else if (empty($type) || in_array($type, array('numeric', 'string')) != true) {
         return false;
     }
 
@@ -71,9 +77,7 @@ function are_all($arr = array(), $type = none) {
                 return false;
             }
         }
-    } 
-
-    else if ($type == 'string') {
+    } else if ($type == 'string') {
         foreach ($arr as $val) {
             if (is_string(($val)) != true) {
                 return false;
@@ -84,21 +88,21 @@ function are_all($arr = array(), $type = none) {
     return true;
 }
 
-function array_max_key($array = array()) {
+function array_max_key($array = array())
+{
     if (empty($array) || is_array($array) != true) {
         return false;
-    }
-
-    else {
+    } else {
         foreach ($array as $key => $val) {
             if ($val == max($array)) {
                 return $key;
-            } 
+            }
         }
     }
 }
 
-function pre($op = null, $exit = false) {
+function pre($op = null, $exit = false)
+{
     echo "<pre>";
     print_r($op);
     echo "</pre>";

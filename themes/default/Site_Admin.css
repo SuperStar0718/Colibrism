@@ -159,8 +159,27 @@
 
   .icon_name {
     position: relative;
-    left: 23px;
-    top: -10px;
+    left: 1px;
+    top: -6px;
+  }
+
+  .post-data-layout__controls {
+    justify-content: flex-start !important;
+
+  }
+
+  .post-data-layout__controls button {
+    margin-right: 20px !important;
+  }
+
+  .user-profile__body {
+    padding-top: 10px;
+  }
+
+  .user-profile__body button {
+    border-radius: 30px;
+    margin-left: 20px;
+    width: 100px;
   }
 
   .card .header {
@@ -470,6 +489,23 @@
 
   .modal-footer a {
     padding: unset;
+  }
+
+  .user-profile__controls-item .dropleft label {
+    cursor: pointer;
+  }
+
+  .dropdown-menu img {
+    width: 24px;
+    height: 24px;
+  }
+
+  #dropdown_menu {
+    display: none !important;
+  }
+
+  #drop_menu:checked~#dropdown_menu {
+    display: block !important;
   }
 
   .overlay_body_logout {

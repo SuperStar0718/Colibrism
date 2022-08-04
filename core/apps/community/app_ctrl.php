@@ -9,16 +9,34 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-function cl_get_timeline_feed($limit = false, $offset = false, $onset = false)
+function cl_get_community($limit = false, $offset = false, $onset = false)
 {
-	global $db, $cl, $me;
+	global $db, $cl, $me, $community, $is_joined, $is_moderator;
 
 	if (empty($cl["is_logged"])) {
 		return false;
 	}
+	$temp = $_GET['community_id'];
+	$sql = "SELECT * from `cl_community` where `community_id`=$temp";
+	$query_res = $db->rawQuery($sql);
+	cl_queryset($query_res);
+	$community = $query_res[0];
+
+	$temp_id = $me['id'];
+	$sql = "SELECT * from `cl_join_list` where `community_id`=$temp and `user_id`=$temp_id";
+	$query_res = $db->rawQuery($sql);
+	cl_queryset($query_res);
+	$is_joined = $query_res;
+
+	$sql = "SELECT * from `cl_community` where `community_id`=$temp and `moderator`=$temp_id";
+	$query_res = $db->rawQuery($sql);
+	cl_queryset($query_res);
+	$is_moderator = $query_res;
+
+
 	$community_id = not_empty($_GET['community_id']) ? true : false;
 	$data           = array();
-	$sql            = cl_sqltepmlate("apps/home/sql/fetch_timeline_feed", array(
+	$sql            = cl_sqltepmlate("apps/community/sql/fetch_timeline_feed", array(
 		"t_posts"   => T_POSTS,
 		"t_pubs"    => T_PUBS,
 		"t_conns"   => T_CONNECTIONS,
@@ -27,6 +45,7 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false)
 		"offset"    => $offset,
 		"onset"     => $onset,
 		"user_id"   => $me['id'],
+		"community_id" => $community_id
 	));
 
 	$query_res = $db->rawQuery($sql);
@@ -120,7 +139,7 @@ function cl_timeline_swifts()
 	}
 
 	$data         = array();
-	$sql          = cl_sqltepmlate("apps/home/sql/fetch_timeline_swifts", array(
+	$sql          = cl_sqltepmlate("apps/community/sql/fetch_timeline_swifts", array(
 		"t_users" => T_USERS,
 		"t_conns" => T_CONNECTIONS,
 		"user_id" => $me['id']

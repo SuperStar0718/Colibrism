@@ -86,40 +86,47 @@
                 <div class="card-body p-0" style="text-align-last: center;">
                     <table class="table table-striped">
                         <tbody>
+                            <?php
+                            global $cl, $me, $db;
+                            $sql = "select * from cl_community";
+                            $query_res = $db->rawQuery($sql);
+                            cl_queryset($query_res);
+                            $num = 0;
+                            foreach ($query_res as $item) {
+                                $num = $num + 1;
+
+                            ?>
                             <tr>
-                                <td>1.</td>
-                                <td><img style="width: 24px; height:24px"
-                                        src="{%config theme_url%}/Homepage_files/1.png" alt="avatar"></td>
-                                <td>r/worldnews</td>
-                                <td><button type="button" class="btn btn-primary"
-                                        style="border-radius: 15px;width: 50px;font-size: 12px;">Join</button></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td><img style="width: 24px; height:24px"
-                                        src="{%config theme_url%}/Homepage_files/apple-touch-icon.png" alt="avatar">
+                                <td><?php echo $num; ?>.</td>
+
+                                <?php if (not_empty($item['icon'])) : ?>
+                                <td style="padding-left:unset;">
+                                    <img src="<?php echo $item['icon']; ?>"
+                                        style="height: 24px; width:24px;border: 3px solid white;border-radius: 34px;z-index: 300;">
                                 </td>
-                                <td>r/nottheonion</td>
-                                <td><button type="button" class="btn btn-primary"
-                                        style="border-radius: 15px;width: 50px;font-size: 12px;">Join</button></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td><img style="width: 24px; height:24px"
-                                        src="{%config theme_url%}/Homepage_files/1.png" alt="avatar"></td>
-                                <td>r/savedyouaclick</td>
-                                <td><button type="button" class="btn btn-primary"
-                                        style="border-radius: 15px;width: 50px;font-size: 12px;">Join</button></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td><img style="width: 24px; height:24px"
-                                        src="{%config theme_url%}/Homepage_files/apple-touch-icon.png" alt="avatar">
+                                <?php else : ?>
+                                <td>
+                                    <div
+                                        style="font-size:20px; color:white; background-color: <?php echo $cl["display_set"]["base"]; ?>;height: 24px; width:24px;border: 3px solid white;border-radius: 34px;z-index: 300;">
+                                        <div class="icon_name">r/</div>
+                                    </div>
                                 </td>
-                                <td>r/olympics</td>
-                                <td><button type="button" class="btn btn-primary"
-                                        style="border-radius: 15px;width: 50px;font-size: 12px;">Join</button></td>
+                                <?php endif; ?>
+
+                                <td>
+                                    <a href="<?php echo ("community" . "?community_id=" . $item['community_id']); ?>">
+
+                                        <?php
+                                            echo $item['name'];
+                                            ?>
+                                    </a>
+                                </td>
+
                             </tr>
+                            <?php
+                            }
+                            ?>
+
                         </tbody>
                     </table>
                     <div style="font-size:6px;"><br></div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -58,7 +58,7 @@ if (not_empty($cl["is_logged"])) {
 	if (empty($cl['prof_user']['is_following'])) {
 		$cl['prof_user']['follow_requested'] = cl_follow_requested($me['id'], $cl['prof_user']['id']);
 	}
-	 
+
 	if (not_empty($cl['prof_user']['owner'])) {
 
 		$cl["page_xdata"]["is_me"] = true;
@@ -70,10 +70,10 @@ if (not_empty($cl["is_logged"])) {
 
 	if ($me["id"] != $cl['prof_user']['id']) {
 		cl_notify_user(array(
-            'subject'  => 'visit',
-            'user_id'  => $cl['prof_user']['id'],
-            'entry_id' => $me["id"]
-        ));
+			'subject'  => 'visit',
+			'user_id'  => $cl['prof_user']['id'],
+			'entry_id' => $me["id"]
+		));
 	}
 }
 
@@ -81,12 +81,11 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 	if (in_array($cl['page_tab'], array('posts', 'media'))) {
 		if (not_empty($cl["can_view"])) {
 			$media_type       = (($cl['page_tab'] == 'media') ? true : false);
-			$post_title=(not_empty($_GET['post_title']) ? true: false);
-			$cl["user_posts"] = cl_get_profile_posts($cl['prof_user']['id'], 30, $media_type,$post_title);
+			$post_title = (not_empty($_GET['post_title']) ? true : false);
+			$community_id = (not_empty($_GET['community_id']) ? true : false);
+			$cl["user_posts"] = cl_get_profile_posts($cl['prof_user']['id'], 30, $media_type, $post_title, $community_id);
 		}
-	}
-
-	else {
+	} else {
 		if (not_empty($cl["can_view"])) {
 			$cl["user_likes"] = cl_get_profile_likes($cl['prof_user']['id'], 30);
 		}

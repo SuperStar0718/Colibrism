@@ -375,7 +375,7 @@ function cl_post_data($post = array())
 	$post["advertising"]   = false;
 	$post["time_raw"]      = $post["time"];
 	$post['og_text']       = cl_encode_og_text($post['text']);
-	//$post['og_image']      = $cl['config']['site_logo'];
+	$post['og_image']      = $cl['config']['site_logo'];
 	$post["time"]          = cl_time2str($post["time"]);
 	$post['text']          = stripcslashes($post['text']);
 	$post['text']          = htmlspecialchars_decode($post['text'], ENT_QUOTES);
@@ -400,10 +400,8 @@ function cl_post_data($post = array())
 	$post["me_blocked"]    = false;
 	$post["can_see"]       = false;
 	$post["reply_to"]      = array();
-	// print_r($post_owner_data);
-	// echo "hello<br>";
 	$post["owner"]         = array(
-		'id'               => $post_owner_data["id"],
+		'id'               => $post_owner_data['id'],
 		'url'              => $post_owner_data['url'],
 		'avatar'           => $post_owner_data['avatar'],
 		'username'         => $post_owner_data['username'],
@@ -411,7 +409,51 @@ function cl_post_data($post = array())
 		'verified'         => $post_owner_data['verified']
 	);
 
+	if ($post["type"] != "text") {
+		$post["media"] = cl_get_post_media($post["id"]);
 
+		if ($post["type"] == "image") {
+			$post['og_image'] = fetch_or_get($post["media"][0]['src'], false);
+
+			if (empty($post['og_image'])) {
+				$post['og_image'] = $cl['config']['site_logo'];
+			} else {
+				$post['og_image'] = cl_get_media($post['og_image']);
+			}
+		} else if ($post["type"] == "gif") {
+			$post['og_image'] = fetch_or_get($post["gif"], $cl['config']['site_logo']);
+		} else if ($post["type"] == "video") {
+			$post['og_image'] = fetch_or_get($post["media"][0]["x"]["poster_thumb"], false);
+
+			if (empty($post['og_image'])) {
+				$post['og_image'] = $cl['config']['site_logo'];
+			} else {
+				$post['og_image'] = cl_get_media($post['og_image']);
+			}
+		} else if ($post["type"] == "poll") {
+			$post["poll"] = cl_cacl_poll_votes(json($post["poll_data"]));
+		}
+	} else {
+		if (not_empty($post['og_data'])) {
+			$post['og_data'] = json($post['og_data']);
+
+			if (cl_is_valid_og($post['og_data'])) {
+				if (not_empty($post['og_data']["image"]) && not_empty($post['og_data']["image_loc"])) {
+					$post['og_data']["image"] = cl_get_media($post['og_data']["image"]);
+				}
+
+				if (cl_get_youtube_video_id($post['og_data']['url'])) {
+					$post['og_data']["video_embed"] = cl_strf("https://www.youtube.com/embed/%s", cl_get_youtube_video_id($post['og_data']['url']));
+				} else if (cl_get_vimeo_video_id($post['og_data']['url'])) {
+					$post['og_data']["video_embed"] = cl_strf("https://vimeo.com/%s", cl_get_vimeo_video_id($post['og_data']['url']));
+				} else if (cl_get_vimeo_video_id($post['og_data']['url'])) {
+					$post['og_data']["video_embed"] = cl_strf("https://vimeo.com/%s", cl_get_vimeo_video_id($post['og_data']['url']));
+				} else if (cl_is_google_mapurl($post['og_data']['url'])) {
+					$post['og_data']["google_maps_embed"] = true;
+				}
+			}
+		}
+	}
 
 	if (not_empty($user_id) && ($post['user_id'] == $user_id)) {
 		$post["is_owner"] = true;
