@@ -1545,6 +1545,7 @@ input[type=color]::-webkit-color-swatch {
 
 .Tweet-target .reaction-btns-content {
   gap: 1rem;
+  position: relative;
 }
 
 .Tweet-target .reaction-btns-content .r-action-btn {
@@ -2225,4 +2226,45 @@ input[type=color]::-webkit-color-swatch {
 
 .side-bar-l .Comunity-target .comunyties-content .Comunity-display {
   align-items: center;
+}
+
+.reaction-btns-content .award {
+  opacity: 0;
+  display: block;
+  position: absolute;
+  z-index: 6;
+  left: 140px;
+  width: 50px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.reaction-btns-content .award_window {
+  display: none !important;
+  z-index: 6;
+  position: absolute;
+}
+
+.reaction-btns-content .award:checked~.award_window {
+  display: block !important;
+  left: 140px;
+  top: -460px;
+}
+
+.award_window .award_window_body {
+  width: 320px;
+  height: 440px;
+  background-color: #3a4c5e;
+  border-radius: 10px;
+}
+
+.reaction-btns-content .award_window::after {
+  content: "";
+  border-width: 0px 16px 16px 0px !important;
+  border: solid;
+  border-color: transparent;
+  border-right-color: #3a4c5e;
+  display: block;
+  position: absolute;
+  left: 8px;
 }
