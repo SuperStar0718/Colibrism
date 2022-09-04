@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <title>socu</title>
+  </head>
+  <body class="m-a"> 
+    <nav class="Nav-bar flex center gap-2 nd">
+      <div class="page-logo-content"></div>
+      <div class="content">
+        <label class="btn hidden" for="showSeachBar"><i class="material-symbols-outlined">search</i></label>
+        <label class="btn hidden" for="showPanelButons"><i class="material-symbols-outlined">sort</i></label>
+      </div>
+      <div class="seach-bar-content flex center">
+        <div class="form-control">
+          <input class="target" type="text" placeholder="# explore">
+        </div>
+      </div>
+      <div class="other flex nd center">
+        <input class="hidden" id="showPanelButons" type="checkbox" name="showPanelButons">
+        <div class="panel-btns-content flex nd"><a class="home-link btn round" href="#">🏠 Home</a>
+          <div class="notifications-content flex center">
+            <div class="ford-points-btn btn">....</div>
+            <div class="messages-btn btn">✉</div>
+            <div class="notifications-btn btn">🔔</div>
+          </div>
+        </div>
+        <label class="User-account-dropdown btn mintext bg-3 round flex center nd gap-1" for="test">
+          <div class="user-image s-4 circle"></div><span>@Admin</span>
+          <input class="hidden" id="test" type="checkbox" name="test">
+          <ul class="panel-links-content absolute bg-3 target flex col gap-1">
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i> Side Admin</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">description</i> Timeline</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">tag</i> Explore</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">forum</i> Messages</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">bookmark</i> Bookmarks</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i> Control Panel</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">campaign</i> Advertising</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i> Lorem</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
+            <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">logout</i> Logout</a></li>
+          </ul>
+          <div class="aux-div fixed hidden"></div>
+        </label>
+        <div class="showmore-btn btn flex center">◯</div>
+      </div>
+    </nav>
+    <main class="Main-dash-board grid js-c">
+      <section class="main flex col nd gap-2">
+        <h2>c/Toriry Post Settings</h2>
+        <div class="Post-settings target">
+          <form class="flex col gap-2" name="post-settings-form">
+            <div class="form-group">
+              <label for="karmaRequired">Karma required ro Make A post on this Community</label>
+              <div class="form-control max-w-max">
+                <input class="bg-3" id="karmaRequired" type="number" name="karmaRequired" placeholder="number" value="100">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="ageAcountRequired">Age of Torfy account required to make  post</label>
+              <div class="form-group flex nd">
+                <div class="form-control">
+                  <input class="bg-3" id="ageAcountRequired" type="number" name="ageAcountRequired" placeholder="number" value="0">
+                </div>
+                <div class="form-select">
+                  <select class="bg-3" id="selectTime" name="selectTime">
+                    <option value="day">day(s)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="btn-content flex nd center">
+              <div class="btn round bg-primary">save changes</div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section class="side-bar-l flex col nd gap-2">
+        <div class="Comunity-detail-target flex col target gap-2">
+          <div class="user-front-page-image absolute"></div>
+          <div class="user-data-content flex nd col center">
+            <div class="user-image circle"></div><span class="user-name">comunityname</span><span class="t-color-3 user-description mintext t-center">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+              Totam ducimus distinctio mollitia doloribus ea, blanditiis
+              neque dolor quaerat aspernatur aliquid saepe et repudiandae
+              magnam nulla natus explicabo officia ab placeat!</span>
+          </div>
+          <div class="btns-content grid gap-1">
+            <div class="Big-button btn round">some text</div>
+            <div class="Big-button btn round">some text</div>
+            <div class="Big-button btn round">some text</div>
+            <div class="Big-button btn round">some text</div>
+          </div>
+          <div class="account-summary grid">
+            <div class="tweets-conunt flex col center"><span>6,634</span><span>count</span></div>
+            <div class="members-conunt flex col center"><span>4,532</span><span>count</span></div>
+          </div>
+          <div class="comunity-mods-content">
+            <h2 class="t-center">Lorem, ipsum.</h2>
+            <ul>
+              <li><a href="#">
+                  <h3>@someone</h3></a></li>
+              <li><a href="#">
+                  <h3>@someone</h3></a></li>
+            </ul>
+          </div>
+          <div class="theme-switcher-content flex nd">
+            <h3>👁 Lorem, ipsum.</h3>
+            <div class="switcher-content">
+              <input class="hidden" id="isThemeOn" type="checkbox" name="isThemeOn">
+              <label class="switcher-btn btn round" for="isThemeOn"></label>
+            </div>
+          </div>
+        </div>
+        <div class="Comunity-target target">
+          <h3>Lorem, ipsum dolor.</h3>
+          <div class="comunyties-content flex col">
+            <div class="Comunity-display grid">
+              <div class="comunity-image-content">
+                <div class="user-image s-2 circle"></div>
+              </div>
+              <div class="comunity-data-content">
+                <h4>comunity name</h4>
+                <p class="t-color-3 mintext">345 Menbers</p>
+              </div>
+              <div class="comunity-action-content flex center">
+                <div class="follow-btn mintext btn">Follow</div>
+              </div>
+            </div>
+            <div class="Comunity-display grid">
+              <div class="comunity-image-content">
+                <div class="user-image s-2 circle"></div>
+              </div>
+              <div class="comunity-data-content">
+                <h4>comunity name</h4>
+                <p class="t-color-3 mintext">345 Menbers</p>
+              </div>
+              <div class="comunity-action-content flex center">
+                <div class="follow-btn mintext btn">Follow</div>
+              </div>
+            </div>
+            <div class="Comunity-display grid">
+              <div class="comunity-image-content">
+                <div class="user-image s-2 circle"></div>
+              </div>
+              <div class="comunity-data-content">
+                <h4>comunity name</h4>
+                <p class="t-color-3 mintext">345 Menbers</p>
+              </div>
+              <div class="comunity-action-content flex center">
+                <div class="follow-btn mintext btn">Follow</div>
+              </div>
+            </div>
+          </div><a href="#">Show more</a>
+        </div>
+        <div class="Big-button btn round">some text</div>
+        <div class="Big-button btn round">some text</div>
+      </section>
+      <section class="side-bar-r flex col nd gap-2">
+        <div class="Advertisement"></div>
+        <div class="Rules-target target">
+          <h2 class="t-center">Lorem, ipsum.</h2>
+          <div class="rues-content mintext t-color-3">
+            <ol class="flex col gap-1">
+              <li>
+                <input class="hidden" id="rule-1-control" type="checkbox">
+                <label class="flex btn bg-3" for="rule-1-control">Lorem ipsum dolor sit amet</label>
+                <div class="rule-description-content">
+                  <h4> Lorem ipsum dolor sit amet</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet consecteturadipisicing elit. Deleniti cum magni
+                    exercitationem facilis. Neque molestias
+                    similique pariatur quasi! Consectetur
+                    ea quas a rem excepturi, dicta dolores
+                    temporibus explicabo sunt? Consequatur.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <input class="hidden" id="rule-2-control" type="checkbox">
+                <label class="flex btn bg-3" for="rule-2-control">Lorem ipsum dolor sit amet</label>
+                <div class="rule-description-content">
+                  <h4> Lorem ipsum dolor sit amet</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet consecteturadipisicing elit. Deleniti cum magni
+                    exercitationem facilis. Neque molestias
+                    similique pariatur quasi! Consectetur
+                    ea quas a rem excepturi, dicta dolores
+                    temporibus explicabo sunt? Consequatur.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <input class="hidden" id="rule-3-control" type="checkbox">
+                <label class="flex btn bg-3" for="rule-3-control">Lorem ipsum dolor sit amet</label>
+                <div class="rule-description-content">
+                  <h4> Lorem ipsum dolor sit amet</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet consecteturadipisicing elit. Deleniti cum magni
+                    exercitationem facilis. Neque molestias
+                    similique pariatur quasi! Consectetur
+                    ea quas a rem excepturi, dicta dolores
+                    temporibus explicabo sunt? Consequatur.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <input class="hidden" id="rule-4-control" type="checkbox">
+                <label class="flex btn bg-3" for="rule-4-control">Lorem ipsum dolor sit amet</label>
+                <div class="rule-description-content">
+                  <h4> Lorem ipsum dolor sit amet</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet consecteturadipisicing elit. Deleniti cum magni
+                    exercitationem facilis. Neque molestias
+                    similique pariatur quasi! Consectetur
+                    ea quas a rem excepturi, dicta dolores
+                    temporibus explicabo sunt? Consequatur.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="Advertisement"></div>
+        <div class="Management-target target">
+          <h2 class="t-center t-color-3">🛠 Management</h2>
+          <div class="management-content flex col gap-1">
+            <div class="Management-dislplay">
+              <h3>🎆 some text</h3>
+              <ul>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+              </ul>
+            </div>
+            <div class="Management-dislplay">
+              <h3>🎆 some text</h3>
+              <ul>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+              </ul>
+            </div>
+            <div class="Management-dislplay">
+              <h3>🎆 some text</h3>
+              <ul>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+              </ul>
+            </div>
+            <div class="Management-dislplay">
+              <h3>🎆 some text</h3>
+              <ul>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+                <li class="t-color-3">Lorem, ipsum.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

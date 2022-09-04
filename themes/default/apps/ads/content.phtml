@@ -18,11 +18,11 @@
             </div>
             <div class="rp">
                 <div class="nav-link-holder">
-                    <?php if (in_array($cl["page_tab"], array('upsert', 'edit'))): ?>
-                    <span class="go-back" onclick="SMColibri.go_back();">
-                        <?php echo cl_icon('arrow_back'); ?>
-                    </span>
-                    <?php else: ?>
+                    <?php if (in_array($cl["page_tab"], array('upsert', 'edit'))) : ?>
+                    <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><span class="go-back">
+                            <?php echo cl_icon('arrow_back'); ?>
+                        </span></a>
+                    <?php else : ?>
                     <a class="go-forward" href="<?php echo cl_link("ads/new"); ?>" data-spa="true"
                         title="<?php echo cl_translate("New"); ?>">
                         <?php echo cl_icon('add'); ?>
@@ -35,7 +35,9 @@
     <div class="timeline-navbar">
         <div class="timeline-navbar__item">
             <a href="<?php echo cl_link('ads') ?>" data-spa="true">
-                <button class="timeline-navbar__item-btn <?php if($cl['page_tab'] == 'active') { echo('active'); } ?>">
+                <button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'active') {
+                                                                echo ('active');
+                                                            } ?>">
                     <span class="btn-flex-inner">
                         <span class="icon">
                             <?php echo cl_icon("feed"); ?>
@@ -49,7 +51,9 @@
         </div>
         <div class="timeline-navbar__item">
             <a href="<?php echo cl_link('ads/archive') ?>" data-spa="true">
-                <button class="timeline-navbar__item-btn <?php if($cl['page_tab'] == 'archive') { echo('active'); } ?>">
+                <button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'archive') {
+                                                                echo ('active');
+                                                            } ?>">
                     <span class="btn-flex-inner">
                         <span class="icon">
                             <?php echo cl_icon("archive"); ?>
@@ -63,7 +67,9 @@
         </div>
         <div class="timeline-navbar__item">
             <a href="<?php echo cl_link('ads/pending') ?>" data-spa="true">
-                <button class="timeline-navbar__item-btn <?php if($cl['page_tab'] == 'pending') { echo('active'); } ?>">
+                <button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'pending') {
+                                                                echo ('active');
+                                                            } ?>">
                     <span class="btn-flex-inner">
                         <span class="icon">
                             <?php echo cl_icon("pending_actions"); ?>
@@ -78,16 +84,17 @@
     </div>
 
     <div class="ads-management">
-        <?php if ($cl["page_tab"] == 'active'): ?>
+        <?php if ($cl["page_tab"] == 'active') : ?>
         <?php echo cl_template('ads/includes/active'); ?>
-        <?php elseif ($cl["page_tab"] == 'archive'): ?>
+        <?php elseif ($cl["page_tab"] == 'archive') : ?>
         <?php echo cl_template('ads/includes/archive'); ?>
-        <?php elseif ($cl["page_tab"] == 'pending'): ?>
+        <?php elseif ($cl["page_tab"] == 'pending') : ?>
         <?php echo cl_template('ads/includes/pending'); ?>
-        <?php elseif($cl["page_tab"] == 'upsert'): ?>
+        <?php elseif ($cl["page_tab"] == 'upsert') : ?>
         <?php echo cl_template('ads/includes/upsert'); ?>
         <?php endif; ?>
     </div>
 
-    <?php //echo cl_template('ads/scripts/app_master_script'); ?>
+    <?php //echo cl_template('ads/scripts/app_master_script'); 
+    ?>
 </div>

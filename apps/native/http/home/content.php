@@ -19,6 +19,7 @@ if (empty($cl["is_logged"])) {
 			//cl_js_template("statics/js/libs/SwiperJS/swiper-bundle.min")
 		)
 	);
+	require("preprocess.php");
 
 	$cl["page_title"]    = cl_translate("Homepage");
 	$cl["page_desc"]     = $cl["config"]["description"];

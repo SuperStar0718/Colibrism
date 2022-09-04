@@ -66,7 +66,8 @@
         <div style="background-color:#efefed;text-align:right;padding-top:10px;padding-bottom:10px;padding-right:20px;">
             <button type="button" class="btn btn-outline-primary " style="border-radius: 30px;">Cancel</button>
             <button type="submit" class="btn btn-primary "
-                style="border-radius: 30px;background-color:<?php echo $cl["display_set"]["highlight"]; ?>;">Create
+                style="border-radius: 30px;background-color:<?php if (not_empty($cl["display_set"]["highlight"]))  echo $cl["display_set"]["highlight"];
+                                                                                                        else echo "#0000ff"; ?>;">Create
                 Community</button>
         </div>
     </form>

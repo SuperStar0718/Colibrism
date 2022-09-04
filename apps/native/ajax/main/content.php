@@ -635,65 +635,6 @@ if ($action == 'upload_post_image') {
         cl_update_user_data($me['id'], array(
             'last_post' => 0
         ));
-        //         echo "hello";
-        //         echo $_FILES['image']['tmp_name'];
-        //         if (not_empty($_FILES['image']) && not_empty($_FILES['image']['tmp_name'])) {
-        //             if (empty($post_data)) {
-        //                 $post_id   = cl_create_orphan_post($me['id'], "image");
-        //                 $post_data = cl_get_orphan_post($post_id);
-
-        //                 cl_update_user_data($me['id'],array(
-        //                     'last_post' => $post_id
-        //                 ));
-        //             }
-
-        //             if (not_empty($post_data) && $post_data["type"] == "image") {
-        //                 if (empty($post_data['media']) || count($post_data['media']) < 10) {
-        //                     $file_info      =  array(
-        //                         'file'      => $_FILES['image']['tmp_name'],
-        //                         'size'      => $_FILES['image']['size'],
-        //                         'name'      => $_FILES['image']['name'],
-        //                         'type'      => $_FILES['image']['type'],
-        //                         'file_type' => 'image',
-        //                         'folder'    => 'images',
-        //                         'slug'      => 'original',
-        //                         'crop'      => array('width' => 300, 'height' => 300),
-        //                         'allowed'   => 'jpg,png,jpeg,gif,webp'
-        //                     );
-
-        // $_POST['asdf']=0;
-        //                     $file_upload = cl_upload($file_info);
-
-        //                     if (not_empty($file_upload['filename'])) {
-        //                         $post_id     =  $post_data['id'];
-        //                         $img_id      =  $db->insert(T_PUBMEDIA, array(
-        //                             "pub_id" => $post_id,
-        //                             "type"   => "image",
-        //                             "src"    => $file_upload['filename'],
-        //                             "time"   => time(),
-        //                             "json_data" => json(array(
-        //                                 "image_thumb" => $file_upload['cropped']
-        //                             ),true)
-        //                         ));
-
-        //                         if (is_posnum($img_id)) {
-        //                             $data['img']     = array("id" => $img_id, "url" => cl_get_media($file_upload['cropped']));
-        //                             $data['status']  = 200;
-        //                         }
-        //                     }
-        //                 }
-        //                 else {
-        //                     $data['err_code'] = "total_limit_exceeded";
-        //                     $data['status']   = 400;
-        //                 }
-        //             }
-        //             else {
-        //                 cl_delete_orphan_posts($me['id']);
-        //                 cl_update_user_data($me['id'],array(
-        //                     'last_post' => 0
-        //                 ));
-        //             }
-        //         }
     }
     $temp = $me['community_id'];
     cl_redirect("community?community_id=$temp");
@@ -744,6 +685,20 @@ if ($action == 'upload_post_image') {
             }
         }
     }
+} else if ($action == 'join') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    } else {
+        $data['status']   = 404;
+        $data['err_code'] = 0;
+        $community_id          = fetch_or_get($_POST['community_id'], 0);
+        if (cl_is_following($me['id'], $community_id)) {
+            $data['status'] = 200;
+            cl_unfollow($me['id'], $community_id);
+        }
+    }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'follow') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -751,82 +706,13 @@ if ($action == 'upload_post_image') {
     } else {
         $data['status']   = 404;
         $data['err_code'] = 0;
-        $user_id          = fetch_or_get($_POST['id'], 0);
-
-        if (is_posnum($user_id) && $me['id'] != $user_id) {
-
-            $udata = cl_raw_user_data($user_id);
-
-            if (not_empty($udata) && cl_is_blocked($me['id'], $user_id) != true && cl_is_blocked($user_id, $me['id']) != true) {
-                if (cl_is_following($me['id'], $user_id)) {
-                    if (cl_unfollow($me['id'], $user_id)) {
-                        $data['status'] = 200;
-
-                        cl_db_delete_item(T_NOTIFS, array(
-                            'notifier_id'  => $me['id'],
-                            'recipient_id' => $user_id,
-                            'subject'      => 'subscribe',
-                            'entry_id'     => $user_id
-                        ));
-
-                        if ($udata['profile_privacy'] == 'followers') {
-                            $data['refresh'] = 1;
-                        }
-
-                        cl_follow_decrease($me['id'], $user_id);
-                    }
-                } else {
-                    if ($udata["follow_privacy"] == "everyone") {
-                        if (cl_follow($me['id'], $user_id)) {
-                            $data['status'] = 200;
-
-                            cl_notify_user(array(
-                                'subject'  => 'subscribe',
-                                'user_id'  => $user_id,
-                                'entry_id' => $me["id"]
-                            ));
-
-                            if ($udata['profile_privacy'] == 'followers' && $udata['follow_privacy'] == 'everyone') {
-                                $data['refresh'] = 1;
-                            }
-
-                            cl_follow_increase($me['id'], $user_id);
-                        }
-                    } else {
-                        if (cl_follow_requested($me['id'], $user_id)) {
-                            if (cl_unfollow($me['id'], $user_id)) {
-                                $data['status'] = 200;
-
-                                cl_db_delete_item(T_NOTIFS, array(
-                                    'notifier_id'  => $me['id'],
-                                    'recipient_id' => $user_id,
-                                    'subject'      => 'subscribe',
-                                    'entry_id'     => $user_id
-                                ));
-
-                                cl_db_delete_item(T_NOTIFS, array(
-                                    'notifier_id'  => $me['id'],
-                                    'recipient_id' => $user_id,
-                                    'subject'      => 'subscribe_request',
-                                    'entry_id'     => $user_id
-                                ));
-                            }
-                        } else {
-                            if (cl_follow_request($me['id'], $user_id)) {
-                                $data['status'] = 200;
-
-                                cl_notify_user(array(
-                                    'subject'  => 'subscribe_request',
-                                    'user_id'  => $user_id,
-                                    'entry_id' => $me["id"]
-                                ));
-                            }
-                        }
-                    }
-                }
-            }
+        $community_id          = fetch_or_get($_POST['community_id'], 0);
+        if (!cl_is_following($me['id'], $community_id)) {
+            $data['status'] = 200;
+            cl_follow($me['id'], $community_id);
         }
     }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'delete_post') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -865,83 +751,6 @@ if ($action == 'upload_post_image') {
 
                     $data['status'] = 200;
                 }
-            }
-        }
-    }
-} else if ($action == 'like_post') {
-    if (empty($cl["is_logged"])) {
-        $data['status'] = 400;
-        $data['error']  = 'Invalid access token';
-    } else {
-        $data['err_code'] = 0;
-        $data['status']   = 400;
-        $post_id          = fetch_or_get($_POST['id'], 0);
-
-        if (is_posnum($post_id)) {
-            $post_data = cl_raw_post_data($post_id);
-
-            if (not_empty($post_data)) {
-                if (cl_has_liked($me['id'], $post_id) != true) {
-                    $db->insert(T_LIKES, array(
-                        'pub_id'  => $post_id,
-                        'user_id' => $me['id'],
-                        'time'    => time()
-                    ));
-
-                    $likes_count         = ($post_data['likes_count'] += 1);
-                    $data['status']      = 200;
-                    $data['likes_count'] = $likes_count;
-
-                    cl_update_post_data($post_id, array(
-                        'likes_count' => $likes_count
-                    ));
-
-                    if ($post_data['user_id'] != $me['id']) {
-                        cl_notify_user(array(
-                            'subject'  => 'like',
-                            'user_id'  => $post_data['user_id'],
-                            'entry_id' => $post_id
-                        ));
-                    }
-                } else {
-                    $db                  = $db->where('pub_id', $post_id);
-                    $db                  = $db->where('user_id', $me['id']);
-                    $qr                  = $db->delete(T_LIKES);
-                    $data['status']      = 200;
-                    $likes_count         = ($post_data['likes_count'] -= 1);
-                    $data['likes_count'] = $likes_count;
-
-                    cl_update_post_data($post_id, array(
-                        'likes_count' => $likes_count
-                    ));
-
-                    $db = $db->where('notifier_id', $me['id']);
-                    $db = $db->where('recipient_id', $post_data['user_id']);
-                    $db = $db->where('subject', 'like');
-                    $db = $db->where('entry_id', $post_id);
-                    $rq = $db->delete(T_NOTIFS);
-                }
-            }
-        }
-    }
-} else if ($action == 'show_likes') {
-    $data['err_code'] = 0;
-    $data['status']   = 400;
-    $post_id          = fetch_or_get($_POST['id'], 0);
-
-    if (is_posnum($post_id)) {
-        $post_data = cl_raw_post_data($post_id);
-
-        if (not_empty($post_data)) {
-            $cl['liked_post']  = $post_id;
-            $cl['post_likes']  = cl_get_post_likes($post_id, 30);
-
-            if (not_empty($cl['post_likes'])) {
-                $cl['likes_count'] = cl_number($post_data['likes_count']);
-                $data['status']    = 200;
-                $data['html']      = cl_template('timeline/modals/likes');
-            } else {
-                $data['status'] = 404;
             }
         }
     }

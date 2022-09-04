@@ -1,0 +1,163 @@
+<?php if ($cl['li']['advertising']) : ?>
+<?php echo cl_template('timeline/ad'); ?>
+<?php else :
+    global $community;
+?>
+<div class="Tweet-target target">
+
+
+    <div class="Option-button flex center btn">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    <div class="teewt-data flex  gap-1">
+        <div class="user-image-content">
+            <div class="user-image s-2 circle">
+                <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+            </div>
+        </div>
+        <div class="teewt-content">
+            <h4>
+
+
+                @<?php echo ($cl['li']['owner']['username']); ?>
+            </h4>
+            <div class="posted_title">
+                <div class="posted-by t-color-3">
+                    posted by
+                    <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>">
+                        <?php if (not_empty($cl['li']['community_name'])) echo $cl['li']['community_name'];
+                            else echo $community['name']; ?>
+                    </a>
+                    ●
+                    <?php
+                        $now = new DateTime();
+
+                        $date = new DateTime($cl['li']['time']);
+                        $currentTimeinSeconds = time();
+
+                        // converts the time in seconds to current date 
+                        $currentDate = date('Y-m-d H:i:s ', $currentTimeinSeconds);
+
+                        // prints the current date
+                        // echo ($currentTimeinSeconds . " ");
+                        // var_dump($date);
+                        // echo $now->format('Y-m-d H:i:s ');
+                        //echo $date->diff($now)->format("%h Hours %i Minute %s Seconds");
+                        $year =  $date->diff($now)->format("%y");
+                        $day = $date->diff($now)->format("%d");
+                        $hour = $date->diff($now)->format("%H");
+                        $min = $date->diff($now)->format("%i");
+                        $sec = $date->diff($now)->format("%s");
+                        if ($year != "0") echo $year . "years ago";
+                        elseif ($day != "0") echo $day . "days ago";
+                        elseif ($hour != "0") echo $hour . "hours ago";
+                        elseif ($min != "0") echo $min . "mins ago";
+                        else echo $sec . "seconds ago";
+                        // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
+                        ?>
+                </div>
+                <div><img src="{%config theme_url%}/statics/img/frame_picture.png"></div>
+
+                <div><img src="{%config theme_url%}/statics/img/lock.png"></div>
+
+
+            </div>
+            <p><?php echo $cl['li']['description']; ?></p>
+            <?php if (not_empty($cl['li']['text'])) : ?>
+            <?php
+                    $cl['li']['text'] = cl_rn2br($cl['li']['text']);
+                    $cl['li']['text'] = cl_strip_brs($cl['li']['text']);
+                    ?>
+
+            <!-- <input type="checkbox" id="title" class="visuallyhidden"> -->
+            <a href="<?php echo (htmlentities("show_post_details" . "?post_title=" . $cl['li']['text'] . "&community_id=" . $cl['li']['community_id'])); ?>"
+                style="text-decoration:none; ">
+                <div class="publication-text"
+                    style="color:<?php if (not_empty($cl["display_set"]["title"]))  echo $cl["display_set"]["title"];
+                                                                    else echo "#0000ff"; ?>;margin-bottom:20px;font-weight:bold;">
+                    <?php echo ($cl['li']['text']); ?>
+                </div>
+            </a>
+            <div>
+                <?php echo str_replace('\r\n', "<br>", $cl['li']['description']);
+                        ?>
+            </div>
+            <?php endif; ?>
+            <?php if ($cl['li']['type'] == 'poll' && not_empty($cl['li']['poll'])) : ?>
+            <div class="publication-poll__inner">
+                <?php foreach ($cl['li']['poll']['options'] as $i => $poll_data) : ?>
+                <?php if ($i == 0) { ?>
+                <div class="form-group">
+                    <label for="">Question/Subject</label>
+                    <div class="form-control">
+                        <input class="bg-3" type="text" placeholder="<?php echo $poll_data["option"]; ?>" disabled />
+                    </div>
+                </div>
+                <?php } else { ?>
+                <div class="form-group">
+                    <label for="">answer-<?php echo $i; ?></label>
+                    <div class="form-control">
+                        <input class="bg-3" type="text" placeholder="<?php echo $poll_data["option"]; ?>" disabled />
+                    </div>
+                </div>
+                <?php } ?>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <div class="teewt-reactions-content flex nd">
+                <div class="main-reactions-content flex">
+                    <div class="teewt-likes-count-content">
+                        <img src="{%config theme_url%}/statics/img/thumbs_up.png">
+                        <span><?php echo $cl['li']['upvote_count']; ?></span>
+
+                        <img src="{%config theme_url%}/statics/img/thumbs_down.png">
+
+                        <span><?php echo $cl['li']['downvote_count']; ?></span>
+                    </div>
+                    <div class="teewt-shared-count-content"><span>↻ 124</span></div>
+                </div>
+                <div class="teewt-comments-count-content mintext t-color-3"><span>45 Comments</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="reaction-btns-content flex nd wrap">
+        <div class="r-action-btns-content flex">
+            <a
+                href="native_api /edit_post/up_vote?post_id=<?php echo $cl['li']['id'] ?>&upvote_count=<?php echo $cl['li']['upvote_count']; ?>">
+
+                <div class="r-action-btn btn bg-3">
+                    <img src="{%config theme_url%}/statics/img/sort-arrows-couple-pointing-up-and-down (1).png">
+                </div>
+
+            </a>
+
+            <a
+                href="native_api /edit_post/down_vote?post_id=<?php echo $cl['li']['id'] ?>&downvote_count=<?php echo $cl['li']['downvote_count']; ?>">
+
+                <div class="r-action-btn btn bg-3">
+                    <img src="{%config theme_url%}/statics/img/sort-arrows-couple-pointing-up-and-down (2).png">
+                </div>
+            </a>
+
+        </div>
+        <div class="r-action-btn btn bg-3">
+            <img src="{%config theme_url%}/statics/img/award.png">
+        </div>
+        <div class="large-btns-content flex wrap">
+            <div class="btn large bg-3">↻ Retweet</div>
+            <div class="btn large bg-3">
+                <img src="{%config theme_url%}/statics/img/file (2).png">
+                Save
+            </div>
+        </div>
+        <div class="r-action-btn btn bg-3">
+            <img src="{%config theme_url%}/statics/img/link.png">
+        </div>
+    </div>
+</div>
+
+<?php endif; ?>

@@ -17,12 +17,14 @@
 				</a>
 			</div>
 			<div class="rp">
-				<div class="nav-link-holder">
-					<span class="go-back" onclick="SMColibri.go_back();">
-						<?php echo cl_icon('arrow_back'); ?>
-					</span>
-				</div>
-			</div>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
+                    <div class="nav-link-holder">
+                        <span class="go-back">
+                            <?php echo cl_icon('arrow_back'); ?>
+                        </span>
+                    </div>
+                </a>
+            </div>
 		</div>
 	</div>
 	<div class="profile-settings">

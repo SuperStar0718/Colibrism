@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -12,55 +12,47 @@
 if (empty($cl["is_logged"])) {
     $data['status'] = 400;
     $data['error']  = 'Invalid access token';
-}
-
-else if ($action == "save_profile_name") {
-	$data['err_code'] =  0;
+} else if ($action == "save_profile_name") {
+    $data['err_code'] =  0;
     $data['status']   =  400;
-	$user_data_fields =  array(
-		'fname'       => fetch_or_get($_POST['fname'],null),
-		'lname'       => fetch_or_get($_POST['lname'],null),
-        'uname'       => fetch_or_get($_POST['uname'],null)
-	);
+    $user_data_fields =  array(
+        'fname'       => fetch_or_get($_POST['fname'], null),
+        'lname'       => fetch_or_get($_POST['lname'], null),
+        'uname'       => fetch_or_get($_POST['uname'], null)
+    );
 
-	foreach ($user_data_fields as $field_name => $field_val) {
+    foreach ($user_data_fields as $field_name => $field_val) {
         if ($field_name == 'uname') {
             if (empty($field_val)) {
-                $data['err_code'] = "invalid_uname"; break;
+                $data['err_code'] = "invalid_uname";
+                break;
+            } else if (len_between($field_val, 3, 25) != true) {
+                $data['err_code'] = "invalid_uname";
+                break;
+            } else if (preg_match('/^[\w]+$/', $field_val) != true) {
+                $data['err_code'] = "invalid_uname";
+                break;
+            } else if (cl_uname_exists($field_val) && $field_val != $me['raw_uname']) {
+                $data['err_code'] = "doubling_uname";
+                break;
             }
-
-            else if (len_between($field_val,3, 25) != true) {
-                $data['err_code'] = "invalid_uname"; break;
+        } else if ($field_name == 'fname') {
+            if (empty($field_val) || len_between($field_val, 3, 25) != true) {
+                $data['err_code'] = "invalid_fname";
+                break;
             }
-
-            else if (preg_match('/^[\w]+$/', $field_val) != true) {
-                $data['err_code'] = "invalid_uname"; break;
-            }
-
-            else if(cl_uname_exists($field_val) && $field_val != $me['raw_uname']) {
-                $data['err_code'] = "doubling_uname"; break;
+        } else if ($field_name == 'lname') {
+            if (empty($field_val) || len_between($field_val, 3, 25) != true) {
+                $data['err_code'] = "invalid_lname";
+                break;
             }
         }
-
-		else if ($field_name == 'fname') {
-			if (empty($field_val) || len_between($field_val,3,25) != true) {
-	            $data['err_code'] = "invalid_fname"; break;
-	        }
-		}
-
-		else if ($field_name == 'lname') {
-			if (empty($field_val) || len_between($field_val,3,25) != true) {
-	            $data['err_code'] = "invalid_lname"; break;
-	        }
-		}
-	}
-
-	if (empty($data['err_code'])) {
+    }
+    if (empty($data['err_code'])) {
         $fname          = cl_text_secure($user_data_fields['fname']);
         $lname          = cl_text_secure($user_data_fields['lname']);
         $uname          = cl_text_secure($user_data_fields['uname']);
         $data['status'] = 200;
-
         cl_update_user_data($me["id"], array(
             'fname'    => $fname,
             'lname'    => $lname,
@@ -73,28 +65,21 @@ else if ($action == "save_profile_name") {
             ));
         }
     }
-}
-
-else if ($action == "save_profile_email") {
+    return cl_redirect("settings");
+} else if ($action == "save_profile_email") {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $email            = fetch_or_get($_POST['email'], null);
 
     if (empty($email)) {
         $data['err_code'] = "invalid_email";
-    }
-
-    else if (filter_var($email, FILTER_VALIDATE_EMAIL) != true || len($email) > 55) {
+    } else if (filter_var($email, FILTER_VALIDATE_EMAIL) != true || len($email) > 55) {
         $data['err_code'] = "invalid_email";
-    }
-
-    else if (cl_email_exists($email) && ($email != $me['email'])) {
+    } else if (cl_email_exists($email) && ($email != $me['email'])) {
         $data['err_code'] = "doubling_email";
-    }
+    } else {
 
-    else {
-
-        $rand_code         = rand(100000,999999);
+        $rand_code         = rand(100000, 999999);
         $cl['email_data']  = array('name' => $me["name"], 'code' => $rand_code);
         $send_email_data   = array(
             'from_email'   => $cl['config']['email'],
@@ -105,12 +90,12 @@ else if ($action == "save_profile_email") {
             'charSet'      => 'UTF-8',
             'is_html'      => true,
             'message_body' => cl_template('emails/confirm_email')
-        ); 
+        );
 
         if (cl_send_mail($send_email_data)) {
             cl_update_user_data($me["id"], array(
                 "email_conf_code" => json(array(
-                    "email" => cl_text_secure($email), 
+                    "email" => cl_text_secure($email),
                     "code" => $rand_code
                 ), true)
             ));
@@ -118,9 +103,8 @@ else if ($action == "save_profile_email") {
             $data['status'] = 200;
         }
     }
-}
-
-else if($action == "confirm_email" && not_empty($me["email_conf_code"])) {
+    return cl_redirect("settings");
+} else if ($action == "confirm_email" && not_empty($me["email_conf_code"])) {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $email_conf_data  = json($me["email_conf_code"]);
@@ -131,14 +115,11 @@ else if($action == "confirm_email" && not_empty($me["email_conf_code"])) {
         $email_conf_code2 = fetch_or_get($_POST['code'], false);
         $new_email        = $email_conf_data["email"];
 
-        if(empty($email_conf_code1) || empty($email_conf_code2)) {
+        if (empty($email_conf_code1) || empty($email_conf_code2)) {
             $data['err_code'] = "invalid_req_data";
-        }
-
-        else if(empty($new_email) || ($email_conf_code1 != $email_conf_code2)) {
+        } else if (empty($new_email) || ($email_conf_code1 != $email_conf_code2)) {
             $data['err_code'] = "invalid_req_data";
-        }
-        else {
+        } else {
 
             $data['status'] = 200;
 
@@ -148,9 +129,7 @@ else if($action == "confirm_email" && not_empty($me["email_conf_code"])) {
             ));
         }
     }
-}
-
-else if ($action == "save_profile_url") {
+} else if ($action == "save_profile_url") {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $website          = fetch_or_get($_POST['url'], null);
@@ -158,9 +137,7 @@ else if ($action == "save_profile_url") {
     if (not_empty($website)) {
         if (is_url($website) != true || len($website) > 115) {
             $data['err_code'] = "invalid_url";
-        }
-
-        else {
+        } else {
             $website        = cl_text_secure($website);
             $data['status'] = 200;
 
@@ -170,16 +147,14 @@ else if ($action == "save_profile_url") {
                 ));
             }
         }
-    }
-    else {
+    } else {
         $data['status'] = 200;
         cl_update_user_data($me["id"], array(
             'website' => ""
-        )); 
+        ));
     }
-}
-
-else if ($action == "save_profile_bio") {
+    return cl_redirect("settings");
+} else if ($action == "save_profile_bio") {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $user_bio         = fetch_or_get($_POST['bio'], null);
@@ -187,28 +162,24 @@ else if ($action == "save_profile_bio") {
     if (not_empty($user_bio)) {
         if (len($user_bio) > 140) {
             $data['err_code'] = "invalid_bio";
-        }
-
-        else {
+        } else {
             $user_bio       = cl_text_secure($user_bio);
             $data['status'] = 200;
 
-            if ($user_bio != $me['about']) {  
+            if ($user_bio != $me['about']) {
                 cl_update_user_data($me["id"], array(
                     'about' => $user_bio
                 ));
             }
         }
-    }
-    else {
+    } else {
         $data['status'] = 200;
         cl_update_user_data($me["id"], array(
             'about' => ""
-        )); 
+        ));
     }
-}
-
-else if ($action == "save_profile_city") {
+    return cl_redirect("settings");
+} else if ($action == "save_profile_city") {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $user_city        = fetch_or_get($_POST['city'], null);
@@ -216,28 +187,23 @@ else if ($action == "save_profile_city") {
     if (not_empty($user_city)) {
         if (len($user_city) > 30) {
             $data['err_code'] = "invalid_city_name";
-        }
-
-        else {
+        } else {
             $user_city      = cl_text_secure($user_city);
             $data['status'] = 200;
 
-            if ($user_city != $me['city']) {  
+            if ($user_city != $me['city']) {
                 cl_update_user_data($me["id"], array(
                     'city' => $user_city
                 ));
             }
         }
-    }
-    else {
+    } else {
         $data['status'] = 200;
         cl_update_user_data($me["id"], array(
             'city' => ""
-        )); 
+        ));
     }
-}
-
-else if ($action == "save_profile_gender") {
+} else if ($action == "save_profile_gender") {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $gender           = fetch_or_get($_POST['gender'], null);
@@ -249,9 +215,7 @@ else if ($action == "save_profile_gender") {
 
         $data['status'] = 200;
     }
-}
-
-else if ($action == "save_privacy_settings") {
+} else if ($action == "save_privacy_settings") {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $profile_privacy  = fetch_or_get($_POST['profile_privacy'], null);
@@ -259,23 +223,15 @@ else if ($action == "save_privacy_settings") {
     $contact_privacy  = fetch_or_get($_POST['contact_privacy'], null);
     $index_privacy    = fetch_or_get($_POST['index_privacy'], null);
 
-    if (in_array($profile_privacy, array('everyone','followers')) != true) {
+    if (in_array($profile_privacy, array('everyone', 'followers')) != true) {
         $data['err_code'] = "invalid_profile_privacy";
-    }
-
-    else if (in_array($follow_privacy, array('everyone', 'approved')) != true) {
+    } else if (in_array($follow_privacy, array('everyone', 'approved')) != true) {
         $data['err_code'] = "invalid_follow_privacy";
-    }
-
-    else if (in_array($contact_privacy, array('everyone','followed')) != true) {
+    } else if (in_array($contact_privacy, array('everyone', 'followed')) != true) {
         $data['err_code'] = "invalid_contact_privacy";
-    }
-
-    else if (in_array($index_privacy, array('Y','N')) != true) {
+    } else if (in_array($index_privacy, array('Y', 'N')) != true) {
         $data['err_code'] = "invalid_index_privacy";
-    }
-
-    else {
+    } else {
         cl_update_user_data($me["id"], array(
             'profile_privacy' => $profile_privacy,
             'follow_privacy'  => $follow_privacy,
@@ -292,33 +248,31 @@ else if ($action == "save_privacy_settings") {
 
         $data['status'] = 200;
     }
-}
-
-else if ($action == 'save_profile_pass') {
+    return cl_redirect("settings");
+} else if ($action == 'save_profile_pass') {
     $data['status']     =  400;
     $data['err_code']   =  null;
     $user_data_fields   =  array(
-        'curr_password' => fetch_or_get($_POST['curr_password'],null),
-        'new_password'  => fetch_or_get($_POST['new_password'],null),
-        'new_conf_pass' => fetch_or_get($_POST['new_conf_pass'],null),
+        'curr_password' => fetch_or_get($_POST['curr_password'], null),
+        'new_password'  => fetch_or_get($_POST['new_password'], null),
+        'new_conf_pass' => fetch_or_get($_POST['new_conf_pass'], null),
     );
 
     foreach ($user_data_fields as $field_name => $field_val) {
         if ($field_name == 'curr_password') {
             if (empty($field_val) || (password_verify($field_val, $me['password']) != true)) {
-                $data['err_code'] = "invalid_curr_pass"; break;
+                $data['err_code'] = "invalid_curr_pass";
+                break;
             }
-        }
-
-        else if ($field_name == 'new_password') {
-            if (empty($field_val) || len_between($field_val,6,20) != true) {
-                $data['err_code'] = "invalid_password"; break;
+        } else if ($field_name == 'new_password') {
+            if (empty($field_val) || len_between($field_val, 6, 20) != true) {
+                $data['err_code'] = "invalid_password";
+                break;
             }
-        }
-
-        else if($field_name == 'new_conf_pass') {
+        } else if ($field_name == 'new_conf_pass') {
             if (empty($field_val) || ($field_val != $user_data_fields['new_password'])) {
-                $data['err_code'] = "invalid_password"; break;
+                $data['err_code'] = "invalid_password";
+                break;
             }
         }
     }
@@ -328,22 +282,22 @@ else if ($action == 'save_profile_pass') {
         $user_id        =  $me['id'];
         $update_data    =  array(
             'password'  => password_hash(cl_text_secure($user_data_fields['new_password']), PASSWORD_DEFAULT),
-        ); 
+        );
 
         cl_update_user_data($user_id, $update_data);
     }
-}
-
-else if ($action == "save_profile_lang") {
+} else if ($action == "save_profile_lang") {
     $data['err_code'] = 0;
     $data['status']   = 400;
-    $prof_lang        = fetch_or_get($_POST['language'],null);
+    $prof_lang        = fetch_or_get($_POST['language'], null);
+    echo $prof_lang;
+
+    //print_r($cl['languages']);
+
 
     if (empty($prof_lang) || empty($cl["languages"][$prof_lang])) {
         $data['err_code'] = "invalid_lang";
-    }
-
-    else {
+    } else {
         $data['status'] = 200;
 
         if ($prof_lang != $me['language']) {
@@ -352,9 +306,8 @@ else if ($action == "save_profile_lang") {
             ));
         }
     }
-}
-
-else if ($action == "save_profile_country") {
+    return cl_redirect("settings");
+} else if ($action == "save_profile_country") {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $prof_country     = fetch_or_get($_POST['country'], null);
@@ -362,9 +315,7 @@ else if ($action == "save_profile_country") {
 
     if (not_num($prof_country) || (in_array($prof_country, $country_list) != true)) {
         $data['err_code'] = "invalid_country";
-    }
-
-    else {
+    } else {
         $data['status'] = 200;
 
         if ($prof_country != $me['country_id']) {
@@ -373,18 +324,14 @@ else if ($action == "save_profile_country") {
             ));
         }
     }
-}
-
-else if ($action == 'delete_account') {
+} else if ($action == 'delete_account') {
     $data['status']   = 400;
     $data['err_code'] = null;
-    $curr_password    = fetch_or_get($_POST['password'],null);
+    $curr_password    = fetch_or_get($_POST['password'], null);
 
     if (empty($curr_password) || (password_verify($curr_password, $me['password']) != true)) {
         $data['err_code'] = "invalid_pass";
-    }
-
-    else {
+    } else {
         $data['status'] = 200;
 
         unset($_COOKIE['user_id']);
@@ -395,9 +342,7 @@ else if ($action == 'delete_account') {
 
         cl_delete_user_data($me['id']);
     }
-}
-
-else if ($action == 'upload_profile_avatar') {
+} else if ($action == 'upload_profile_avatar') {
     if (not_empty($_FILES['avatar']) && not_empty($_FILES['avatar']['tmp_name'])) {
         $file_info      =  array(
             'file'      => $_FILES['avatar']['tmp_name'],
@@ -423,16 +368,12 @@ else if ($action == 'upload_profile_avatar') {
             cl_update_user_data($me['id'], array(
                 'avatar' => $file_upload['cropped']
             ));
-        } 
-
-        else{
+        } else {
             $data['err_code'] = "invalid_req_data";
             $data['status']   = 400;
         }
     }
-}
-
-else if ($action == 'upload_profile_cover') {
+} else if ($action == 'upload_profile_cover') {
     if (not_empty($_FILES['cover']) && not_empty($_FILES['cover']['tmp_name'])) {
         $file_info           = array(
             'file'           => $_FILES['cover']['tmp_name'],
@@ -460,8 +401,8 @@ else if ($action == 'upload_profile_cover') {
                 $data['sh'] = $sh;
 
                 $path_info      = explode(".", $file_upload['filename']);
-                $filepath       = fetch_or_get($path_info[0],"");
-                $file_ext       = fetch_or_get($path_info[1],"");
+                $filepath       = fetch_or_get($path_info[0], "");
+                $file_ext       = fetch_or_get($path_info[1], "");
                 $cropped_cover  = cl_strf("%s_600x200.%s", $filepath, $file_ext);
                 $data['status'] = 200;
 
@@ -478,7 +419,7 @@ else if ($action == 'upload_profile_cover') {
 
                 if ($sw != 600) {
                     $prof_cover = new \Gumlet\ImageResize(cl_full_path($file_upload['filename']));
-                    $prof_cover->resize(600,(($sh * 600) / $sw), true);
+                    $prof_cover->resize(600, (($sh * 600) / $sw), true);
                     $prof_cover->save(cl_full_path($file_upload['filename']));
                 }
 
@@ -486,23 +427,17 @@ else if ($action == 'upload_profile_cover') {
                     cl_upload2s3($cropped_cover);
                     cl_upload2s3($file_upload['filename']);
                 }
-            } 
-
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 $data['err_code']    = "invalid_req_data";
                 $data['err_message'] = $e->getMessage();
                 $data['status']      = 400;
             }
-        } 
-
-        else{
+        } else {
             $data['err_code'] = "invalid_req_data";
             $data['status']   = 400;
         }
     }
-}
-
-else if($action == "save_profcover_rep") {
+} else if ($action == "save_profcover_rep") {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $new_position     = fetch_or_get($_POST['position'], 0);
@@ -520,7 +455,7 @@ else if($action == "save_profcover_rep") {
             if ($cl['config']['as3_storage'] == 'on') {
                 $cover_orig = cl_import_aws_media($cover_orig);
             }
-            
+
             if (file_exists(cl_full_path($cover_orig))) {
 
                 $prof_cover     = new \Gumlet\ImageResize(cl_full_path($cover_orig));
@@ -537,7 +472,7 @@ else if($action == "save_profcover_rep") {
 
                 $prof_cover->freecrop($dw, $dh, 0, abs($new_position));
                 $prof_cover->save(cl_full_path($filename));
-                
+
                 cl_delete_media($me['raw_cover']);
 
                 cl_update_user_data($me['id'], array(
@@ -547,47 +482,34 @@ else if($action == "save_profcover_rep") {
                 if ($cl['config']['as3_storage'] == 'on') {
                     try {
                         cl_upload2s3($filename);
-                    } catch (Exception $e) { /* pass */ }
+                    } catch (Exception $e) { /* pass */
+                    }
 
                     cl_delete_loc_media($cover_orig);
                 }
-            }
-
-            else{
+            } else {
                 $data['err_code'] = "invalid_req_data";
                 $data['status']   = 500;
             }
-        } 
-
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $data['err_code']    = "invalid_req_data";
             $data['err_message'] = $e->getMessage();
             $data['status']      = 400;
         }
     }
-}
-
-else if($action == 'verify_account') {
+} else if ($action == 'verify_account') {
     $data['status']   = 400;
     $data['err_code'] = 0;
 
     if ($me['verified'] == '2') {
         $data['err_code'] = "duplicate_request_error";
-    }
-
-    else if (empty($_POST['full_name']) || len_between($_POST['full_name'], 3, 60) != true) {
+    } else if (empty($_POST['full_name']) || len_between($_POST['full_name'], 3, 60) != true) {
         $data['err_code'] = "invalid_full_name";
-    }
-
-    else if (empty($_POST['text_message']) || len_between($_POST['text_message'], 1, 1200) != true) {
+    } else if (empty($_POST['text_message']) || len_between($_POST['text_message'], 1, 1200) != true) {
         $data['err_code'] = "invalid_text_message";
-    }
-
-    else if(empty($_FILES['video']) || empty($_FILES['video']['tmp_name'])) {
+    } else if (empty($_FILES['video']) || empty($_FILES['video']['tmp_name'])) {
         $data['err_code'] = "invalid_video_message";
-    }
-
-    else {
+    } else {
         $file_info      = array(
             'file'      => $_FILES['video']['tmp_name'],
             'size'      => $_FILES['video']['size'],
@@ -624,9 +546,7 @@ else if($action == 'verify_account') {
             }
         }
     }
-}
-
-else if($action == 'affiliate_payout_req') {
+} else if ($action == 'affiliate_payout_req') {
     $data['status']   = 400;
     $data['err_code'] = 0;
     $curr_aff_balance = cl_calc_affiliate_bonuses();
@@ -635,17 +555,11 @@ else if($action == 'affiliate_payout_req') {
 
     if (empty($payout_amount) || not_num($payout_amount) || ($payout_amount > $curr_aff_balance)) {
         $data['status'] = "invalid_payment_amount";
-    }
-
-    else if(empty($payout_email) || filter_var($payout_email, FILTER_VALIDATE_EMAIL) != true) {
+    } else if (empty($payout_email) || filter_var($payout_email, FILTER_VALIDATE_EMAIL) != true) {
         $data['status'] = "invalid_payment_email";
-    }
-
-    else if(cl_aff_request_exists()) {
+    } else if (cl_aff_request_exists()) {
         $data['status'] = "invalid_req_data";
-    }
-
-    else {
+    } else {
 
         $insert_data  = array(
             'user_id' => $me['id'],
@@ -662,9 +576,7 @@ else if($action == 'affiliate_payout_req') {
             $data['status'] = 200;
         }
     }
-}
-
-else if ($action == "save_notif_settings") {
+} else if ($action == "save_notif_settings") {
     $data['err_code']         = 0;
     $data['status']           = 200;
     $me["settings"]["notifs"] = array(
@@ -680,9 +592,7 @@ else if ($action == "save_notif_settings") {
     cl_update_user_data($me["id"], array(
         'settings' => json($me["settings"], true)
     ));
-}
-
-else if ($action == "save_enotif_settings") {
+} else if ($action == "save_enotif_settings") {
     $data['err_code']          = 0;
     $data['status']            = 200;
     $me["settings"]["enotifs"] = array(
@@ -700,9 +610,7 @@ else if ($action == "save_enotif_settings") {
             'settings' => json($me["settings"], true)
         ));
     }
-}
-
-else if($action == "download_profile_info") {
+} else if ($action == "download_profile_info") {
 
     require_once(cl_full_path("core/apps/info/app_ctrl.php"));
 
@@ -722,7 +630,7 @@ else if($action == "download_profile_info") {
         $time_hash    = md5(microtime());
         $info_file    = cl_template("info/content");
         $info_tmpfile = tempnam(sys_get_temp_dir(), $time_hash);
-        
+
         file_put_contents($info_tmpfile, $info_file);
 
         cl_update_user_data($me["id"], array(

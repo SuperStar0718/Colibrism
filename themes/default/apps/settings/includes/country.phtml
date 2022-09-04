@@ -1,49 +1,53 @@
 <div class="timeline-container">
-	<div class="timeline-header" data-el="tl-header">
-		<div class="timeline-header__topline">
-			<div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
-		</div>
-		<div class="timeline-header__botline">
-			<div class="lp">
-				<div class="nav-link-holder">
-					<a href="<?php echo cl_link("settings/country"); ?>" data-spa="true">
-						<?php echo cl_translate("Change country"); ?>
-					</a>
-				</div>
-			</div>
-			<div class="cp">
-				<a href="<?php echo cl_link("home"); ?>">
-					<img src="{%config site_logo%}" alt="Logo">
-				</a>
-			</div>
-			<div class="rp">
-				<div class="nav-link-holder">
-					<span class="go-back" onclick="SMColibri.go_back();">
-						<?php echo cl_icon('arrow_back'); ?>
-					</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="profile-settings">
-		<div class="profile-settings__title">
-			<h4>
-				<?php echo cl_translate("Select your country"); ?>
-			</h4>
-		</div>
-		<div class="profile-settings__content">
-			<div class="settings-form">
-				<form class="form" id="cl-country-settings-vue-app" v-on:submit="submit_form">
-					<div class="form-group">
+    <div class="timeline-header" data-el="tl-header">
+        <div class="timeline-header__topline">
+            <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+        </div>
+        <div class="timeline-header__botline">
+            <div class="lp">
+                <div class="nav-link-holder">
+                    <a href="<?php echo cl_link("settings/country"); ?>" data-spa="true">
+                        <?php echo cl_translate("Change country"); ?>
+                    </a>
+                </div>
+            </div>
+            <div class="cp">
+                <a href="<?php echo cl_link("home"); ?>">
+                    <img src="{%config site_logo%}" alt="Logo">
+                </a>
+            </div>
+            <div class="rp">
+                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
+                    <div class="nav-link-holder">
+                        <span class="go-back">
+                            <?php echo cl_icon('arrow_back'); ?>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="profile-settings">
+        <div class="profile-settings__title">
+            <h4>
+                <?php echo cl_translate("Select your country"); ?>
+            </h4>
+        </div>
+        <div class="profile-settings__content">
+            <div class="settings-form">
+                <form class="form" id="cl-country-settings-vue-app" v-on:submit="submit_form">
+                    <div class="form-group">
                         <label>
                             <?php echo cl_translate("Choose your country"); ?>
                         </label>
                         <div class="dropdown vue-dropdown-select">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 {{countries[country]}}
                             </button>
                             <div class="dropdown-menu">
-                                <a v-for="(v,k) in countries" v-on:click="dropdown_select(k)" class="dropdown-item" href="">
+                                <a v-for="(v,k) in countries" v-on:click="dropdown_select(k)" class="dropdown-item"
+                                    href="">
                                     {{v}}
                                 </a>
                             </div>
@@ -59,78 +63,81 @@
                             <?php echo cl_translate("Choose the country in which you live. This information will be publicly displayed on your profile."); ?>
                         </div>
                     </div>
-                    <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>"
+                        name="hash">
                     <input v-model="country" type="hidden" class="d-none" name="country">
                     <div class="form-group no-mb">
-                    	<button v-if="submitting != true" v-bind:disabled="$v.$invalid == true" type="submit" class="btn btn-block no-mb btn-custom main-inline lg">
-	                        <?php echo cl_translate("Save changes"); ?>
-	                    </button>
-	                    <button v-else disabled="true" type="button" class="btn btn-block no-mb btn-custom main-inline lg">
-	                        <?php echo cl_translate("Please wait"); ?>
-	                    </button>
+                        <button v-if="submitting != true" v-bind:disabled="$v.$invalid == true" type="submit"
+                            class="btn btn-block no-mb btn-custom main-inline lg">
+                            <?php echo cl_translate("Save changes"); ?>
+                        </button>
+                        <button v-else disabled="true" type="button"
+                            class="btn btn-block no-mb btn-custom main-inline lg">
+                            <?php echo cl_translate("Please wait"); ?>
+                        </button>
                     </div>
-				</form>
-			</div>
-		</div>
-	</div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-	<script>
-		"use strict";
+    <script>
+    "use strict";
 
-		$(document).ready(function($) {
-			Vue.use(window.vuelidate.default);
-			var VueValids = window.validators;
+    $(document).ready(function($) {
+        Vue.use(window.vuelidate.default);
+        var VueValids = window.validators;
 
-			new Vue({
-				el: "#cl-country-settings-vue-app",
-				data: {
-					submitting: false,
-					unsuccessful_attempt: false,
-					country: "<?php echo($me["country_id"]); ?>",
-					countries: <?php echo cl_minify_js(json($cl['countries'], true)); ?>,
-					dropdowns: {
-						country: "<?php echo cl_translate("Select your country"); ?>"
-					}
-				},
-				validations: {
-					country: {
-						required: VueValids.required
-					}
-				},
-				methods: {
-					submit_form: function(_self = null) {
-						_self.preventDefault();
+        new Vue({
+            el: "#cl-country-settings-vue-app",
+            data: {
+                submitting: false,
+                unsuccessful_attempt: false,
+                country: "<?php echo ($me["country_id"]); ?>",
+                countries: <?php echo cl_minify_js(json($cl['countries'], true)); ?>,
+                dropdowns: {
+                    country: "<?php echo cl_translate("Select your country"); ?>"
+                }
+            },
+            validations: {
+                country: {
+                    required: VueValids.required
+                }
+            },
+            methods: {
+                submit_form: function(_self = null) {
+                    _self.preventDefault();
 
-						var _app_ = this;
+                    var _app_ = this;
 
-						$(_self.target).ajaxSubmit({
-							url: "<?php echo cl_link("native_api/settings/save_profile_country"); ?>",
-							type: 'POST',
-							dataType: 'json',
-							beforeSend: function() {
-								_app_.submitting = true;
-								_app_.unsuccessful_attempt = false;
-							},
-							success: function(data) {
-								if (data.status == 200) {
-									cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>");
-								}
-
-								else {
-									_app_.unsuccessful_attempt = true;
-								}
-							},
-							complete: function() {
-								_app_.submitting = false;
-							}
-						});
-					},
-					dropdown_select: function(key = "none") {
-	                    var _app_     = this;
-	                    _app_.country = key;
-	                }
-				}
-			});
-		});
-	</script>
+                    $(_self.target).ajaxSubmit({
+                        url: "<?php echo cl_link("native_api/settings/save_profile_country"); ?>",
+                        type: 'POST',
+                        dataType: 'json',
+                        beforeSend: function() {
+                            _app_.submitting = true;
+                            _app_.unsuccessful_attempt = false;
+                        },
+                        success: function(data) {
+                            if (data.status == 200) {
+                                cl_bs_notify(
+                                    "<?php echo cl_translate("Your changes has been successfully saved!"); ?>"
+                                    );
+                            } else {
+                                _app_.unsuccessful_attempt = true;
+                            }
+                        },
+                        complete: function() {
+                            _app_.submitting = false;
+                        }
+                    });
+                },
+                dropdown_select: function(key = "none") {
+                    var _app_ = this;
+                    _app_.country = key;
+                }
+            }
+        });
+    });
+    </script>
 </div>

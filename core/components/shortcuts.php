@@ -38,7 +38,7 @@ function json($array = array(), $seril = null)
     if ($seril) {
         return json_encode($array, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     } else {
-        return json_decode($array, true);
+        return json_decode((string)$array, true);
     }
 }
 

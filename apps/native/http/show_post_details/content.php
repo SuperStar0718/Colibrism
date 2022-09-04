@@ -17,6 +17,7 @@ $cl['page_tab']  = fetch_or_get($_GET["tab"], 'posts');
 
 
 require_once(cl_full_path("core/apps/show_post_details/app_ctrl.php"));
+require("preprocess.php");
 
 
 $cl["page_kw"]     = $cl["config"]["keywords"];
@@ -32,9 +33,9 @@ $cl["app_statics"] = array(
 );
 
 $media_type       = (($cl['page_tab'] == 'media') ? true : false);
-$post_title = (not_empty($_GET['show_post_details']) ? true : false);
+$post_description = (not_empty($_GET['post_description']) ? true : false);
 $community_id = (not_empty($_GET['community_id']) ? true : false);
-$cl["user_posts"] = cl_get_profile_posts_details(6, 30, $media_type, $post_title, $community_id);
+$cl["user_posts"] = cl_get_profile_posts_details(6, 30, $media_type, $post_description, $community_id);
 
 $temp = $_GET['community_id'];
 $sql = "SELECT * from `cl_community` where `community_id`=$temp";

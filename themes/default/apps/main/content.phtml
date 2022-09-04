@@ -11,12 +11,11 @@
         <?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>
     </title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="title" content="<?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>" />
-    <meta name="description" content="<?php echo fetch_or_get($cl["page_desc"], $cl["config"]["description"]); ?>" />
-    <meta name="keywords" content="<?php echo fetch_or_get($cl['page_kw'], $cl["config"]["keywords"]); ?>" />
+    <meta content="charset=UTF-8" />
+
     <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]); ?>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
     <?php if ($cl["pn"] == 'thread') : ?>
     <meta property="og:type" content="article" />
@@ -40,252 +39,128 @@
     <?php endif; ?>
     <?php endif; ?>
 
-    <link rel="stylesheet" href="{%config theme_url%}/statics/css/libs/animate.min.css?v={%config version%}">
-    <link rel="stylesheet" href="{%config theme_url%}/statics/css/css-libs.css">
-    <link rel="stylesheet" href="{%config theme_url%}/statics/css/master.styles.css?v={%config version%}">
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/styles.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
-    <?php if ($cl["curr_lang"]["lang_data"]["is_rtl"] == "Y") : ?>
-    <!-- RTL IS TEMPORARILY NOT SUPPORTED. 
-			IF YOU HAVE QUESTIONS ABOUT THIS, 
-			PLEASE CONTACT THE DEVELOPER OF THIS SCRIPT (MANSUR_TL| vayart.help@gmail.com) 
-		-->
-    <?php endif; ?>
 
-    <link rel="stylesheet" href="{%config theme_url%}/statics/css/libs/jquery.fancybox.css?v={%config version%}">
     <link rel="icon" href="{%config site_fav%}" type="image/png">
     <link rel="icon" href="{%config site_fav%}" type="image/x-icon">
 
-    <link rel="stylesheet" href="{%config theme_url%}/bootstrap.min.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{%config theme_url%}/Site Admin_files/animate.min.css">
-    <link rel="stylesheet" href="{%config theme_url%}/Site Admin_files/css-libs.css">
-    <link rel="stylesheet" href="{%config theme_url%}/Site_Admin.css">
-    <link rel="stylesheet" href="{%config theme_url%}/statics/css/master.styles.css?v={%config version%}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{%config theme_url%}/adminlte.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script> -->
-    <!-- <link rel='stylesheet' type='text/css' href='{%config theme_url%}/style.php' /> -->
-    <?php if ($cl["pn"] == "guest" && $cl["auth_type"] == "signup") : ?>
-    <?php if ($cl["config"]["google_recaptcha"] == "on") : ?>
-    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
-    <?php endif; ?>
-    <?php endif; ?>
+
 
 </head>
 
-<body <?php if ($cl["curr_lang"]["lang_data"]["is_rtl"] == "Y") {
-            echo ('dir="ltr"');
-        } else {
-            echo ('dir="ltr"');
-        } ?> class="cl-app-<?php echo fetch_or_get($cl["pn"], "none"); ?>"
-    data-page-tab="<?php echo fetch_or_get($cl["page_tab"], "none"); ?>"
-    data-skin="<?php if ($cl["pn"] != "guest") {
-
-                                                                                                                                                                echo ($cl["display_set"]["color_scheme"]);
-                                                                                                                                                            } else {
-                                                                                                                                                                echo ("default");
-                                                                                                                                                            } ?>"
-    data-bg="<?php if ($cl["pn"] != "guest") {
-                                                                                                                                                                                echo ($cl["display_set"]["background"]);
-                                                                                                                                                                            } else {
-                                                                                                                                                                                echo ("default");
-                                                                                                                                                                            } ?>">
-
-
+<body class="m-a">
     <?php if ($cl["pn"] != "guest") : ?>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="" style="position: relative; left:160px;margin: unset; padding: unset;">
-                <div class="pubbox-avatar col-sm-2" style="top: -9px;">
-                    <img src="{%config theme_url%}/Homepage_files/firefox.png" style="width: 70px; height:70px;">
+    <nav class="Nav-bar flex center gap-2 nd">
+        <div class="page-logo-content"></div>
+        <div class="content">
+            <label class="btn hidden" for="showSeachBar"><i class="material-symbols-outlined">search</i></label>
+            <label class="btn hidden" for="showPanelButons"><i class="material-symbols-outlined">sort</i></label>
+        </div>
+        <div class="seach-bar-content flex center">
+            <div class="form-control">
+                <input class="target" type="text" placeholder="# explore">
+            </div>
+        </div>
+        <div class="other flex nd center">
+            <input class="hidden" id="showPanelButons" type="checkbox" name="showPanelButons">
+            <div class="panel-btns-content flex nd">
+                <a class="home-link btn round" href="#">
+                    <img src="{%config theme_url%}/statics/img/home.png">&nbsp;Home</a>
+                <div class="notifications-content flex center">
+                    <div class="ford-points-btn btn">
+                        <img src="{%config theme_url%}/statics/img/grid (1).png">
+                    </div>
+                    <div class="messages-btn btn">
+                        <img src="{%config theme_url%}/statics/img/email (1).png">
+                    </div>
+                    <div class="notifications-btn btn">
+                        <img src="{%config theme_url%}/statics/img/notification.png">
+                        <sup class="text-white bg-danger">3</sup>
+                    </div>
                 </div>
-                <div class="pubbox-input col-sm-3" style="padding-top: 4px; padding-left:35px;">
-                    <p style="font-size: 33px; margin-bottom: unset; padding-left: 37px;">TORIFY</p>
-                    <P style="font-size: 17px; color: #b974dd; padding-top: 9px;">Tweet for the DN Community </P>
+            </div>
+            <label class="User-account-dropdown btn mintext bg-3 round flex center nd gap-1" for="test">
+                <div class="user-image s-4 circle">
+                    <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
                 </div>
-            </a>
-            <div class="col-sm-3"></div>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <div class="form " style="left: -45px;top:-10px;">
-                    <i class="fa fa-search" style="z-index: 10;"></i>
-                    <input type="text" class="form-control form-input" placeholder="Search anything...">
-
-                </div>
-                <div class="col-sm-4"></div>
-                <ul class="navbar-nav me-auto" style="">
-                    <li class="nav-item">
-                        <a class="nav-link" href="">/c/Torify</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">#Explore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=""><img src="https://img.icons8.com/material/24/737373/topic--v1.png"
-                                style="width:20px; height:20px;" /></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=""><img src="https://img.icons8.com/material/24/737373/bell--v1.png"
-                                style="width:20px; height:20px;" /></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=""><img src="https://img.icons8.com/material/24/737373/shield--v1.png"
-                                style="width:20px; height:20px;" /></a>
-                    </li>
+                <span>@Admin</span>
+                <input class="hidden" id="test" type="checkbox" name="test">
+                <ul class="panel-links-content absolute bg-3 target flex col gap-1">
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i>
+                            Side Admin</a></li>
+                    <li><a class="flex center nd gap-1" href="home"><i class="material-symbols-outlined">description</i>
+                            Timeline</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">tag</i>
+                            Explore</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">forum</i>
+                            Messages</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">bookmark</i>
+                            Bookmarks</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i>
+                            Control Panel</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">campaign</i>
+                            Advertising</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i>
+                            Lorem</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">logout</i>
+                            Logout</a></li>
                 </ul>
-
+                <div class="aux-div fixed hidden"></div>
+            </label>
+            <div class="showmore-btn btn flex center">
+                <img src="{%config theme_url%}/statics/img/shield (1).png">
             </div>
         </div>
     </nav>
 
     <?php endif; ?>
-    <div data-el="main-content-holder" class="main_body">
-        <main class="main-content-container <?php echo (($cl["is_logged"]) ? "" : "guest-mode"); ?>">
-            <?php if ($cl["pn"] == "guest") : ?>
-            <?php echo $cl["http_res"]; ?>
-            <?php else : ?>
+    <main class="Main-dash-board grid js-c <?php echo (($cl["is_logged"]) ? "" : "guest-mode"); ?>">
+        <?php if ($cl["pn"] == "guest") : ?>
+        <?php echo $cl["http_res"]; ?>
+        <?php else : ?>
 
-            <div class="main-content-container-inner" style="margin-left:330px;">
-                <?php if (not_empty($cl["sbl"])) : ?>
-                <?php if (not_empty($cl["is_logged"])) : ?>
-                <?php echo cl_template('main/left_sidebar'); ?>
-                <?php else : ?>
-                <?php echo cl_template('main/left_sidebar_guest'); ?>
-                <?php endif; ?>
-                <?php endif; ?>
-
-                <div data-el="timeline-container-wrapper" class="timeline-container-wrapper"
-                    style="top:17px; min-width:970px;">
-                    <div data-el="timeline-content" class="timeline-container-inner">
-                        <?php echo $cl["http_res"]; ?>
-                    </div>
-
-                    <div data-el="spa-preloader" class="spa-preloader d-none">
-                        <div class="spa-preloader-inner">
-                            <span class="spinner-icon">
-                                <?php echo cl_icon("spinner-icon"); ?>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <?php global $is_moderator;
-                    ?>
-                <?php if (not_empty($cl["sbr"])) : ?>
-                <?php if ($cl["pn"] == "create_post" || $cl['pn'] == "create_community" || $cl['pn'] == "approved_users" || $cl['pn'] == "moderators" || $cl['pn'] == "join_community" || $cl['pn'] == "community_rules" || $cl['pn'] == "community_settings" || $cl['pn'] == "community_appearance" || $cl['pn'] == "community_mod_mail" || $cl['pn'] == "automod") : ?>
-                <?php echo cl_template('main/right_sidebar_other'); ?>
-                <?php elseif ($cl["pn"] == "home") : ?>
-                <?php echo cl_template('main/right_sidebar'); ?>
-                <?php elseif ($cl["pn"] == "community") : ?>
-                <?php if (not_empty($is_moderator)) : ?>
-                <?php echo cl_template('main/right_sidebar_community_moderator'); ?>
-                <?php else : ?>
-                <?php echo cl_template('main/right_sidebar_community_visitor'); ?>
-                <?php endif; ?>
-                <?php else : ?>
-                <?php echo cl_template('main/right_sidebar'); ?>
-                <?php endif; ?>
-                <?php endif; ?>
-
-            </div>
-            <?php endif; ?>
-        </main>
-
-        <?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true) : ?>
-        <?php echo cl_template('main/bottom_navbar'); ?>
+        <?php if (not_empty($cl["sbl"])) : ?>
+        <?php if ($cl["pn"] == "home") : ?>
+        <?php echo cl_template('main/left_sidebar'); ?>
+        <?php elseif ($cl['pn'] == "show_post_details") : ?>
+        <?php echo cl_template('main/left_sidebar'); ?>
+        <?php elseif ($cl['pn'] == "community") : ?>
+        <?php echo cl_template('main/left_sidebar_community'); ?>
+        <?php endif; ?>
         <?php endif; ?>
 
-        <input id="csrf-token" type="hidden" class="hidden d-none"
-            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>">
+        <?php echo $cl["http_res"]; ?>
 
-        <?php if ($cl['is_logged']) : ?>
-        <div class="modal fade modal-pubbox " data-app="modal-pubbox" id="add_new_post" tabindex="-1" role="dialog"
-            aria-hidden="false">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-header__inner">
-                            <h5 class="modal-title" data-an="modal-title">
-                                <?php echo cl_translate('New post'); ?>
-                            </h5>
-                            <span class="dismiss-modal" data-dismiss="modal">
-                                <?php echo cl_icon('close'); ?>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <?php $cl['pb_id'] = 2;
-                            echo cl_template('timeline/pubbox'); ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php // echo cl_template('timeline/scripts/pubbox_master_script'); 
+        <?php global $is_moderator;
             ?>
+        <?php if (not_empty($cl["sbr"])) : ?>
+        <?php if ($cl["pn"] == "home") : ?>
+        <?php echo cl_template('main/right_sidebar'); ?>
+        <?php elseif ($cl['pn'] == 'show_post_details') : ?>
+        <?php echo cl_template('main/right_sidebar'); ?>
+        <?php elseif ($cl['pn'] == 'community') : ?>
+        <?php echo cl_template('main/right_sidebar_community'); ?>
         <?php endif; ?>
-        <div data-app="black-hole"></div>
-        <?php if (not_empty($cl['config']['google_analytics'])) : ?>
-        <?php echo htmlspecialchars_decode($cl['config']['google_analytics']); ?>
         <?php endif; ?>
-
-        <?php if ($cl["pn"] != 'guest') : ?>
-        <?php //echo cl_template("main/scripts/app_master_script"); 
-            ?>
-        <?php endif; ?>
-
-        <?php if ($cl['is_logged']) : ?>
-        <?php if (in_array($cl["pn"], array("bookmarks", "home", "profile", "search", "thread"))) : ?>
-        <?php //echo cl_template("main/modals/report_post"); 
-                ?>
-        <?php endif; ?>
-
-        <?php //echo cl_template("main/modals/display_settings"); 
-            ?>
-        <?php endif; ?>
-    </div>
-
-    <?php if ($cl['config']['cookie_warning_popup'] == "on") : ?>
-    <?php if (empty($_COOKIE['__c_u_a__'])) : ?>
-    <?php if ($cl["pn"] != "stat_pages") : ?>
-    <?php echo cl_template("main/modals/cookies_alert"); ?>
-    <?php endif; ?>
-    <?php endif; ?>
-    <?php endif; ?>
-    <input id="logout" type="checkbox">
-    <div class="overlay overlay-hugeinc">
-
-        <div class="overlay_body_logout">
-
-
-
-            <div class="modal-body">
-                <h4>Leaving already?</h4>
-                <p>Are you sure that you want to log out from your account?</p>
-            </div>
-            <div class="modal-footer">
-                <a href="logout" class="btn btn-custom main-red md btn-block">
-                    <button id="confirm-actions-confirm" type="submit"
-                        class="btn btn-custom main-red md btn-block">Logout</button></a>
-                <label id="confirm-actions-cancel" for="logout"
-                    class="btn btn-custom main-grey md btn-block">Cancel</label>
-            </div>
 
         </div>
+        <?php endif; ?>
+    </main>
 
-    </div>
-    <?php if ($cl["server_mode"] == "dev") : ?>
-    <!-- <div class="bootstrap-bp-display">
-		    <div class="d-block d-sm-none">Extra Small (xs)</div>
-		    <div class="d-none d-sm-block d-md-none">Small (sm)</div>
-		    <div class="d-none d-md-block d-lg-none">Medium (md)</div>
-		    <div class="d-none d-lg-block d-xl-none">Large (lg)</div>
-		    <div class="d-none d-xl-block d-xxl-none" >X-Large (xl)</div>
-		    <div class="d-none d-xxl-block" >XX-Large (xxl)</div>
-		</div> -->
-    <?php endif; ?>
+
 
 
 </body>

@@ -17,11 +17,13 @@
                 </a>
             </div>
             <div class="rp">
-                <div class="nav-link-holder">
-                    <span class="go-back" onclick="SMColibri.go_back();">
-                        <?php echo cl_icon('arrow_back'); ?>
-                    </span>
-                </div>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
+                    <div class="nav-link-holder">
+                        <span class="go-back">
+                            <?php echo cl_icon('arrow_back'); ?>
+                        </span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -37,8 +39,8 @@
             </h4>
             <p>
                 <?php echo cl_translate('Just share your affiliate URL and every time someone signs up with your referral link you will earn {@aff_bonus_rate@}', array(
-					'aff_bonus_rate' => cl_html_el("b", cl_money($cl['config']['aff_bonus_rate']))
-				)); ?>
+                    'aff_bonus_rate' => cl_html_el("b", cl_money($cl['config']['aff_bonus_rate']))
+                )); ?>
             </p>
             <div class="icon icon-2">
                 <?php echo cl_icon('arrow_down'); ?>
@@ -49,45 +51,45 @@
                 <?php echo cl_translate('This is your affiliate URL'); ?>
             </div>
             <div class="affiliates__body-midline">
-                <?php echo cl_strf("%s?ref=%s",$cl['config']['url'], $me['raw_uname']); ?>
+                <?php echo cl_strf("%s?ref=%s", $cl['config']['url'], $me['raw_uname']); ?>
             </div>
             <div class="affiliates__body-botline">
                 <a href="" class="social-link-btn copy-link clip-board-copy"
-                    data-clipboard-text="<?php echo cl_strf("%s?ref=%s",$cl['config']['url'], $me['raw_uname']); ?>">
+                    data-clipboard-text="<?php echo cl_strf("%s?ref=%s", $cl['config']['url'], $me['raw_uname']); ?>">
                     <span class="social-link-btn__icon">
                         <?php echo cl_icon('content_copy'); ?>
                     </span>
                 </a>
                 <a target="_blank"
-                    href="https://www.facebook.com/sharer/sharer.php?u=<?php echo cl_strf("%s?ref=%s",$cl['config']['url'], $me['raw_uname']); ?>"
+                    href="https://www.facebook.com/sharer/sharer.php?u=<?php echo cl_strf("%s?ref=%s", $cl['config']['url'], $me['raw_uname']); ?>"
                     class="social-link-btn facebook">
                     <span class="social-link-btn__icon">
                         <?php echo cl_icon('logos/logo-facebook'); ?>
                     </span>
                 </a>
                 <a target="_blank"
-                    href="https://twitter.com/intent/tweet?text=<?php echo cl_strf("%s?ref=%s",$cl['config']['url'], $me['raw_uname']); ?>"
+                    href="https://twitter.com/intent/tweet?text=<?php echo cl_strf("%s?ref=%s", $cl['config']['url'], $me['raw_uname']); ?>"
                     class="social-link-btn twitter">
                     <span class="social-link-btn__icon">
                         <?php echo cl_icon('logos/logo-twitter'); ?>
                     </span>
                 </a>
                 <a target="_blank"
-                    href="https://api.whatsapp.com/send?text=<?php echo cl_strf("%s?ref=%s",$cl['config']['url'], $me['raw_uname']); ?>"
+                    href="https://api.whatsapp.com/send?text=<?php echo cl_strf("%s?ref=%s", $cl['config']['url'], $me['raw_uname']); ?>"
                     class="social-link-btn whatsapp">
                     <span class="social-link-btn__icon">
                         <?php echo cl_icon('logos/logo-whatsapp'); ?>
                     </span>
                 </a>
                 <a target="_blank"
-                    href="https://www.pinterest.ru/pin/create/button/?url=<?php echo cl_strf("%s?ref=%s",$cl['config']['url'], $me['raw_uname']); ?>"
+                    href="https://www.pinterest.ru/pin/create/button/?url=<?php echo cl_strf("%s?ref=%s", $cl['config']['url'], $me['raw_uname']); ?>"
                     class="social-link-btn pinterest">
                     <span class="social-link-btn__icon">
                         <?php echo cl_icon('logos/logo-pinterest'); ?>
                     </span>
                 </a>
                 <a target="_blank"
-                    href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo cl_strf("%s?ref=%s",$cl['config']['url'], $me['raw_uname']); ?>"
+                    href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo cl_strf("%s?ref=%s", $cl['config']['url'], $me['raw_uname']); ?>"
                     class="social-link-btn linkedin">
                     <span class="social-link-btn__icon">
                         <?php echo cl_icon('logos/logo-linkedin'); ?>
@@ -100,11 +102,11 @@
                 <div class="payout-request-cta">
                     <?php echo cl_translate('Submit a request to pay your earnings'); ?>
                 </div>
-                <?php if (cl_aff_request_exists()): ?>
+                <?php if (cl_aff_request_exists()) : ?>
                 <button disabled="true" class="btn btn-custom main-inline lg btn-block">
                     <?php echo cl_translate('Your request is pending'); ?>
                 </button>
-                <?php else: ?>
+                <?php else : ?>
                 <button onclick="SMCAffiliates.new_req();" class="btn btn-custom main-inline lg btn-block">
                     <?php echo cl_translate('Request payout'); ?> <?php echo cl_money(cl_calc_affiliate_bonuses()); ?>
                 </button>
@@ -115,7 +117,7 @@
                     <?php echo cl_translate('How it works?'); ?>
                 </span>
 
-                <?php if (not_empty($cl["payout_history"])): ?>
+                <?php if (not_empty($cl["payout_history"])) : ?>
                 <span class="show-history" onclick="SMCAffiliates.show_prev_reqs();">
                     <?php echo cl_translate('Show payout request history'); ?>
                 </span>
@@ -130,5 +132,6 @@
 
     <?php echo cl_template("affiliates/modals/payout_history"); ?>
 
-    <?php //echo cl_template("affiliates/scripts/app_master_script"); ?>
+    <?php //echo cl_template("affiliates/scripts/app_master_script"); 
+    ?>
 </div>

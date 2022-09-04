@@ -35,7 +35,7 @@
                                     <?php echo cl_icon('navigate_next'); ?>
                                 </span>
                             </a>
-                            <?php if (not_empty($cl["notifs"])): ?>
+                            <?php if (not_empty($cl["notifs"])) : ?>
                             <div class="dropdown-divider"></div>
                             <a onclick="SMColibri.PS.notifs.delete_all_notifs();" class="dropdown-item" href="">
                                 <span class="flex-item dropdown-item-icon">
@@ -47,7 +47,7 @@
                             </a>
                             <?php endif; ?>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="" onclick="SMColibri.go_back();">
+                            <a class="dropdown-item" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
                                 <span class="flex-item dropdown-item-icon">
                                     <?php echo cl_icon('arrow_back'); ?>
                                 </span>
@@ -67,7 +67,9 @@
     <div class="timeline-navbar">
         <div class="timeline-navbar__item">
             <a href="<?php echo cl_link("notifications"); ?>" data-spa="true">
-                <button class="timeline-navbar__item-btn <?php if($cl['page_tab'] == 'notifs') {echo('active');} ?>">
+                <button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'notifs') {
+                                                                echo ('active');
+                                                            } ?>">
                     <span class="btn-flex-inner">
                         <span class="icon">
                             <?php echo cl_icon("notifications"); ?>
@@ -81,7 +83,9 @@
         </div>
         <div class="timeline-navbar__item">
             <a href="<?php echo cl_link("mentions"); ?>" data-spa="true">
-                <button class="timeline-navbar__item-btn <?php if($cl['page_tab'] == 'mentions') {echo('active');} ?>">
+                <button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'mentions') {
+                                                                echo ('active');
+                                                            } ?>">
                     <span class="btn-flex-inner">
                         <span class="icon">
                             <?php echo cl_icon("alternate_email"); ?>
@@ -96,18 +100,18 @@
     </div>
     <div class="d-block" id="vue-notifications-app">
         <div class="notifications">
-            <?php if (not_empty($cl["notifs"])): ?>
+            <?php if (not_empty($cl["notifs"])) : ?>
             <div data-an="notifs-list" class="notifications-list">
-                <?php foreach ($cl["notifs"] as $cl['li']): ?>
+                <?php foreach ($cl["notifs"] as $cl['li']) : ?>
                 <?php echo cl_template('notifications/includes/list_item'); ?>
                 <?php endforeach; ?>
             </div>
-            <?php else: ?>
+            <?php else : ?>
             <?php echo cl_template('notifications/includes/no_notifs'); ?>
             <?php endif; ?>
         </div>
 
-        <?php if (count($cl["notifs"]) >= 45): ?>
+        <?php if (count($cl["notifs"]) >= 45) : ?>
         <div class="timeline-data-loader">
             <button v-if="loading" class="btn btn-custom main-outline lg" disabled="true">
                 <?php echo cl_translate("Please wait"); ?>
@@ -121,5 +125,6 @@
         </div>
         <?php endif; ?>
     </div>
-    <?php //echo cl_template('notifications/scripts/app_master_script'); ?>
+    <?php //echo cl_template('notifications/scripts/app_master_script'); 
+    ?>
 </div>

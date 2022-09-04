@@ -1,159 +1,177 @@
-<div class="right-sb-container sidebar" data-app="right-sidebar">
-    <div class="sidebar__inner; padding-left:unset;">
-        <div class="right-sidebar">
-            <div class="right-sidebar__header">
-                <form id="vue-main-search-app" autocomplete="off" class="form sidebar-searchbar">
-                    <div class="sidebar-searchbar__input" style="padding-bottom:10px;">
-                        <input type="text" placeholder="Search for people, hashtags.." class="form-control">
-
-                        <!---->
+<section class="side-bar-r flex col nd gap-2">
+    <div class="Advertisement"></div>
+    <div class="Trends-target target">
+        <h3>Lorem, ipsum dolor.</h3>
+        <h4>Lorem, ipsum dolor.</h4>
+        <div class="conconfig-btn btn absolute">⚙</div>
+        <div class="trending-content flex col">
+            <div class="Trend-display flex nd">
+                <div class="trend-data-content"><a class="tag" href="#">#SomeTag</a>
+                    <p class="tweets-conunt t-color-3 mintext">97.7 k tweets</p>
+                </div>
+                <div class="options-btn-content flex nd center">
+                    <div class="Option-button flex center btn">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
                     </div>
-                    <div class="sidebar-searchbar__result" style="display: none;">
-                        <div class="search-result">
-                            <div class="search-result__body">
-                                <div data-an="result" class="search-result__list"></div>
-                            </div>
-                            <div class="search-result__footer disabled">
-                                <a href="" data-spa="true">
-                                    <button class="btn btn-custom main-outline md btn-block">
-                                        Advanced search
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="Trend-display flex nd">
+                <div class="trend-data-content"><a class="tag" href="#">#SomeTag</a>
+                    <p class="tweets-conunt t-color-3 mintext">97.7 k tweets</p>
+                </div>
+                <div class="options-btn-content flex nd center">
+                    <div class="Option-button flex center btn">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="Trend-display flex nd">
+                <div class="trend-data-content"><a class="tag" href="#">#SomeTag</a>
+                    <p class="tweets-conunt t-color-3 mintext">97.7 k tweets</p>
+                </div>
+                <div class="options-btn-content flex nd center">
+                    <div class="Option-button flex center btn">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="Trend-display flex nd">
+                <div class="trend-data-content"><a class="tag" href="#">#SomeTag</a>
+                    <p class="tweets-conunt t-color-3 mintext">97.7 k tweets</p>
+                </div>
+                <div class="options-btn-content flex nd center">
+                    <div class="Option-button flex center btn">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="Trend-display flex nd">
+                <div class="trend-data-content"><a class="tag" href="#">#SomeTag</a>
+                    <p class="tweets-conunt t-color-3 mintext">97.7 k tweets</p>
+                </div>
+                <div class="options-btn-content flex nd center">
+                    <div class="Option-button flex center btn">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div><a href="#">Show more</a>
+    </div>
+    <div class="Advertisement"></div>
+    <div class="Big-button btn round">some text</div>
+    <div class="Big-button btn round">some text</div>
+    <div class="Comunity-target target">
+        <h3>COMMUNITIES TO FOLLOW</h3>
+        <div class="comunyties-content flex col">
+            <?php if (count($cl['communities_can_follow']) > 5) : ?>
+            <?php $random = array_rand($cl['communities_can_follow'], 5); ?>
+            <?php else : ?>
+            <?php $random = array_rand($cl['communities_can_follow'], count($cl['communities_can_follow']));
+                shuffle($cl['communities_can_follow']); ?>
+            <?php endif; ?>
+
+            <?php foreach ($random as  $index) {
+                $community = $cl['communities_can_follow'][$index];
+            ?>
+            <div class="Comunity-display grid">
+                <div class="comunity-image-content">
+                    <div class="user-image s-2 circle">
+                        <?php if (!empty($community['icon'])) : ?>
+                        <img src="<?php echo $community['icon']; ?>" alt="Avatar">
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="comunity-data-content">
+                    <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
+                        <h4><?php echo $community['name'] ?></h4>
+                    </a>
+                    <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
+                </div>
+                <form method="POST" action="native_api/main/follow">
+                    <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
+                    <div class="comunkarity-action-content flex center">
+                        <button class="follow-btn mintext btn" type="submit">Join</button>
                     </div>
                 </form>
             </div>
-            <div class="card" style="font-size: 17px">
-                <div class="card-header"
-                    style="background-image: url({%config theme_url%}/Homepage_files/banner.png);height: 60px;">
-                </div>
 
+            <?php  } ?>
 
-                <!-- /.card-header -->
-                <div style="text-align-last: center; position: relative">
-                    <div style="font-size:20px;"><br></div>
-                    <a href="<?php echo cl_link("create_post"); ?>"> <button type="button" class="btn btn-primary"
-                            style="border-radius: 16px;background-color:<?php echo $cl["display_set"]["highlight"]; ?>;
-											text-align: center;
-											font-size: 19px;
-											width: 256px;
-											height: 31px;
-											padding-top: 0px;
-											padding-bottom: 0px;">Create Post</button></a>
-                    <div style="font-size:10px;"><br></div>
-                    <a href="<?php echo cl_link("create_community"); ?>"><button type="button"
-                            class="btn btn-outline-primary" style="border-radius: 16px;color:<?php echo $cl["display_set"]["highlight"]; ?>;
-											text-align: center;
-											font-size: 19px;
-											width: 256px;
-											height: 31px;
-											padding-top: 0px;
-											padding-bottom: 0px;">Create Community</button></a>
-                    <div style="font-size:20px;"><br></div>
-
-                    <div style="font-size:6px;"><br></div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <div class="right-sidebar__body">
-                <div style="font-size:15px;"><br></div>
-                <div class="sidebar-content sidebar-content_hashtags"
-                    style="border-bottom: unset;padding-left:10px; margin-bottom: unset;">
-                    <div class="sidebar-content__header" style="font-weight: bold;margin-bottom:20px;">
-                        HOT TOPICS FOR YOU
-                    </div>
-                    <div class="sidebar-content__body">
-                        <div class="sidebar-content-empty" style="color: grey;margin-bottom:20px;">
-                            Here will be a (#hashtag) list of the most relevant topics and events
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="card-header"
-                style="background-image: url({%config theme_url%}/Homepage_files/banner2.png);height: 67px;"></div>
-            <div style="font-size:20px;"><br></div>
-            <div class="card" style="font-size: 17px">
-
-                <div class="card-header"
-                    style="background-image: url({%config theme_url%}/Homepage_files/2.png);height: 67px;">
-                    <h3 class="card-title" style="position: relative;top: 36px;font-size: 14px;color: white;">Top News
-                        Communities</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body p-0" style="text-align-last: center;">
-                    <table class="table table-striped">
-                        <tbody>
-                            <?php
-                            global $cl, $me, $db;
-                            $sql = "select * from cl_community";
-                            $query_res = $db->rawQuery($sql);
-                            cl_queryset($query_res);
-                            $num = 0;
-                            foreach ($query_res as $item) {
-                                $num = $num + 1;
-
-                            ?>
-                            <tr>
-                                <td><?php echo $num; ?>.</td>
-
-                                <?php if (not_empty($item['icon'])) : ?>
-                                <td style="padding-left:unset;">
-                                    <img src="<?php echo $item['icon']; ?>"
-                                        style="height: 24px; width:24px;border: 3px solid white;border-radius: 34px;z-index: 300;">
-                                </td>
-                                <?php else : ?>
-                                <td>
-                                    <div
-                                        style="font-size:20px; color:white; background-color: <?php echo $cl["display_set"]["base"]; ?>;height: 24px; width:24px;border: 3px solid white;border-radius: 34px;z-index: 300;">
-                                        <div class="icon_name">r/</div>
-                                    </div>
-                                </td>
-                                <?php endif; ?>
-
-                                <td>
-                                    <a href="<?php echo ("community" . "?community_id=" . $item['community_id']); ?>">
-
-                                        <?php
-                                            echo $item['name'];
-                                            ?>
-                                    </a>
-                                </td>
-
-                            </tr>
-                            <?php
-                            }
-                            ?>
-
-                        </tbody>
-                    </table>
-                    <div style="font-size:6px;"><br></div>
-                    <button type="button" class="btn btn-primary" style="border-radius: 16px;
-												text-align: center;background-color:<?php echo $cl["display_set"]["highlight"]; ?>;
-												font-size: 19px;
-												width: 256px;
-												height: 31px;
-												padding-top: 0px;
-												padding-bottom: 0px;">View All</button>
-                    <div style="font-size:6px;"><br></div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <div style="font-size:6px;"><br></div>
-        </div>
-        <div class="right-sidebar__footer">
-            <?php //echo cl_template('main/footer'); 
-            ?>
-        </div>
-        <?php if (not_empty($cl["gads_vert"])) : ?>
-        <div class="right-sidebar__ads">
-            <div class="cl-google-ads">
-                <?php echo $cl["gads_vert"]; ?>
-            </div>
-        </div>
-        <?php endif; ?>
+        </div><a href="#">Show more</a>
     </div>
-</div>
-</div>
+    <div class="Comunity-target target">
+        <h3>PEOPLE YOU MAY KNOW</h3>
+        <div class="comunyties-content flex col">
+
+
+            <?php shuffle($cl['users']); ?>
+
+            <?php if (count($cl['users']) > 5) : ?>
+            <?php $count = 5; ?>
+            <?php else : ?>
+            <?php $count = count($cl['users']); ?>
+            <?php endif; ?>
+
+            <?php for ($x = 0; $x < $count; $x++) {
+                $user = $cl['users'][$x];
+            ?>
+
+            <div class="Comunity-display grid">
+                <div class="comunity-image-content">
+                    <div class="user-image s-2 circle">
+                        <?php if (!empty($user['avatar'])) : ?>
+                        <img src="<?php echo $user['avatar']; ?>" alt="Avatar">
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="comunity-data-content">
+                    <a href="">
+                        <h4><?php echo $user['username'] ?></h4>
+                    </a>
+                </div>
+                <form method="POST" action="native_api/main/follow">
+                    <div class="comunkarity-action-content flex center">
+                        <button class="follow-btn mintext btn" type="submit">Follow</button>
+                    </div>
+                </form>
+            </div>
+
+            <?php  } ?>
+
+        </div><a href="#">Show more</a>
+    </div>
+    <!-- <div class="Trends-target target">
+        <h3>PEOPLE YOU MAY KNOW</h3>
+        <div class="trending-content flex col">
+            <?php foreach ($cl['users'] as $key => $user) {
+                if ($key == 5) break; ?>
+            <div class="Trend-display flex nd">
+                <div class="trend-data-content">
+                    <a class="tag" href="#">
+                        <?php echo $user['username'] ?>
+                    </a>
+                    <p class="tweets-conunt t-color-3 mintext">10 Members</p>
+                </div>
+                <div class="options-btn-content flex nd center">
+                    <div class="Option-button flex center btn">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <?php  } ?>
+
+        </div><a href="#">Show more</a>
+    </div> -->
+</section>

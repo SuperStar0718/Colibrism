@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)							@
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -33,3 +33,9 @@ define("T_PUB_REPORTS", "cl_pub_reports");
 define("T_ACC_VALIDS", "cl_acc_validations");
 define("T_USER_INVITES", "cl_invite_links");
 define("T_UI_LANGS", "cl_ui_langs");
+define("T_COMMUNITY", "cl_community");
+define("T_JOIN_LIST", "cl_join_list");
+define("T_COMMUNITY_FOLLOWING", "cl_community_following");
+
+global $image_path;
+$image_path = "";

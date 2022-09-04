@@ -10,7 +10,7 @@
 # @*************************************************************************@
 
 session_start();
-
+date_default_timezone_set('UTC');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -38,7 +38,6 @@ $mysqli          = new mysqli($sql_db_host, $sql_db_user, $sql_db_pass, $sql_db_
 
 if (mysqli_connect_errno()) {
     array_push($cl["db_errors"], mysqli_connect_error());
-
     if (not_empty($cl["db_errors"])) {
         echo cl_html_template("db_errors");
         die();
@@ -46,6 +45,7 @@ if (mysqli_connect_errno()) {
 }
 
 $me            = array();
+
 $db_connection = $mysqli;
 $query         = $mysqli->query("SET NAMES utf8");
 $set_charset   = $mysqli->set_charset('utf8mb4');
@@ -189,6 +189,7 @@ if (not_empty($me['id'])) :
             $me['community_icon'] = $row['icon'];
         }
 endif;
+
 // $cl["display_set"]["color_scheme"]
 // $cl["display_set"]["background"];
 // $cl["display_set"]["base"] = "#0000ff";

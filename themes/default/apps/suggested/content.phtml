@@ -17,25 +17,27 @@
                 </a>
             </div>
             <div class="rp">
-                <div class="nav-link-holder">
-                    <span class="go-back" onclick="SMColibri.go_back();">
-                        <?php echo cl_icon('arrow_back'); ?>
-                    </span>
-                </div>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
+                    <div class="nav-link-holder">
+                        <span class="go-back">
+                            <?php echo cl_icon('arrow_back'); ?>
+                        </span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
     <div class="timeline-users-container">
         <div class="timeline-user-ls" data-an="suggested-list">
-            <?php if (not_empty($cl["users_list"])): ?>
-            <?php foreach ($cl["users_list"] as $cl['li']): ?>
+            <?php if (not_empty($cl["users_list"])) : ?>
+            <?php foreach ($cl["users_list"] as $cl['li']) : ?>
             <?php echo cl_template('suggested/includes/list_item'); ?>
             <?php endforeach; ?>
             <?php endif; ?>
         </div>
     </div>
 
-    <?php if (count($cl["users_list"]) >= 25): ?>
+    <?php if (count($cl["users_list"]) >= 25) : ?>
     <div class="timeline-data-loader">
         <button class="btn btn-custom main-outline lg" data-an="load-more">
             <?php echo cl_translate("Show more"); ?>
@@ -43,5 +45,6 @@
     </div>
     <?php endif; ?>
 
-    <?php //echo cl_template('suggested/scripts/app_master_script'); ?>
+    <?php //echo cl_template('suggested/scripts/app_master_script'); 
+    ?>
 </div>

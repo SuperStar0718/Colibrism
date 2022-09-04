@@ -5,10 +5,11 @@
             <div class="card" style="font-size: 17px">
 
                 <div
-                    style="font-size:13px;background-color:<?php echo ($cl["display_set"]["base"]); ?>; color:white;padding-left:10px;padding-top:5px;padding-bottom:5px;display: flex;justify-content: space-between;padding-right:10px;">
+                    style="font-size:13px;background-color:<?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["highlight"];
+                                                            else echo "#0000ff"; ?>; color:white;padding-left:10px;padding-top:5px;padding-bottom:5px;display: flex;justify-content: space-between;padding-right:10px;">
                     About Community
-                    <button
-                        style="border:none; background-color:<?php echo ($cl["display_set"]["base"]); ?>;color:white;">
+                    <button style="border:none; background-color:<?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["base"];
+                                                                    else echo "#0000ff"; ?>;color:white;">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
                             fill="#ffffff">
                             <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -57,7 +58,8 @@
                     style="text-align-last: center; position: relative;left:10px;width:90%; padding-bottom:10px;border-bottom:1px solid #e4eaef;">
 
                     <a href="<?php echo cl_link("create_post"); ?>"> <button type="button" class="btn btn-primary"
-                            style="border-radius: 16px;background-color:<?php echo $cl["display_set"]["highlight"]; ?>;
+                            style="border-radius: 16px;background-color:<?php if (not_empty($cl["display_set"]["highlight"]))  echo $cl["display_set"]["highlight"];
+                                                                                                                                                                else echo "#0000ff"; ?>;
 											text-align: center;
 											font-size: 15px;
 											width: 100%;
@@ -179,13 +181,15 @@
             <div class="card" style="font-size: 17px">
 
                 <div
-                    style="font-size:13px;background-color:<?php echo ($cl["display_set"]["base"]); ?>; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
+                    style="font-size:13px;background-color:<?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["base"];
+                                                            else echo "#0000ff"; ?>; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
                     Moderators
                 </div>
                 <div style="text-align-last: center; position: relative;left:10px;width:90%;
                     padding-bottom:10px;border-bottom:1px solid #e4eaef;padding-top:10px;">
                     <button type="button" class="btn btn-outline-primary" style="border-radius: 16px;
-											text-align: center;color:<?php echo $cl["display_set"]["highlight"]; ?>;
+											text-align: center;color:<?php if (not_empty($cl["display_set"]["highlight"]))  echo $cl["display_set"]["highlight"];
+                                                                        else echo "#0000ff"; ?>;
 											font-size: 15px;
 											width: 100%;
 											height: 31px;

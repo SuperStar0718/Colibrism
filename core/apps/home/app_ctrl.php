@@ -23,11 +23,13 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false)
 		"t_pubs"    => T_PUBS,
 		"t_conns"   => T_CONNECTIONS,
 		"t_reports" => T_PUB_REPORTS,
+		"t_community" => T_COMMUNITY,
 		"limit"     => $limit,
 		"offset"    => $offset,
 		"onset"     => $onset,
 		"user_id"   => $me['id'],
 	));
+
 
 	$query_res = $db->rawQuery($sql);
 	$counter   = 0;
@@ -55,6 +57,8 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false)
 				$post_data['offset_id']   = $row['offset_id'];
 				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
 				$post_data['is_reposter'] = false;
+				$post_data['community_name'] = $row['name'];
+
 				$post_data['attrs']       = array();
 				// echo "hello " . in_array($post_data['community_id'], $community_id);
 

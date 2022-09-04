@@ -17,16 +17,18 @@
                 </a>
             </div>
             <div class="rp">
-                <div class="nav-link-holder">
-                    <span class="go-back" onclick="SMColibri.go_back();">
-                        <?php echo cl_icon('arrow_back'); ?>
-                    </span>
-                </div>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
+                    <div class="nav-link-holder">
+                        <span class="go-back">
+                            <?php echo cl_icon('arrow_back'); ?>
+                        </span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
 
-    <?php if (not_empty($cl["chats"])): ?>
+    <?php if (not_empty($cl["chats"])) : ?>
     <div class="d-block" id="vue-chats-app">
         <div class="timeline-searchbar">
             <form class="form timeline-searchbar__form" autocomplete="off">
@@ -44,7 +46,7 @@
         </div>
         <div class="chats">
             <div v-show="display_chats" class="chat-contacts" data-an="contacts-list">
-                <?php foreach ($cl["chats"] as $cl['li']): ?>
+                <?php foreach ($cl["chats"] as $cl['li']) : ?>
                 <?php echo cl_template('chats/includes/list_item'); ?>
                 <?php endforeach; ?>
             </div>
@@ -60,15 +62,16 @@
                     </h4>
                     <p>
                         <?php echo cl_translate("Could not find anything in your chats history for your search query {@search_query@}. Please try again by typing other keywords.", array(
-								"search_query" => cl_html_el('b', '{{search_query}}', array('class' => 'seach-query'))
-							)); ?>
+                                "search_query" => cl_html_el('b', '{{search_query}}', array('class' => 'seach-query'))
+                            )); ?>
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    <?php// echo cl_template('chats/scripts/app_master_script'); ?>
-    <?php else: ?>
+    <? php // echo cl_template('chats/scripts/app_master_script'); 
+        ?>
+    <?php else : ?>
     <div class="timeline-placeholder">
         <div class="icon">
             <div class="icon__bg">
@@ -80,9 +83,9 @@
                 <?php echo cl_translate("No chats yet!"); ?>
             </h4>
             <p>
-                <?php echo cl_translate("Oops! It looks like you don't have any chat history yet. To start chatting with a user, open his profile page, then click on the button with {@svg_icon@} to start chatting",array(
-						"svg_icon" => cl_html_el("span", cl_icon("chat"), array("class" => "inline-icon"))
-					)); ?>
+                <?php echo cl_translate("Oops! It looks like you don't have any chat history yet. To start chatting with a user, open his profile page, then click on the button with {@svg_icon@} to start chatting", array(
+                        "svg_icon" => cl_html_el("span", cl_icon("chat"), array("class" => "inline-icon"))
+                    )); ?>
             </p>
         </div>
         <div class="c2action-single">

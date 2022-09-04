@@ -1,197 +1,84 @@
-<div class="left-sb-container sidebar" data-app="left-sidebar" style="min-width:200px;">
-    <div class="sidebar__inner" style="position: relative;padding-right:unset;">
-        <div class="sidebar__nav">
-            <div class="sidebar__nav-group">
-                <div data-navitem="profile" class="sidebar__nav-item <?php if ($cl['pn'] == 'profile' && not_empty($cl["page_xdata"]) && not_empty($cl["page_xdata"]["is_me"])) {
-                                                                            echo ('active');
-                                                                        } ?>">
-                    <span class="icon avatar">
-                        <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
-                    </span>
-                    <span class="text">
-                        <a href="<?php echo ($me["url"]); ?>" data-spa="true">
-                            <?php echo ($me["name"]); ?>
-                        </a>
-                    </span>
-                </div>
-                <div data-navitem="home" class="sidebar__nav-item <?php if ($cl['pn'] == 'home') {
-                                                                        echo ('active');
-                                                                    } ?>">
-                    <span class="icon">
-                        <?php echo cl_icon('feed'); ?>
-                    </span>
-                    <span class="text">
-                        <a href="<?php echo cl_link('/'); ?>" data-spa="true">
-                            <?php echo cl_translate('Timeline'); ?>
-                        </a>
-                    </span>
-                </div>
-                <div data-navitem="notifications" class="sidebar__nav-item <?php if ($cl['pn'] == 'notifications') {
-                                                                                echo ('active');
-                                                                            } ?>">
-                    <span class="icon">
-                        <?php echo cl_icon('notifications'); ?>
-                    </span>
-                    <span class="text">
-                        <a href="<?php echo cl_link("notifications"); ?>" data-spa="true">
-                            <?php echo cl_translate('Notifications'); ?>
-                            <span class="info-indicators" data-an="new-notifs"><?php echo fetch_or_get($me['new_notifs']); ?></span>
-                        </a>
-                    </span>
-                </div>
-
-                <div data-navitem="trending" class="sidebar__nav-item <?php if ($cl['pn'] == 'trending') {
-                                                                            echo ('active');
-                                                                        } ?>">
-                    <span class="icon">
-                        <?php echo cl_icon('whatshot'); ?>
-                    </span>
-                    <span class="text">
-                        <a href="<?php echo cl_link('trending'); ?>" data-spa="true">
-                            <?php echo cl_translate('Trending'); ?>
-                        </a>
-                    </span>
-                </div>
-                <div data-navitem="search" class="sidebar__nav-item <?php if ($cl['pn'] == 'search') {
-                                                                        echo ('active');
-                                                                    } ?>">
-                    <span class="icon">
-                        <?php echo cl_icon('tag'); ?>
-                    </span>
-                    <span class="text">
-                        <a href="<?php echo cl_link("search"); ?>" data-spa="true">
-                            <?php echo cl_translate('Explore'); ?>
-                        </a>
-                    </span>
-                </div>
-                <div data-navitem="chat" class="sidebar__nav-item <?php if ($cl['pn'] == 'chat') {
-                                                                        echo ('active');
-                                                                    } ?>">
-                    <span class="icon">
-                        <?php echo cl_icon('chat'); ?>
-                    </span>
-                    <span class="text">
-                        <a href="<?php echo cl_link("chats"); ?>" data-spa="true">
-                            <?php echo cl_translate('Messages'); ?>
-                            <span class="info-indicators" data-an="new-messages"><?php echo fetch_or_get($me['new_messages']); ?></span>
-                        </a>
-                    </span>
-                </div>
-                <div data-navitem="bookmarks" class="sidebar__nav-item <?php if ($cl['pn'] == 'bookmarks') {
-                                                                            echo ('active');
-                                                                        } ?>">
-                    <span class="icon">
-                        <?php echo cl_icon('bookmark'); ?>
-                    </span>
-                    <span class="text">
-                        <a href="<?php echo cl_link("bookmarks"); ?>" data-spa="true">
-                            <?php echo cl_translate('Bookmarks'); ?>
-                        </a>
-                    </span>
-                </div>
+<section class="side-bar-l flex col nd gap-2">
+    <div class="User-target flex col target">
+        <div class="user-front-page-image absolute">
+            <img src="<?php echo ($me['cover']); ?>" alt="Avatar">
+        </div>
+        <div class="user-data-content flex nd col center">
+            <div class="user-image s-1 circle">
+                <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
             </div>
-            <div class="sidebar__nav-group ">
-                <div class="sidebar__nav-item-devider"></div>
-                <?php if (not_empty($cl['is_admin'])) : ?>
-                    <div class="sidebar__nav-item">
-                        <span class="icon">
-                            <?php echo cl_icon('admin_panel'); ?>
-                        </span>
-                        <span class="text">
-                            <a href="<?php echo cl_link("admin_panel"); ?>">
-                                <?php echo cl_translate('Control panel'); ?>
-                            </a>
-                        </span>
-                    </div>
-                <?php endif; ?>
+            <span class="user-name">@<?php echo $me['username'] ?></span>
+            <img class="t-color-3 user-karma" src="https://badgen.net/badge/karma/1234/46B8DF">
+            <span class="t-color-3 user-member-since">
+                <img class="" src="{%config theme_url%}/statics/img/cake.png">
 
-
-                <?php if ($cl['config']['advertising_system'] == 'on' || 2) : ?>
-                    <div class="sidebar__nav-item-devider"></div>
-                    <div data-navitem="wallet" class="sidebar__nav-item <?php if ($cl['pn'] == 'wallet') {
-                                                                            echo ('active');
-                                                                        } ?>">
-                        <span class="icon">
-                            <?php echo cl_icon('account_balance'); ?>
-                        </span>
-                        <span class="text">
-                            <a href="<?php echo cl_link("wallet"); ?>" data-spa="true">
-                                <?php echo cl_translate('Wallet'); ?> <b class="wallet">(<?php echo cl_money($me['wallet']); ?>)</b>
-                            </a>
-                        </span>
-                    </div>
-                    <div data-navitem="ads" class="sidebar__nav-item <?php if ($cl['pn'] == 'ads') {
-                                                                            echo ('active');
-                                                                        } ?>">
-                        <span class="icon">
-                            <?php echo cl_icon('campaign'); ?>
-                        </span>
-                        <span class="text">
-                            <a href="<?php echo cl_link("ads"); ?>" data-spa="true">
-                                <?php echo cl_translate('Advertising'); ?>
-                            </a>
-                        </span>
-                    </div>
-                <?php endif; ?>
-                <?php if ($cl['config']['affiliates_system'] == 'on') : ?>
-                    <div data-navitem="affiliates" class="sidebar__nav-item <?php if ($cl['pn'] == 'affiliates') {
-                                                                                echo ('active');
-                                                                            } ?>">
-                        <span class="icon">
-                            <?php echo cl_icon('group_work'); ?>
-                        </span>
-                        <span class="text">
-                            <a href="<?php echo cl_link("affiliates"); ?>" data-spa="true">
-                                <?php echo cl_translate('Affiliates'); ?>
-                            </a>
-                        </span>
-                    </div>
-                <?php endif; ?>
-                <div class="sidebar__nav-item-devider"></div>
-                <div data-navitem="settings" class="sidebar__nav-item <?php if ($cl['pn'] == 'settings') {
-                                                                            echo ('active');
-                                                                        } ?>">
-                    <span class="icon">
-                        <?php echo cl_icon('manage_account'); ?>
-                    </span>
-                    <span class="text">
-                        <a href="<?php echo cl_link("settings"); ?>" data-spa="true">
-                            <?php echo cl_translate('Profile settings'); ?>
-                        </a>
-                    </span>
-                </div>
-                <div class="sidebar__nav-item">
-                    <span class="icon">
-                        <?php echo cl_icon('display_settings'); ?>
-                    </span>
-                    <span class="text">
-                        <a href="" onclick="SMColibri.display_settings();">
-                            <?php echo cl_translate('Display settings'); ?>
-                        </a>
-                    </span>
-
-
-
-
-                </div>
-                <div class="sidebar__nav-item-devider"></div>
-                <div class="sidebar__nav-item">
-                    <span class="icon">
-                        <?php echo cl_icon('logout'); ?>
-                    </span>
-                    <label for="logout">
-                        <span class="text">
-
-                            <?php echo cl_translate('Logout'); ?>
-
-                        </span></label>
-                </div>
-            </div>
+                Member Since :
+                <?php $now = new DateTime();
+                $date = new DateTime($me['joined']);
+                //echo $date->diff($now)->format("%h Hours %i Minute %s Seconds");
+                $year =  $date->diff($now)->format("%y");
+                $day = $date->diff($now)->format("%d");
+                $hour = $date->diff($now)->format("%h");
+                $min = $date->diff($now)->format("%i");
+                $sec = $date->diff($now)->format("%s");
+                if ($year != "0") echo $year . " Years Ago";
+                elseif ($day != "0") echo $day . " Days Ago";
+                elseif ($hour != "0") echo $hour . " Hours Ago";
+                elseif ($min != "0") echo $min . " Mins Ago";
+                else echo $sec . " Seconds Ago";
+                // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
+                ?>
+            </span>
+        </div>
+        <div class="account-summary grid">
+            <div class="tweets-conunt flex col  center"><span>6,634</span><span>Tweets</span></div>
+            <div class="comments-conunt flex col  center"><span>9,991</span><span>Comments</span></div>
+            <div class="folowing-conunt flex col center"><span>5,253</span><span>Following</span></div>
+            <div class="folowers-conunt flex col center"><span>4,532</span><span>Followers</span></div>
 
         </div>
-        <div class="sidebar__footer">
-            <?php echo cl_template('main/footer'); ?>
-        </div>
-
     </div>
-</div>
+    <div class="Comunity-target target">
+        <h3>COMMUNITIES YOU HAVE FOLLOWED</h3>
+        <div class="comunyties-content flex col">
+            <?php shuffle($cl['communities_followed']); ?>
+
+            <?php if (count($cl['communities_followed']) > 5) : ?>
+            <?php $count = 5; ?>
+            <?php else : ?>
+            <?php $count = count($cl['communities_followed']); ?>
+            <?php endif; ?>
+
+            <?php for ($x = 0; $x < $count; $x++) {
+                $community = $cl['communities_followed'][$x];
+            ?>
+            <div class="Comunity-display grid">
+                <div class="comunity-image-content">
+                    <div class="user-image s-2 circle">
+                        <?php if (!empty($community['icon'])) : ?>
+                        <img src="<?php echo $community['icon']; ?>" alt="Avatar">
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="comunity-data-content">
+                    <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
+                        <h4><?php echo $community['name'] ?></h4>
+                    </a>
+                    <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
+                </div>
+                <form method="POST" action="native_api/main/join">
+                    <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
+                    <div class="comunkarity-action-content flex center">
+                        <button class="follow-btn mintext btn" type="submit"
+                            style="background-color: #c14848;">Leave</button>
+                    </div>
+                </form>
+            </div>
+
+            <?php  } ?>
+
+        </div><a href="#">Show more</a>
+    </div>
+    <div class="Big-button btn round">some text</div>
+    <div class="Big-button btn round">some text</div>
+</section>

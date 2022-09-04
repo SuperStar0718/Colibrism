@@ -653,20 +653,28 @@ function cl_get_user_id_by_name($uname = null)
     return $user_id;
 }
 
-function cl_is_following($follower_id = false, $following_id = false)
+function cl_is_joined($user_id = false, $community_id = false)
 {
     global $db;
 
-    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
-        return false;
-    } else if ($follower_id == $following_id) {
-        return false;
-    }
 
-    $db  = $db->where('follower_id', $follower_id);
-    $db  = $db->where('following_id', $following_id);
-    $db  = $db->where('status', 'active');
-    $res = $db->getValue(T_CONNECTIONS, 'COUNT(id)');
+
+    $db  = $db->where('community_id', $community_id);
+    $db  = $db->where('user_id', $user_id);
+    $res = $db->getValue(T_JOIN_LIST, 'COUNT(id)');
+
+    return is_posnum($res);
+}
+
+function cl_is_following($user_id = false, $community_id = false)
+{
+    global $db;
+
+
+
+    $db  = $db->where('community_id', $community_id);
+    $db  = $db->where('follow_user_id', $user_id);
+    $res = $db->getValue(T_COMMUNITY_FOLLOWING, 'COUNT(id)');
 
     return is_posnum($res);
 }
@@ -721,63 +729,54 @@ function cl_is_reported($user_id = false, $post_id = false)
     return is_posnum($res);
 }
 
-function cl_unfollow($follower_id = false, $following_id = false)
+function cl_unjoin($user_id = false, $community_id = false)
 {
-    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
-        return false;
-    }
 
-    $rm = cl_db_delete_item(T_CONNECTIONS, array(
-        'follower_id'  => $follower_id,
-        'following_id' => $following_id
+    $rm = cl_db_delete_item(T_JOIN_LIST, array(
+        'user_id'  => $user_id,
+        'community_id' => $community_id
     ));
 
     return $rm;
 }
 
-function cl_follow($follower_id = false, $following_id = false)
+function cl_unfollow($user_id = false, $community_id = false)
 {
-    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
-        return false;
-    }
 
-    $insert_id         = cl_db_insert(T_CONNECTIONS, array(
-        'follower_id'  => $follower_id,
-        'following_id' => $following_id,
-        'time'         => time()
+    $rm = cl_db_delete_item(T_COMMUNITY_FOLLOWING, array(
+        'follow_user_id'  => $user_id,
+        'community_id' => $community_id
     ));
 
+    return $rm;
+}
+
+function cl_join($user_id = false, $community_id = false)
+{
+    $insert_id         = cl_db_insert(T_JOIN_LIST, array(
+        'community_id'  => $community_id,
+        'user_id' => $user_id
+
+    ));
+    return $insert_id;
+}
+function cl_follow($user_id = false, $community_id = false)
+{
+    $insert_id         = cl_db_insert(T_COMMUNITY_FOLLOWING, array(
+        'community_id'  => $community_id,
+        'follow_user_id' => $user_id
+
+    ));
     return $insert_id;
 }
 
-function cl_follow_increase($follower_id = false, $following_id = false)
+function cl_follow_increase($user_id = false, $community_id = false)
 {
-    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
-        return false;
-    }
+    $insert_id         = cl_db_insert(T_JOIN_LIST, array(
+        'community_id'  => $community_id,
+        'user_id' => $user_id
 
-    $follower_udata  = cl_raw_user_data($follower_id);
-    $following_udata = cl_raw_user_data($following_id);
-
-    if (not_empty($follower_udata)) {
-
-        $follow_num = ($follower_udata['following'] += 1);
-        $follow_num = (empty($follow_num)) ? 0 : $follow_num;
-
-        cl_update_user_data($follower_id, array(
-            'following' => $follow_num
-        ));
-    }
-
-    if (not_empty($following_udata)) {
-        $follow_num = ($following_udata['followers'] += 1);
-        $follow_num = (empty($follow_num)) ? 0 : $follow_num;
-
-        cl_update_user_data($following_id, array(
-            'followers' => $follow_num
-        ));
-    }
-
+    ));
     return true;
 }
 

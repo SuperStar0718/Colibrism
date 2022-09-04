@@ -1,17 +1,18 @@
 <div class="content__inner">
     <h2>Publish Post / Reply</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/publish_post"); ?>)</strong> API endpoint for pulishing port or it's reply
+        Please use this <strong>(<?php echo cl_link("mobile_api/publish_post"); ?>)</strong> API endpoint for pulishing
+        port or it's reply
     </p>
     <br>
     <h4 class="table-title">Post parameters</h4>
     <table class="table table-bordered">
         <thead>
-        <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
-        </tr>
+            <tr>
+                <th width="15%">Field</th>
+                <th width="25%">Value</th>
+                <th width="45%">Remarks</th>
+            </tr>
         </thead>
         <tbody>
             <tr>
@@ -53,7 +54,8 @@
                 <td>poll_data</td>
                 <td>​Poll JSON data</td>
                 <td>
-                    Json array with poll option objects. E.g. [{"value": "Option 1"}, {"value": "Option 2"}, {..}] From 2 to 4 options
+                    Json array with poll option objects. E.g. [{"value": "Option 1"}, {"value": "Option 2"}, {..}] From
+                    2 to 4 options
                 </td>
             </tr>
             <tr>
@@ -68,7 +70,7 @@
     <h4 class="table-title">Success response</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
-    <pre><code class="json">{
+            <pre><code class="json">{
     	"posts_total": 4048,
     	"data": {
     		"id": 13,
@@ -77,7 +79,6 @@
     		"type": "text",
     		"replys_count": "0",
     		"reposts_count": "0",
-    		"likes_count": "0",
     		"status": "active",
     		"thread_id": 0,
     		"target": "publication",
@@ -123,7 +124,7 @@
     <h4 class="table-title">Error responses</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
-    <pre><code class="json">{
+            <pre><code class="json">{
         "code": 401,
         "data": [],
         "message": "Unauthorized Access"

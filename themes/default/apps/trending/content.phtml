@@ -17,32 +17,35 @@
                 </a>
             </div>
             <div class="rp">
-                <div class="nav-link-holder">
-                    <span class="go-back" onclick="SMColibri.go_back();">
-                        <?php echo cl_icon('arrow_back'); ?>
-                    </span>
-                </div>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
+                    <div class="nav-link-holder">
+                        <span class="go-back">
+                            <?php echo cl_icon('arrow_back'); ?>
+                        </span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
 
-    <?php if (not_empty($cl["htags"])): ?>
+    <?php if (not_empty($cl["htags"])) : ?>
     <div class="timeline-hashtags-container">
         <div class="timeline-hashtags-ls" data-an="hashtags-list">
-            <?php foreach ($cl["htags"] as $cl['li']): ?>
+            <?php foreach ($cl["htags"] as $cl['li']) : ?>
             <?php echo cl_template('trending/includes/list_item'); ?>
             <?php endforeach; ?>
         </div>
     </div>
-    <?php if (count($cl["htags"]) >= 29): ?>
+    <?php if (count($cl["htags"]) >= 29) : ?>
     <div class="timeline-data-loader">
         <button class="btn btn-custom main-outline lg" data-an="load-more">
             <?php echo cl_translate("Show more"); ?>
         </button>
     </div>
-    <?php //echo cl_template('trending/scripts/app_master_script'); ?>
+    <?php //echo cl_template('trending/scripts/app_master_script'); 
+            ?>
     <?php endif; ?>
-    <?php else: ?>
+    <?php else : ?>
     <div class="timeline-placeholder">
         <div class="icon">
             <div class="icon__bg">

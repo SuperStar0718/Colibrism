@@ -1,6 +1,8 @@
 <?php if ($cl['li']['advertising']) : ?>
 <?php echo cl_template('timeline/ad'); ?>
-<?php else : ?>
+<?php else :
+    global $community;
+?>
 <div class="post-list-item"
     style="border: 7px solid #d3d3d8; padding-bottom: unset; padding-top:unset;background:white;"
     data-list-item="<?php echo ($cl['li']['id']); ?>" data-post-offset="<?php echo ($cl['li']['offset_id']); ?>"
@@ -118,16 +120,16 @@
                                     <div class="post-username">
 
                                         <span class="user-name-holder__name" style="font-size: 13px;">
-                                            Posted by
+                                            <label><?php echo $community['name'] . " - "; ?> </label>Posted by
                                             <a href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true"
                                                 data-uinfo-lbox="<?php echo ($cl['li']['owner']['id']); ?>"
                                                 data-toggle="popover" data-placement="bottom">
 
-                                                @<?php echo ("u/" . $cl['li']['owner']['username']); ?>
+                                                &nbsp;@<?php echo ("u/" . $cl['li']['owner']['username']); ?>
                                             </a>
                                             <span class="user-name-holder"> <img
                                                     src="https://img.icons8.com/android/24/228BE6/ok.png"
-                                                    style="width: 12px; height:12px;" />&nbsp;&nbsp;
+                                                    style="width: 12px; height:12px;" />
 
                                             </span>
                                             <div class="post-time">
@@ -144,12 +146,6 @@
                                                         // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
                                                         ?>
 
-                                                <?php if (not_empty($cl['li']['edited'])) : ?>
-                                                <span
-                                                    title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited'], true); ?>">
-                                                    (E)
-                                                </span>
-                                                <?php endif; ?>
                                             </div>
                                             <img src="https://img.icons8.com/ios-filled/50/7950F2/public-safety.png"
                                                 style="width: 18px; height:18px;" />&nbsp;&nbsp;
@@ -230,7 +226,7 @@
                                             <?php endif; ?>
                                         </div>
                                     </a>
-                                    <div style="background: #f8f8f8;margin-box;" id="description" class="description">
+                                    <div style="background: #f8f8f8;" id="description" class="description">
                                         <?php echo str_replace('\r\n', "<br>", $cl['li']['description']); ?>
                                     </div>
                                     <?php endif; ?>

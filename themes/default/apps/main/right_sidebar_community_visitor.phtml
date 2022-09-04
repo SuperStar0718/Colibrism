@@ -6,10 +6,11 @@
             <div class="card" style="font-size: 17px">
 
                 <div
-                    style="font-size:13px;background-color:<?php echo $cl["display_set"]["base"]; ?>; color:white;padding-left:10px;padding-top:5px;padding-bottom:5px;display: flex;justify-content: space-between;padding-right:10px;">
+                    style="font-size:13px;background-color:<?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["base"];
+                                                            else echo "#0000ff"; ?>; color:white;padding-left:10px;padding-top:5px;padding-bottom:5px;display: flex;justify-content: space-between;padding-right:10px;">
                     About Community
-                    <button
-                        style="border:none; background-color:<?php echo $cl["display_set"]["base"]; ?>;color:white;">
+                    <button style="border:none; background-color:<?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["base"];
+                                                                    else echo "#0000ff"; ?>;color:white;">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
                             fill="#ffffff">
                             <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -27,7 +28,8 @@
                     <?php else : ?>
 
                     <div
-                        style="font-size:50px; color:white; background-color: <?php echo $cl["display_set"]["base"]; ?>;height: 70px; width:70px;border: 3px solid white;border-radius: 34px;z-index: 300;">
+                        style="font-size:50px; color:white; background-color: <?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["base"];
+                                                                                    else echo "#0000ff"; ?>;height: 70px; width:70px;border: 3px solid white;border-radius: 34px;z-index: 300;">
                         <div class="icon_name">r/</div>
                     </div>
                     <?php endif; ?>
@@ -65,7 +67,8 @@
                     style="text-align-last: center; position: relative;left:10px;width:90%; padding-bottom:10px;border-bottom:1px solid #e4eaef;">
 
                     <a href="<?php echo cl_link("create_post"); ?>"> <button type="button" class="btn btn-primary"
-                            style="border-radius: 16px;background-color:<?php echo $cl["display_set"]["highlight"]; ?>;
+                            style="border-radius: 16px;background-color:<?php if (not_empty($cl["display_set"]["highlight"]))  echo $cl["display_set"]["highlight"];
+                                                                                                                                                                else echo "#0000ff"; ?>;
 											text-align: center;
 											font-size: 15px;
 											width: 100%;
@@ -101,7 +104,8 @@
             <div class="card" style="font-size: 17px">
 
                 <div
-                    style="font-size:13px;background-color:<?php echo $cl["display_set"]["base"]; ?>; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
+                    style="font-size:13px;background-color:<?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["base"];
+                                                            else echo "#0000ff"; ?>; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
                     r/worldnews Rules
 
                 </div>
@@ -255,7 +259,8 @@
             <div class="card" style="font-size: 17px">
 
                 <div
-                    style="font-size:13px;background-color:<?php echo $cl["display_set"]["base"]; ?>; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
+                    style="font-size:13px;background-color:<?php if (not_empty($cl["display_set"]["base"]))  echo $cl["display_set"]["base"];
+                                                            else echo "#0000ff"; ?>; color:white;padding-left:10px;padding-top:10px;padding-bottom:10px;display: flex;justify-content: space-between;padding-right:10px;">
                     Moderators
                 </div>
                 <div style="text-align-last: center; position: relative;left:10px;width:90%;
