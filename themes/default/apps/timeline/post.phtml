@@ -1,35 +1,36 @@
 <?php if ($cl['li']['advertising']) : ?>
-    <?php echo cl_template('timeline/ad'); ?>
+<?php echo cl_template('timeline/ad'); ?>
 <?php else :
     global $community;
 ?>
-    <div class="Tweet-target target col nd gap-2">
-        <a href="<?php echo (htmlentities("show_post_details" . "?post_description=" . $cl['li']['description'] . "&community_id=" . $cl['li']['community_id'])); ?>" class="Tweet-target target target_a"></a>
+<div class="Tweet-target target col nd gap-2">
+    <a href="<?php echo (htmlentities("show_post_details" . "?post_description=" . $cl['li']['description'] . "&community_id=" . $cl['li']['community_id'])); ?>"
+        class="target_a"></a>
 
-        <div class="Option-button flex center btn">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
-        <div class="teewt-data flex  gap-1">
-            <div class="user-image-content">
-                <div class="user-image s-2 circle">
-                    <img src="<?php echo ($cl['li']['owner']['avatar']); ?>" alt="Avatar">
-                </div>
+    <div class="Option-button flex center btn">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    <div class="teewt-data flex  gap-1">
+        <div class="user-image-content">
+            <div class="user-image s-2 circle">
+                <img src="<?php echo ($cl['li']['owner']['avatar']); ?>" alt="Avatar">
             </div>
-            <div class="teewt-content">
-                <h4>
-                    @<?php echo ($cl['li']['owner']['username']); ?>
-                </h4>
-                <div class="posted_title">
-                    <div class="posted-by t-color-3">
-                        posted by
-                        <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>">
-                            <?php if (not_empty($cl['li']['community_name'])) echo $cl['li']['community_name'];
+        </div>
+        <div class="teewt-content">
+            <h4>
+                @<?php echo ($cl['li']['owner']['username']); ?>
+            </h4>
+            <div class="posted_title">
+                <div class="posted-by t-color-3">
+                    posted by
+                    <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>">
+                        <?php if (not_empty($cl['li']['community_name'])) echo $cl['li']['community_name'];
                             else echo $community['name']; ?>
-                        </a>
-                        ●
-                        <?php
+                    </a>
+                    ●
+                    <?php
                         $now = new DateTime();
 
                         $date = new DateTime($cl['li']['time']);
@@ -55,70 +56,88 @@
                         else echo $sec . "seconds ago";
                         // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
                         ?>
-                    </div>
-                    <div><img src="{%config theme_url%}/statics/img/frame_picture.png"></div>
-
-                    <div><img src="{%config theme_url%}/statics/img/lock.png"></div>
-
-
                 </div>
-                <p><?php echo $cl['li']['description']; ?></p>
-                <div class="teewt-reactions-content flex nd">
-                    <div class="main-reactions-content flex">
-                        <div class="teewt-likes-count-content">
-                            <img src="{%config theme_url%}/statics/img/thumbs_up.png">
-                            <span><?php echo $cl['li']['upvote_count']; ?></span>
+                <div><img src="{%config theme_url%}/statics/img/frame_picture.png"></div>
 
-                            <img src="{%config theme_url%}/statics/img/thumbs_down.png">
+                <div><img src="{%config theme_url%}/statics/img/lock.png"></div>
 
-                            <span><?php echo $cl['li']['downvote_count']; ?></span>
-                        </div>
-                        <div class="teewt-shared-count-content"><span>↻ 124</span></div>
+
+            </div>
+            <p><?php echo $cl['li']['description']; ?></p>
+            <div class="teewt-reactions-content flex nd">
+                <div class="main-reactions-content flex">
+                    <div class="teewt-likes-count-content">
+                        <img src="{%config theme_url%}/statics/img/thumbs_up.png">
+                        <span><?php echo $cl['li']['upvote_count']; ?></span>
+
+                        <img src="{%config theme_url%}/statics/img/thumbs_down.png">
+
+                        <span><?php echo $cl['li']['downvote_count']; ?></span>
                     </div>
-                    <div class="teewt-comments-count-content mintext t-color-3"><span>45 Comments</span>
-                    </div>
+                    <div class="teewt-shared-count-content"><span>↻ 124</span></div>
                 </div>
-            </div>
-        </div>
-        <div class="reaction-btns-content flex nd wrap">
-            <div class="r-action-btns-content flex">
-                <a href="native_api /edit_post/up_vote?post_id=<?php echo $cl['li']['id'] ?>&upvote_count=<?php echo $cl['li']['upvote_count']; ?>">
-
-                    <div class="r-action-btn btn bg-3">
-                        <img src="{%config theme_url%}/statics/img/sort-arrows-couple-pointing-up-and-down (1).png">
-                    </div>
-
-                </a>
-
-                <a href="native_api /edit_post/down_vote?post_id=<?php echo $cl['li']['id'] ?>&downvote_count=<?php echo $cl['li']['downvote_count']; ?>">
-
-                    <div class="r-action-btn btn bg-3">
-                        <img src="{%config theme_url%}/statics/img/sort-arrows-couple-pointing-up-and-down (2).png">
-                    </div>
-                </a>
-
-            </div>
-            <input type="checkbox" class="award">
-            <div class="award_window">
-                <div class="award_window_body">YOU HAVE NOT PURCHASED ANY AWARD YET, GO TO AWARD STORE TO BUY PACKS OF AWARD
-                    BY CLICKING HERE</div>
-            </div>
-            <div class="r-action-btn btn bg-3">
-                <label for="award">
-                    <img src="{%config theme_url%}/statics/img/award.png">
-                </label>
-            </div>
-            <div class="large-btns-content flex wrap">
-                <div class="btn large bg-3">↻ Retweet</div>
-                <div class="btn large bg-3">
-                    <img src="{%config theme_url%}/statics/img/file (2).png">
-                    Save
+                <div class="teewt-comments-count-content mintext t-color-3"><span>45 Comments</span>
                 </div>
-            </div>
-            <div class="r-action-btn btn bg-3">
-                <img src="{%config theme_url%}/statics/img/link.png">
             </div>
         </div>
     </div>
+    <div class="reaction-btns-content flex nd wrap">
+        <div class="r-action-btns-content flex">
+            <a
+                href="native_api /edit_post/up_vote?post_id=<?php echo $cl['li']['id'] ?>&upvote_count=<?php echo $cl['li']['upvote_count']; ?>">
+
+                <div class="r-action-btn btn bg-3">
+                    <img src="{%config theme_url%}/statics/img/sort-arrows-couple-pointing-up-and-down (1).png">
+                </div>
+
+            </a>
+
+            <a
+                href="native_api /edit_post/down_vote?post_id=<?php echo $cl['li']['id'] ?>&downvote_count=<?php echo $cl['li']['downvote_count']; ?>">
+
+                <div class="r-action-btn btn bg-3">
+                    <img src="{%config theme_url%}/statics/img/sort-arrows-couple-pointing-up-and-down (2).png">
+                </div>
+            </a>
+
+        </div>
+        <input type="checkbox" class="award">
+        <div class="award_window">
+            <div class="award_window_body">
+                <div class="award_image">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+                    YOU HAVE NOT PURCHASED ANY AWARD YET, GO TO AWARD STORE TO BUY PACKS OF AWARD
+                    BY CLICKING
+                    <a href="#"> HERE</a>
+                </div>
+            </div>
+        </div>
+        <div class="r-action-btn btn bg-3">
+            <label for="award">
+                <img src="{%config theme_url%}/statics/img/award.png">
+            </label>
+        </div>
+        <div class="large-btns-content flex wrap">
+            <div class="btn large bg-3">↻ Retweet</div>
+            <div class="btn large bg-3">
+                <img src="{%config theme_url%}/statics/img/file (2).png">
+                Save
+            </div>
+        </div>
+        <div class="r-action-btn btn bg-3">
+            <img src="{%config theme_url%}/statics/img/link.png">
+        </div>
+    </div>
+</div>
 
 <?php endif; ?>
