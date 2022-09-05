@@ -1,5 +1,14 @@
 <?php global $community, $is_joined; ?>
 <section class="main flex col nd gap-2">
+    <div class="Post-bar flex target gap-1">
+
+        <div class="controls-content">
+            <p class="title">Your Timeline</p>
+            <p class="subtitle">This is where all posts from communities you joined and members you followed will show
+                up.</p>
+        </div>
+
+    </div>
     <?php if (not_empty($cl["user_posts"])) : ?>
     <?php foreach ($cl["user_posts"] as $cl["li"]) : ?>
     <?php echo cl_template('timeline/post_details'); ?>

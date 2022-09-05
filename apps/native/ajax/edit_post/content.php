@@ -61,23 +61,47 @@ if (empty($cl["is_logged"])) {
 	}
 } else if ($action == 'up_vote') {
 	$post_id          = fetch_or_get($_GET["post_id"], 0);
-	$votes          = fetch_or_get($_GET["upvote_count"], 0);
-	$votes += 1;
-	$sql = "UPDATE cl_publications SET upvote_count=$votes WHERE id=$post_id;";
+	$sql = "SELECT * from cl_publications  WHERE id=$post_id;";
 	$query_res = $db->rawQuery($sql);
 	cl_queryset($query_res);
-	$sql = "UPDATE cl_publications SET edited='up_voted' WHERE id=$post_id;";
+	$votes = $query_res[0]['upvote_count'];
+	$downvote = json_decode($query_res[0]['downvote_count']);
+	$id = $me['id'];
+	foreach (array_keys($downvote, $id, true) as $key) {
+		unset($downvote[$key]);
+	}
+	$downvote_json = json($downvote, true);
+	$sql = "UPDATE cl_publications SET downvote_count='$downvote_json' WHERE id=$post_id;";
+	$query_res = $db->rawQuery($sql);
+	cl_queryset($query_res);
+
+	$upvote = json_decode($votes, true);
+	$upvote[] = $me['id'];
+	$upvote_json = json($upvote, true);
+	$sql = "UPDATE cl_publications SET upvote_count='$upvote_json' WHERE id=$post_id;";
 	$query_res = $db->rawQuery($sql);
 	cl_queryset($query_res);
 	return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'down_vote') {
 	$post_id          = fetch_or_get($_GET["post_id"], 0);
-	$votes          = fetch_or_get($_GET["downvote_count"], 0);
-	$votes += 1;
-	$sql = "UPDATE cl_publications SET downvote_count=$votes WHERE id=$post_id;";
+	$sql = "SELECT * from cl_publications  WHERE id=$post_id;";
 	$query_res = $db->rawQuery($sql);
 	cl_queryset($query_res);
-	$sql = "UPDATE cl_publications SET edited='down_voted' WHERE id=$post_id;";
+	$votes = $query_res[0]['downvote_count'];
+	$upvote = json_decode($query_res[0]['upvote_count']);
+	$id = $me['id'];
+	foreach (array_keys($upvote, $id, true) as $key) {
+		unset($upvote[$key]);
+	}
+	$upvote_json = json($upvote, true);
+	$sql = "UPDATE cl_publications SET upvote_count='$upvote_json' WHERE id=$post_id;";
+	$query_res = $db->rawQuery($sql);
+	cl_queryset($query_res);
+	$downvote = json_decode($votes, true);
+	$downvote[] = $me['id'];
+	$downvote_json = json($downvote, true);
+
+	$sql = "UPDATE cl_publications SET downvote_count='$downvote_json' WHERE id=$post_id;";
 	$query_res = $db->rawQuery($sql);
 	cl_queryset($query_res);
 	return header('Location: ' . $_SERVER['HTTP_REFERER']);

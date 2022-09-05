@@ -108,7 +108,6 @@ if (empty($cl["is_logged"])) {
         $poll_data[2] = $_SESSION['answer-3'];
         $poll_data[3] = $_SESSION['answer-4'];
         $poll_data[4] = $_SESSION['answer-5'];
-        print_r($poll_data);
         $image_src = "";
         if (not_empty($_FILES['image']) && not_empty($_FILES['image']['tmp_name'])) {
             $file_info      = array(
@@ -136,6 +135,8 @@ if (empty($cl["is_logged"])) {
             $thread_id      = ((is_posnum($thread_id)) ? $thread_id : 0);
             $post_text      = cl_upsert_htags($post_text);
             $mentions       = cl_get_user_mentions($post_text);
+            $vote = array();
+            $vote_json = json_encode($vote);
             $insert_data    = array(
                 "user_id"   => $me['id'],
                 "text"      => cl_text_secure($post_text),
@@ -148,7 +149,8 @@ if (empty($cl["is_logged"])) {
                 "priv_wcr"  => $post_privacy,
                 "image" => $image_src,
                 "community_id" => $community_id,
-
+                "upvote_count" => $vote_json,
+                "downvote_count" => $vote_json
             );
 
 
@@ -166,6 +168,7 @@ if (empty($cl["is_logged"])) {
 
                 $insert_data['poll_data'] = json($insert_data['poll_data'], true);
             }
+
 
             $post_id = cl_db_insert(T_PUBS, $insert_data);
 

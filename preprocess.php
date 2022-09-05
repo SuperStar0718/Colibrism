@@ -1,5 +1,6 @@
 <?php
-global $cl, $db, $me;
+global $cl, $db, $me, $voted;
+$voted = array(array());
 $sql = "SELECT * FROM cl_community WHERE community_id IN(SELECT community_id FROM cl_community_following WHERE follow_user_id=" . $me['id'] . ")";
 $query_res = $db->rawQuery($sql);
 cl_queryset($query_res);
@@ -15,7 +16,6 @@ $sql = "select * from cl_users";
 $query_res = $db->rawQuery($sql);
 cl_queryset($query_res);
 $cl['users'] = $query_res;
-
 
 
 foreach ($cl['communities_followed'] as $key => $community) {
@@ -54,4 +54,13 @@ foreach ($cl['communities_can_follow'] as $key => $community) {
     $query_res = $db->rawQuery($sql);
     cl_queryset($query_res);
     $cl['communities_can_follow'][$key]['members'] = count($query_res);
+}
+
+function convert_into_base64($path)
+{
+    $type = pathinfo($path, PATHINFO_EXTENSION); #Get product image type
+    $data = file_get_contents($path); #Get the product image
+    $imageBase64 = "data:image/$type;base64," . base64_encode($data); #Convert product image to base64
+
+    echo "$imageBase64";
 }

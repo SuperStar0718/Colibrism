@@ -1,16 +1,16 @@
 <section class="side-bar-l flex col nd gap-2">
     <div class="User-target flex col target">
         <div class="user-front-page-image absolute">
-            <img src="<?php echo ($me['cover']); ?>" alt="Avatar">
+            <img src="<?php convert_into_base64($me['cover']); ?>" alt="Avatar">
         </div>
         <div class="user-data-content flex nd col center">
             <div class="user-image s-1 circle">
-                <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+                <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
             </div>
             <span class="user-name">@<?php echo $me['username'] ?></span>
             <img class="t-color-3 user-karma" src="https://badgen.net/badge/karma/1234/46B8DF">
             <span class="t-color-3 user-member-since">
-                <img class="" src="{%config theme_url%}/statics/img/cake.png">
+                <img class="" src="<?php convert_into_base64("themes/default/statics/img/cake.png"); ?>">
 
                 Member Since :
                 <?php $now = new DateTime();
@@ -56,7 +56,7 @@
                 <div class="comunity-image-content">
                     <div class="user-image s-2 circle">
                         <?php if (!empty($community['icon'])) : ?>
-                        <img src="<?php echo $community['icon']; ?>" alt="Avatar">
+                        <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
                         <?php endif; ?>
                     </div>
                 </div>

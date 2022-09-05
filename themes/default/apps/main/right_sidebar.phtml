@@ -87,7 +87,7 @@
                 <div class="comunity-image-content">
                     <div class="user-image s-2 circle">
                         <?php if (!empty($community['icon'])) : ?>
-                        <img src="<?php echo $community['icon']; ?>" alt="Avatar">
+                        <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
                         <?php endif; ?>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                 <div class="comunity-image-content">
                     <div class="user-image s-2 circle">
                         <?php if (!empty($user['avatar'])) : ?>
-                        <img src="<?php echo $user['avatar']; ?>" alt="Avatar">
+                        <img src="<?php convert_into_base64($user['avatar']); ?>" alt="Avatar">
                         <?php endif; ?>
                     </div>
                 </div>

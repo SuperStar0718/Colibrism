@@ -67,24 +67,24 @@
         <div class="other flex nd center">
             <input class="hidden" id="showPanelButons" type="checkbox" name="showPanelButons">
             <div class="panel-btns-content flex nd">
-                <a class="home-link btn round" href="#">
-                    <img src="{%config theme_url%}/statics/img/home.png">&nbsp;Home</a>
+                <a class="home-link btn round" href="home">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/home.png"); ?>">&nbsp;Home</a>
                 <div class="notifications-content flex center">
                     <div class="ford-points-btn btn">
-                        <img src="{%config theme_url%}/statics/img/grid (1).png">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/grid (1).png"); ?>">
                     </div>
                     <div class="messages-btn btn">
-                        <img src="{%config theme_url%}/statics/img/email (1).png">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/email (1).png"); ?>">
                     </div>
                     <div class="notifications-btn btn">
-                        <img src="{%config theme_url%}/statics/img/notification.png">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/notification.png"); ?>">
                         <sup class="text-white bg-danger">3</sup>
                     </div>
                 </div>
             </div>
             <label class="User-account-dropdown btn mintext bg-3 round flex center nd gap-1" for="test">
                 <div class="user-image s-4 circle">
-                    <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+                    <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
                 </div>
                 <span>@Admin</span>
                 <input class="hidden" id="test" type="checkbox" name="test">
@@ -121,7 +121,7 @@
                 <div class="aux-div fixed hidden"></div>
             </label>
             <div class="showmore-btn btn flex center">
-                <img src="{%config theme_url%}/statics/img/shield (1).png">
+                <img src="<?php convert_into_base64("themes/default/statics/img/shield (1).png"); ?>">
             </div>
         </div>
     </nav>

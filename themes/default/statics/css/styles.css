@@ -1557,6 +1557,11 @@ input[type=color]::-webkit-color-swatch {
   width: 5rem;
 }
 
+.reaction-btns-content .r-action-btns-content .r-action-btn.desabled {
+  background-color: #545429;
+  cursor: unset;
+}
+
 .Tweet-target .reaction-btns-content .r-action-btns-content,
 .Tweet-target .reaction-btns-content .large-btns-content {
   gap: 1rem;
@@ -2311,4 +2316,13 @@ input[type=color]::-webkit-color-swatch {
 
 .Tweet-target .reaction-btns-content {
   justify-content: center;
+}
+
+.main-reactions-content .teewt-shared-count-content {
+  gap: 0.5rem;
+  display: flex;
+}
+
+.main-reactions-content .teewt-shared-count-content img {
+  width: 20px;
 }
