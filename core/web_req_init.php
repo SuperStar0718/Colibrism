@@ -14,7 +14,6 @@ date_default_timezone_set('UTC');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 require_once("settings.php");
 require_once("definitions.php");
 require_once("components/tools.php");
@@ -27,7 +26,6 @@ require_once("components/post.php");
 require_once("components/ad.php");
 require_once("configs/conf.php");
 require_once("libs/DB/vendor/autoload.php");
-
 $cl["db_errors"] = array();
 $sql_db_host     = (isset($sql_db_host) ? $sql_db_host : "");
 $sql_db_user     = (isset($sql_db_user) ? $sql_db_user : "");

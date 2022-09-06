@@ -58,6 +58,8 @@ $applications       = array(
   "join_community" => true,
   "community" => true,
   "show_post_details" => true,
+  "widget_appearance" => true,
+  "sidebar_widget" => true,
 );
 
 $cl['profile_report_types'] = array(

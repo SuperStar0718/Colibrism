@@ -48,6 +48,33 @@ function cl_get_ip()
 
     return $_SERVER['REMOTE_ADDR'];
 }
+function cl_create_register_session($user_id = 0, $platform = 'web')
+{
+    global $db;
+    if (empty($user_id)) {
+        return false;
+    }
+
+    $data_exp        = strtotime("+1 year");
+    $session_id      = sha1(rand(11111, 99999)) . time() . md5(microtime() . $user_id);
+    $insert_data     = array(
+        'user_id'    => $user_id,
+        'session_id' => $session_id,
+        'platform'   => $platform,
+        'time'       => time(),
+        'lifespan'   => $data_exp
+    );
+
+
+    $insert = $db->insert(T_SESSIONS, $insert_data);
+
+
+    if ($platform == "web") {
+        setcookie("register_id", $session_id, $data_exp, '/') or die('unable to create cookie');
+    }
+
+    return $session_id;
+}
 
 function cl_create_user_session($user_id = 0, $platform = 'web')
 {
@@ -364,14 +391,15 @@ function cl_signout_user()
     if (not_empty($_COOKIE['user_id'])) {
         $db->where('session_id', cl_text_secure($_COOKIE['user_id']));
         $db->delete(T_SESSIONS);
-        unset($_COOKIE['user_id']);
-        setcookie('user_id', null, -1);
+        setcookie("user_id", "hello", "31246456", '/');
+        setcookie("register_id", "hello", "31246456", '/');
+
+
 
         unset($_COOKIE['dark_mode']);
         setcookie('dark_mode', null, -1);
     }
 
-    @session_destroy();
 
     cl_redirect('/');
 }

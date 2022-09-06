@@ -1,29 +1,13 @@
-<div class="welcome-page__body">
-    <div class="row align-items-center" style="justify-content: center;">
-        <div class="col-sm-4 	 ">
-
-
-            <div class="auth-form-holder " style="align-items: center;">
-                <?php if ($cl["auth_type"] == "login") : ?>
-                <?php echo cl_template('auth/login'); ?>
-                <?php elseif ($cl["auth_type"] == "forgot_pass") : ?>
-                <?php echo cl_template('auth/reset_password'); ?>
-                <?php elseif ($cl["auth_type"] == "reset_pass" && not_empty($cl['em_code'])) : ?>
-                <?php echo cl_template('auth/new_password'); ?>
-                <?php else : ?>
-                <?php if ($cl['config']['user_signup'] == "on" || not_empty($cl["invite_code_status"])) : ?>
-                <?php echo cl_template('auth/register'); ?>
-                <?php else : ?>
-                <?php echo cl_template('auth/register_off'); ?>
-                <?php endif; ?>
-                <?php endif; ?>
-            </div>
-
-        </div>
-    </div>
-</div>
-</div>
-</div>
-
-<?php //echo cl_template('auth/scripts/app_master_script'); 
-?>
+<?php if ($cl["auth_type"] == "login") : ?>
+<?php echo cl_template('auth/login'); ?>
+<?php elseif ($cl["auth_type"] == "forgot_pass") : ?>
+<?php echo cl_template('auth/reset_password'); ?>
+<?php elseif ($cl["auth_type"] == "reset_pass" && not_empty($cl['em_code'])) : ?>
+<?php echo cl_template('auth/new_password'); ?>
+<?php else : ?>
+<?php if ($cl['config']['user_signup'] == "on" || not_empty($cl["invite_code_status"])) : ?>
+<?php echo cl_template('auth/register'); ?>
+<?php else : ?>
+<?php echo cl_template('auth/register_off'); ?>
+<?php endif; ?>
+<?php endif; ?>

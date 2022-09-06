@@ -689,12 +689,15 @@ input[type=color]::-webkit-color-swatch {
 }
 
 @media screen and (max-width: 1250px) {
+
+
   .Main-dash-board {
     grid-template-columns: minmax(25rem, 1fr) 58rem minmax(25rem, 1fr);
   }
 }
 
 @media screen and (max-width: 1136px) {
+
   .Main-dash-board {
     grid-template-areas: none;
     grid-template: auto/minmax(min-content, 75rem);
@@ -715,12 +718,16 @@ input[type=color]::-webkit-color-swatch {
 }
 
 @media screen and (max-width: 480px) {
+
+
   .Main-dash-board .main {
     max-width: initial;
   }
 }
 
 @media screen and (max-width: 460px) {
+
+
   .Main-dash-board .main {
     gap: 1rem;
   }
@@ -730,9 +737,8 @@ input[type=color]::-webkit-color-swatch {
   padding-left: 2rem;
 }
 
-.Management-target ul li {
-  list-style: circle;
-  list-style-position: inside;
+list-style: circle;
+list-style-position: inside;
 }
 
 .Menu-links .tap {
@@ -1709,7 +1715,6 @@ input[type=color]::-webkit-color-swatch {
 }
 
 .User-target {
-  max-width: 30rem;
   overflow: hidden;
   min-height: 40rem;
 
@@ -2099,9 +2104,9 @@ input[type=color]::-webkit-color-swatch {
 
 .notifications-btn sup {
   position: absolute;
-  width: 14px;
-  height: 14px;
-  left: 27px;
+  width: 15px;
+  height: 16px;
+  left: 29px;
   top: 0px;
   background-color: #fa3232;
   border-radius: 50%;
@@ -2186,7 +2191,7 @@ input[type=color]::-webkit-color-swatch {
 }
 
 .main-reactions-content .teewt-likes-count-content {
-  gap: 2rem;
+  gap: 1rem;
   display: flex;
 }
 
@@ -2325,4 +2330,12 @@ input[type=color]::-webkit-color-swatch {
 
 .main-reactions-content .teewt-shared-count-content img {
   width: 20px;
+}
+
+.management-content .Management-dislplay .t-color-3:hover {
+  color: #ad6767;
+}
+
+.Management-target.target {
+  line-height: 1.5;
 }

@@ -40,9 +40,17 @@
     <?php endif; ?>
 
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/styles.css">
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/login.css">
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/alert.css">
+    <?php if ($cl["pn"] == "guest") : ?>
+    <link rel='stylesheet' href='{%config theme_url%}/statics/css/bootstrap.css'>
+    <?php endif; ?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
 
     <link rel="icon" href="{%config site_fav%}" type="image/png">
     <link rel="icon" href="{%config site_fav%}" type="image/x-icon">
@@ -115,7 +123,7 @@
                                 class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i
                                 class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">logout</i>
+                    <li><a class="flex center nd gap-1" href="logout"><i class="material-symbols-outlined">logout</i>
                             Logout</a></li>
                 </ul>
                 <div class="aux-div fixed hidden"></div>
@@ -126,7 +134,6 @@
         </div>
     </nav>
 
-    <?php endif; ?>
     <main class="Main-dash-board grid js-c <?php echo (($cl["is_logged"]) ? "" : "guest-mode"); ?>">
         <?php if ($cl["pn"] == "guest") : ?>
         <?php echo $cl["http_res"]; ?>
@@ -137,7 +144,7 @@
         <?php echo cl_template('main/left_sidebar'); ?>
         <?php elseif ($cl['pn'] == "show_post_details") : ?>
         <?php echo cl_template('main/left_sidebar'); ?>
-        <?php elseif ($cl['pn'] == "community") : ?>
+        <?php elseif ($cl['pn'] == "community" || $cl['pn'] == "community_appearance") : ?>
         <?php echo cl_template('main/left_sidebar_community'); ?>
         <?php endif; ?>
         <?php endif; ?>
@@ -145,13 +152,13 @@
         <?php echo $cl["http_res"]; ?>
 
         <?php global $is_moderator;
-            ?>
+                ?>
         <?php if (not_empty($cl["sbr"])) : ?>
         <?php if ($cl["pn"] == "home") : ?>
         <?php echo cl_template('main/right_sidebar'); ?>
         <?php elseif ($cl['pn'] == 'show_post_details') : ?>
         <?php echo cl_template('main/right_sidebar'); ?>
-        <?php elseif ($cl['pn'] == 'community') : ?>
+        <?php elseif ($cl['pn'] == 'community' || $cl['pn'] == "community_appearance") : ?>
         <?php echo cl_template('main/right_sidebar_community'); ?>
         <?php endif; ?>
         <?php endif; ?>
@@ -159,7 +166,10 @@
         </div>
         <?php endif; ?>
     </main>
+    <?php else : ?>
+    <?php echo $cl["http_res"]; ?>
 
+    <?php endif; ?>
 
 
 

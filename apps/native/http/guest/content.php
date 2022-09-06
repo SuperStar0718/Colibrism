@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -12,7 +12,6 @@
 if (not_empty($cl["is_logged"])) {
 	cl_redirect("home");
 }
-
 require_once(cl_full_path("core/apps/guest/app_ctrl.php"));
 
 $cl["invite_code"] = fetch_or_get($_GET["invite_code"], false);

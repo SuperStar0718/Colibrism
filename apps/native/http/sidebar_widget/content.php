@@ -9,8 +9,15 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-if ($cl['is_logged'] == true) {
-	cl_signout_user();
+if (empty($cl['is_logged'])) {
+    cl_redirect("guest");
 } else {
-	cl_redirect('/');
+    require("preprocess.php");
+    $cl["page_title"] = cl_translate("Sidebar Widgets");
+    $cl["page_desc"]  = $cl["config"]["description"];
+    $cl["page_kw"]    = $cl["config"]["keywords"];
+    $cl["pn"]         = "community";
+    $cl["sbr"]        = true;
+    $cl["sbl"]        = true;
+    $cl["http_res"]   = cl_template("sidebar_widget/content");
 }

@@ -1,53 +1,115 @@
-<form class="form" id="cl-login-vue-app" method="POST" action="native_api/auth/login" autocomplete="off">
-    <div class="form-title">
-        <h2>
-            <?php echo cl_translate("Sign in"); ?>
-        </h2>
+<div class="animated bounceInDown">
+    <div class="container">
+        <span class="error animated tada" id="msg"></span>
+        <form name="form1" class="box" action="native_api/auth/login" method="POST">
+            <div class="form">
+                <div class="header">
+                    <h4>
+                        Admin
+                        <span>Dashboard</span>
+                    </h4>
+                    <h5>Sign in to your account.</h5>
+                </div>
+                <div class="body">
+                    <input type="text" name="email" placeholder="Email" autocomplete="off" />
+                    <!-- <i class="typcn typcn-eye" id="eye"></i> -->
+                    <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off" />
+
+                    <input type="submit" value="Sign in" class="btn1" />
+        </form>
+        <a href="<?php echo cl_link('guest?auth=signup'); ?>" class="dnthave">Don’t have an account? Sign up</a>
     </div>
-    <div class="form-group">
-        <label class="input-label">
-            <?php echo cl_translate("Username"); ?>
-        </label>
-        <input name="email" v-model.trim.lazy="$v.email.$model" type="text" class="form-control"
-            placeholder="<?php echo cl_translate("Username"); ?>">
-        <div class="invalid-main-feedback" v-if="is_valid_email">
+</div>
+</div>
+
+</div>
+
+<?php
+
+if (isset($_COOKIE['register_id']) && not_empty($_COOKIE['register_id'])) : ?>
+<section class="">
+    <div class="square_box box_three"></div>
+    <div class="square_box box_four"></div>
+    <div class="container mt-5">
+        <div class="row">
+
+            <!-- <div class="col-sm-12">
+                <div
+                    class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true"><a>
+                                <i class="fa fa-times greencross"></i>
+                            </a></span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                    <strong class="font__weight-semibold">Well done!</strong> You successfullyread this important.
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+                    role="alert" data-brk-library="component__alert">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true">
+                            <i class="fa fa-times blue-cross"></i>
+                        </span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
+                    <strong class="font__weight-semibold">Heads up!</strong> This alert needs your attention, but it's
+                    not super important.
+                </div>
+
+            </div>
+
+            <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+                    role="alert" data-brk-library="component__alert">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true">
+                            <i class="fa fa-times warning"></i>
+                        </span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
+                    <strong class="font__weight-semibold">Warning!</strong> Better check yourself, you're not looking
+                    too good.
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+                    role="alert" data-brk-library="component__alert">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true">
+                            <i class="fa fa-times danger "></i>
+                        </span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                    <strong class="font__weight-semibold">Oh snap!</strong> Change a few things up and try submitting
+                    again.
+                </div>
+            </div> -->
+
+            <div class="col-sm-6">
+                <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+                    role="alert" data-brk-library="component__alert">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true"><i class="fa fa-times alertprimary"></i></span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <i class="start-icon fa fa-thumbs-up faa-bounce animated"></i>
+                    <strong class="font__weight-semibold">Well done!</strong> Register Success.
+                </div>
+
+            </div>
+
         </div>
     </div>
-    <div class="form-group">
-        <label class="input-label">
-            <?php echo cl_translate("Password"); ?>
-        </label>
-        <div class="password-ctrl">
-            <input type="password" name="password" class="form-control"
-                placeholder="<?php echo cl_translate("Password"); ?>">
+</section>
+<?php
 
-            <button class="password-ctrl" type="button" v-on:click="password_display_toggle">
-                <span v-if="password_display == 'password'">
-                    <?php echo cl_icon("visibility"); ?>
-                </span>
-
-            </button>
-        </div>
-        <div class="invalid-main-feedback" v-if="is_valid_password">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-custom main-inline lg btn-block">
-            <?php echo cl_translate("Login"); ?>
-        </button>
-    </div>
-
-
-    <div class="form-group no-mb">
-        <div class="form-cta-link">
-            <span>
-                <?php echo cl_translate("Don't have an account?"); ?>
-            </span>
-            <a href="<?php echo cl_link('guest?auth=signup'); ?>">
-                <?php echo cl_translate("Sign up"); ?>
-            </a>
-        </div>
-    </div>
-    <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
-</form>
+// $_SESSION['registered'] = false;
+endif; ?>

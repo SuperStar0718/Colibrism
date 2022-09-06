@@ -12,25 +12,11 @@
 if ($action == "login") {
     $data['err_code']  = 0;
     $user_data_fileds  = array(
-        'email'        => fetch_or_get($_POST['email'], null),
-        'password'     => fetch_or_get($_POST['password'], null),
+        'email'        => fetch_or_get($_POST['email'], ""),
+        'password'     => fetch_or_get($_POST['password'], ""),
     );
 
-    foreach ($user_data_fileds as $field_name => $field_val) {
-        if ($field_name == 'email') {
-            if (empty($field_val) || len($field_val) > 55) {
-                $data['err_code'] = $field_name;
-                break;
-            }
-        }
 
-        if ($field_name == 'password') {
-            if (empty($field_val) || len($field_val) > 20) {
-                $data['err_field'] = $field_name;
-                break;
-            }
-        }
-    }
 
     if (empty($data['err_code'])) {
         $email    = cl_text_secure($user_data_fileds['email']);
@@ -50,7 +36,6 @@ if ($action == "login") {
             // $user_ip        = ((filter_var($user_ip, FILTER_VALIDATE_IP) == true) ? $user_ip : '0.0.0.0');
             $session_id     = cl_create_user_session($raw_user["id"], "web");
             $data['status'] = 200;
-
             cl_update_user_data($raw_user["id"], array(
                 // 'ip_address'  => $user_ip,
                 'last_active' => time(),
@@ -67,7 +52,7 @@ if ($action == "login") {
     $data['status']   = 400;
     $user_data_fileds = array(
         'uname'       => fetch_or_get($_POST['uname'], null),
-        // 'email'       => fetch_or_get($_POST['email'], null),
+        'email'       => fetch_or_get($_POST['email'], null),
         'password'    => fetch_or_get($_POST['password'], null),
         'conf_pass'   => fetch_or_get($_POST['conf_pass'], null)
     );
@@ -87,23 +72,18 @@ if ($action == "login") {
                 $data['err_code'] = "doubling_uname";
                 break;
             }
-        }
-
-        // else if ($field_name == 'email') {
-        //     if (empty($field_val)) {
-        //         $data['err_code'] = "invalid_email"; break;
-        //     }
-
-        // else if (!filter_var(trim($field_val), FILTER_VALIDATE_EMAIL) || len($field_val) > 55) {
-        //     $data['err_code'] = "invalid_email"; break;
-        // }
-
-        // else if (cl_email_exists($field_val)) {
-        //     $data['err_code'] = "doubling_email"; break;
-        // }
-        // }
-
-        else if ($field_name == 'password') {
+        } else if ($field_name == 'email') {
+            if (empty($field_val)) {
+                $data['err_code'] = "invalid_email";
+                break;
+            } else if (!filter_var(trim($field_val), FILTER_VALIDATE_EMAIL) || len($field_val) > 55) {
+                $data['err_code'] = "invalid_email";
+                break;
+            } else if (cl_email_exists($field_val)) {
+                $data['err_code'] = "doubling_email";
+                break;
+            }
+        } else if ($field_name == 'password') {
             if (empty($field_val) || len_between($field_val, 6, 20) != true) {
                 $data['err_code'] = "invalid_password";
                 break;
@@ -155,7 +135,7 @@ if ($action == "login") {
             'lname'       => "",
             'username'    => cl_text_secure($user_data_fileds["uname"]),
             'password'    => $password_hashed,
-            // 'email'       => cl_text_secure($user_data_fileds["email"]),
+            'email'       => cl_text_secure($user_data_fileds["email"]),
             'admin'       => $is_admin,
             'active'      => '1',
             'em_code'     => $email_code,
@@ -168,11 +148,12 @@ if ($action == "login") {
             'display_settings' => json(array("color_scheme" => $cl["config"]["default_color_scheme"], "background" => $cl["config"]["default_bg_color"]), true)
         );
         $user_id       =  $db->insert(T_USERS, $insert_data);
-
         if (is_posnum($user_id)) {
-            cl_create_user_session($user_id, 'web');
+            cl_create_register_session($user_id, 'web');
+
             $data['status'] = 200;
         }
+
         // }
 
         // else {
@@ -220,7 +201,8 @@ if ($action == "login") {
         // }
         // }
     }
-    return cl_redirect("home");
+
+    return cl_redirect('guest?auth=login');
 } else if ($action == 'confirm_registration') {
     $data['err_code']    = 0;
     $data['status']      = 400;
