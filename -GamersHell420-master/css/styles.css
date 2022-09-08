@@ -111,6 +111,24 @@ textarea:focus, input:focus {
 .m-a {
   margin: auto;
 }
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mt-3 {
+  margin-top: 3rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.mb-3 {
+  margin-bottom: 3rem;
+}
 
 .min-w-max {
   min-width: max-content;
@@ -194,6 +212,7 @@ textarea:focus, input:focus {
 
 :root {
   --color-primary: #46B8DF;
+  --color-red: #ff4141;
   --color-1: #07131F;
   --color-2: #1A2632;
   --color-3: #283440;
@@ -460,6 +479,20 @@ input[type=color]::-webkit-color-swatch {
   position: absolute;
   left: -0.5rem;
   color: var(--color-3);
+}
+
+.Community-list-widget-appearance .delete-btn {
+  padding: 0;
+}
+.Community-list-widget-appearance .delete-btn:hover {
+  color: var(--color-red);
+}
+.Community-list-widget-appearance .reorder {
+  border-top: 1px solid var(--color-3);
+  border-bottom: 1px solid var(--color-3);
+  padding: 1rem 0;
+  justify-content: start;
+  border-radius: 0;
 }
 
 .Comunity-detail-target {
@@ -963,7 +996,7 @@ input[type=color]::-webkit-color-swatch {
   padding: 0;
 }
 .Post-flair .delete-btn:hover {
-  color: #ff4141;
+  color: var(--color-red);
 }
 .Post-flair .table-2-content {
   margin-top: 1rem;
@@ -1349,6 +1382,25 @@ input[type=color]::-webkit-color-swatch {
 }
 .Unmoderated-tweet-target .reaction-btns-content .large-btns-content .btn.large {
   gap: 0.5rem;
+}
+
+.Upload-image .drop-image-content {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-3);
+}
+.Upload-image label.dropImg {
+  min-height: 25rem;
+  user-select: none;
+}
+.Upload-image label.dropImg i {
+  display: block;
+  font-size: 8em;
+}
+.Upload-image label.dropImg::after {
+  content: "Drag and Drop or Upload image";
+}
+.Upload-image .delete-widget-btn {
+  padding: 0;
 }
 
 .User-account-dropdown {

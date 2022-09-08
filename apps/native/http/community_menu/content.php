@@ -10,15 +10,15 @@
 # @*************************************************************************@
 
 if (empty($cl['is_logged'])) {
-	cl_redirect("guest");
+    cl_redirect("guest");
 } else {
-	require("preprocess.php");
-	$cl["page_title"] = cl_translate("Community appearance");
-	$cl["page_desc"]  = $cl["config"]["description"];
-	$cl["page_kw"]    = $cl["config"]["keywords"];
-	$cl["pn"]         = "community";
-	$cl["sbr"]        = true;
-	$cl["sbl"]        = true;
-	//$cl["bookmarks"]  = cl_get_bookmarks($me['id'], 30);
-	$cl["http_res"]   = cl_template("community_appearance/content");
+    require("preprocess.php");
+    $cl["page_title"] = cl_translate("Community Menu");
+    $cl["page_desc"]  = $cl["config"]["description"];
+    $cl["page_kw"]    = $cl["config"]["keywords"];
+    $cl["pn"]         = "community";
+    $cl["sbr"]        = true;
+    $cl["sbl"]        = true;
+    //$cl["bookmarks"]  = cl_get_bookmarks($me['id'], 30);
+    $cl["http_res"]   = cl_template("community_menu/content");
 }

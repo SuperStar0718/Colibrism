@@ -60,6 +60,11 @@ $applications       = array(
   "show_post_details" => true,
   "widget_appearance" => true,
   "sidebar_widget" => true,
+  "mnemonic" => true,
+  "madatory_join" => true,
+  "community_menu" => true,
+  "post_flairs" => true,
+  "post_settings"=>true,
 );
 
 $cl['profile_report_types'] = array(

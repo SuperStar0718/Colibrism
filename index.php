@@ -58,9 +58,19 @@ if ($spa_load == '1') {
 	exit();
 } else {
 
-	$http_res = cl_template("main/content");
+	if ($app_name == "mnemonic") {
+		$http_res = cl_template("mnemonic/content");
+		echo $http_res;
+	} elseif ($app_name == "madatory_join") {
+		$http_res = cl_template("madatory_join/content");
+		echo $http_res;
+	} else {
+		$http_res = cl_template("main/content");
+		echo $http_res;
+	}
 
-	echo $http_res;
+
+
 	mysqli_close($mysqli);
 	unset($cl);
 }

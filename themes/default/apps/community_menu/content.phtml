@@ -1,0 +1,78 @@
+<section class="main flex col nd gap-2">
+    <div class="Menu-links target">
+        <label for="menu">
+            <h2>Menu Links</h2>
+        </label>
+        <hr>
+
+        <input type="radio" name="toggle" id="menu" hidden checked>
+        <div id="menu" class="content new_tap slide_toggle">
+            <ul class="taps-content">
+                <li class="tap"><span>Post</span></li>
+                <li class="tap flex nd js-sb">
+                    <div><span>Wiki</span>
+                        <p class="t-color-3">/wiki/index</p>
+                    </div>
+                    <div>
+                        <div class="switcher-content">
+                            <input class="hidden" id="wikiEnabled" type="checkbox" name="wikiEnabled">
+                            <label class="switcher-btn btn round" for="wikiEnabled"></label>
+                        </div>
+                    </div>
+                </li>
+                <li class="tap flex nd js-sb">
+                    <input class="hidden" id="isEditable" type="checkbox" name="isEditable">
+                    <div><span>hide</span>
+                        <div class="form-contol">
+                            <input class="t-color-3 bg-2" id="hideDirection" type="text" name="hideDirection"
+                                value="http://some-direction.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="edit-btn btn" for="isEditable"><i
+                                class="material-symbols-outlined fill">edit</i></label>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="options-content flex col gap-1 nd">
+            <label class="max-w-max" for="new_tap"><i class="material-symbols-outlined">info</i>CREATE NEW TAP</label>
+            <input type="radio" name="toggle" id="new_tap" hidden>
+
+            <div class="new_tap slide_toggle">
+                <hr class="mt-1">
+                <form class="flex col gap-1 mt-1" name="create-new-tap-form">
+                    <div class="form-group">
+                        <label for="">Tap Type</label>
+                        <p class="mintext t-color-3">Lorem ipsum dolor sit.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="flex nd al-c gap-1" for="createLickTap">
+                            <input id="createLickTap" type="checkbox" name="createLickTap">Create link Tap
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input class="bg-3" id="tapTitle" type="text" name="tapTitle" placeholder="Tap Title">
+                        </div>
+                        <p class="mintext t-color-3">Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input class="bg-3" id="url" type="text" name="url" placeholder="URL">
+                        </div>
+                    </div>
+                    <div class="btns-content flex js-e gap-2">
+                        <div class="btn wb round">Cancel</div>
+                        <div class="btn bg-primary round">Save</div>
+                    </div>
+                </form>
+            </div>
+            <label class="max-w-max" for="reorder">REORDER LINKS</label>
+
+            <input type="radio" id="reorder" name="toggle" hidden>
+            <div class="slide_toggle">HI nice to meet you</div>
+        </div>
+    </div>
+</section>

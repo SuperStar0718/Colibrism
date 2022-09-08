@@ -23,7 +23,7 @@ if ($action == "login") {
         $password = cl_text_secure($user_data_fileds['password']);
         $db       = $db->where("username", $email);
         $db       = $db->orWhere("email", $email);
-        $raw_user = $db->getOne(T_USERS, array("password", "id"));
+        $raw_user = $db->getOne(T_USERS, array("password", "id", "mnemonic"));
 
         if (cl_queryset($raw_user) != true) {
             $data['err_code'] = "invalid_creds";
@@ -40,6 +40,18 @@ if ($action == "login") {
                 // 'ip_address'  => $user_ip,
                 'last_active' => time(),
             ));
+
+            if (!$raw_user["mnemonic"]) {
+                $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $mnemonic = '';
+                for ($i = 0; $i < 24; $i++) {
+                    $mnemonic .= $characters[rand(0, strlen($characters) - 1)];
+                }
+                cl_update_user_data($raw_user["id"], array(
+                    'mnemonic' => $mnemonic
+                ));
+                return cl_redirect("?app=mnemonic");
+            }
         }
     }
     return cl_redirect("home");
@@ -388,4 +400,21 @@ if ($action == "login") {
             cl_create_user_session($user_id);
         }
     }
+} else if ($action == 'mnemonic') {
+    $data['err_code']   = 0;
+    $data['status']     = 400;
+    $user_data_fileds   = array(
+        'mnemonic'       => fetch_or_get($_POST['mnemonic'], ""),
+        'mnemonic_confirm'      => fetch_or_get($_POST['mnemonic_confirm'], ""),
+    );
+
+
+
+    $mnemonic    = cl_text_secure($user_data_fileds['mnemonic']);
+    $mnemonic_confirm  = cl_text_secure($user_data_fileds['mnemonic_confirm']);
+
+    if (!strcmp($mnemonic, $mnemonic_confirm)) {
+        return cl_redirect("?app=madatory_join");
+    } else
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

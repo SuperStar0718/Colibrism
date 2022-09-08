@@ -1,0 +1,31 @@
+<section class="main flex col nd gap-2">
+    <h2>c/Toriry Post Settings</h2>
+    <div class="Post-settings target">
+        <form class="flex col gap-2" name="post-settings-form">
+            <div class="form-group">
+                <label for="karmaRequired">Karma required ro Make A post on this Community</label>
+                <div class="form-control max-w-max">
+                    <input class="bg-3" id="karmaRequired" type="number" name="karmaRequired" placeholder="number"
+                        value="100">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ageAcountRequired">Age of Torfy account required to make post</label>
+                <div class="form-group flex nd">
+                    <div class="form-control">
+                        <input class="bg-3" id="ageAcountRequired" type="number" name="ageAcountRequired"
+                            placeholder="number" value="0">
+                    </div>
+                    <div class="form-select">
+                        <select class="bg-3" id="selectTime" name="selectTime">
+                            <option value="day">day(s)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-content flex nd center">
+                <div class="btn round bg-primary">save changes</div>
+            </div>
+        </form>
+    </div>
+</section>

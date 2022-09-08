@@ -110,15 +110,19 @@
             <div class="form">
                 <div class="header">
                     <h4>
-                        Admin
-                        <span>Dashboard</span>
+                        <img src="{%config theme_url%}/statics/img/twittor logo.png">
+
                     </h4>
                     <h5>Sign up to your account.</h5>
                 </div>
                 <div class="body">
                     <input type="text" name="uname" placeholder="Username" autocomplete="off" />
                     <!-- <i class="typcn typcn-eye" id="eye"></i> -->
-                    <input type="email" name="email" placeholder="Email" id="email" autocomplete="off" />
+                    <div class="password">
+                        <input type="password" name="pin" placeholder="PIN(123456)" id="password" autocomplete="off" />
+                        <input type="password" name="conf_pin" placeholder="Confirm" id="conf_pass"
+                            autocomplete="off" />
+                    </div>
                     <div class="password">
                         <input type="password" name="password" placeholder="Password" id="password"
                             autocomplete="off" />

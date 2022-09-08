@@ -215,7 +215,9 @@ body {
   padding: 2rem;
   background-color: var(--color-1);
   color: #E4EBF2;
-  font-family: Mukta, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  /* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; */
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.7;
   max-width: 134.8rem;
 }
 
@@ -737,8 +739,13 @@ input[type=color]::-webkit-color-swatch {
   padding-left: 2rem;
 }
 
-list-style: circle;
-list-style-position: inside;
+.Management-target ul li {
+  list-style: circle;
+  list-style-position: inside;
+}
+
+.Menu-links {
+  line-height: 1.7;
 }
 
 .Menu-links .tap {
@@ -1271,7 +1278,7 @@ list-style-position: inside;
 }
 
 .Sidebar-widgets .widgets-content .widget-labels-content {
-  min-width: 50%;
+  max-width: 24%;
 }
 
 .Sidebar-widgets .widgets-content .widget-label {
@@ -2338,4 +2345,50 @@ list-style-position: inside;
 
 .Management-target.target {
   line-height: 1.5;
+}
+
+.Com-target .add-btn {
+  background-color: transparent;
+  color: #7C8594;
+  cursor: pointer;
+}
+
+a .Big-button {
+  color: #E4EBF2;
+}
+
+/* .new_tap {
+  transition: all .5s ease-in-out;
+  height: 0px;
+  overflow: hidden;
+}
+
+.new_tap:target {
+  height: auto;
+} */
+
+.slide_toggle {
+  height: 0px;
+  transition: all .5s ease-in-out;
+  overflow: hidden;
+}
+
+.options-content .max-w-max {
+  color: #2F94D9;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.options-content .max-w-max i {
+  padding-right: 10px;
+}
+
+.Menu-links input:checked+div {
+  height: auto;
+
+}
+
+.Menu-links h2 {
+  cursor: pointer;
 }

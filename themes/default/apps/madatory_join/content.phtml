@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{%config site_fav%}" type="image/png">
+    <link rel="icon" href="{%config site_fav%}" type="image/x-icon">
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <title>Madatory Join</title>
+</head>
+
+<body class="m-a">
+    <main class="flex center">
+        <div class="Com-poppup flex col gap-1 nd">
+            <div class="img-content bg-3"></div>
+            <p class="t-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+            <div class="com-display-text flex nd gap-1">
+                <h4>Lorem, ipsum dolor.</h4>
+                <h4>Lorem, ipsum dolor.</h4>
+            </div>
+            <div class="com-content grid gap-1">
+                <?php if (count($cl['communities_can_follow']) > 5) : ?>
+                <?php $random = array_rand($cl['communities_can_follow'], 6); ?>
+                <?php else : ?>
+                <?php $random = array_rand($cl['communities_can_follow'], count($cl['communities_can_follow']));
+                    shuffle($cl['communities_can_follow']); ?>
+                <?php endif; ?>
+                <?php foreach ($random as  $index) {
+                    $community = $cl['communities_can_follow'][$index];
+                ?>
+                <!-- <div class="Comunity-display grid">
+                    <div class="comunity-image-content">
+                        <div class="user-image s-2 circle">
+                            <?php if (!empty($community['icon'])) : ?>
+                            <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="comunity-data-content">
+                        <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
+                            <h4><?php echo $community['name'] ?></h4>
+                        </a>
+                        <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
+                    </div>
+                    <form method="POST" action="native_api/main/join">
+                        <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
+                        <div class="comunkarity-action-content flex center">
+                            <button class="follow-btn mintext btn" type="submit"
+                                style="background-color: #c14848;">Leave</button>
+                        </div>
+                    </form>
+                </div> -->
+
+                <div class="Com-target flex nd bg-2">
+                    <div class="data-cotent flex nd gap-1 center Comunity-display">
+                        <div class="user-image s-2 circle">
+                            <?php if (!empty($community['icon'])) : ?>
+                            <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
+                            <?php endif; ?>
+                        </div>
+                        <div class="com-detail-cotent">
+                            <p class="com-name"><?php echo $community['name'] ?></p>
+                            <p class="com-members-count"><?php echo $community['members']; ?> Members</p>
+                        </div>
+                    </div>
+                    <form method="POST" action="native_api/main/join">
+                        <button type="submit" class="add-btn t-color-3"><i
+                                class="material-symbols-outlined">add_circle</i>
+                        </button>
+                    </form>
+                </div>
+
+                <?php  } ?>
+
+            </div>
+            <a href="home">
+                <div class="continue-btn btn round">Continue</div>
+            </a>
+
+        </div>
+    </main>
+</body>
+
+</html>
