@@ -528,7 +528,7 @@ input[type=color]::-webkit-color-swatch {
 }
 
 .Comunity-detail-target .user-front-page-image {
-  background: bisque;
+  background: purple;
   height: 8rem;
   width: 100%;
   top: 0;
@@ -2391,4 +2391,46 @@ a .Big-button {
 
 .Menu-links h2 {
   cursor: pointer;
+}
+
+.Sidebar-widgets .widgets-content {
+  max-height: 700px;
+}
+
+.Management-target form button {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.Theme-preferences .btns-content button {
+  color: white;
+  font-size: 1.6rem;
+}
+
+.btn.wb {
+  background-color: transparent;
+}
+
+.Management-dislplay li {
+  cursor: pointer;
+}
+
+.side-bar-r hr {
+  margin-bottom: 10px;
+}
+
+.comunity-image-content .user-image::before {
+  content: "r/";
+  left: 14px;
+  position: absolute;
+  top: -11px;
+  font-size: 45px;
+}
+
+.user-data-content.community .user-image::before {
+  content: "r/";
+  left: 20px;
+  position: absolute;
+  top: -10px;
+  font-size: 54px;
 }

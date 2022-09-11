@@ -1,7 +1,9 @@
+<?php global $community; ?>
 <section class="side-bar-r flex col nd gap-2">
     <div class="Advertisement"></div>
     <div class="Rules-target target">
         <h2 class="t-center">Lorem, ipsum.</h2>
+        <hr>
         <div class="rues-content mintext t-color-3">
             <ol class="flex col gap-1">
                 <li>
@@ -66,10 +68,11 @@
     <div class="Advertisement"></div>
     <div class="Management-target target">
         <h2 class="t-center t-color-3">🛠 Management</h2>
+        <hr>
         <div class="management-content flex col gap-1">
             <div class="Management-dislplay">
                 <h3>🎆 QUEUES</h3>
-                <ul>
+                <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Mod Mail</li>
                     <li class="t-color-3">Unmoderated Posts</li>
                     <li class="t-color-3">Reports</li>
@@ -78,7 +81,7 @@
             </div>
             <div class="Management-dislplay">
                 <h3>🎆 USER MANAGEMENT</h3>
-                <ul>
+                <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Banning</li>
                     <li class="t-color-3">Moderators</li>
                     <li class="t-color-3">Approved Users</li>
@@ -86,7 +89,7 @@
             </div>
             <div class="Management-dislplay">
                 <h3>🎆 FLAIR EMOJIS</h3>
-                <ul>
+                <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Grant Use Flair</li>
                     <a href="post_flairs">
                         <li class="t-color-3">Post Flairs</li>
@@ -95,34 +98,48 @@
             </div>
             <div class="Management-dislplay">
                 <h3>🎆 RULES AND REGULATIONS</h3>
-                <ul>
+                <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Community Rules</li>
                     <li class="t-color-3">Automod</li>
                 </ul>
             </div>
             <div class="Management-dislplay">
                 <h3>🎆 OTHER</h3>
-                <ul>
-                    <a href="community_appearance">
+                <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    <a href="community_appearance?community_id=<?php echo $cl['community_id']; ?>">
                         <li class="t-color-3">Community Appearance</li>
-                        <a href="widget_appearance">
-                            <li class="t-color-3">Textarea widget appearance</li>
-                        </a>
-                        <a href="sidebar_widget">
-                            <li class="t-color-3">Sidebar Widget</li>
-                        </a>
-                        <li class="t-color-3">Community Settings</li>
-                        <a href="community_menu">
-                            <li class="t-color-3">Menu</li>
-                        </a>
-                        <a href="post_settings">
-                            <li class="t-color-3">Post Settings</li>
-                        </a>
-                        <li class="t-color-3">Traffic Statistics</li>
-                        <li class="t-color-3">Moderation log</li>
+                    </a>
+                    <a href="sidebar_widget">
+                        <li class="t-color-3">Sidebar Widget</li>
+                    </a>
+                    <li class="t-color-3">Community Settings</li>
+                    <a href="community_menu?community_id=<?php echo $cl['community_id']; ?>">
+                        <li class="t-color-3">Menu</li>
+                    </a>
+                    <a href="post_settings">
+                        <li class="t-color-3">Post Settings</li>
+                    </a>
+                    <li class="t-color-3">Traffic Statistics</li>
+                    <li class="t-color-3">Moderation log</li>
 
                 </ul>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+.Management-dislplay li,
+.comunyties-content .Comunity-display .comunity-data-content h4 {
+    color: <?php echo $cl['display_set']['link_color'];
+    ?>;
+}
+
+.Management-target .t-center,
+.Rules-target .t-center,
+.side-bar-l .Comunity-target h3,
+.Comunity-detail-target .comunity-mods-content .t-center {
+    color: <?php echo $cl['display_set']['base_color'];
+    ?>;
+}
+</style>

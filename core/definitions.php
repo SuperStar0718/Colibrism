@@ -36,6 +36,7 @@ define("T_UI_LANGS", "cl_ui_langs");
 define("T_COMMUNITY", "cl_community");
 define("T_JOIN_LIST", "cl_join_list");
 define("T_COMMUNITY_FOLLOWING", "cl_community_following");
+define("T_COMMUNITY_SETTINGS", "cl_community_settings");
 
 global $image_path;
 $image_path = "";

@@ -6,7 +6,7 @@
                 <img src="<?php echo ($community['banner']); ?>" alt="Avatar">
             <?php endif; ?>
         </div>
-        <div class="user-data-content flex nd col center">
+        <div class="user-data-content community flex nd col center">
             <div class="user-image circle">
                 <?php if (not_empty($community['icon'])) : ?>
                     <img src="<?php if (not_empty($community['icon'])) echo ($community['icon']); ?>" alt="Avatar">
@@ -22,12 +22,18 @@
                 neque dolor quaerat aspernatur aliquid saepe et repudiandae
                 magnam nulla natus explicabo officia ab placeat!</span>
         </div>
+
         <div class="btns-content grid gap-1">
-            <div class="Big-button btn round">some text</div>
-            <div class="Big-button btn round">some text</div>
-            <div class="Big-button btn round">some text</div>
-            <div class="Big-button btn round">some text</div>
+            <?php if (not_empty($cl['menu_links'])) : ?>
+                <?php foreach ($cl['menu_links'] as $menu_link) : ?>
+                    <a href="<?php echo $menu_link['url']; ?>" target="_blank">
+                        <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                            <?php echo $menu_link['tapTitle']; ?></div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
         </div>
+        </a>
+
         <div class="account-summary grid">
             <div class="tweets-conunt flex col center"><span>1</span><span>Members</span></div>
             <div class="members-conunt flex col center"><span>1</span><span>Tweets</span></div>
@@ -36,7 +42,7 @@
             <h2 class="t-center">Community Mods</h2>
             <ul>
                 <li><a href="#">
-                        <h3>@codeX</h3>
+                        <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">@codeX</h3>
                     </a></li>
                 <!-- <li><a href="#">
                         <h3>@someone</h3>
@@ -47,7 +53,7 @@
             <div>
                 Created by :
                 <a href="#">
-                    <h3>@codeX</h3>
+                    <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">@codeX</h3>
                 </a>
             </div>
         </div>
@@ -90,8 +96,8 @@
 
             <?php  } ?>
 
-        </div><a href="#">Show more</a>
+        </div>
     </div>
-    <div class="Big-button btn round">some text</div>
-    <div class="Big-button btn round">some text</div>
+    <div class="Big-button btn round">AWARD STORE</div>
+    <div class="Big-button btn round">DONATORS</div>
 </section>

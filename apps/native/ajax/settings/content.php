@@ -640,4 +640,59 @@ if (empty($cl["is_logged"])) {
         $data["status"] = 200;
         $data["url"]    = cl_link("download_info");
     }
+} else if ($action == "community_menu_links") {
+
+    $data['err_code']  = 0;
+    $data['status']    = 400;
+    $menu_links = array(
+        "tapTitle"    => fetch_or_get($_POST["tapTitle"], ""),
+        "url"    => fetch_or_get($_POST["url"], ""),
+        "community_id"    => fetch_or_get($_POST["community_id"], "")
+    );
+
+
+
+    if (not_empty($menu_links["tapTitle"]) && not_empty($menu_links['url']) && not_empty($menu_links['community_id'])) {
+        $db           = $db->where('user_id', $me['id']);
+        $db           = $db->where('community_id', $menu_links['community_id']);
+        $result = $db->getOne(T_COMMUNITY_SETTINGS);
+
+        if (not_empty($result)) {
+            $menu_link = json($result['menu_links']);
+            if (count($menu_link) > 3)
+                return cl_redirect("community?community_id=" . $menu_links['community_id']);
+            $links = array(
+                "tapTitle" => $menu_links['tapTitle'],
+                "url" => $menu_links['url']
+            );
+            $menu_link[] = $links;
+            $insert = json($menu_link, true);
+            $db           = $db->where('user_id', $me['id']);
+            $db           = $db->where('community_id', $menu_links['community_id']);
+            $result = $db->update(T_COMMUNITY_SETTINGS, array(
+                'menu_links' => $insert
+            ));
+        } else {
+            $link = array();
+            $link[] = array(
+                "tapTitle" => $menu_links['tapTitle'],
+                "url" => $menu_links['url']
+            );
+            // $links = array();
+            // $links[] = $link;
+            $links = array_map(function ($item) {
+                return array(
+                    'tapTitle' => $item['tapTitle'],
+                    'url' => $item['url']
+                );
+            }, $link);
+            $insert = array(
+                'community_id' => $menu_links['community_id'],
+                'user_id' => $me['id'],
+                'menu_links' => json($links, true)
+            );
+            $db->insert(T_COMMUNITY_SETTINGS, $insert);
+        }
+    }
+    return cl_redirect("community?community_id=" . $menu_links['community_id']);
 }

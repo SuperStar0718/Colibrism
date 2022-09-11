@@ -42,7 +42,9 @@
 
             <div class="new_tap slide_toggle">
                 <hr class="mt-1">
-                <form class="flex col gap-1 mt-1" name="create-new-tap-form">
+                <form class="flex col gap-1 mt-1" name="create-new-tap-form" method="POST"
+                    action="native_api/settings/community_menu_links">
+                    <input type="text" name="community_id" hidden value="<?php echo $cl['community_id']; ?>">
                     <div class="form-group">
                         <label for="">Tap Type</label>
                         <p class="mintext t-color-3">Lorem ipsum dolor sit.</p>
@@ -65,13 +67,13 @@
                     </div>
                     <div class="btns-content flex js-e gap-2">
                         <div class="btn wb round">Cancel</div>
-                        <div class="btn bg-primary round">Save</div>
+                        <button type="submit" class="btn bg-primary round">Save</button>
                     </div>
                 </form>
             </div>
             <label class="max-w-max" for="reorder">REORDER LINKS</label>
 
-            <input type="radio" id="reorder" name="toggle" hidden>
+            <!-- <input type="radio" id="reorder" name="" hidden> -->
             <div class="slide_toggle">HI nice to meet you</div>
         </div>
     </div>

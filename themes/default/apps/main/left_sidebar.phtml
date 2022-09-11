@@ -1,11 +1,15 @@
 <section class="side-bar-l flex col nd gap-2">
     <div class="User-target flex col target">
         <div class="user-front-page-image absolute">
+            <?php if (not_empty($me['avatar'])) : ?>
             <img src="<?php convert_into_base64($me['cover']); ?>" alt="Avatar">
+            <?php endif; ?>
         </div>
         <div class="user-data-content flex nd col center">
             <div class="user-image s-1 circle">
+                <?php if (not_empty($me['avatar'])) : ?>
                 <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
+                <?php endif; ?>
             </div>
             <span class="user-name">@<?php echo $me['username'] ?></span>
             <img class="t-color-3 user-karma" src="https://badgen.net/badge/karma/1234/46B8DF">
@@ -77,8 +81,23 @@
 
             <?php  } ?>
 
-        </div><a href="#">Show more</a>
+        </div>
     </div>
-    <div class="Big-button btn round">AWARD STORE</div>
-    <div class="Big-button btn round">DONATORS</div>
+    <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">AWARD STORE</div>
+    <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">DONATORS</div>
 </section>
+<style>
+.Management-dislplay li,
+.comunyties-content .Comunity-display .comunity-data-content h4 {
+    color: <?php echo $cl['display_set']['link_color'];
+    ?>;
+}
+
+.Management-target .t-center,
+.Rules-target .t-center,
+.side-bar-l .Comunity-target h3,
+.Comunity-detail-target .comunity-mods-content .t-center {
+    color: <?php echo $cl['display_set']['base_color'];
+    ?>;
+}
+</style>

@@ -31,11 +31,33 @@
                 </label>
             </div>
             <div class="config-1">
-                <label class="back-btn btn circle wb hidden" for="radio-unselect"><i
-                        class="material-symbols-outlined">arrow_back</i></label>
-                <h3>config-1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
+                <div class="Widget-appearance target">
+                    <form class="flex col gap-1" name="widget-appearance-form">
+                        <h2>Textarea widget appearance</h2>
+                        <hr>
+                        <div class="form-gorup">
+                            <label for="widgetTitle">Widget Title</label>
+                            <div class="form-control">
+                                <input class="bg-3" id="widgetTitle" type="text" name="widgetTitle" placeholder="lorem">
+                            </div>
+                            <p class="mintext t-color-3">Lorem ipsum dolor sit, amet consectetur</p>
+                        </div>
+                        <h2>Textarea widget content</h2>
+                        <hr>
+                        <div class="form-gorup">
+                            <label for="widgetContent">Text</label>
+                            <div class="form-control">
+                                <textarea class="bg-3" id="widgetContent" name="widgetContent" placeholder="lorem"
+                                    rows="10"></textarea>
+                            </div>
+                            <p class="mintext t-color-3">Lorem ipsum dolor sit, amet consectetur</p>
+                        </div>
+                        <div class="btns-content flex col gap-1">
+                            <div class="btn bg-primary round">Save</div>
+                            <div class="btn round wb">Cancel</div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="config-2">
                 <div class="Upload-image target">

@@ -19,6 +19,8 @@ if (empty($cl["is_logged"])) {
 			//cl_js_template("statics/js/libs/SwiperJS/swiper-bundle.min")
 		)
 	);
+	$cl['community_id'] = $_GET['community_id'];
+
 	require("preprocess.php");
 
 	$cl["page_title"]    = cl_translate("Community");
@@ -28,7 +30,6 @@ if (empty($cl["is_logged"])) {
 	$cl["sbr"]           = true;
 	$cl["sbl"]           = true;
 	$cl["tl_feed"]       = cl_get_community(15);
-	$cl['community_id'] = $_GET['community_id'];
 	$cl["tl_feed_total"] = 15;
 
 	$cl["http_res"]      = cl_template("community/content");

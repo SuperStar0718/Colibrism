@@ -1135,34 +1135,32 @@ if ($action == 'upload_post_image') {
     $data['err_code'] = 0;
     $data['status']   = 400;
 
-    $bg_color   = fetch_or_get($_POST["bg"], "default");
-    $skin_color = fetch_or_get($_POST["color"], "default");
-    $base = fetch_or_get($_POST["base"], "#0000ff");
-    $links = fetch_or_get($_POST["links"], "#0000ff");
-    $title = fetch_or_get($_POST["title"], "#0000ff");
-    $highlight = fetch_or_get($_POST["highlight"], "#0000ff");
-    $main_menu = fetch_or_get($_POST["main_menu"], "#0000ff");
+    // $bg_color   = fetch_or_get($_POST["bg"], "default");
+    // $skin_color = fetch_or_get($_POST["color"], "default");
+    $base = fetch_or_get($_POST["base"], "");
+    $links = fetch_or_get($_POST["links"], "");
+    // $title = fetch_or_get($_POST["title"], "#0000ff");
+    $highlight = fetch_or_get($_POST["highlight"], "");
+    // $main_menu = fetch_or_get($_POST["main_menu"], "#0000ff");
 
-    echo $base;
-
-
-    if (in_array($bg_color, array_keys($cl["bg_colors"])) && in_array($skin_color, array_keys($cl["color_schemes"]))) {
-        $data['status'] = 200;
-
-        cl_update_user_data($me["id"], array(
-            "display_settings" => json(array(
-                "color_scheme" => cl_text_secure($skin_color),
-                "background"   => cl_text_secure($bg_color),
-                "base" => cl_text_secure($base),
-                "links" => cl_text_secure($links),
-                "title" => cl_text_secure($title),
-                "highlight" => cl_text_secure($highlight),
-                "main_menu" => cl_text_secure($main_menu),
+    // echo $base;
 
 
-            ), true)
-        ));
-    }
+    // if (in_array($bg_color, array_keys($cl["bg_colors"])) && in_array($skin_color, array_keys($cl["color_schemes"]))) {
+    $data['status'] = 200;
+
+    cl_update_user_data($me["id"], array(
+        "display_settings" => json(array(
+            // "color_scheme" => cl_text_secure($skin_color),
+            // "background"   => cl_text_secure($bg_color),
+            "base_color" => cl_text_secure($base),
+            "link_color" => cl_text_secure($links),
+            // "title" => cl_text_secure($title),
+            "highlight_color" => cl_text_secure($highlight),
+            // "main_menu" => cl_text_secure($main_menu),
+        ), true)
+    ));
+    // }
     return cl_redirect("home");
 } else if ($action == "create_community") {
     $data['err_code'] = 0;

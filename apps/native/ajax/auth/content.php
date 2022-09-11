@@ -157,7 +157,7 @@ if ($action == "login") {
             'ip_address'  => $user_ip,
             'country_id'  => $cl['config']['country_id'],
             'language'    => $cl['config']['language'],
-            'display_settings' => json(array("color_scheme" => $cl["config"]["default_color_scheme"], "background" => $cl["config"]["default_bg_color"]), true)
+            'display_settings' => json(array("link_color" => "#EB0026", "base_color" => "#359D47", "highlight_color" => "#0179D2"), true)
         );
         $user_id       =  $db->insert(T_USERS, $insert_data);
         if (is_posnum($user_id)) {
@@ -263,7 +263,7 @@ if ($action == "login") {
                     'start_up'    => json(array('source' => 'system', 'avatar' => 0, 'info' => 0, 'follow' => 0), true),
                     'ip_address'  => $user_ip,
                     'language'    => $cl['config']['language'],
-                    'display_settings' => json(array("color_scheme" => $cl["config"]["default_color_scheme"], "background" => $cl["config"]["default_bg_color"]), true)
+                     'display_settings' => json(array("link_color" => "#EB0026", "base_color" => "#359D47", "highlight_color" => "#0179D2"), true)
                 );
                 $user_id       =  $db->insert(T_USERS, $insert_data);
 

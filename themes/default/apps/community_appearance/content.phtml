@@ -1,31 +1,36 @@
 <section class="main flex col nd gap-2">
     <!-- Theme-preferences-->
     <div class="Theme-preferences target">
-        <h3>Menu</h3>
-        <hr>
-        <div class="link-color-content">
-            <div class="flex">
-                <p>Link Colors</p>
+        <form method="POST" action="native_api/main/save_display_settings">
+            <h3>Menu</h3>
+            <hr>
+            <div class="link-color-content">
+                <div class="flex">
+                    <p>Link Colors</p>
+                </div>
+                <div class="flex nd js-sb">
+                    <p class="t-color-3">Link</p>
+                    <input id="link-color" name="links" type="color" value="<?php if (not_empty($cl['display_set']['link_color'])) echo $cl['display_set']['link_color'];
+                                                                            else echo "#EB0026"; ?>">
+                </div>
             </div>
-            <div class="flex nd js-sb">
-                <p class="t-color-3">Link</p>
-                <input id="link-color" type="color" value="#EB0026">
+            <div class="theme-color-content">
+                <h3>Theme Colors</h3>
+                <div class="flex nd js-sb">
+                    <p class="t-color-3">Base</p>
+                    <input id="base-color" name="base" type="color" value="<?php if (not_empty($cl['display_set']['link_color'])) echo $cl['display_set']['base_color'];
+                                                                            else echo "#359D47"; ?>">
+                </div>
+                <div class="flex nd js-sb">
+                    <p class="t-color-3">Highlight</p>
+                    <input id="higilight-color" name="highlight" type="color" value="<?php if (not_empty($cl['display_set']['link_color'])) echo $cl['display_set']['highlight_color'];
+                                                                                        else echo "#0179D2"; ?>">
+                </div>
             </div>
-        </div>
-        <div class="theme-color-content">
-            <h3>Theme Colors</h3>
-            <div class="flex nd js-sb">
-                <p class="t-color-3">Base</p>
-                <input id="link-color" type="color" value="#359D47">
+            <div class="btns-content flex col gap-1">
+                <button class="btn round bg-primary">Save</button>
+                <button class="btn round wb">Cancel</button>
             </div>
-            <div class="flex nd js-sb">
-                <p class="t-color-3">Highlight</p>
-                <input id="link-color" type="color" value="#0179D2">
-            </div>
-        </div>
-        <div class="btns-content flex col gap-1">
-            <div class="btn round bg-primary">Save</div>
-            <div class="btn round wb">Cancel</div>
-        </div>
+        </form>
     </div>
 </section>

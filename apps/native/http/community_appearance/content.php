@@ -12,6 +12,8 @@
 if (empty($cl['is_logged'])) {
 	cl_redirect("guest");
 } else {
+	$cl['community_id'] = $_GET['community_id'];
+
 	require("preprocess.php");
 	$cl["page_title"] = cl_translate("Community appearance");
 	$cl["page_desc"]  = $cl["config"]["description"];

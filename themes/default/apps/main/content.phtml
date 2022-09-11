@@ -173,6 +173,23 @@
     <?php endif; ?>
 
 
+    <style>
+    /* .Nav-bar .seach-bar-content .form-control input */
+    .Nav-bar,
+    .main .Post-bar,
+    .side-bar-r .rues-content .flex.col.gap-1 label,
+    .Nav-bar .seach-bar-content .form-control input,
+    .Nav-bar .User-account-dropdown,
+    .main .Post-bar .controls-content textarea {
+        background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
+    }
+
+    .Nav-bar .seach-bar-content .form-control input,
+    .Nav-bar .User-account-dropdown,
+    .main .Post-bar .controls-content textarea {
+        filter: brightness(75%);
+    }
+    </style>
 
 </body>
 

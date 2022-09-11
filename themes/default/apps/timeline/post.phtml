@@ -19,13 +19,14 @@
             </div>
         </div>
         <div class="teewt-content">
-            <h4>
+            <h4 style="color: <?php echo $cl['display_set']['link_color']; ?>">
                 @<?php echo ($cl['li']['owner']['username']); ?>
             </h4>
             <div class="posted_title">
                 <div class="posted-by t-color-3">
                     posted by
-                    <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>">
+                    <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>"
+                        style="color: <?php echo $cl['display_set']['link_color']; ?>">
                         <?php if (not_empty($cl['li']['community_name'])) echo $cl['li']['community_name'];
                             else echo $community['name']; ?>
                     </a>
