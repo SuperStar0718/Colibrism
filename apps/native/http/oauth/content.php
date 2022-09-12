@@ -101,7 +101,7 @@ else {
     		            'ip_address'  => $user_ip,
     		            'language'    => $cl['config']['language'],
                         'country_id'  => $cl['config']['country_id'],
-                         'display_settings' => json(array("link_color" => "#EB0026", "base_color" => "#359D47", "highlight_color" => "#0179D2"), true)
+                    'display_settings' => json(array("link_color" => "#2f94d9", "base_color" => "#ffffff", "highlight_color" => "#1a2632"), true)
     		        ));
 
     		        if (is_posnum($user_id)) {

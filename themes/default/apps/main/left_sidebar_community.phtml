@@ -1,15 +1,15 @@
 <?php global $community; ?>
-<section class="side-bar-l flex col nd gap-2">
+<section class="side-bar-l flex col nd gap-1">
     <div class="Comunity-detail-target flex col target gap-2">
         <div class="user-front-page-image absolute">
             <?php if (not_empty($community['banner'])) : ?>
-                <img src="<?php echo ($community['banner']); ?>" alt="Avatar">
+            <img src="<?php echo ($community['banner']); ?>" alt="Avatar">
             <?php endif; ?>
         </div>
         <div class="user-data-content community flex nd col center">
             <div class="user-image circle">
                 <?php if (not_empty($community['icon'])) : ?>
-                    <img src="<?php if (not_empty($community['icon'])) echo ($community['icon']); ?>" alt="Avatar">
+                <img src="<?php if (not_empty($community['icon'])) echo ($community['icon']); ?>" alt="Avatar">
                 <?php endif; ?>
 
             </div>
@@ -25,11 +25,11 @@
 
         <div class="btns-content grid gap-1">
             <?php if (not_empty($cl['menu_links'])) : ?>
-                <?php foreach ($cl['menu_links'] as $menu_link) : ?>
-                    <a href="<?php echo $menu_link['url']; ?>" target="_blank">
-                        <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                            <?php echo $menu_link['tapTitle']; ?></div>
-                    <?php endforeach; ?>
+            <?php foreach ($cl['menu_links'] as $menu_link) : ?>
+            <a href="<?php echo $menu_link['url']; ?>" target="_blank">
+                <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    <?php echo $menu_link['tapTitle']; ?></div>
+                <?php endforeach; ?>
                 <?php endif; ?>
         </div>
         </a>
@@ -39,7 +39,7 @@
             <div class="members-conunt flex col center"><span>1</span><span>Tweets</span></div>
         </div>
         <div class="comunity-mods-content">
-            <h2 class="t-center">Community Mods</h2>
+            <h4 class="t-center">Community Mods</h4>
             <ul>
                 <li><a href="#">
                         <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">@codeX</h3>
@@ -59,40 +59,42 @@
         </div>
     </div>
     <div class="Comunity-target target">
-        <h3>COMMUNITIES YOU HAVE FOLLOWED</h3>
+        <h4>COMMUNITIES YOU HAVE FOLLOWED</h4>
+        <hr>
         <div class="comunyties-content flex col">
             <?php shuffle($cl['communities_followed']); ?>
 
             <?php if (count($cl['communities_followed']) > 5) : ?>
-                <?php $count = 5; ?>
+            <?php $count = 5; ?>
             <?php else : ?>
-                <?php $count = count($cl['communities_followed']); ?>
+            <?php $count = count($cl['communities_followed']); ?>
             <?php endif; ?>
 
             <?php for ($x = 0; $x < $count; $x++) {
-                $community = $cl['communities_followed'][$x];
+                $com = $cl['communities_followed'][$x];
             ?>
-                <div class="Comunity-display grid">
-                    <div class="comunity-image-content">
-                        <div class="user-image s-2 circle">
-                            <?php if (!empty($community['icon'])) : ?>
-                                <img src="<?php echo $community['icon']; ?>" alt="Avatar">
-                            <?php endif; ?>
-                        </div>
+            <div class="Comunity-display grid">
+                <div class="comunity-image-content">
+                    <div class="user-image s-2 circle">
+                        <?php if (!empty($com['icon'])) : ?>
+                        <img src="<?php echo $com['icon']; ?>" alt="Avatar">
+                        <?php endif; ?>
                     </div>
-                    <div class="comunity-data-content">
-                        <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
-                            <h4><?php echo $community['name'] ?></h4>
-                        </a>
-                        <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
-                    </div>
-                    <form method="POST" action="native_api/main/join">
-                        <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
-                        <div class="comunkarity-action-content flex center">
-                            <button class="follow-btn mintext btn" type="submit" style="background-color: #c14848;">Leave</button>
-                        </div>
-                    </form>
                 </div>
+                <div class="comunity-data-content">
+                    <a href="<?php echo ("community" . "?community_id=" . $com['community_id']); ?>">
+                        <h4><?php echo $com['name'] ?></h4>
+                    </a>
+                    <p class="t-color-3 mintext"><?php echo $com['members']; ?> Members</p>
+                </div>
+                <form method="POST" action="native_api/main/join">
+                    <input type="hidden" name="community_id" value="<?php echo $com['community_id'] ?>">
+                    <div class="comunkarity-action-content flex center">
+                        <button class="follow-btn mintext btn" type="submit"
+                            style="background-color: #c14848;">Leave</button>
+                    </div>
+                </form>
+            </div>
 
             <?php  } ?>
 

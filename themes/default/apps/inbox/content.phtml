@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <?php if (not_empty($me['new_notifs'])) : ?>
+        (<?php echo fetch_or_get($me['new_notifs']); ?>)
+        <?php endif; ?>
+
+        <?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>
+    </title>
+
+    <meta content="charset=UTF-8" />
+    <link rel="icon" href="http://localhost/ColibriSM/themes/default/statics/img/favicon.png" type="image/png">
+    <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]); ?>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='{%config theme_url%}/statics/css/bootstrap.css'>
+    <link rel='stylesheet' href='{%config theme_url%}/statics/css/inbox.css'>
+    <link rel='stylesheet' href='{%config theme_url%}/statics/css/styles.css'>
+
+</head>
+
+<body class="m-a">
+    <div class="msg_container">
+        <div class="chat_body row">
+            <div class="left-sidebar">
+                <div class="title flex">
+                    <div class="text">
+                        Chat
+                    </div>
+                    <div class="icon">x</div>
+                </div>
+                <div class="inbox_list">
+                    <div class="inbox_item flex">
+                        <div class="avatar user-image circle col-2"> <img class=""
+                                src="<?php convert_into_base64("themes/default/statics/img/cake.png"); ?>"></div>
+                        <div class="content col-10">
+                            <div class="name">ok-manufacture32</div>
+                            <div class="text">hi</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="message ">
+                <div class="title flex">
+                    <div class="text">title</div>
+                    <div class="icon">x</div>
+                </div>
+                <div class="message_body"></div>
+                <div class="footer"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

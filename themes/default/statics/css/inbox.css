@@ -1,0 +1,38 @@
+.msg_container {
+    text-align: -webkit-center;
+}
+
+.chat_body {
+    max-width: 80vw;
+    height: 80vh;
+    background-color: #1a2632;
+    margin-top: 10vh;
+    border-radius: 20px;
+    color: #badde1;
+}
+
+
+
+.left-sidebar {
+    padding: 0px;
+    width: 24%;
+    border-right: 1px solid grey;
+
+}
+
+.message {
+    width: 75%;
+}
+
+.title {
+    border-bottom: 1px solid grey;
+
+}
+
+.inbox_list {
+    height: 90%;
+}
+
+/* .title .text p {
+    margin: 0px;
+} */

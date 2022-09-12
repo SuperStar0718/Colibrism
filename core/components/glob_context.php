@@ -64,7 +64,9 @@ $applications       = array(
   "madatory_join" => true,
   "community_menu" => true,
   "post_flairs" => true,
-  "post_settings"=>true,
+  "post_settings" => true,
+  "inbox" => true,
+
 );
 
 $cl['profile_report_types'] = array(

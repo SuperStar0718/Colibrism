@@ -27,8 +27,8 @@ if (empty($cl["is_logged"])) {
 	$cl["pn"]            = "home";
 	$cl["sbr"]           = true;
 	$cl["sbl"]           = true;
-	$cl["tl_feed"]       = cl_get_timeline_feed(15);
-	$cl["tl_feed_total"] = 15;
+	$cl['page'] = $_GET['page'];
+	$cl["tl_feed"]       = cl_get_timeline_feed(5);
 	$cl["tl_swifts"]     = cl_timeline_swifts();
 	$cl["http_res"]      = cl_template("home/content");
 }

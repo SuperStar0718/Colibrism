@@ -123,6 +123,10 @@
                             <div class="form-select mt-1">
                                 <select class="bg-3" id="communityChice" name="communityChice">
                                     <option value="Choose a community">Choose a community</option>
+                                    <?php foreach ($cl['communities_followed'] as $item) : ?>
+                                    <option value="<?php echo $item['community_id'] ?>"><?php echo $item['name'] ?>
+                                    </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="reorder btn mt-1">REORDER COMMINITIES</div>

@@ -67,11 +67,11 @@
     </div>
     <div class="Advertisement"></div>
     <div class="Management-target target">
-        <h2 class="t-center t-color-3">🛠 Management</h2>
+        <h3 class="t-center t-color-3">🛠 Management</h3>
         <hr>
         <div class="management-content flex col gap-1">
             <div class="Management-dislplay">
-                <h3>🎆 QUEUES</h3>
+                <h4>🎆 QUEUES</h4>
                 <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Mod Mail</li>
                     <li class="t-color-3">Unmoderated Posts</li>
@@ -80,7 +80,7 @@
                 </ul>
             </div>
             <div class="Management-dislplay">
-                <h3>🎆 USER MANAGEMENT</h3>
+                <h4>🎆 USER MANAGEMENT</h4>
                 <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Banning</li>
                     <li class="t-color-3">Moderators</li>
@@ -88,7 +88,7 @@
                 </ul>
             </div>
             <div class="Management-dislplay">
-                <h3>🎆 FLAIR EMOJIS</h3>
+                <h4>🎆 FLAIR EMOJIS</h4>
                 <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Grant Use Flair</li>
                     <a href="post_flairs">
@@ -97,19 +97,21 @@
                 </ul>
             </div>
             <div class="Management-dislplay">
-                <h3>🎆 RULES AND REGULATIONS</h3>
+                <h4>🎆 RULES AND REGULATIONS</h4>
                 <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Community Rules</li>
                     <li class="t-color-3">Automod</li>
                 </ul>
             </div>
             <div class="Management-dislplay">
-                <h3>🎆 OTHER</h3>
+                <h4>🎆 OTHER</h4>
                 <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    <?php if ($community['moderator'] == $me['id']) : ?>
                     <a href="community_appearance?community_id=<?php echo $cl['community_id']; ?>">
                         <li class="t-color-3">Community Appearance</li>
                     </a>
-                    <a href="sidebar_widget">
+                    <?php endif; ?>
+                    <a href="sidebar_widget?community_id=<?php echo $cl['community_id']; ?>">
                         <li class="t-color-3">Sidebar Widget</li>
                     </a>
                     <li class="t-color-3">Community Settings</li>

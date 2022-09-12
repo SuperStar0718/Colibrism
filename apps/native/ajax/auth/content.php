@@ -54,7 +54,7 @@ if ($action == "login") {
             }
         }
     }
-    return cl_redirect("home");
+    return cl_redirect("home?page=1");
 } else if ($action == 'signup') {
     // $invite_code = fetch_or_get($_POST["invite_code"], false);
     // $invite_link = (not_empty($invite_code)) ? cl_db_get_item(T_USER_INVITES, array("code" => $invite_code)) : false;
@@ -263,7 +263,7 @@ if ($action == "login") {
                     'start_up'    => json(array('source' => 'system', 'avatar' => 0, 'info' => 0, 'follow' => 0), true),
                     'ip_address'  => $user_ip,
                     'language'    => $cl['config']['language'],
-                     'display_settings' => json(array("link_color" => "#EB0026", "base_color" => "#359D47", "highlight_color" => "#0179D2"), true)
+                    'display_settings' => json(array("link_color" => "#2f94d9", "base_color" => "#ffffff", "highlight_color" => "#1a2632"), true)
                 );
                 $user_id       =  $db->insert(T_USERS, $insert_data);
 

@@ -16,15 +16,7 @@ $sql = "select * from cl_users";
 $query_res = $db->rawQuery($sql);
 cl_queryset($query_res);
 $cl['users'] = $query_res;
-if (not_empty($_GET['community_id'])) {
-    $db = $db->where("user_id", $me['id']);
-    $db = $db->where('community_id', $_GET['community_id']);
-    $result = $db->getOne(T_COMMUNITY_SETTINGS);
-    if (not_empty($result)) {
-        $menu_links = json($result['menu_links']);
-        $cl['menu_links'] = $menu_links;
-    }
-}
+
 foreach ($cl['communities_followed'] as $key => $community) {
     $temp_com = $community['community_id'];
     $temp_user = $me['id'];
@@ -70,4 +62,19 @@ function convert_into_base64($path)
     $imageBase64 = "data:image/$type;base64," . base64_encode($data); #Convert product image to base64
 
     echo "$imageBase64";
+}
+if (not_empty($_GET['community_id'])) {
+    $db = $db->where("user_id", $me['id']);
+    $db = $db->where('community_id', $_GET['community_id']);
+    $result = $db->getOne(T_COMMUNITY_SETTINGS);
+    if (not_empty($result)) {
+        $menu_links = json($result['menu_links']);
+        $cl['menu_links'] = $menu_links;
+    }
+    $db = $db->where('community_id', $_GET['community_id']);
+    $result = $db->getOne(T_COMMUNITY);
+    if (not_empty($result)) {
+        // global $community;
+        $community = $result;
+    }
 }

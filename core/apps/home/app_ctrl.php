@@ -9,9 +9,10 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-function cl_get_timeline_feed($limit = false, $offset = false, $onset = false)
+function cl_get_timeline_feed($limit = false, $offset = 0, $onset = false)
 {
 	global $db, $cl, $me;
+	$offset = $limit * ($cl['page'] - 1);
 
 	if (empty($cl["is_logged"])) {
 		return false;
@@ -32,6 +33,11 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false)
 
 
 	$query_res = $db->rawQuery($sql);
+
+	$sql = "SELECT COUNT(posts.`id`) FROM `cl_posts` posts	INNER JOIN `cl_publications` pubs ON posts.`publication_id` = pubs.`id` INNER JOIN `cl_community` community ON posts.`community_id` = community.`community_id` WHERE posts.`community_id` IN (SELECT `community_id` FROM `cl_community_following` WHERE `follow_user_id`= ".$me['id'].")";
+	$query_res_1 = $db->rawQuery($sql);
+	cl_queryset($query_res_1);
+	$cl['total_number']=$query_res_1[0]["COUNT(posts.`id`)"];
 	$counter   = 0;
 
 
@@ -39,17 +45,14 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false)
 	$sql = "SELECT community_id FROM `cl_join_list` WHERE `user_id`=$user_id ";
 	$query_res_1 = $db->rawQuery($sql);
 	cl_queryset($query_res_1);
-	//$me['communtiy_id'] = $query_res_1[0]['community_id'];
 	$community_id = array();
 	foreach ($query_res_1 as $row) {
 		array_push($community_id, $row['community_id']);
 	}
-	// print_r($community_id);
 
 
 
 	if (cl_queryset($query_res)) {
-		// print_r($query_res);
 		foreach ($query_res as $row) {
 			$post_data = cl_raw_post_data($row['publication_id']);
 
@@ -60,7 +63,6 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false)
 				$post_data['community_name'] = $row['name'];
 
 				$post_data['attrs']       = array();
-				// echo "hello " . in_array($post_data['community_id'], $community_id);
 
 				if (in_array($post_data['community_id'], $community_id))
 					$post_data['og_data'] = "true";

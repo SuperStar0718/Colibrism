@@ -1,7 +1,7 @@
-<section class="side-bar-r flex col nd gap-2">
+<section class="side-bar-r flex col nd gap-1">
     <div class="Advertisement"></div>
     <div class="Trends-target target">
-        <h3>Lorem, ipsum dolor.</h3>
+        <h4 class="title">Lorem, ipsum dolor.</h4>
         <h4>Lorem, ipsum dolor.</h4>
         <div class="conconfig-btn btn absolute">⚙</div>
         <div class="trending-content flex col">
@@ -75,7 +75,8 @@
     <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">EXPLORE TWITTOR
     </div>
     <div class="Comunity-target target">
-        <h3>COMMUNITIES TO FOLLOW</h3>
+        <h4 class="title">COMMUNITIES TO FOLLOW</h4>
+        <hr>
         <div class="comunyties-content flex col">
             <?php if (count($cl['communities_can_follow']) > 5) : ?>
             <?php $random = array_rand($cl['communities_can_follow'], 5); ?>
@@ -114,7 +115,8 @@
         </div>
     </div>
     <div class="Comunity-target target">
-        <h3>PEOPLE YOU MAY KNOW</h3>
+        <h4 class="title">PEOPLE YOU MAY KNOW</h4>
+        <hr>
         <div class="comunyties-content flex col">
 
 

@@ -1,14 +1,14 @@
-<section class="side-bar-l flex col nd gap-2">
+<section class="side-bar-l flex col nd gap-1">
     <div class="User-target flex col target">
         <div class="user-front-page-image absolute">
             <?php if (not_empty($me['avatar'])) : ?>
-            <img src="<?php convert_into_base64($me['cover']); ?>" alt="Avatar">
+                <img src="<?php convert_into_base64($me['cover']); ?>" alt="Avatar">
             <?php endif; ?>
         </div>
         <div class="user-data-content flex nd col center">
             <div class="user-image s-1 circle">
                 <?php if (not_empty($me['avatar'])) : ?>
-                <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
+                    <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
                 <?php endif; ?>
             </div>
             <span class="user-name">@<?php echo $me['username'] ?></span>
@@ -43,41 +43,41 @@
         </div>
     </div>
     <div class="Comunity-target target">
-        <h3>COMMUNITIES YOU HAVE FOLLOWED</h3>
+        <h4>COMMUNITIES YOU HAVE FOLLOWED</h4>
+        <hr>
         <div class="comunyties-content flex col">
             <?php shuffle($cl['communities_followed']); ?>
 
             <?php if (count($cl['communities_followed']) > 5) : ?>
-            <?php $count = 5; ?>
+                <?php $count = 5; ?>
             <?php else : ?>
-            <?php $count = count($cl['communities_followed']); ?>
+                <?php $count = count($cl['communities_followed']); ?>
             <?php endif; ?>
 
             <?php for ($x = 0; $x < $count; $x++) {
                 $community = $cl['communities_followed'][$x];
             ?>
-            <div class="Comunity-display grid">
-                <div class="comunity-image-content">
-                    <div class="user-image s-2 circle">
-                        <?php if (!empty($community['icon'])) : ?>
-                        <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
-                        <?php endif; ?>
+                <div class="Comunity-display grid">
+                    <div class="comunity-image-content">
+                        <div class="user-image s-2 circle">
+                            <?php if (!empty($community['icon'])) : ?>
+                                <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="comunity-data-content">
-                    <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
-                        <h4><?php echo $community['name'] ?></h4>
-                    </a>
-                    <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
-                </div>
-                <form method="POST" action="native_api/main/join">
-                    <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
-                    <div class="comunkarity-action-content flex center">
-                        <button class="follow-btn mintext btn" type="submit"
-                            style="background-color: #c14848;">Leave</button>
+                    <div class="comunity-data-content">
+                        <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
+                            <h4><?php echo $community['name'] ?></h4>
+                        </a>
+                        <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
                     </div>
-                </form>
-            </div>
+                    <form method="POST" action="native_api/main/join">
+                        <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
+                        <div class="comunkarity-action-content flex center">
+                            <button class="follow-btn mintext btn" type="submit" style="background-color: #c14848;">Leave</button>
+                        </div>
+                    </form>
+                </div>
 
             <?php  } ?>
 
@@ -87,17 +87,17 @@
     <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">DONATORS</div>
 </section>
 <style>
-.Management-dislplay li,
-.comunyties-content .Comunity-display .comunity-data-content h4 {
-    color: <?php echo $cl['display_set']['link_color'];
-    ?>;
-}
+    .Management-dislplay li,
+    .comunyties-content .Comunity-display .comunity-data-content h4 {
+        color: <?php echo $cl['display_set']['link_color'];
+                ?>;
+    }
 
-.Management-target .t-center,
-.Rules-target .t-center,
-.side-bar-l .Comunity-target h3,
-.Comunity-detail-target .comunity-mods-content .t-center {
-    color: <?php echo $cl['display_set']['base_color'];
-    ?>;
-}
+    .Management-target .t-center,
+    .Rules-target .t-center,
+    .side-bar-l .Comunity-target h3,
+    .Comunity-detail-target .comunity-mods-content .t-center {
+        color: <?php echo $cl['display_set']['base_color'];
+                ?>;
+    }
 </style>

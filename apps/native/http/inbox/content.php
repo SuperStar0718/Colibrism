@@ -12,14 +12,10 @@
 if (empty($cl['is_logged'])) {
     cl_redirect("guest");
 } else {
-    $cl['community_id'] = $_GET['community_id'];
-
     require("preprocess.php");
-    $cl["page_title"] = cl_translate("Sidebar Widgets");
+    $cl["page_title"] = cl_translate("inbox");
     $cl["page_desc"]  = $cl["config"]["description"];
     $cl["page_kw"]    = $cl["config"]["keywords"];
-    $cl["pn"]         = "community";
-    $cl["sbr"]        = true;
-    $cl["sbl"]        = true;
-    $cl["http_res"]   = cl_template("sidebar_widget/content");
+    $cl["pn"]         = "inbox";
+    $cl["http_res"]   = cl_template("inbox/content");
 }
