@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -11,13 +11,9 @@
 
 if (empty($cl["is_logged"])) {
 	cl_redirect("404");
-}
-
-else if($me["start_up"] == "done") {
-	cl_redirect("home");
-}
-
-else {
+} else if ($me["start_up"] == "done") {
+	cl_redirect("home?page=1");
+} else {
 	$rand_number = rand(1, 15);
 
 	cl_update_user_data($me["id"], array(

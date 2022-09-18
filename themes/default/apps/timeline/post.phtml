@@ -58,9 +58,11 @@
                         // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
                         ?>
                 </div>
-                <div><img src="<?php convert_into_base64("themes/default/statics/img/image.png"); ?>"></div>
+                <div class="icon_middle"><img
+                        src="<?php convert_into_base64("themes/default/statics/img/image.png"); ?>"></div>
 
-                <div><img src="<?php convert_into_base64("themes/default/statics/img/lock.png"); ?>"></div>
+                <div class="icon_middle"><img
+                        src="<?php convert_into_base64("themes/default/statics/img/lock.png"); ?>"></div>
 
 
             </div>
@@ -147,10 +149,11 @@
                 </div>
             </div>
         </div>
-        <div class="r-action-btn btn bg-3">
-            <label for="award">
+        <div class="r-action-btns-content flex">
+
+            <div class="r-action-btn btn bg-3">
                 <img src="<?php convert_into_base64("themes/default/statics/img/award.png"); ?>">
-            </label>
+            </div>
         </div>
         <div class="large-btns-content flex wrap">
             <div class="btn large bg-3">
@@ -164,9 +167,12 @@
                 Save
             </div>
         </div>
-        <div class="r-action-btn btn bg-3">
-            <img src="<?php convert_into_base64("themes/default/statics/img/link.png"); ?>">
+        <div class="r-action-btns-content flex">
 
+            <div class="r-action-btn btn bg-3">
+                <img src="<?php convert_into_base64("themes/default/statics/img/link.png"); ?>">
+
+            </div>
         </div>
     </div>
 </div>

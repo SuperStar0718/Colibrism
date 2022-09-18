@@ -27,7 +27,7 @@ if (empty($cl["is_logged"])) {
 	$cl["pn"]            = "home";
 	$cl["sbr"]           = true;
 	$cl["sbl"]           = true;
-	$cl['page'] = $_GET['page'];
+	$cl['page']         = fetch_or_get($_GET['page'], 1);
 	$cl["tl_feed"]       = cl_get_timeline_feed(5);
 	$cl["tl_swifts"]     = cl_timeline_swifts();
 	$cl["http_res"]      = cl_template("home/content");

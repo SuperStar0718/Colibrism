@@ -9,14 +9,12 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-if (empty($cl['is_logged'])) {
-    cl_redirect("guest");
-} else {
-    // require("preprocess.php");
-    require('pre_inbox.php');
-    $cl["page_title"] = cl_translate("inbox");
-    $cl["page_desc"]  = $cl["config"]["description"];
-    $cl["page_kw"]    = $cl["config"]["keywords"];
-    $cl["pn"]         = "inbox";
-    $cl["http_res"]   = cl_template("inbox/content");
+if ($action == 'send_message') {
+    $data['err_code'] = "invalid_req_data";
+    $data['status']   = 400;
+    $message           = fetch_or_get($_POST['message'], "");
+    $conversation_id = fetch_or_get($_POST['conversation_id'], 0);
+    if(not_empty($message) && is_posnum($conversation_id)){
+        $db->insert
+    }
 }

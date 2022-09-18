@@ -15,13 +15,111 @@
     <link rel="icon" href="http://localhost/ColibriSM/themes/default/statics/img/favicon.png" type="image/png">
     <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='{%config theme_url%}/statics/css/bootstrap.css'>
-    <link rel='stylesheet' href='{%config theme_url%}/statics/css/inbox.css'>
     <link rel='stylesheet' href='{%config theme_url%}/statics/css/styles.css'>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
+
+    <link rel='stylesheet' href='{%config theme_url%}/statics/css/inbox.css'>
+
+    <style>
+    /* .Nav-bar .seach-bar-content .form-control input */
+    .Nav-bar,
+    .main .Post-bar,
+    .side-bar-r .rues-content .flex.col.gap-1 label,
+    .Nav-bar .seach-bar-content .form-control input,
+    .Nav-bar .User-account-dropdown,
+    .main .Post-bar .controls-content textarea {
+        background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
+    }
+
+    .Nav-bar .seach-bar-content .form-control input,
+    .Nav-bar .User-account-dropdown,
+    .main .Post-bar .controls-content textarea {
+        filter: brightness(75%);
+    }
+    </style>
 </head>
 
 <body class="m-a">
+    <nav class="Nav-bar flex center gap-2 nd">
+        <div class="page-logo-content"></div>
+        <div class="content">
+            <label class="btn hidden" for="showSeachBar"><i class="material-symbols-outlined">search</i></label>
+            <label class="btn hidden" for="showPanelButons"><i class="material-symbols-outlined">sort</i></label>
+        </div>
+        <div class="seach-bar-content flex center">
+            <div class="form-control">
+                <input class="target" type="text" placeholder="# explore">
+            </div>
+        </div>
+        <div class="other flex nd center">
+            <input class="hidden" id="showPanelButons" type="checkbox" name="showPanelButons">
+            <div class="panel-btns-content flex nd">
+                <a class="home-link btn round" href="home?page=1">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/home.png"); ?>">&nbsp;Home</a>
+                <div class="notifications-content flex center">
+                    <div class="ford-points-btn btn">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/grid (1).png"); ?>">
+                    </div>
+                    <a href="inbox">
+                        <div class="messages-btn btn">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/email (1).png"); ?>">
+                        </div>
+                    </a>
+                    <div class="notifications-btn btn">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/notification.png"); ?>">
+                        <sup class="text-white bg-danger">3</sup>
+                    </div>
+                </div>
+            </div>
+            <label class="User-account-dropdown btn mintext bg-3 round flex center nd gap-1" for="test">
+                <div class="user-image s-4 circle">
+                    <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
+                </div>
+                <span>@Admin</span>
+                <input class="hidden" id="test" type="checkbox" name="test">
+                <ul class="panel-links-content absolute bg-3 target flex col gap-1">
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i>
+                            Side Admin</a></li>
+                    <li><a class="flex center nd gap-1" href="home?page=1"><i
+                                class="material-symbols-outlined">description</i>
+                            Timeline</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">tag</i>
+                            Explore</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">forum</i>
+                            Messages</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">bookmark</i>
+                            Bookmarks</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i>
+                            Control Panel</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">campaign</i>
+                            Advertising</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i>
+                            Lorem</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
+                    <li><a class="flex center nd gap-1" href="logout"><i class="material-symbols-outlined">logout</i>
+                            Logout</a></li>
+                </ul>
+                <div class="aux-div fixed hidden"></div>
+            </label>
+            <div class="showmore-btn btn flex center">
+                <img src="<?php convert_into_base64("themes/default/statics/img/shield (1).png"); ?>">
+            </div>
+        </div>
+    </nav>
     <div class="msg_container">
         <div class="chat_body row">
             <div class="left-sidebar">
@@ -29,27 +127,104 @@
                     <div class="text">
                         Chat
                     </div>
-                    <div class="icon">x</div>
+                    <div class="icon">
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/close.png"); ?>">
+                        </div>
+                    </div>
                 </div>
                 <div class="inbox_list">
-                    <div class="inbox_item flex">
-                        <div class="avatar user-image circle col-2"> <img class=""
-                                src="<?php convert_into_base64("themes/default/statics/img/cake.png"); ?>"></div>
-                        <div class="content col-10">
+                    <?php global $user_list;
+                    foreach ($cl['conversations'] as $key => $conversation) : ?>
+                    <a href="inbox?conversation=<?php echo $conversation['id'] ?>">
+
+                        <div
+                            class="inbox_item flex row <?php if ($_GET['conversation'] == $conversation['id']) echo "active" ?>">
+                            <div class="avatar user-image circle "> <img class=""
+                                    src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
+                            <div class="content ">
+                                <div class="name"><?php echo $user_list[$key]['username'] ?></div>
+                                <div class="text"><?php echo "message"; ?></div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <?php endforeach; ?>
+                    <div class="inbox_item flex row">
+                        <div class="avatar user-image circle "> <img class=""
+                                src="<?php convert_into_base64("themes/default/statics/img/avatar-1.png"); ?>"></div>
+                        <div class="content ">
                             <div class="name">ok-manufacture32</div>
-                            <div class="text">hi</div>
+                            <div class="text">Hello NIce to meet you</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="message ">
+                <div class="title flex row">
+                    <div class="text">Title</div>
+                    <div class="icon">
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/settings.png"); ?>">
+                        </div>
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/resize (1).png"); ?>">
+                        </div>
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/down.png"); ?>">
+                        </div>
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/close.png"); ?>">
                         </div>
 
                     </div>
                 </div>
-            </div>
-            <div class="message ">
-                <div class="title flex">
-                    <div class="text">title</div>
-                    <div class="icon">x</div>
+                <div class="message_body row">
+                    <?php foreach ($cl['messages'] as $message) : ?>
+                    <?php if ($message['owner'] == $me['id']) : ?>
+                    <div class="sender">
+                        <div class="text">
+                            <?php echo $message['message']; ?>
+                        </div>
+                        <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
+                    </div>
+                    <?php else : ?>
+                    <div class="receiver">
+                        <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
+                        <div class="text">
+                            <?php echo $message['message']; ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+
                 </div>
-                <div class="message_body"></div>
-                <div class="footer"></div>
+                <form method="POST" action="native_api/inbox/send_message">
+                    <div class="footer row flex">
+                        <div class="camera">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/camera.png"); ?>">
+                        </div>
+                        <div class="input_body flex">
+                            <div class="type_content">
+                                <textarea placeholder="Message" name="message"></textarea>
+                            </div>
+                            <div class="gif">
+                                <img src="<?php convert_into_base64("themes/default/statics/img/gif.png"); ?>">
+                            </div>
+                            <div class="emoji">
+                                <img src="<?php convert_into_base64("themes/default/statics/img/happy.png"); ?>">
+                            </div>
+                        </div>
+                        <div class="send">
+                            <button type="submit" class="submit">
+                                <img src="<?php convert_into_base64("themes/default/statics/img/send.png"); ?>">
+                            </button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="conversation_id" value="<?php echo $_GET['conversation'] ?>">
+                </form>
+
             </div>
         </div>
     </div>

@@ -19,7 +19,7 @@ $site_url = parse_url($site_url);
 
 if (is_array($site_url)) {
 	if ($site_url['host'] != fetch_or_get($_SERVER['HTTP_HOST'], 'none')) {
-		cl_redirect("/");
+		cl_redirect("/home?page=1");
 	}
 }
 
@@ -57,7 +57,6 @@ if ($spa_load == '1') {
 	unset($cl);
 	exit();
 } else {
-
 	if ($app_name == "mnemonic") {
 		$http_res = cl_template("mnemonic/content");
 		echo $http_res;
@@ -70,6 +69,7 @@ if ($spa_load == '1') {
 	} else {
 		$http_res = cl_template("main/content");
 		echo $http_res;
+		// cl_redirect("home?page=1");
 	}
 
 

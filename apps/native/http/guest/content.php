@@ -10,7 +10,7 @@
 # @*************************************************************************@
 
 if (not_empty($cl["is_logged"])) {
-	cl_redirect("home");
+	cl_redirect("home?page=1");
 }
 require_once(cl_full_path("core/apps/guest/app_ctrl.php"));
 

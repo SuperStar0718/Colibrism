@@ -1161,7 +1161,7 @@ if ($action == 'upload_post_image') {
         ), true)
     ));
     // }
-    return cl_redirect("home");
+    return cl_redirect("home?page=1");
 } else if ($action == "create_community") {
     $data['err_code'] = 0;
     $data['status']   = 400;
@@ -1236,7 +1236,7 @@ if ($action == 'upload_post_image') {
     cl_queryset($query_res);
 
 
-    cl_redirect("home");
+    cl_redirect("home?page=1");
 } else if ($action == "join_community") {
     $data['err_code'] = 0;
     $data['status']   = 400;

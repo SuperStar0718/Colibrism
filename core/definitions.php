@@ -37,6 +37,8 @@ define("T_COMMUNITY", "cl_community");
 define("T_JOIN_LIST", "cl_join_list");
 define("T_COMMUNITY_FOLLOWING", "cl_community_following");
 define("T_COMMUNITY_SETTINGS", "cl_community_settings");
+define("T_CONVERSATIONS", "cl_conversations");
+define("T_CONVERSATION_MESSAGE", "cl_conversation_messages");
 
 global $image_path;
 $image_path = "";
