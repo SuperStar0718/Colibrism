@@ -141,13 +141,11 @@
                     </div>
                 </div>
                 <div class="comunity-data-content">
-                    <a href="profile?user_id=<?php echo $user['id']; ?>">
-
+                    <a href="">
                         <h4><?php echo $user['username'] ?></h4>
                     </a>
                 </div>
-                <form method="POST" action="native_api/main/follow_people">
-                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                <form method="POST" action="native_api/main/follow">
                     <div class="comunkarity-action-content flex center">
                         <button class="follow-btn mintext btn" type="submit">Follow</button>
                     </div>
@@ -158,4 +156,5 @@
 
         </div>
     </div>
+
 </section>

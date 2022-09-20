@@ -20,7 +20,6 @@ $applications       = array(
   "auth"          => true,
   "logout"        => true,
   "settings"      => true,
-  "profile"       => true,
   "connections"   => true,
   "suggested"     => true,
   "trending"      => true,
@@ -66,7 +65,7 @@ $applications       = array(
   "post_flairs" => true,
   "post_settings" => true,
   "inbox" => true,
-
+  "profile" => true,
 );
 
 $cl['profile_report_types'] = array(

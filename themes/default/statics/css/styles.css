@@ -2094,6 +2094,19 @@ input[type=color]::-webkit-color-swatch {
   background: #555;
 }
 
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #494b4c;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .user-data-content .user-member-since img {
   width: 20px;
 }
@@ -2167,10 +2180,6 @@ input[type=color]::-webkit-color-swatch {
   z-index: 2;
 }
 
-.panel-btns-content a {
-  padding-left: 3px;
-  padding-right: 5px;
-}
 
 .publication-poll__inner .publication-poll__option .bar-text p {
   line-height: 1.5;
@@ -2477,4 +2486,24 @@ a .Big-button {
 .icon_middle {
   display: flex;
 
+}
+
+.User-target .btns-content {
+  grid-template: auto/1fr 1fr;
+}
+
+.notifications-content .ford-points-btn img {
+  width: 16px;
+}
+
+.other .panel-btns-content {
+  align-items: center;
+}
+
+.other .panel-btns-content .home-link {
+  height: 23px;
+}
+
+.other .panel-btns-content .messages-btn a {
+  height: 20px;
 }

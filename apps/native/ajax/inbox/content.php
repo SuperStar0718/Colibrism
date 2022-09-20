@@ -14,7 +14,17 @@ if ($action == 'send_message') {
     $data['status']   = 400;
     $message           = fetch_or_get($_POST['message'], "");
     $conversation_id = fetch_or_get($_POST['conversation_id'], 0);
-    if(not_empty($message) && is_posnum($conversation_id)){
-        $db->insert
+    if (not_empty($message) && is_posnum($conversation_id)) {
+        $insert_data = array(
+            "conversation_id" => $conversation_id,
+            "owner" => $me['id'],
+            "message" => $message
+        );
+        $db->insert(T_CONVERSATION_MESSAGE, $insert_data);
+        $db = $db->where('id', $_POST['conversation_id']);
+        $db = $db->update(T_CONVERSATIONS, array(
+            'updated_at' =>  date('Y-m-d H:i:s')
+        ));
     }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

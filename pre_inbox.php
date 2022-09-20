@@ -8,6 +8,7 @@ function convert_into_base64($path)
     $imageBase64 = "data:image/$type;base64," . base64_encode($data); #Convert product image to base64
 
     echo "$imageBase64";
+    // return $imageBase64;
 }
 
 $sql = "select * from cl_users";
@@ -35,9 +36,12 @@ foreach ($result as $conversation) :
         array_push($user_list, $result);
     endif;
 endforeach;
+
+$cl['conversation_id']         = fetch_or_get($_GET['conversation'], $cl['conversations'][0]['id']);
+
 $cl['messages'] = array();
-$db = $db->where("conversation_id", 1);
-$db->orderBy("created_at", "ASC");
+$db = $db->where("conversation_id", $cl['conversation_id']);
+$db->orderBy("created_at", "DESC");
 $result = $db->get(T_CONVERSATION_MESSAGE);
 foreach ($result as $message) :
     array_push($cl['messages'], $message);

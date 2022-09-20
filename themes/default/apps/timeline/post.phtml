@@ -19,9 +19,11 @@
             </div>
         </div>
         <div class="teewt-content">
-            <h4 style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                @<?php echo ($cl['li']['owner']['username']); ?>
-            </h4>
+            <a href="profile?user_id=<?php echo $cl['li']['owner']['id']; ?>">
+                <h4 style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    @<?php echo ($cl['li']['owner']['username']); ?>
+                </h4>
+            </a>
             <div class="posted_title">
                 <div class="posted-by t-color-3">
                     posted by

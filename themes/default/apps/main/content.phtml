@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>
         <?php if (not_empty($me['new_notifs'])) : ?>
-            (<?php echo fetch_or_get($me['new_notifs']); ?>)
+        (<?php echo fetch_or_get($me['new_notifs']); ?>)
         <?php endif; ?>
 
         <?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>
@@ -18,36 +18,35 @@
 
 
     <?php if ($cl["pn"] == 'thread') : ?>
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
-        <meta property="og:image:secure_url" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
-        <meta property="og:description" content="<?php echo fetch_or_get($cl["page_desc"], $cl["config"]["description"]); ?>" />
-        <meta property="og:title" content="<?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>" />
-        <meta property="og:url" content="<?php echo fetch_or_get($cl["page_url"], $cl["config"]["url"]); ?>" />
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="<?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>" />
-        <meta name="twitter:description" content="<?php echo fetch_or_get($cl["page_desc"], $cl["config"]["description"]); ?>" />
-        <meta name="twitter:image" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
+    <meta property="og:image:secure_url" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
+    <meta property="og:description"
+        content="<?php echo fetch_or_get($cl["page_desc"], $cl["config"]["description"]); ?>" />
+    <meta property="og:title" content="<?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>" />
+    <meta property="og:url" content="<?php echo fetch_or_get($cl["page_url"], $cl["config"]["url"]); ?>" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="<?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>" />
+    <meta name="twitter:description"
+        content="<?php echo fetch_or_get($cl["page_desc"], $cl["config"]["description"]); ?>" />
+    <meta name="twitter:image" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
     <?php endif; ?>
 
-    <?php if (in_array($cl["pn"], array("profile", "connections"))) : ?>
-        <?php if ($cl['prof_user']['index_privacy'] == 'N') : ?>
-            <meta name="robots" content="noindex">
-            <meta name="googlebot" content="noindex">
-        <?php endif; ?>
-    <?php endif; ?>
+
 
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/styles.css">
     <?php if ($cl["pn"] == "guest") : ?>
-        <link rel='stylesheet' href='{%config theme_url%}/statics/css/bootstrap.css'>
-        <link rel="stylesheet" href="{%config theme_url%}/statics/css/alert.css">
-        <link rel="stylesheet" href="{%config theme_url%}/statics/css/login.css">
+    <link rel='stylesheet' href='{%config theme_url%}/statics/css/bootstrap.css'>
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/alert.css">
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/login.css">
 
     <?php endif; ?>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
 
     <link rel="icon" href="{%config site_fav%}" type="image/png">
     <link rel="icon" href="{%config site_fav%}" type="image/x-icon">
@@ -58,130 +57,136 @@
 
 <body class="m-a">
     <?php if ($cl["pn"] != "guest") : ?>
-        <nav class="Nav-bar flex center gap-2 nd">
-            <div class="page-logo-content"></div>
-            <div class="content">
-                <label class="btn hidden" for="showSeachBar"><i class="material-symbols-outlined">search</i></label>
-                <label class="btn hidden" for="showPanelButons"><i class="material-symbols-outlined">sort</i></label>
+    <nav class="Nav-bar flex center gap-2 nd">
+        <div class="page-logo-content"></div>
+        <div class="content">
+            <label class="btn hidden" for="showSeachBar"><i class="material-symbols-outlined">search</i></label>
+            <label class="btn hidden" for="showPanelButons"><i class="material-symbols-outlined">sort</i></label>
+        </div>
+        <div class="seach-bar-content flex center">
+            <div class="form-control">
+                <input class="target" type="text" placeholder="# explore">
             </div>
-            <div class="seach-bar-content flex center">
-                <div class="form-control">
-                    <input class="target" type="text" placeholder="# explore">
-                </div>
-            </div>
-            <div class="other flex nd center">
-                <input class="hidden" id="showPanelButons" type="checkbox" name="showPanelButons">
-                <div class="panel-btns-content flex nd">
-                    <a class="home-link btn round" href="home">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/home.png"); ?>">&nbsp;Home</a>
-                    <div class="notifications-content flex center">
-                        <div class="ford-points-btn btn">
-                            <img src="<?php convert_into_base64("themes/default/statics/img/grid (1).png"); ?>">
-                        </div>
+        </div>
+        <div class="other flex nd center">
+            <input class="hidden" id="showPanelButons" type="checkbox" name="showPanelButons">
+            <div class="panel-btns-content flex nd">
+                <a class="home-link btn round" href="home">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/home.png"); ?>">&nbsp;Home</a>
+                <div class="notifications-content flex center">
+                    <div class="ford-points-btn btn">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/grid (1).png"); ?>">
+                    </div>
+                    <div class="messages-btn btn">
                         <a href="inbox">
-                            <div class="messages-btn btn">
-                                <img src="<?php convert_into_base64("themes/default/statics/img/email (1).png"); ?>">
-                            </div>
+
+                            <img src="<?php convert_into_base64("themes/default/statics/img/email (1).png"); ?>">
                         </a>
-                        <div class="notifications-btn btn">
-                            <img src="<?php convert_into_base64("themes/default/statics/img/notification.png"); ?>">
-                            <sup class="text-white bg-danger">3</sup>
-                        </div>
                     </div>
-                </div>
-                <label class="User-account-dropdown btn mintext bg-3 round flex center nd gap-1" for="test">
-                    <div class="user-image s-4 circle">
-                        <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
+                    <div class="notifications-btn btn">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/notification.png"); ?>">
+                        <sup class="text-white bg-danger">3</sup>
                     </div>
-                    <span>@Admin</span>
-                    <input class="hidden" id="test" type="checkbox" name="test">
-                    <ul class="panel-links-content absolute bg-3 target flex col gap-1">
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i>
-                                Side Admin</a></li>
-                        <li><a class="flex center nd gap-1" href="home"><i class="material-symbols-outlined">description</i>
-                                Timeline</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">tag</i>
-                                Explore</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">forum</i>
-                                Messages</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">bookmark</i>
-                                Bookmarks</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i>
-                                Control Panel</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">campaign</i>
-                                Advertising</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i>
-                                Lorem</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
-                        <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
-                        <li><a class="flex center nd gap-1" href="logout"><i class="material-symbols-outlined">logout</i>
-                                Logout</a></li>
-                    </ul>
-                    <div class="aux-div fixed hidden"></div>
-                </label>
-                <div class="showmore-btn btn flex center">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/shield (1).png"); ?>">
                 </div>
             </div>
-        </nav>
-
-        <main class="Main-dash-board grid js-c <?php echo (($cl["is_logged"]) ? "" : "guest-mode"); ?>">
-            <?php if ($cl["pn"] == "guest") : ?>
-                <?php echo $cl["http_res"]; ?>
-            <?php else : ?>
-
-                <?php if (not_empty($cl["sbl"])) : ?>
-                    <?php if ($cl["pn"] == "home") : ?>
-                        <?php echo cl_template('main/left_sidebar'); ?>
-                    <?php elseif ($cl['pn'] == "show_post_details") : ?>
-                        <?php echo cl_template('main/left_sidebar'); ?>
-                    <?php elseif ($cl['pn'] == "community") : ?>
-                        <?php echo cl_template('main/left_sidebar_community'); ?>
-                    <?php endif; ?>
-                <?php endif; ?>
-
-                <?php echo $cl["http_res"]; ?>
-
-                <?php global $is_moderator;
-                ?>
-                <?php if (not_empty($cl["sbr"])) : ?>
-                    <?php if ($cl["pn"] == "home") : ?>
-                        <?php echo cl_template('main/right_sidebar'); ?>
-                    <?php elseif ($cl['pn'] == 'show_post_details') : ?>
-                        <?php echo cl_template('main/right_sidebar'); ?>
-                    <?php elseif ($cl['pn'] == 'community') : ?>
-                        <?php echo cl_template('main/right_sidebar_community'); ?>
-                    <?php endif; ?>
-                <?php endif; ?>
-
+            <label class="User-account-dropdown btn mintext bg-3 round flex center nd gap-1" for="test">
+                <div class="user-image s-4 circle">
+                    <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
                 </div>
-            <?php endif; ?>
-        </main>
-    <?php else : ?>
+                <span>@Admin</span>
+                <input class="hidden" id="test" type="checkbox" name="test">
+                <ul class="panel-links-content absolute bg-3 target flex col gap-1">
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i>
+                            Side Admin</a></li>
+                    <li><a class="flex center nd gap-1" href="home"><i class="material-symbols-outlined">description</i>
+                            Timeline</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">tag</i>
+                            Explore</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">forum</i>
+                            Messages</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">bookmark</i>
+                            Bookmarks</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i>
+                            Control Panel</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">campaign</i>
+                            Advertising</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i>
+                            Lorem</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
+                    <li><a class="flex center nd gap-1" href="logout"><i class="material-symbols-outlined">logout</i>
+                            Logout</a></li>
+                </ul>
+                <div class="aux-div fixed hidden"></div>
+            </label>
+            <div class="showmore-btn btn flex center">
+                <img src="<?php convert_into_base64("themes/default/statics/img/shield (1).png"); ?>">
+            </div>
+        </div>
+    </nav>
+
+    <main class="Main-dash-board grid js-c <?php echo (($cl["is_logged"]) ? "" : "guest-mode"); ?>">
+        <?php if ($cl["pn"] == "guest") : ?>
         <?php echo $cl["http_res"]; ?>
+        <?php else : ?>
+
+        <?php if (not_empty($cl["sbl"])) : ?>
+        <?php if ($cl["pn"] == "home") : ?>
+        <?php echo cl_template('main/left_sidebar'); ?>
+        <?php elseif ($cl['pn'] == "community") : ?>
+        <?php echo cl_template('main/left_sidebar_community'); ?>
+        <?php elseif ($cl['pn'] == "profile") : ?>
+        <?php echo cl_template('main/left_sidebar_profile'); ?>
+        <?php endif; ?>
+        <?php endif; ?>
+
+        <?php echo $cl["http_res"]; ?>
+
+        <?php global $is_moderator;
+                ?>
+        <?php if (not_empty($cl["sbr"])) : ?>
+        <?php if ($cl["pn"] == "home") : ?>
+        <?php echo cl_template('main/right_sidebar'); ?>
+        <?php elseif ($cl['pn'] == 'community') : ?>
+        <?php echo cl_template('main/right_sidebar_community'); ?>
+        <?php elseif ($cl['pn'] == "profile") : ?>
+        <?php echo cl_template('main/right_sidebar_profile'); ?>
+        <?php endif; ?>
+        <?php endif; ?>
+
+        </div>
+        <?php endif; ?>
+    </main>
+    <?php else : ?>
+    <?php echo $cl["http_res"]; ?>
 
     <?php endif; ?>
 
 
     <style>
-        /* .Nav-bar .seach-bar-content .form-control input */
-        .Nav-bar,
-        .main .Post-bar,
-        .side-bar-r .rues-content .flex.col.gap-1 label,
-        .Nav-bar .seach-bar-content .form-control input,
-        .Nav-bar .User-account-dropdown,
-        .main .Post-bar .controls-content textarea {
-            background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
-        }
+    /* .Nav-bar .seach-bar-content .form-control input */
+    .Nav-bar,
+    .main .Post-bar,
+    .side-bar-r .rues-content .flex.col.gap-1 label,
+    .Nav-bar .seach-bar-content .form-control input,
+    .Nav-bar .User-account-dropdown,
+    .main .Post-bar .controls-content textarea {
+        background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
+    }
 
-        .Nav-bar .seach-bar-content .form-control input,
-        .Nav-bar .User-account-dropdown,
-        .main .Post-bar .controls-content textarea {
-            filter: brightness(75%);
-        }
+    .Nav-bar .seach-bar-content .form-control input,
+    .Nav-bar .User-account-dropdown,
+    .main .Post-bar .controls-content textarea {
+        filter: brightness(75%);
+    }
     </style>
 
 </body>

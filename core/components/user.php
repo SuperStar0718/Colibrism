@@ -707,6 +707,16 @@ function cl_is_following($user_id = false, $community_id = false)
     return is_posnum($res);
 }
 
+function cl_is_following_people($user_id = false, $people_id = false)
+{
+    global $db;
+    $db  = $db->where('user_id', $user_id);
+    $db  = $db->where('people_id', $people_id);
+    $res = $db->getValue(T_PEOPLE_FOLLOWING, 'COUNT(id)');
+
+    return is_posnum($res);
+}
+
 function cl_follow_requested($follower_id = false, $following_id = false)
 {
     global $db;
@@ -793,6 +803,16 @@ function cl_follow($user_id = false, $community_id = false)
     $insert_id         = cl_db_insert(T_COMMUNITY_FOLLOWING, array(
         'community_id'  => $community_id,
         'follow_user_id' => $user_id
+
+    ));
+    return $insert_id;
+}
+
+function cl_follow_people($user_id = false, $people_id = false)
+{
+    $insert_id         = cl_db_insert(T_PEOPLE_FOLLOWING, array(
+        'user_id'  => $user_id,
+        'people_id' => $people_id
 
     ));
     return $insert_id;

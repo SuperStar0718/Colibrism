@@ -13,6 +13,7 @@ if (empty($cl['is_logged'])) {
     cl_redirect("guest");
 } else {
     // require("preprocess.php");
+
     require('pre_inbox.php');
     $cl["page_title"] = cl_translate("inbox");
     $cl["page_desc"]  = $cl["config"]["description"];

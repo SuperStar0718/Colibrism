@@ -178,7 +178,6 @@ if (empty($cl["is_logged"])) {
                 "publication_id" => $post_id,
                 "time" => time(),
                 "community_id" => $community_id,
-
             ));
 
 

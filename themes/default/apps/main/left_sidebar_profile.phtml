@@ -41,7 +41,18 @@
             <div class="folowers-conunt flex col center"><span>4,532</span><span>Followers</span></div>
 
         </div>
-
+        <?php if ($me['id'] != $cl['me']['id']) : ?>
+        <div class="btns-content grid gap-1">
+            <a href="native_api/profile/new_conversation?user_id=<?php echo $me['id']; ?>">
+                <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    Contact</div>
+            </a>
+            <a href="#">
+                <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    Follow</div>
+            </a>
+        </div>
+        <?php endif; ?>
     </div>
     <div class="Comunity-target target">
         <h4>COMMUNITIES YOU HAVE FOLLOWED</h4>

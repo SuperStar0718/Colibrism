@@ -61,6 +61,7 @@ RewriteRule ^join_community(\/|)$ index.php?app=join_community [QSA]
 RewriteRule ^community_rules(\/|)$ index.php?app=community_rules [QSA]
 RewriteRule ^approved_users(\/|)$ index.php?app=approved_users [QSA]
 RewriteRule ^community_appearance(\/|)$ index.php?app=community_appearance [QSA]
+RewriteRule ^profile(\/|)$ index.php?app=profile [QSA]
 RewriteRule ^post_flairs(\/|)$ index.php?app=post_flairs [QSA]
 RewriteRule ^sidebar_widget(\/|)$ index.php?app=sidebar_widget [QSA]
 RewriteRule ^mnemonic(\/|)$ index.php?app=mnemonic [QSA]
@@ -87,9 +88,9 @@ RewriteRule ^mobile_api/(\w{3,32})$ api.php?api=mobile&app=$1 [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^(\w{3,25})(\/|)$ index.php?app=profile&uname=$1 [QSA]
+# RewriteRule ^(\w{3,25})(\/|)$ index.php?app=profile&uname=$1 [QSA]
 RewriteRule ^(\w{3,25})/(following|followers|follow_requests)(\/|)$ index.php?app=connections&uname=$1&tab=$2 [QSA]
-RewriteRule ^(\w{3,25})/(posts|media|likes)(\/|)$ index.php?app=profile&uname=$1&tab=$2 [QSA]
+# RewriteRule ^(\w{3,25})/(posts|media|likes)(\/|)$ index.php?app=profile&uname=$1&tab=$2 [QSA]
 
 ErrorDocument 404 /index.php?app=err404
 

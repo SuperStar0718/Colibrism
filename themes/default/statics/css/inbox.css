@@ -3,7 +3,8 @@
 }
 
 .chat_body {
-    max-width: 80vw;
+    max-width: 130.8rem;
+    width: 97%;
     height: 80vh;
     background-color: #1a2632;
     margin-top: 10vh;
@@ -67,6 +68,7 @@
 .message {
     display: flex;
     flex-direction: column;
+    border-radius: 0px 20px 20px 0px;
 }
 
 .footer {
@@ -134,6 +136,7 @@
 
 .type_content textarea {
     overflow-y: auto;
+    font-size: 14px;
 }
 
 
@@ -169,7 +172,7 @@
     display: flex;
     position: relative;
     justify-content: flex-end;
-    margin: 5px 50px 5px 50px;
+    margin: 5px 3% 5px 3%;
 }
 
 .message_body .sender .text,
@@ -177,13 +180,15 @@
     background-color: #2c3a48;
     padding: 10px;
     border-radius: 10px;
+    max-width: 80%;
+    text-align: left;
 }
 
 .message_body .receiver {
     display: flex;
     position: relative;
     justify-content: flex-start;
-    margin: 10px 50px 10px 50px;
+    margin: 10px 3% 10px 3%;
 }
 
 .message_body .avatar img {
@@ -191,13 +196,23 @@
     border-radius: 20px;
 }
 
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 767px) {
     .left-sidebar {
         display: none;
     }
 
     .chat_body .message {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .footer {
+        padding: 0px 5px 5px 5px;
+    }
+
+    .footer div {
+        padding: 5px;
     }
 }
 
@@ -214,4 +229,34 @@
 .footer .gif,
 .footer .emoji {
     cursor: pointer;
+}
+
+.chat_body a {
+    color: #badde1;
+}
+
+.message_body {
+    overflow-y: auto;
+}
+
+.message_body::-webkit-scrollbar {
+    width: 7px;
+}
+
+.message_body::-webkit-scrollbar-track {
+    background: #1a2632;
+}
+
+.message_body::-webkit-scrollbar-thumb {
+    background: #767676;
+    border-radius: 20px;
+}
+
+.message_body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.time {
+    float: right;
+    padding: 0px 5px 0px 10px;
 }

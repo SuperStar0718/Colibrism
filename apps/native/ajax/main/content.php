@@ -713,6 +713,20 @@ if ($action == 'upload_post_image') {
         }
     }
     return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'follow_people') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    } else {
+        $data['status']   = 404;
+        $data['err_code'] = 0;
+        $user_id          = fetch_or_get($_POST['user_id'], 0);
+        if (!cl_is_following_people($me['id'], $user_id)) {
+            $data['status'] = 200;
+            cl_follow_people($me['id'], $user_id);
+        }
+    }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'delete_post') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;

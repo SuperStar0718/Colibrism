@@ -65,11 +65,13 @@
                     <div class="ford-points-btn btn">
                         <img src="<?php convert_into_base64("themes/default/statics/img/grid (1).png"); ?>">
                     </div>
-                    <a href="inbox">
-                        <div class="messages-btn btn">
+                    <div class="messages-btn btn">
+                        <a href="inbox">
+
                             <img src="<?php convert_into_base64("themes/default/statics/img/email (1).png"); ?>">
-                        </div>
-                    </a>
+                        </a>
+
+                    </div>
                     <div class="notifications-btn btn">
                         <img src="<?php convert_into_base64("themes/default/statics/img/notification.png"); ?>">
                         <sup class="text-white bg-danger">3</sup>
@@ -127,19 +129,18 @@
                     <div class="text">
                         Chat
                     </div>
-                    <div class="icon">
-                        <div>
-                            <img src="<?php convert_into_base64("themes/default/statics/img/close.png"); ?>">
-                        </div>
-                    </div>
+
                 </div>
                 <div class="inbox_list">
                     <?php global $user_list;
                     foreach ($cl['conversations'] as $key => $conversation) : ?>
                     <a href="inbox?conversation=<?php echo $conversation['id'] ?>">
 
-                        <div
-                            class="inbox_item flex row <?php if ($_GET['conversation'] == $conversation['id']) echo "active" ?>">
+                        <div class="inbox_item flex row <?php if ($cl['conversation_id'] == $conversation['id']) {
+                                                                echo "active";
+                                                                global $client_avatar;
+                                                                $client_avatar = $user_list[$key]['avatar'];
+                                                            } ?>">
                             <div class="avatar user-image circle "> <img class=""
                                     src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
                             <div class="content ">
@@ -150,14 +151,7 @@
                     </a>
 
                     <?php endforeach; ?>
-                    <div class="inbox_item flex row">
-                        <div class="avatar user-image circle "> <img class=""
-                                src="<?php convert_into_base64("themes/default/statics/img/avatar-1.png"); ?>"></div>
-                        <div class="content ">
-                            <div class="name">ok-manufacture32</div>
-                            <div class="text">Hello NIce to meet you</div>
-                        </div>
-                    </div>
+
 
                 </div>
             </div>
@@ -181,23 +175,38 @@
                     </div>
                 </div>
                 <div class="message_body row">
-                    <?php foreach ($cl['messages'] as $message) : ?>
+                    <?php $date = "";
+                    foreach ($cl['messages'] as $key => $message) : ?>
                     <?php if ($message['owner'] == $me['id']) : ?>
                     <div class="sender">
                         <div class="text">
                             <?php echo $message['message']; ?>
+                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                            </div>
+
                         </div>
                         <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
+
                     </div>
                     <?php else : ?>
                     <div class="receiver">
-                        <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
+                        <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
                         <div class="text">
                             <?php echo $message['message']; ?>
+                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                            </div>
+
                         </div>
                     </div>
                     <?php endif; ?>
+
+                    <?php if (count($cl['messages']) == ($key + 1)) : ?>
+                    <div class="date"><?php echo date('M, d, Y', strtotime($message['created_at'])); ?></div>
+                    <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
+                    <div class="date"><?php echo date('M, d, Y', strtotime($message['created_at'])); ?></div>
+                    <?php endif; ?>
                     <?php endforeach; ?>
+
 
                 </div>
                 <form method="POST" action="native_api/inbox/send_message">
@@ -222,7 +231,7 @@
                             </button>
                         </div>
                     </div>
-                    <input type="hidden" name="conversation_id" value="<?php echo $_GET['conversation'] ?>">
+                    <input type="hidden" name="conversation_id" value="<?php echo $cl['conversation_id'] ?>">
                 </form>
 
             </div>

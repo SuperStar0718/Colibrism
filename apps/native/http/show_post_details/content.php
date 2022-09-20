@@ -23,7 +23,7 @@ if (empty($cl['is_logged'])) {
 
 
     $cl["page_kw"]     = $cl["config"]["keywords"];
-    $cl["pn"]          = "show_post_details";
+    $cl["pn"]          = "home";
     $cl["page_xdata"]  = array();
     $cl["sbr"]         = true;
     $cl["sbl"]         = true;
