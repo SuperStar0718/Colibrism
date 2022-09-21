@@ -31,89 +31,21 @@ function cl_get_timeline_feed($limit = false, $offset = 0, $onset = false)
 		"user_id"   => $me['id'],
 	));
 
-
 	$query_res = $db->rawQuery($sql);
 
-	$sql = "SELECT COUNT(posts.`id`) FROM `cl_posts` posts	INNER JOIN `cl_publications` pubs ON posts.`publication_id` = pubs.`id` INNER JOIN `cl_community` community ON posts.`community_id` = community.`community_id` WHERE posts.`community_id` IN (SELECT `community_id` FROM `cl_community_following` WHERE `follow_user_id`= ".$me['id'].")";
+	$sql = "SELECT COUNT(posts.`id`) FROM `cl_posts` posts	INNER JOIN `cl_publications` pubs ON posts.`publication_id` = pubs.`id` INNER JOIN `cl_community` community ON posts.`community_id` = community.`community_id` WHERE posts.`community_id` IN (SELECT `community_id` FROM `cl_community_following` WHERE `follow_user_id`= " . $me['id'] . ") OR posts.`user_id` IN (SELECT `people_id` FROM `cl_people_following` WHERE `user_id` = " . $me['id'] . ") OR posts.`user_id` = " . $me['id'];
+
 	$query_res_1 = $db->rawQuery($sql);
 	cl_queryset($query_res_1);
-	$cl['total_number']=$query_res_1[0]["COUNT(posts.`id`)"];
-	$counter   = 0;
-
-
-	$user_id = $me['id'];
-	$sql = "SELECT community_id FROM `cl_join_list` WHERE `user_id`=$user_id ";
-	$query_res_1 = $db->rawQuery($sql);
-	cl_queryset($query_res_1);
-	$community_id = array();
-	foreach ($query_res_1 as $row) {
-		array_push($community_id, $row['community_id']);
-	}
-
-
-
+	$cl['total_number'] = $query_res_1[0]["COUNT(posts.`id`)"];
 	if (cl_queryset($query_res)) {
 		foreach ($query_res as $row) {
 			$post_data = cl_raw_post_data($row['publication_id']);
-
-			if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
-				$post_data['offset_id']   = $row['offset_id'];
-				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
-				$post_data['is_reposter'] = false;
-				$post_data['community_name'] = $row['name'];
-
-				$post_data['attrs']       = array();
-
-				if (in_array($post_data['community_id'], $community_id))
-					$post_data['og_data'] = "true";
-				else
-					$post_data['og_data'] = "false";
-
-				if ($post_data['is_repost']) {
-					$post_data['attrs'][]  = cl_html_attrs(array('data-repost' => $row['offset_id']));
-					$reposter_data         = cl_user_data($row['user_id']);
-					$post_data['reposter'] = array(
-						'name' => $reposter_data['name'],
-						'username' => $reposter_data['username'],
-						'url' => $reposter_data['url'],
-					);
-				}
-
-				if ($row['user_id'] == $me['id']) {
-					$post_data['is_reposter'] = true;
-				}
-
-				$post_data['attrs'] = ((not_empty($post_data['attrs'])) ? implode(' ', $post_data['attrs']) : '');
+			if (not_empty($post_data)) {
 				$data[]             = cl_post_data($post_data);
-			}
-
-			if ($cl['config']['advertising_system'] == 'on') {
-				if (not_empty($offset)) {
-					if ($counter == 5) {
-						$counter = 0;
-						$ad      = cl_get_timeline_ads();
-
-						if (not_empty($ad)) {
-							$data[] = $ad;
-						}
-					} else {
-						$counter += 1;
-					}
-				}
-			}
-		}
-
-		if ($cl['config']['advertising_system'] == 'on') {
-			if (empty($offset)) {
-				$ad = cl_get_timeline_ads();
-
-				if (not_empty($ad)) {
-					$data[] = $ad;
-				}
 			}
 		}
 	}
-
 	return $data;
 }
 

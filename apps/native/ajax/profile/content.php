@@ -70,4 +70,65 @@ if ($action == 'load_more') {
         ));
         return cl_redirect("inbox");
     endif;
+} else if ($action == "follow") {
+    $user_id           = fetch_or_get($_GET['user_id'], "");
+    $db->insert(T_PEOPLE_FOLLOWING, array(
+        'user_id' => $cl['me']['id'],
+        'people_id' => $user_id,
+    ));
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == "unfollow") {
+    $user_id           = fetch_or_get($_GET['user_id'], "");
+    $db = $db->where('user_id', $cl['me']['id']);
+    $db = $db->where('people_id', $user_id);
+    $db->delete(T_PEOPLE_FOLLOWING);
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == "leave") {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    } else {
+        $data['status']   = 404;
+        $data['err_code'] = 0;
+        $community_id          = fetch_or_get($_POST['community_id'], 0);
+        $user_id          = fetch_or_get($_POST['user_id'], 0);
+
+        if (cl_is_following($user_id, $community_id)) {
+            $data['status'] = 200;
+            cl_unfollow($user_id, $community_id);
+        }
+    }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'follow_community') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    } else {
+        $data['status']   = 404;
+        $data['err_code'] = 0;
+        $community_id          = fetch_or_get($_POST['community_id'], 0);
+        $user_id          = fetch_or_get($_POST['user_id'], 0);
+        echo $user_id;
+        if (!cl_is_following($user_id, $community_id)) {
+            $data['status'] = 200;
+            cl_follow($user_id, $community_id);
+        }
+    }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'follow_people') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    } else {
+        $data['status']   = 404;
+        $data['err_code'] = 0;
+        $user_id          = fetch_or_get($_POST['user_id'], 0);
+        $people_id          = fetch_or_get($_POST['people_id'], 0);
+
+        if (!cl_is_following_people($user_id, $people_id)) {
+            $data['status'] = 200;
+            cl_follow_people($user_id, $people_id);
+        }
+    }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

@@ -66,11 +66,12 @@
                             <?php endif; ?>
                         </div>
                         <div class="com-detail-cotent">
-                            <p class="com-name"><?php echo $community['name'] ?></p>
-                            <p class="com-members-count"><?php echo $community['members']; ?> Members</p>
+                            <p class="com-members-count"><?php echo $community['name'] ?></p>
+                            <p class="com-name"><?php echo $community['members']; ?> Members</p>
                         </div>
                     </div>
-                    <form method="POST" action="native_api/main/join">
+                    <form method="POST" action="native_api/main/follow">
+                        <input type="hidden" name="community_id" value="<?php echo $community['community_id']; ?>">
                         <button type="submit" class="add-btn t-color-3"><i
                                 class="material-symbols-outlined">add_circle</i>
                         </button>

@@ -12,7 +12,7 @@ $query_res = $db->rawQuery($sql);
 cl_queryset($query_res);
 $cl['communities_can_follow'] = $query_res;
 
-$sql = "select * from cl_users";
+$sql = "SELECT * FROM cl_users WHERE `id` NOT IN(SELECT `people_id` FROM cl_people_following WHERE `user_id` = " . $me['id'] . " ) AND `id` != " . $me['id'];
 $query_res = $db->rawQuery($sql);
 cl_queryset($query_res);
 $cl['users'] = $query_res;
@@ -63,6 +63,7 @@ function convert_into_base64($path)
 
     echo "$imageBase64";
 }
+
 if (not_empty($_GET['community_id'])) {
     $db = $db->where("user_id", $me['id']);
     $db = $db->where('community_id', $_GET['community_id']);
@@ -78,3 +79,8 @@ if (not_empty($_GET['community_id'])) {
         $community = $result;
     }
 }
+$cl['following_people'] = array();
+$db = $db->where('user_id', $cl['me']['id']);
+$db = $db->where('people_id', $me['id']);
+$result = $db->getone(T_PEOPLE_FOLLOWING);
+$cl['following_people'] = $result;

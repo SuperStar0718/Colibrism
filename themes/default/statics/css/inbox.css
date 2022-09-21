@@ -203,6 +203,7 @@
 
     .chat_body .message {
         width: 100%;
+        border-radius: 20px;
     }
 }
 
@@ -259,4 +260,45 @@
 .time {
     float: right;
     padding: 0px 5px 0px 10px;
+}
+
+.inbox_item .content .name {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.inbox_item .content .text {
+    font-size: 13px;
+    max-height: 22px;
+    overflow: hidden;
+}
+
+.inbox_list .header .avatar {
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 14px;
+    background-image: linear-gradient(45deg, #ff2200, #fecf34);
+    cursor: pointer;
+    color: white;
+}
+
+.inbox_list .header {
+    min-height: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 17px;
+}
+
+.inbox_list .header div {
+    cursor: pointer;
+}
+
+.inbox_list .header hr {
+    height: 20px;
+    border-color: #4a6c8f;
+}
+
+.inbox_list .header .avatar {
+    display: flex;
 }

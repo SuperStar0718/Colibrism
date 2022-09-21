@@ -29,10 +29,18 @@ foreach ($result as $conversation) :
     if ($conversation['sender'] == $me['id']) :
         $db = $db->where("id", $conversation['receiver']);
         $result = $db->getone(T_USERS);
+        $db = $db->where('conversation_id', $conversation['id']);
+        $db->orderBy('created_at', 'DESC');
+        $res = $db->getone(T_CONVERSATION_MESSAGE);
+        $result['message'] = $res['message'];
         array_push($user_list, $result);
     else :
         $db = $db->where("id", $conversation['sender']);
         $result = $db->getone(T_USERS);
+        $db = $db->where('conversation_id', $conversation['id']);
+        $db->orderBy('created_at', 'DESC');
+        $res = $db->getone(T_CONVERSATION_MESSAGE);
+        $result['message'] = $res['message'];
         array_push($user_list, $result);
     endif;
 endforeach;

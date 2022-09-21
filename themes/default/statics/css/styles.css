@@ -2507,3 +2507,24 @@ a .Big-button {
 .other .panel-btns-content .messages-btn a {
   height: 20px;
 }
+
+.timeline-placeholder .icon .icon__bg img {
+  width: 100px;
+}
+
+.timeline-placeholder .icon .icon__bg,
+.timeline-placeholder .pl-message {
+  text-align: center;
+}
+
+.timeline-placeholder .pl-message h4 {
+  font-size: 20px;
+}
+
+.timeline-placeholder .pl-message p {
+  font-size: 16px;
+}
+
+.timeline-placeholder .c2action-single {
+  text-align: -webkit-center;
+}

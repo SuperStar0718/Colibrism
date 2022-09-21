@@ -11,30 +11,30 @@
 
 function cl_get_community($limit = false, $offset = false, $onset = false)
 {
-	global $db, $cl, $me, $community, $is_joined, $is_moderator;
+	global $db, $cl, $me, $community, $is_joined;
+	$offset = $limit * ($cl['page'] - 1);
 
 	if (empty($cl["is_logged"])) {
 		return false;
 	}
-	$temp = $_GET['community_id'];
-	$sql = "SELECT * from `cl_community` where `community_id`=$temp";
-	$query_res = $db->rawQuery($sql);
-	cl_queryset($query_res);
-	$community = $query_res[0];
+	// $temp = $_GET['community_id'];
+	// $sql = "SELECT * from `cl_community` where `community_id`=$temp";
+	// $query_res = $db->rawQuery($sql);
+	// cl_queryset($query_res);
+	// $community = $query_res[0];
 
-	$temp_id = $me['id'];
-	$sql = "SELECT * from `cl_join_list` where `community_id`=$temp and `user_id`=$temp_id";
-	$query_res = $db->rawQuery($sql);
-	cl_queryset($query_res);
-	$is_joined = $query_res;
+	// $temp_id = $me['id'];
+	// $sql = "SELECT * from `cl_join_list` where `community_id`=$temp and `user_id`=$temp_id";
+	// $query_res = $db->rawQuery($sql);
+	// cl_queryset($query_res);
+	// $is_joined = $query_res;
 
-	$sql = "SELECT * from `cl_community` where `community_id`=$temp and `moderator`=$temp_id";
-	$query_res = $db->rawQuery($sql);
-	cl_queryset($query_res);
-	$is_moderator = $query_res;
+	// $sql = "SELECT * from `cl_community` where `community_id`=$temp and `moderator`=$temp_id";
+	// $query_res = $db->rawQuery($sql);
+	// cl_queryset($query_res);
+	// $is_moderator = $query_res;
 
 
-	$community_id = not_empty($_GET['community_id']) ? true : false;
 	$data           = array();
 	$sql            = cl_sqltepmlate("apps/community/sql/fetch_timeline_feed", array(
 		"t_posts"   => T_POSTS,
@@ -45,84 +45,22 @@ function cl_get_community($limit = false, $offset = false, $onset = false)
 		"offset"    => $offset,
 		"onset"     => $onset,
 		"user_id"   => $me['id'],
-		"community_id" => $community_id
+		"community_id" => $_GET['community_id']
 	));
 
+
 	$query_res = $db->rawQuery($sql);
-	$counter   = 0;
+	$sql = "SELECT COUNT(posts.`id`) FROM `cl_posts` posts	INNER JOIN `cl_publications` pubs ON posts.`publication_id` = pubs.`id` WHERE posts.`community_id` = " . $_GET['community_id'];
 
-
-	$user_id = $me['id'];
-	$sql = "SELECT community_id FROM `cl_join_list` WHERE `user_id`=$user_id ";
 	$query_res_1 = $db->rawQuery($sql);
 	cl_queryset($query_res_1);
-	//$me['communtiy_id'] = $query_res_1[0]['community_id'];
-	$community_id = array();
-	foreach ($query_res_1 as $row) {
-		array_push($community_id, $row['community_id']);
-	}
-	// print_r($community_id);
-
-
+	$cl['total_number'] = $query_res_1[0]["COUNT(posts.`id`)"];
 
 	if (cl_queryset($query_res)) {
-		// print_r($query_res);
 		foreach ($query_res as $row) {
 			$post_data = cl_raw_post_data($row['publication_id']);
-
-			if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
-				$post_data['offset_id']   = $row['offset_id'];
-				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
-				$post_data['is_reposter'] = false;
-				$post_data['attrs']       = array();
-				// echo "hello " . in_array($post_data['community_id'], $community_id);
-
-				if (in_array($post_data['community_id'], $community_id))
-					$post_data['og_data'] = "true";
-				else
-					$post_data['og_data'] = "false";
-
-				if ($post_data['is_repost']) {
-					$post_data['attrs'][]  = cl_html_attrs(array('data-repost' => $row['offset_id']));
-					$reposter_data         = cl_user_data($row['user_id']);
-					$post_data['reposter'] = array(
-						'name' => $reposter_data['name'],
-						'username' => $reposter_data['username'],
-						'url' => $reposter_data['url'],
-					);
-				}
-
-				if ($row['user_id'] == $me['id']) {
-					$post_data['is_reposter'] = true;
-				}
-
-				$post_data['attrs'] = ((not_empty($post_data['attrs'])) ? implode(' ', $post_data['attrs']) : '');
+			if (not_empty($post_data)) {
 				$data[]             = cl_post_data($post_data);
-			}
-
-			if ($cl['config']['advertising_system'] == 'on') {
-				if (not_empty($offset)) {
-					if ($counter == 5) {
-						$counter = 0;
-						$ad      = cl_get_timeline_ads();
-
-						if (not_empty($ad)) {
-							$data[] = $ad;
-						}
-					} else {
-						$counter += 1;
-					}
-				}
-			}
-		}
-
-		if ($cl['config']['advertising_system'] == 'on') {
-			if (empty($offset)) {
-				$ad = cl_get_timeline_ads();
-
-				if (not_empty($ad)) {
-					$data[] = $ad;
-				}
 			}
 		}
 	};

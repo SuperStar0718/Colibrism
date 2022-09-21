@@ -133,12 +133,40 @@
         </div>
 
     </div>
-    <?php if (not_empty($cl["tl_feed"])) : ?>
-    <?php foreach ($cl["tl_feed"] as $cl["li"]) : ?>
-    <?php echo cl_template('timeline/post'); ?>
-    <?php endforeach; ?>
-    <?php else : ?>
-    <?php echo cl_template('home/includes/no_posts'); ?>
-    <?php endif; ?>
+    <div class="main-content grid col nd gap-1">
+        <?php if (not_empty($cl["tl_feed"])) : ?>
+        <?php foreach ($cl["tl_feed"] as $cl["li"]) : ?>
+        <?php echo cl_template('timeline/post'); ?>
+        <?php endforeach; ?>
+        <?php else : ?>
+        <?php echo cl_template('home/includes/no_posts'); ?>
+        <?php endif; ?>
+    </div>
+    <?php global $community; ?>
+    <div class="pagination">
+        <a href="community?community=<?php echo $community['community_id'] ?>&&page=1">&laquo;</a>
+        <?php if ($cl['page'] - 2 > 0) : ?>
+        <a
+            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] - 2 ?>"><?php echo $cl['page'] - 2 ?></a>
+        <?php endif; ?>
 
+        <?php if ($cl['page'] - 1 > 0) : ?>
+        <a
+            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] - 1 ?>"><?php echo $cl['page'] - 1 ?></a>
+        <?php endif; ?>
+        <?php if ($cl['page'] > 0) : ?>
+        <a href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] ?>"
+            class="active"><?php echo $cl['page'] ?></a>
+        <?php endif; ?>
+        <?php if ($cl['page'] < $cl['total_number'] / 5) : ?>
+        <a
+            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] + 1 ?>"><?php echo $cl['page'] + 1 ?></a>
+        <?php endif; ?>
+        <?php if ($cl['page'] + 1 < $cl['total_number'] / 5) : ?>
+        <a
+            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] + 2 ?>"><?php echo $cl['page'] + 2 ?></a>
+        <?php endif; ?>
+        <a
+            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo ceil($cl['total_number'] / 5) ?>">&raquo;</a>
+    </div>
 </section>

@@ -22,7 +22,6 @@ if ($action == "login") {
         $email    = cl_text_secure($user_data_fileds['email']);
         $password = cl_text_secure($user_data_fileds['password']);
         $db       = $db->where("username", $email);
-        $db       = $db->orWhere("email", $email);
         $raw_user = $db->getOne(T_USERS, array("password", "id", "mnemonic"));
 
         if (cl_queryset($raw_user) != true) {
@@ -50,7 +49,7 @@ if ($action == "login") {
                 cl_update_user_data($raw_user["id"], array(
                     'mnemonic' => $mnemonic
                 ));
-                return cl_redirect("?app=mnemonic");
+                return cl_redirect("mnemonic");
             }
         }
     }
@@ -64,7 +63,9 @@ if ($action == "login") {
     $data['status']   = 400;
     $user_data_fileds = array(
         'uname'       => fetch_or_get($_POST['uname'], null),
-        'email'       => fetch_or_get($_POST['email'], null),
+        // 'email'       => fetch_or_get($_POST['email'], null),
+        'pin'    => fetch_or_get($_POST['pin'], null),
+        'conf_pin'    => fetch_or_get($_POST['conf_pin'], null),
         'password'    => fetch_or_get($_POST['password'], null),
         'conf_pass'   => fetch_or_get($_POST['conf_pass'], null)
     );
@@ -84,17 +85,17 @@ if ($action == "login") {
                 $data['err_code'] = "doubling_uname";
                 break;
             }
-        } else if ($field_name == 'email') {
-            if (empty($field_val)) {
-                $data['err_code'] = "invalid_email";
-                break;
-            } else if (!filter_var(trim($field_val), FILTER_VALIDATE_EMAIL) || len($field_val) > 55) {
-                $data['err_code'] = "invalid_email";
-                break;
-            } else if (cl_email_exists($field_val)) {
-                $data['err_code'] = "doubling_email";
-                break;
-            }
+            // } else if ($field_name == 'email') {
+            //     if (empty($field_val)) {
+            //         $data['err_code'] = "invalid_email";
+            //         break;
+            //     } else if (!filter_var(trim($field_val), FILTER_VALIDATE_EMAIL) || len($field_val) > 55) {
+            //         $data['err_code'] = "invalid_email";
+            //         break;
+            //     } else if (cl_email_exists($field_val)) {
+            //         $data['err_code'] = "doubling_email";
+            //         break;
+            //     }
         } else if ($field_name == 'password') {
             if (empty($field_val) || len_between($field_val, 6, 20) != true) {
                 $data['err_code'] = "invalid_password";
@@ -102,7 +103,17 @@ if ($action == "login") {
             }
         } else if ($field_name == 'conf_pass') {
             if (empty($field_val) || ($field_val != $user_data_fileds['password'])) {
-                $data['err_code'] = "invalid_password";
+                $data['err_code'] = "Not matched password";
+                break;
+            }
+        } else if ($field_name == 'pin') {
+            if (empty($field_val) || mb_strlen($field_val) != 6) {
+                $data['err_code'] = "invalid_pin";
+                break;
+            }
+        } else if ($field_name == 'conf_pin') {
+            if (empty($field_val) || mb_strlen($field_val) != 6 || ($field_val != $user_data_fileds['pin'])) {
+                $data['err_code'] = "Not matched pin";
                 break;
             }
         }
@@ -125,39 +136,41 @@ if ($action == "login") {
     if (empty($data['err_code'])) {
         // if ($cl['config']['acc_validation'] == 'off') {
         $email_code       = sha1(time() + rand(111, 999));
+        $pin_hashed  = password_hash($user_data_fileds["pin"], PASSWORD_DEFAULT);
         $password_hashed  = password_hash($user_data_fileds["password"], PASSWORD_DEFAULT);
-        $user_ip          = cl_get_ip();
-        $user_ip          = ((filter_var($user_ip, FILTER_VALIDATE_IP) == true) ? $user_ip : '0.0.0.0');
+        // $user_ip          = cl_get_ip();
+        // $user_ip          = ((filter_var($user_ip, FILTER_VALIDATE_IP) == true) ? $user_ip : '0.0.0.0');
         $is_admin         = "0";
 
-        if (not_empty($invite_link)) {
-            if ($invite_link["role"] == "admin") {
-                $is_admin = "1";
-            }
+        // if (not_empty($invite_link)) {
+        //     if ($invite_link["role"] == "admin") {
+        //         $is_admin = "1";
+        //     }
 
-            cl_db_update(T_USER_INVITES, array(
-                "id" => $invite_link["id"]
-            ), array(
-                "registered_users" => ($invite_link["registered_users"] += 1)
-            ));
-        }
+        //     cl_db_update(T_USER_INVITES, array(
+        //         "id" => $invite_link["id"]
+        //     ), array(
+        //         "registered_users" => ($invite_link["registered_users"] += 1)
+        //     ));
+        // }
 
         $insert_data      = array(
-            'fname'       => cl_text_secure($user_data_fileds["uname"]),
-            'lname'       => "",
+            // 'fname'       => cl_text_secure($user_data_fileds["uname"]),
+            // 'lname'       => "",
             'username'    => cl_text_secure($user_data_fileds["uname"]),
             'password'    => $password_hashed,
-            'email'       => cl_text_secure($user_data_fileds["email"]),
+            'pin'    => $pin_hashed,
+            // 'email'       => cl_text_secure($user_data_fileds["email"]),
             'admin'       => $is_admin,
             'active'      => '1',
             'em_code'     => $email_code,
             'last_active' => time(),
             'joined'      => time(),
             'start_up'    => json(array('source' => 'system', 'avatar' => 0, 'info' => 0, 'follow' => 0), true),
-            'ip_address'  => $user_ip,
+            // 'ip_address'  => $user_ip,
             'country_id'  => $cl['config']['country_id'],
             'language'    => $cl['config']['language'],
-            'display_settings' => json(array("link_color" => "#EB0026", "base_color" => "#359D47", "highlight_color" => "#0179D2"), true)
+            'display_settings' => json(array("link_color" => "#287dbd", "base_color" => "#ffffff", "highlight_color" => "#1a2632"), true)
         );
         $user_id       =  $db->insert(T_USERS, $insert_data);
         if (is_posnum($user_id)) {

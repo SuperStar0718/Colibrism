@@ -29,8 +29,7 @@ if (empty($cl["is_logged"])) {
 	$cl["pn"]            = "community";
 	$cl["sbr"]           = true;
 	$cl["sbl"]           = true;
-	$cl["tl_feed"]       = cl_get_community(15);
-	$cl["tl_feed_total"] = 15;
-
+	$cl['page']         = fetch_or_get($_GET['page'], 1);
+	$cl["tl_feed"]       = cl_get_community(5);
 	$cl["http_res"]      = cl_template("community/content");
 }

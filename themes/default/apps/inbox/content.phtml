@@ -130,8 +130,16 @@
                         Chat
                     </div>
 
+
                 </div>
                 <div class="inbox_list">
+                    <div class="header flex row">
+                        <div class="avatar">All</div>
+                        <div class="DMs">DMs</div>
+                        <hr>
+                        <div class="Mod_Mails">Mod Mails</div>
+                    </div>
+
                     <?php global $user_list;
                     foreach ($cl['conversations'] as $key => $conversation) : ?>
                     <a href="inbox?conversation=<?php echo $conversation['id'] ?>">
@@ -145,7 +153,7 @@
                                     src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
                             <div class="content ">
                                 <div class="name"><?php echo $user_list[$key]['username'] ?></div>
-                                <div class="text"><?php echo "message"; ?></div>
+                                <div class="text"><?php echo $user_list[$key]['message']; ?></div>
                             </div>
                         </div>
                     </a>
@@ -201,9 +209,9 @@
                     <?php endif; ?>
 
                     <?php if (count($cl['messages']) == ($key + 1)) : ?>
-                    <div class="date"><?php echo date('M, d, Y', strtotime($message['created_at'])); ?></div>
+                    <div class="date"><?php echo date('M d', strtotime($message['created_at'])); ?></div>
                     <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
-                    <div class="date"><?php echo date('M, d, Y', strtotime($message['created_at'])); ?></div>
+                    <div class="date"><?php echo date('M d', strtotime($message['created_at'])); ?></div>
                     <?php endif; ?>
                     <?php endforeach; ?>
 

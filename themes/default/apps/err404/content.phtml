@@ -1,45 +1,61 @@
-<div class="timeline-container" data-app="err404">
-	<div class="timeline-header" data-el="tl-header">
-		<div class="timeline-header__topline">
-			<div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
-		</div>
-		<div class="timeline-header__botline">
-			<div class="lp">
-				<div class="nav-link-holder">
-					<a href="<?php echo cl_link("404"); ?>" data-spa="true">
-						<?php echo cl_translate('Error 404'); ?>
-					</a>
-				</div>
-			</div>
-			<div class="cp">
-				<a href="<?php echo cl_link('/'); ?>">
-					<img src="{%config site_logo%}" alt="Logo">
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="timeline-placeholder">
-		<div class="icon">
-			<div class="icon__bg icon__bg_warning">
-				<?php echo cl_icon('web_asset_off'); ?>
-			</div>
-		</div>
-		<div class="pl-message">
-			<h4>
-				<?php echo cl_translate('Page not found!'); ?>
-			</h4>
-			<p>
-				<?php echo cl_translate("Sorry, we cannot find the page you are looking for.<br>You can either return to the previous page, or return to the homepage or visit our {@link@} page if you have questions about this error.", array(
-					'link' => cl_html_el('a', 'F.Q.A', array('href' => cl_link('faqs')))
-				)); ?>
-			</p>
-		</div>
-		<div class="c2action-single">
-			<a href="<?php echo cl_link('/'); ?>" data-spa="true">
-				<button class="btn btn-custom main-outline lg">
-					<?php echo cl_translate("Go to your feed"); ?>
-				</button>
-			</a>
-		</div>
-	</div>
-</div>
+<section class="main col nd gap-1">
+
+    <div class="timeline-container" data-app="err404">
+        <div class="timeline-header" data-el="tl-header">
+            <div class="timeline-header__topline">
+                <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+            </div>
+            <!-- <div class="timeline-header__botline">
+                <div class="lp">
+                    <div class="nav-link-holder">
+                        <a href="<?php echo cl_link("404"); ?>" data-spa="true">
+                            <?php echo cl_translate('Error 404'); ?>
+                        </a>
+                    </div>
+                </div>
+                <div class="cp">
+                    <a href="<?php echo cl_link('/'); ?>">
+                        <img src="{%config site_logo%}" alt="Logo">
+                    </a>
+                </div>
+            </div> -->
+        </div>
+        <div class="timeline-placeholder">
+            <div class="icon">
+                <div class="icon__bg icon__bg_warning">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/error.png"); ?>">
+
+                </div>
+            </div>
+            <div class="pl-message">
+                <h4>
+                    <?php echo cl_translate('Page not found!'); ?>
+                </h4>
+                <p>
+                    <?php echo cl_translate("Sorry, we cannot find the page you are looking for.<br>You can return to the previous page."); ?>
+                </p>
+            </div>
+            <div class="c2action-single">
+                <a href="<?php echo cl_link('/'); ?>" data-spa="true">
+                    <button class="Big-button btn round">
+                        <?php echo cl_translate("Go to your feed"); ?>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+.timeline-container {
+    background-color: #1a2632;
+    margin: 40px;
+    margin-top: 10vh;
+    border-radius: 10px;
+
+    padding: 50px;
+}
+
+.c2action-single {
+    margin: 10px 0px 10px 0px;
+}
+</style>

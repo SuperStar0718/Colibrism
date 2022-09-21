@@ -47,11 +47,19 @@
                 <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     Contact</div>
             </a>
-            <a href="#">
+            <?php if (not_empty($cl['following_people'])) : ?>
+            <a href="native_api/profile/unfollow?user_id=<?php echo $me['id']; ?>">
+                <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    Unfollow</div>
+            </a>
+            <?php else : ?>
+            <a href="native_api/profile/follow?user_id=<?php echo $me['id']; ?>">
                 <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     Follow</div>
             </a>
+            <?php endif; ?>
         </div>
+
         <?php endif; ?>
     </div>
     <div class="Comunity-target target">
@@ -83,8 +91,9 @@
                     </a>
                     <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
                 </div>
-                <form method="POST" action="native_api/main/join">
-                    <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
+                <form method="POST" action="native_api/profile/leave">
+                    <input type="hidden" name="community_id" value="<?php echo $community['community_id']; ?>">
+                    <input type="hidden" name="user_id" value="<?php echo $me['id']; ?>">
                     <div class="comunkarity-action-content flex center">
                         <button class="follow-btn mintext btn" type="submit"
                             style="background-color: #c14848;">Leave</button>

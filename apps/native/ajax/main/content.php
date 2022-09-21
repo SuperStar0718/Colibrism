@@ -693,6 +693,7 @@ if ($action == 'upload_post_image') {
         $data['status']   = 404;
         $data['err_code'] = 0;
         $community_id          = fetch_or_get($_POST['community_id'], 0);
+
         if (cl_is_following($me['id'], $community_id)) {
             $data['status'] = 200;
             cl_unfollow($me['id'], $community_id);
