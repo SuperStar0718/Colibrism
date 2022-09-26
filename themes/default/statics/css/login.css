@@ -15,7 +15,8 @@ html {
 }
 
 .container .box .form .header img {
-  width: 260px;
+  max-width: 260px;
+  width: 85%;
 }
 
 .container .box .form .header h4 {
@@ -230,7 +231,7 @@ html {
 
 .animated .container .form .body {
   align-self: center;
-  padding: 20px;
+  /* padding: 20px; */
   width: 100%;
 }
 

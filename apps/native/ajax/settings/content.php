@@ -657,7 +657,7 @@ if (empty($cl["is_logged"])) {
         $db           = $db->where('community_id', $menu_links['community_id']);
         $result = $db->getOne(T_COMMUNITY_SETTINGS);
 
-        if (not_empty($result)) {
+        if (not_empty($result['menu_links'])) {
             $menu_link = json($result['menu_links']);
             if (count($menu_link) > 3)
                 return cl_redirect("community?community_id=" . $menu_links['community_id']);
@@ -678,8 +678,6 @@ if (empty($cl["is_logged"])) {
                 "tapTitle" => $menu_links['tapTitle'],
                 "url" => $menu_links['url']
             );
-            // $links = array();
-            // $links[] = $link;
             $links = array_map(function ($item) {
                 return array(
                     'tapTitle' => $item['tapTitle'],

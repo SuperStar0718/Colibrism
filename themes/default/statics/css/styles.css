@@ -31,6 +31,16 @@ input:focus {
   display: flex;
 }
 
+
+
+.table .flex>* {
+  flex: 1;
+}
+
+.fl-2 {
+  flex: 2 !important;
+}
+
 /* 
 .flex>* {
   flex: 1;
@@ -44,9 +54,7 @@ input:focus {
   flex: 1;
 }
 
-.fl-2 {
-  flex: 2;
-}
+
 
 .fl-3 {
   flex: 3;
@@ -230,9 +238,9 @@ hr {
   font-variation-settings: "FILL" 1;
 }
 
-.mintext {
+/* .mintext {
   font-size: 0.8em;
-}
+} */
 
 .primary {
   color: var(--color-primary);
@@ -560,7 +568,7 @@ input[type=color]::-webkit-color-swatch {
 }
 
 .Comunity-detail-target .btns-content .Big-button {
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 .Comunity-detail-target .account-summary {
@@ -594,6 +602,7 @@ input[type=color]::-webkit-color-swatch {
   padding: 10px;
   border: 1px solid;
   border-radius: 10px;
+  align-items: center;
 }
 
 .Comunity-detail-target .theme-switcher-content .switcher-content .switcher-btn.btn {
@@ -1293,7 +1302,7 @@ input[type=color]::-webkit-color-swatch {
 .Sidebar-widgets .widgets-content .config-1 {
   padding: 0rem;
   min-width: 0%;
-  width: 0%;
+  width: 100%;
   max-width: 0%;
   overflow: hidden;
   opacity: 0;
@@ -1303,7 +1312,7 @@ input[type=color]::-webkit-color-swatch {
 .Sidebar-widgets .widgets-content .config-2 {
   padding: 0rem;
   min-width: 0%;
-  width: 0%;
+  width: 100%;
   max-width: 0%;
   overflow: hidden;
   opacity: 0;
@@ -1313,7 +1322,7 @@ input[type=color]::-webkit-color-swatch {
 .Sidebar-widgets .widgets-content .config-3 {
   padding: 0rem;
   min-width: 0%;
-  width: 0%;
+  width: 100%;
   max-width: 0%;
   overflow: hidden;
   opacity: 0;
@@ -2262,7 +2271,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .reaction-btns-content .award {
   opacity: 0;
-  display: block;
+  display: none;
   position: absolute;
   z-index: 6;
   left: 140px;
@@ -2287,6 +2296,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .reaction-btns-content .award:checked {
   position: fixed;
+  display: block;
   left: 0px;
   width: 100%;
   height: 100%;
@@ -2324,7 +2334,7 @@ body::-webkit-scrollbar-thumb:hover {
 .award_window .award_window_body .award_image div {
   width: 50px;
   height: 50px;
-  background-image: url("1.png");
+  background-image: url("../img/Awards/7c2f679102faa666537fd6e9dfca15.png");
   background-size: cover;
 }
 
@@ -2394,9 +2404,8 @@ a .Big-button {
   padding-right: 10px;
 }
 
-.Menu-links input:checked+div {
+.Menu-links input:checked+.slide_toggle {
   height: auto;
-
 }
 
 .Menu-links h2 {
@@ -2527,4 +2536,213 @@ a .Big-button {
 
 .timeline-placeholder .c2action-single {
   text-align: -webkit-center;
+}
+
+.Create-comunity form .btns-content button {
+  color: white;
+}
+
+.Management-target .t-center img {
+  width: 15px;
+}
+
+.Post-flair .btns-content button {
+  color: white;
+}
+
+.content-h {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.grid-h {
+  width: 50%;
+}
+
+.tbody tr.flex td .delete {
+  display: flex;
+  color: white;
+}
+
+.tbody tr.flex td.flex div {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.table-2-content .tbody tr.flex td.fl-2 {
+  text-align: center;
+}
+
+.table-2-content .tbody tr.flex td.fl-2 textarea {
+  width: 100%;
+}
+
+div.Option-button img {
+  width: 20px;
+  cursor: pointer;
+}
+
+div.Option-button .dropdown {
+  opacity: 0;
+  transition: cubic-bezier(0.65, 0.05, 0.36, 1) 0.2s;
+  transform: scale(0);
+  position: absolute;
+  padding: 5px;
+  background-color: #3f5162;
+  width: max-content;
+  border-radius: 5px;
+}
+
+div.Option-button .dropdown label {
+  display: flex;
+  transition: color 0.4s;
+}
+
+div.Option-button .dropdown label:hover {
+  color: #2F94D9;
+  cursor: pointer;
+}
+
+div.Option-button .dropdown label i {
+  padding-right: 5px;
+}
+
+.relative {
+  position: relative;
+}
+
+
+.Option-button .relative input.more_btn:checked~.dropdown {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 11;
+}
+
+
+.r-action-btns-content .r-action-btn label {
+  cursor: pointer;
+}
+
+.Option-button .relative input {
+  display: none;
+}
+
+.Option-button .relative input.more_btn:checked {
+  position: fixed;
+  display: block;
+  opacity: 0;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+
+
+.Tweet-target .overlay_flair,
+input.flair_modal {
+  display: none;
+}
+
+
+input.flair_modal:checked~.overlay_flair {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 2999;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.overlay_flair .close_flair {
+  position: fixed;
+  display: block;
+  opacity: 0;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  z-index: 3000;
+  cursor: pointer;
+}
+
+.overlay_flair .main_widget {
+  z-index: 3001;
+  top: 20vh;
+  padding: 20px 25px 20px 25px;
+  width: 25vw;
+  background-color: #1a2632;
+  position: fixed;
+  border-radius: 15px;
+}
+
+.overlay_flair .main_widget form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay_flair .main_widget form input[type=text] {
+  background-color: #283440;
+  padding: 14px 10px;
+  color: #d6d6d6;
+  flex: 2;
+}
+
+.overlay_flair .main_widget form input[type=text]:before {
+  content: "value";
+}
+
+.overlay_flair .main_widget form input[type=submit]:hover {
+  background-color: #466adf;
+
+}
+
+.overlay_flair .main_widget form input[type=submit] {
+  background-color: #46b7df;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  line-height: 2;
+  cursor: pointer;
+  transition: 0.3s;
+
+}
+
+.overlay_flair .main_widget #paste_btn {
+  display: none;
+}
+
+.overlay_flair .main_widget form label img {
+  width: 20px;
+  cursor: pointer;
+}
+
+.overlay_flair .main_widget form label {
+  margin-left: 10px;
+}
+
+.overlay_flair .main_widget form div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+.overlay_flair .main_widget form .show_id {
+  position: absolute;
+  display: none;
+}
+
+.overlay_flair .main_widget form #paste_btn:checked~.show_id {
+  display: block;
 }

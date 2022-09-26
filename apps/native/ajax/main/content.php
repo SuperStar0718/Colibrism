@@ -1181,28 +1181,32 @@ if ($action == 'upload_post_image') {
     $data['err_code'] = 0;
     $data['status']   = 400;
 
-    $title   = $_POST["title"];
-    $name = $_POST["name"];
-    $property = $_POST['property'];
-    global $db, $cl, $me;
-    $user = $me['id'];
-    $me['community'] = $name;
-    $sql = "insert into cl_community(title, name,property,moderator) values ('$title','$name','$property','$user') ";
-    $query_res = $db->rawQuery($sql);
-    cl_queryset($query_res);
+    $title    = fetch_or_get($_POST['title'], "");
+    $name    = fetch_or_get($_POST['name'], "");
+    $property    = fetch_or_get($_POST['property'], "");
 
-    $sql = "select community_id from cl_community where title='$title' and name = '$name'";
-    $query_res = $db->rawQuery($sql);
-    cl_queryset($query_res);
-    $me['community_id'] = $query_res[0]['community_id'];
+    if (not_empty($title) && not_empty($name) && not_empty($property)) {
+        global $db, $cl, $me;
+        $user = $me['id'];
+        $me['community'] = $name;
+        $sql = "insert into cl_community(title, name,property,moderator) values ('$title','$name','$property','$user') ";
+        $query_res = $db->rawQuery($sql);
+        cl_queryset($query_res);
 
-    $temp_com_id = $me['community_id'];
-    $sql = "insert into cl_join_list(community_id,user_id) values ('$temp_com_id','$user') ";
-    $query_res = $db->rawQuery($sql);
-    cl_queryset($query_res);
-    // print_r($query_res);
+        $sql = "select community_id from cl_community where title='$title' and name = '$name'";
+        $query_res = $db->rawQuery($sql);
+        cl_queryset($query_res);
+        $me['community_id'] = $query_res[0]['community_id'];
 
-    return cl_redirect("community?community_id=$temp_com_id");
+        $temp_com_id = $me['community_id'];
+        $sql = "insert into cl_join_list(community_id,user_id) values ('$temp_com_id','$user') ";
+        $query_res = $db->rawQuery($sql);
+        cl_queryset($query_res);
+        // print_r($query_res);
+
+        return cl_redirect("community?community_id=$temp_com_id");
+    } else
+        return cl_redirect("create_community");
 } else if ($action == "upload_community_banner_and_icon") {
     $data['err_code'] = 0;
     $data['status']   = 400;

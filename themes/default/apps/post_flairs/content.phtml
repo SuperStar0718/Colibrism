@@ -7,117 +7,67 @@
                     <th class="flex nd center">Flair background color</th>
                     <th class="flex nd center">Flair text color</th>
                     <th class="flex nd center">Post background color</th>
-                    <th class="flex nd center gap-1">FLAIR ID <i class="material-symbols-outlined"
-                            data-icon="info">info</i></th>
+                    <th class="flex nd center gap-1">FLAIR ID <i class="material-symbols-outlined" data-icon="info">info</i></th>
                 </tr>
-                <tr class="flex gap-1">
-                    <td class="fl-2">👀 SIMPLE POST 🕵️‍♀️</td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#303030">
-                    </td>
-                    <td class="flex nd min-w-max center gap-1"><a href="#">COPY ID</a><i
-                            class="delete-btn material-symbols-outlined fill btn">delete</i></td>
-                </tr>
-                <tr class="flex gap-1">
-                    <td class="fl-2">👀 SIMPLE POST 🕵️‍♀️</td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#303030">
-                    </td>
-                    <td class="flex nd min-w-max center gap-1"><a href="#">COPY ID</a><i
-                            class="delete-btn material-symbols-outlined fill btn">delete</i></td>
-                </tr>
-                <tr class="flex gap-1">
-                    <td class="fl-2">👀 SIMPLE POST 🕵️‍♀️</td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#303030">
-                    </td>
-                    <td class="flex nd min-w-max center gap-1"><a href="#">COPY ID</a><i
-                            class="delete-btn material-symbols-outlined fill btn">delete</i></td>
-                </tr>
-                <tr class="flex gap-1">
-                    <td class="fl-2">👀 SIMPLE POST 🕵️‍♀️</td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#303030">
-                    </td>
-                    <td class="flex nd min-w-max center gap-1"><a href="#">COPY ID</a><i
-                            class="delete-btn material-symbols-outlined fill btn">delete</i></td>
-                </tr>
-                <tr class="flex gap-1">
-                    <td class="fl-2">👀 SIMPLE POST 🕵️‍♀️</td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#EB0026">
-                    </td>
-                    <td class="flex nd center">
-                        <input type="color" name="color" value="#303030">
-                    </td>
-                    <td class="flex nd min-w-max center gap-1"><a href="#">COPY ID</a><i
-                            class="delete-btn material-symbols-outlined fill btn">delete</i></td>
-                </tr>
+                <?php if (not_empty($cl['post_flairs'])) : ?>
+                    <?php foreach ($cl['post_flairs'] as $post_flair) : ?>
+                        <tr class="flex gap-1">
+                            <td class="fl-2"><?php echo $post_flair['flairText'] ?></td>
+                            <td class="flex nd center">
+                                <div style="background-color:<?php echo $post_flair['flair_back_color'] ?>"></div>
+                            </td>
+                            <td class="flex nd center">
+                                <div style="background-color:<?php echo $post_flair['flair_text_color'] ?>"></div>
+                            </td>
+                            <td class="flex nd center">
+                                <div style="background-color:<?php echo $post_flair['post_back_color'] ?>"></div>
+                            </td>
+                            <td class="flex nd min-w-max center gap-1">
+                                <a href="native_api/community_settings/copy_id?id=<?php echo $post_flair['id'] ?>">COPY ID</a>
+                                <a href="native_api/community_settings/delete_post_flair?id=<?php echo $post_flair['id'] ?>&&community_id=<?php echo $cl['community_id']; ?>" class="delete"> <i class="delete-btn material-symbols-outlined fill btn">delete</i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
-        <div class="table-2-content">
-            <p class="t-color-3">Flair apearence</p>
-            <table class="table" data-table="table-2">
-                <tbody class="tbody flex col gap-1">
-                    <tr class="flex gap-1">
-                        <th class="flex nd center fl-2">
-                            <label for="flairText">Flair text</label>
-                        </th>
-                        <th class="flex nd center">Flair backgorond color</th>
-                        <th class="flex nd center">Flair text color</th>
-                        <th class="flex nd center">Post backgorond color</th>
-                    </tr>
-                    <tr class="flex gap-1">
-                        <td class="fl-2">
-                            <div class="form-control">
-                                <input class="bg-3 mintext" id="flairText" type="text" name="flairText"
-                                    value="👀 SIMPLE POST 🕵️‍♀️">
-                            </div>
-                        </td>
-                        <td class="flex nd center">
-                            <input type="color" name="color" value="#EB0026">
-                        </td>
-                        <td class="flex nd center">
-                            <input type="color" name="color" value="#EB0026">
-                        </td>
-                        <td class="flex nd center">
-                            <input type="color" name="color" value="#EB0026">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <p class="mintext t-color-3">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-        </div>
-        <div class="btns-content flex col gap-1">
-            <div class="btn bg-primary round">Add Flairs</div>
-            <div class="btn round wb">Cancel</div>
-        </div>
+        <form action="native_api/community_settings/add_post_flair" method="POST">
+            <div class="table-2-content">
+                <p class="t-color-3">Flair apearence</p>
+                <table class="table" data-table="table-2">
+                    <tbody class="tbody flex col gap-1">
+                        <tr class="flex gap-1">
+                            <th class="flex nd center fl-2">
+                                <label for="flairText">Flair text</label>
+                            </th>
+                            <th class="flex nd center">Flair backgorond color</th>
+                            <th class="flex nd center">Flair text color</th>
+                            <th class="flex nd center">Post backgorond color</th>
+                        </tr>
+                        <tr class="flex gap-1">
+                            <td class="fl-2">
+                                <textarea class="bg-3 mintext" id="flairText" type="text" name="flairText" placeholder="👀 INSERT TEXT 🕵️‍♀️"></textarea>
+                            </td>
+                            <td class="flex nd center">
+                                <input type="color" name="flair_back_color" value="#EB0026">
+                            </td>
+                            <td class="flex nd center">
+                                <input type="color" name="flair_text_color" value="#EB0026">
+                            </td>
+                            <td class="flex nd center">
+                                <input type="color" name="post_back_color" value="#EB0026">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="mintext t-color-3">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+            </div>
+            <div class="btns-content flex col gap-1">
+                <input type="hidden" name="community_id" value="<?php echo $cl['community_id']; ?>">
+                <button class="btn bg-primary round">Add
+                    Flairs</button>
+                <button class="btn round wb">Cancel</button>
+            </div>
+        </form>
     </div>
 </section>

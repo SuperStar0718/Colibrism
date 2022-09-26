@@ -8,7 +8,16 @@ function convert_into_base64($path)
     $imageBase64 = "data:image/$type;base64," . base64_encode($data); #Convert product image to base64
 
     echo "$imageBase64";
-    // return $imageBase64;
+}
+
+function output_date($timestamp)
+{
+    if (date('Y M d', strtotime($timestamp)) == date('Y M d'))
+        echo "Today";
+    else if (date('Y M d', strtotime($timestamp)) == date('Y M d', strtotime("-1 days")))
+        echo "Yesterday";
+    else
+        echo date('M d', strtotime($timestamp));
 }
 
 $sql = "select * from cl_users";

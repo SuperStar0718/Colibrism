@@ -209,9 +209,9 @@
                     <?php endif; ?>
 
                     <?php if (count($cl['messages']) == ($key + 1)) : ?>
-                    <div class="date"><?php echo date('M d', strtotime($message['created_at'])); ?></div>
+                    <div class="date"><?php output_date($message['created_at']); ?></div>
                     <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
-                    <div class="date"><?php echo date('M d', strtotime($message['created_at'])); ?></div>
+                    <div class="date"><?php output_date($message['created_at']); ?></div>
                     <?php endif; ?>
                     <?php endforeach; ?>
 

@@ -8,9 +8,44 @@
         class="target_a"></a>
 
     <div class="Option-button flex center btn">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+        <div class="relative">
+            <input type="checkbox" id="more_btn_<?php echo $cl['li']['id'] ?>" class="more_btn">
+
+            <label for="more_btn_<?php echo $cl['li']['id'] ?>">
+                <img src="<?php convert_into_base64("themes/default/statics/img/more.png"); ?>" alt="Avatar">
+            </label>
+
+            <div class="dropdown">
+                <label for="flair_modal_<?php echo $cl['li']['id'] ?>">
+                    <i class="material-symbols-outlined">add_circle</i>
+                    ADD POST FLAIR</label>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <input type="checkbox" id="flair_modal_<?php echo $cl['li']['id'] ?>" class="flair_modal">
+
+    <div class="overlay_flair ">
+        <label for="flair_modal_<?php echo $cl['li']['id'] ?>" class="close_flair"></label>
+        <div class="main_widget flex">
+            <form action="" method="POST">
+                <div>
+                    <input type="radio" id="paste_btn">
+                    <input type="text" placeholder="Input Flair ID">
+                    <?php if (not_empty($_COOKIE['flair_id'])) : ?>
+                    <input type="text" class="show_id" value="<?php echo  $_COOKIE['flair_id']; ?>">
+                    <?php endif; ?>
+                    <label for="paste_btn">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/copy.png"); ?>">
+                    </label>
+                </div>
+                <input type="submit" value="SAVE">
+
+            </form>
+        </div>
     </div>
     <div class="teewt-data flex  gap-1">
         <div class="user-image-content">
@@ -130,19 +165,35 @@
             </div>
             <?php } ?>
         </div>
-        <input type="checkbox" class="award">
+        <input type="checkbox" id="award_<?php echo $cl['li']['id'] ?>" class="award">
         <div class="award_window">
             <div class="award_window_body">
                 <div class="award_image">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div
+                        style="background-image: url('themes/default/statics/img/Awards/7c2f679102faa666537fd6e9dfca15.png');">
+                    </div>
+                    <div
+                        style="background-image: url('themes/default/statics/img/Awards/2b1705f353f6aa39c3ce8af75c0d53.png');">
+                    </div>
+                    <div
+                        style="background-image: url('themes/default/statics/img/Awards/39ea697e96ea785feb5d7404023d97.png');">
+                    </div>
+                    <div
+                        style="background-image: url('themes/default/statics/img/Awards/71a424fcea3aa44956d5d48cda4b00.png');">
+                    </div>
+                    <div
+                        style="background-image: url('themes/default/statics/img/Awards/60265dff45ceb1d57ad22c14830cd8.png');">
+                    </div>
+                    <div
+                        style="background-image: url('themes/default/statics/img/Awards/d50d9a0be45f9ca79ae545c889cc4b.png');">
+                    </div>
+                    <div
+                        style="background-image: url('themes/default/statics/img/Awards/f48bb9fdc5e6832a8bda29dfd943ae.png');">
+                    </div>
+                    <div style="background-image: url('themes/default/statics/img/Awards/Screenshot_13.png');">
+                    </div>
+                    <div style="background-image: url('themes/default/statics/img/Awards/Screenshot_23.png');">
+                    </div>
                 </div>
                 <div>
                     YOU HAVE NOT PURCHASED ANY AWARD YET, GO TO AWARD STORE TO BUY PACKS OF AWARD
@@ -154,7 +205,9 @@
         <div class="r-action-btns-content flex">
 
             <div class="r-action-btn btn bg-3">
-                <img src="<?php convert_into_base64("themes/default/statics/img/award.png"); ?>">
+                <label for="award_<?php echo $cl['li']['id'] ?>">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/award.png"); ?>">
+                </label>
             </div>
         </div>
         <div class="large-btns-content flex wrap">

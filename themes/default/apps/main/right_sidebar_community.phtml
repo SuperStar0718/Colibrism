@@ -67,7 +67,10 @@
     </div>
     <div class="Advertisement"></div>
     <div class="Management-target target">
-        <h3 class="t-center t-color-3">🛠 Management</h3>
+        <h3 class="t-center t-color-3">
+            <img src="<?php convert_into_base64("themes/default/statics/img/management.png"); ?>">
+            Management
+        </h3>
         <hr>
         <div class="management-content flex col gap-1">
             <div class="Management-dislplay">
@@ -91,7 +94,7 @@
                 <h4>🎆 FLAIR EMOJIS</h4>
                 <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
                     <li class="t-color-3">Grant Use Flair</li>
-                    <a href="post_flairs">
+                    <a href="post_flairs?community_id=<?php echo $cl['community_id']; ?>">
                         <li class="t-color-3">Post Flairs</li>
                     </a>
                 </ul>
@@ -118,7 +121,7 @@
                     <a href="community_menu?community_id=<?php echo $cl['community_id']; ?>">
                         <li class="t-color-3">Menu</li>
                     </a>
-                    <a href="post_settings">
+                    <a href="post_settings?community_id=<?php echo $cl['community_id']; ?>">
                         <li class="t-color-3">Post Settings</li>
                     </a>
                     <li class="t-color-3">Traffic Statistics</li>

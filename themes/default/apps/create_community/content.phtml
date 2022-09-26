@@ -7,13 +7,13 @@
             voluptatem neque suscipit perferendis, aspernatur distinctio
             dignissimos ut et corrupti quae est iure porro perspiciatis.
         </p>
-        <form name="create-comunity-form">
+        <form name="create-comunity-form" method="POST" action="native_api/main/create_community">
             <h3>Name</h3>
             <p class="mintext t-color-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, fuga!</p>
             <div class="form-group">
                 <label for="">Title *</label>
                 <div class="form-control">
-                    <input class="bg-3" type="text" placeholder="lorem">
+                    <input class="bg-3" type="text" name="title" placeholder="lorem">
                 </div>
             </div>
             <div class="form-group">
@@ -26,13 +26,13 @@
                 <label>Comunuty Type</label>
                 <div class="radio-group flex col gap-1">
                     <div class="radio flex nd gap-1">
-                        <input id="r1" type="radio" name="comunuty-type" checked>
+                        <input id="r1" type="radio" name="property" value="public" checked>
                         <label class="flex nd al-c gap-1" for="r1"><i class="material-symbols-outlined fill">person</i>
                             Public <span class="mintext t-color-3">Lorem ipsum dolor sit amet consectetur, adipisicing
                                 elit. Aut, officia.</span></label>
                     </div>
                     <div class="radio flex nd gap-1">
-                        <input id="r2" type="radio" name="comunuty-type">
+                        <input id="r2" type="radio" name="property" value="private">
                         <label class="flex nd al-c gap-1" for="r2"><i class="material-symbols-outlined fill">lock</i>
                             Private <span class="mintext t-color-3">Lorem ipsum dolor sit amet consectetur, adipisicing
                                 elit. Aut, officia.</span></label>
@@ -40,8 +40,8 @@
                 </div>
             </div>
             <div class="btns-content flex gap-2 nd js-e">
-                <div class="btn round wb">Cancel</div>
-                <div class="btn round bg-primary">Create Community</div>
+                <button class="btn round wb">Cancel</button>
+                <button class="btn round bg-primary" type="submit">Create Community</button>
             </div>
         </form>
     </div>

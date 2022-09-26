@@ -20,11 +20,7 @@ if (empty($cl['is_logged'])) {
     $cl["pn"]         = "community";
     $cl["sbr"]        = true;
     $cl["sbl"]        = true;
-    $temp = $_GET['community_id'];
-    $sql = "SELECT * from `cl_community` where `community_id`=$temp";
-    $query_res = $db->rawQuery($sql);
-    cl_queryset($query_res);
-    $community = $query_res[0];
+
     //$cl["bookmarks"]  = cl_get_bookmarks($me['id'], 30);
     $cl["http_res"]   = cl_template("community_menu/content");
 }

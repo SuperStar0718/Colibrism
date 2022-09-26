@@ -71,12 +71,16 @@ if (not_empty($_GET['community_id'])) {
     if (not_empty($result)) {
         $menu_links = json($result['menu_links']);
         $cl['menu_links'] = $menu_links;
+        $cl['post_flairs']  = json($result['post_flairs']);
     }
     $db = $db->where('community_id', $_GET['community_id']);
     $result = $db->getOne(T_COMMUNITY);
     if (not_empty($result)) {
         // global $community;
         $community = $result;
+        $db = $db->where('id', $community['moderator']);
+        $result = $db->getone(T_USERS);
+        $community['moderator_name'] = $result['username'];
     }
 }
 $cl['following_people'] = array();
@@ -84,3 +88,4 @@ $db = $db->where('user_id', $cl['me']['id']);
 $db = $db->where('people_id', $me['id']);
 $result = $db->getone(T_PEOPLE_FOLLOWING);
 $cl['following_people'] = $result;
+$cl['community_id'] = $_GET['community_id'];

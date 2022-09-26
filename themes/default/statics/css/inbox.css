@@ -284,6 +284,7 @@
 }
 
 .inbox_list .header {
+
     min-height: 50px;
     align-items: center;
     justify-content: space-evenly;

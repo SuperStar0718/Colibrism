@@ -3,13 +3,13 @@
     <div class="Comunity-detail-target flex col target gap-2">
         <div class="user-front-page-image absolute">
             <?php if (not_empty($community['banner'])) : ?>
-            <img src="<?php echo ($community['banner']); ?>" alt="Avatar">
+            <img src="<?php convert_into_base64($community['banner']); ?>" alt="Avatar">
             <?php endif; ?>
         </div>
         <div class="user-data-content community flex nd col center">
             <div class="user-image circle">
                 <?php if (not_empty($community['icon'])) : ?>
-                <img src="<?php if (not_empty($community['icon'])) echo ($community['icon']); ?>" alt="Avatar">
+                <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
                 <?php endif; ?>
 
             </div>
@@ -23,13 +23,16 @@
                 magnam nulla natus explicabo officia ab placeat!</span>
         </div>
 
-        <div class="btns-content grid gap-1">
+        <div class="btns-content content-h">
             <?php if (not_empty($cl['menu_links'])) : ?>
             <?php foreach ($cl['menu_links'] as $menu_link) : ?>
-            <a href="<?php echo $menu_link['url']; ?>" target="_blank">
-                <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                    <?php echo $menu_link['tapTitle']; ?></div>
-            </a>
+            <div class="grid-h">
+                <a href="<?php echo $menu_link['url']; ?>" target="_blank">
+                    <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                        <div><?php echo $menu_link['tapTitle']; ?></div>
+                    </div>
+                </a>
+            </div>
             <?php endforeach; ?>
             <?php endif; ?>
         </div>
@@ -41,8 +44,9 @@
         <div class="comunity-mods-content">
             <h4 class="t-center">Community Mods</h4>
             <ul>
-                <li><a href="#">
-                        <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">@codeX</h3>
+                <li><a href="profile?user_id=<?php echo $community['moderator'] ?>">
+                        <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                            @<?php echo $community['moderator_name'] ?></h3>
                     </a></li>
                 <!-- <li><a href="#">
                         <h3>@someone</h3>
@@ -52,8 +56,9 @@
         <div class="theme-switcher-content flex nd">
             <div>
                 Created by :
-                <a href="#">
-                    <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">@codeX</h3>
+                <a href="profile?user_id=<?php echo $community['moderator'] ?>">
+                    <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                        @<?php echo $community['moderator_name'] ?></h3>
                 </a>
             </div>
         </div>
@@ -77,7 +82,8 @@
                 <div class="comunity-image-content">
                     <div class="user-image s-2 circle">
                         <?php if (!empty($com['icon'])) : ?>
-                        <img src="<?php echo $com['icon']; ?>" alt="Avatar">
+                        <img src="<?php convert_into_base64($com['icon']); ?>" alt="Avatar">
+
                         <?php endif; ?>
                     </div>
                 </div>

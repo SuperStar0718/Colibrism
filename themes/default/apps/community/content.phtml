@@ -2,7 +2,7 @@
     <div class="Post-bar flex target gap-1">
         <div class="user-image-content">
             <div class="user-image s-2 circle">
-                <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+                <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
             </div>
         </div>
         <div class="controls-content">
@@ -32,7 +32,8 @@
                                 placeholder="Say anything..."><?php if (not_empty($_SESSION['post_description'])) echo $_SESSION['post_description']; ?></textarea>
                         </div>
                         <div class="preview">
-                            <img src="<?php echo $_SESSION['image_path']; ?>">
+                            <img
+                                src="<?php echo $_SESSION['image_path'] ? convert_into_base64($_SESSION['image_path']) : ""; ?>">
                         </div>
 
                         <div class="add_image">
