@@ -113,7 +113,7 @@ if (not_empty($cl['auth_status']['auth'])) {
         $me['new_notifs']   = ((is_posnum($me['new_notifs'])) ? $me['new_notifs'] : '');
         $me['new_messages'] = ((is_posnum($me['new_messages'])) ? $me['new_messages'] : '');
         $cl["is_admin"]     = (($me['admin'] == '1') ? true : false);
-        $cl["display_set"]  = json($me["display_settings"]);
+        // $cl["display_set"]  = json($me["display_settings"]);
 
         if (is_posnum($me['last_post'])) {
             $me['draft_post'] = cl_get_orphan_post($me['last_post']);

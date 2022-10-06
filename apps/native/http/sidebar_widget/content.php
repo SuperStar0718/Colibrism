@@ -14,7 +14,7 @@ if (empty($cl['is_logged'])) {
 } else {
     $cl['community_id'] = $_GET['community_id'];
 
-    require("preprocess.php");
+    require("apps/native/http/preprocess.php");
     $cl["page_title"] = cl_translate("Sidebar Widgets");
     $cl["page_desc"]  = $cl["config"]["description"];
     $cl["page_kw"]    = $cl["config"]["keywords"];

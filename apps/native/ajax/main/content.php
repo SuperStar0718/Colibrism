@@ -1156,6 +1156,8 @@ if ($action == 'upload_post_image') {
     $links = fetch_or_get($_POST["links"], "");
     // $title = fetch_or_get($_POST["title"], "#0000ff");
     $highlight = fetch_or_get($_POST["highlight"], "");
+    $community_id = fetch_or_get($_POST["community_id"], "");
+
     // $main_menu = fetch_or_get($_POST["main_menu"], "#0000ff");
 
     // echo $base;
@@ -1164,19 +1166,19 @@ if ($action == 'upload_post_image') {
     // if (in_array($bg_color, array_keys($cl["bg_colors"])) && in_array($skin_color, array_keys($cl["color_schemes"]))) {
     $data['status'] = 200;
 
-    cl_update_user_data($me["id"], array(
+    cl_update_user_data($me["id"], $community_id, array(
         "display_settings" => json(array(
             // "color_scheme" => cl_text_secure($skin_color),
             // "background"   => cl_text_secure($bg_color),
             "base_color" => cl_text_secure($base),
             "link_color" => cl_text_secure($links),
             // "title" => cl_text_secure($title),
-            "highlight_color" => cl_text_secure($highlight),
+            "highlight_color" => cl_text_secure($highlight)
             // "main_menu" => cl_text_secure($main_menu),
         ), true)
     ));
     // }
-    return cl_redirect("home?page=1");
+    return cl_redirect("community?community_id=$community_id");
 } else if ($action == "create_community") {
     $data['err_code'] = 0;
     $data['status']   = 400;
@@ -1203,6 +1205,7 @@ if ($action == 'upload_post_image') {
         $query_res = $db->rawQuery($sql);
         cl_queryset($query_res);
         // print_r($query_res);
+
 
         return cl_redirect("community?community_id=$temp_com_id");
     } else

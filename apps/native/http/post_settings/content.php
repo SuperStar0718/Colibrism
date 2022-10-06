@@ -12,7 +12,7 @@
 if (empty($cl['is_logged'])) {
     cl_redirect("guest");
 } else {
-    require("preprocess.php");
+    require("apps/native/http/preprocess.php");
 
     $cl["page_title"] = cl_translate("Post Settings");
     $cl["page_desc"]  = $cl["config"]["description"];

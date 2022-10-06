@@ -44,20 +44,21 @@
         <?php if ($me['id'] != $cl['me']['id']) : ?>
         <div class="btns-content grid gap-1">
             <a href="native_api/profile/new_conversation?user_id=<?php echo $me['id']; ?>">
-                <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                <div class="Big-button btn round">
                     Contact</div>
             </a>
             <?php if (not_empty($cl['following_people'])) : ?>
             <a href="native_api/profile/unfollow?user_id=<?php echo $me['id']; ?>">
-                <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                <div class="Big-button btn round">
                     Unfollow</div>
             </a>
             <?php else : ?>
             <a href="native_api/profile/follow?user_id=<?php echo $me['id']; ?>">
-                <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                <div class="Big-button btn round">
                     Follow</div>
             </a>
             <?php endif; ?>
+
         </div>
 
         <?php endif; ?>
@@ -105,8 +106,8 @@
 
         </div>
     </div>
-    <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">AWARD STORE</div>
-    <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">DONATORS</div>
+    <div class="Big-button btn round">AWARD STORE</div>
+    <div class="Big-button btn round">DONATORS</div>
 </section>
 <style>
 .Management-dislplay li,

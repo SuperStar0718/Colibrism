@@ -180,15 +180,15 @@ function cl_get_userfromsession_id($session_id, $platform = 'web')
     return false;
 }
 
-function cl_update_user_data($user_id = null, $data = array())
+function cl_update_user_data($user_id = null, $community_id = null, $data = array())
 {
     global $db;
     if ((not_num($user_id)) || (empty($data) || is_array($data) != true)) {
         return false;
     }
 
-    $db     = $db->where('id', $user_id);
-    $update = $db->update(T_USERS, $data);
+    $db = $db->where('community_id', $community_id);
+    $update = $db->update(T_COMMUNITY_SETTINGS, $data);
 
     return ($update == true) ? true : false;
 }

@@ -169,8 +169,8 @@ if ($action == "login") {
             'start_up'    => json(array('source' => 'system', 'avatar' => 0, 'info' => 0, 'follow' => 0), true),
             // 'ip_address'  => $user_ip,
             'country_id'  => $cl['config']['country_id'],
-            'language'    => $cl['config']['language'],
-            'display_settings' => json(array("link_color" => "#287dbd", "base_color" => "#ffffff", "highlight_color" => "#1a2632"), true)
+            'language'    => $cl['config']['language']
+            // 'display_settings' => json(array("link_color" => "#287dbd", "base_color" => "#ffffff", "highlight_color" => "#1a2632"), true)
         );
         $user_id       =  $db->insert(T_USERS, $insert_data);
         if (is_posnum($user_id)) {
@@ -275,8 +275,8 @@ if ($action == "login") {
                     'joined'      => time(),
                     'start_up'    => json(array('source' => 'system', 'avatar' => 0, 'info' => 0, 'follow' => 0), true),
                     'ip_address'  => $user_ip,
-                    'language'    => $cl['config']['language'],
-                    'display_settings' => json(array("link_color" => "#2f94d9", "base_color" => "#ffffff", "highlight_color" => "#1a2632"), true)
+                    'language'    => $cl['config']['language']
+                    // 'display_settings' => json(array("link_color" => "#2f94d9", "base_color" => "#ffffff", "highlight_color" => "#1a2632"), true)
                 );
                 $user_id       =  $db->insert(T_USERS, $insert_data);
 

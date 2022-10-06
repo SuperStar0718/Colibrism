@@ -11,8 +11,9 @@
  */
  
  WITH Row_count AS(
- SELECT ROW_NUMBER() OVER() AS num, posts.`id` as offset_id, posts.`publication_id`, posts.`type`, posts.`user_id`,posts.`community_id` FROM `<?php echo($data['t_posts']); ?>` posts
+ SELECT ROW_NUMBER() OVER() AS num, posts.`id` as offset_id, posts.`publication_id`, posts.`type`, posts.`user_id`,posts.`community_id`, flairs.`flair_id` FROM `<?php echo($data['t_posts']); ?>` posts
 	INNER JOIN `<?php echo($data['t_pubs']); ?>` pubs ON posts.`publication_id` = pubs.`id`
+	LEFT JOIN `cl_post_flairs` flairs ON posts.`id`=flairs.`post_id` AND posts.`community_id` = flairs.`community_id` 
 	WHERE (pubs.`community_id` = <?php echo($data['community_id']);  ?>)
 	ORDER BY posts.`id` DESC
  )

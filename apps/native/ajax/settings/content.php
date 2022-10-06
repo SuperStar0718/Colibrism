@@ -653,7 +653,6 @@ if (empty($cl["is_logged"])) {
 
 
     if (not_empty($menu_links["tapTitle"]) && not_empty($menu_links['url']) && not_empty($menu_links['community_id'])) {
-        $db           = $db->where('user_id', $me['id']);
         $db           = $db->where('community_id', $menu_links['community_id']);
         $result = $db->getOne(T_COMMUNITY_SETTINGS);
 
@@ -667,7 +666,6 @@ if (empty($cl["is_logged"])) {
             );
             $menu_link[] = $links;
             $insert = json($menu_link, true);
-            $db           = $db->where('user_id', $me['id']);
             $db           = $db->where('community_id', $menu_links['community_id']);
             $result = $db->update(T_COMMUNITY_SETTINGS, array(
                 'menu_links' => $insert
@@ -686,7 +684,6 @@ if (empty($cl["is_logged"])) {
             }, $link);
             $insert = array(
                 'community_id' => $menu_links['community_id'],
-                'user_id' => $me['id'],
                 'menu_links' => json($links, true)
             );
             $db->insert(T_COMMUNITY_SETTINGS, $insert);

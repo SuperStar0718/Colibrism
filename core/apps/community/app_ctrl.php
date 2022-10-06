@@ -17,23 +17,6 @@ function cl_get_community($limit = false, $offset = false, $onset = false)
 	if (empty($cl["is_logged"])) {
 		return false;
 	}
-	// $temp = $_GET['community_id'];
-	// $sql = "SELECT * from `cl_community` where `community_id`=$temp";
-	// $query_res = $db->rawQuery($sql);
-	// cl_queryset($query_res);
-	// $community = $query_res[0];
-
-	// $temp_id = $me['id'];
-	// $sql = "SELECT * from `cl_join_list` where `community_id`=$temp and `user_id`=$temp_id";
-	// $query_res = $db->rawQuery($sql);
-	// cl_queryset($query_res);
-	// $is_joined = $query_res;
-
-	// $sql = "SELECT * from `cl_community` where `community_id`=$temp and `moderator`=$temp_id";
-	// $query_res = $db->rawQuery($sql);
-	// cl_queryset($query_res);
-	// $is_moderator = $query_res;
-
 
 	$data           = array();
 	$sql            = cl_sqltepmlate("apps/community/sql/fetch_timeline_feed", array(
@@ -60,10 +43,23 @@ function cl_get_community($limit = false, $offset = false, $onset = false)
 		foreach ($query_res as $row) {
 			$post_data = cl_raw_post_data($row['publication_id']);
 			if (not_empty($post_data)) {
-				$data[]             = cl_post_data($post_data);
+				$temp             = cl_post_data($post_data);
+				if (not_empty($row['flair_id'])) :
+					$db = $db->where('community_id', $row['community_id']);
+					$result = $db->getone(T_COMMUNITY_SETTINGS);
+					$flairs = json($result['post_flairs']);
+					foreach ($flairs as $flair) :
+						if (in_array($row['flair_id'], $flair)) :
+							$temp['post_flair'] = $flair;
+						endif;
+					endforeach;
+				// print_r($result);
+				endif;
+				$data[] = $temp;
 			}
 		}
 	};
+	// asdf;
 	return $data;
 }
 

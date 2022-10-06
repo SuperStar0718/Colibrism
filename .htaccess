@@ -77,6 +77,7 @@ RewriteRule ^500(\/|)$ index.php?app=err500 [QSA]
 RewriteRule ^download_info(\/|)$ index.php?app=download_info [QSA]
 RewriteRule ^start_up(\/|)$ index.php?app=start_up [QSA]
 RewriteRule ^inbox(\/|)$ index.php?app=inbox [QSA]
+RewriteRule ^mod_mail(\/|)$ index.php?app=mod_mail [QSA]
 
 RewriteRule ^oauth/twitter(\/|)$ index.php?app=oauth&provider=twitter [QSA]
 RewriteRule ^oauth/google(\/|)$ index.php?app=oauth&provider=google [QSA]

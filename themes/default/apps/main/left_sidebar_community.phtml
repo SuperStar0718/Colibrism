@@ -45,7 +45,8 @@
             <h4 class="t-center">Community Mods</h4>
             <ul>
                 <li><a href="profile?user_id=<?php echo $community['moderator'] ?>">
-                        <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                        <h3
+                            style="color: <?php if (not_empty($cl['display_set']['link_color'])) echo $cl['display_set']['link_color']; ?>">
                             @<?php echo $community['moderator_name'] ?></h3>
                     </a></li>
                 <!-- <li><a href="#">
@@ -61,6 +62,11 @@
                         @<?php echo $community['moderator_name'] ?></h3>
                 </a>
             </div>
+        </div>
+        <hr>
+        <div class="mod_mail">
+            <a href="native_api/community_settings/mod_mail_user?community_id=<?php echo $_GET['community_id']; ?>"><?php echo $community['name'] ?>
+                Mod Mail</a>
         </div>
     </div>
     <div class="Comunity-target target">
@@ -79,13 +85,11 @@
                 $com = $cl['communities_followed'][$x];
             ?>
             <div class="Comunity-display grid">
-                <div class="comunity-image-content">
-                    <div class="user-image s-2 circle">
-                        <?php if (!empty($com['icon'])) : ?>
-                        <img src="<?php convert_into_base64($com['icon']); ?>" alt="Avatar">
+                <div class="user-image s-2 circle">
+                    <?php if (!empty($com['icon'])) : ?>
+                    <img src="<?php convert_into_base64($com['icon']); ?>" alt="Avatar">
 
-                        <?php endif; ?>
-                    </div>
+                    <?php endif; ?>
                 </div>
                 <div class="comunity-data-content">
                     <a href="<?php echo ("community" . "?community_id=" . $com['community_id']); ?>">
@@ -106,6 +110,49 @@
 
         </div>
     </div>
-    <div class="Big-button btn round">AWARD STORE</div>
+    <?php if (not_empty($cl['community_list_widget'])) : ?>
+    <div class="Comunity-target target">
+        <h4 class="title"><?php echo $cl['community_list_widget'][0]['widgetTitle']; ?></h4>
+        <hr>
+        <?php foreach ($cl['community_list_widget'] as $widget) : ?>
+        <div class="community_container">
+            <div class="user-image s-2 circle">
+                <?php if (!empty($widget['icon'])) : ?>
+                <img src="<?php convert_into_base64($widget['icon']); ?>" alt="Avatar">
+                <?php endif; ?>
+            </div>
+            <div class="comunity-data-content">
+                <a href="<?php echo ("community" . "?community_id=" . $widget['community_id']); ?>">
+                    <h4><?php echo $widget['name'] ?></h4>
+                </a>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+    <?php if (not_empty($cl['textarea_widget'])) foreach ($cl['textarea_widget'] as $widget) : ?>
+    <?php if ($widget['position'] == "leftsidebar") : ?>
+    <div class="Comunity-target target">
+        <h4 class="title"><?php echo $widget['widgetTitle']; ?></h4>
+        <hr>
+        <div class="comunyties-content flex col">
+            <?php echo $widget['widgetContent']; ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    <?php if (not_empty($cl['image_widget'])) foreach ($cl['image_widget'] as $widget) : ?>
+    <?php if ($widget['position'] == "leftsidebar") : ?>
+    <div class="Comunity-target target">
+        <h4 class="title"><?php echo $widget['widgetTitle']; ?></h4>
+        <hr>
+        <div class="comunyties-content flex col">
+            <img class="image_widget" src="<?php echo $widget['image_path']; ?>">
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    <div class=" Big-button btn round">AWARD STORE
+    </div>
     <div class="Big-button btn round">DONATORS</div>
 </section>

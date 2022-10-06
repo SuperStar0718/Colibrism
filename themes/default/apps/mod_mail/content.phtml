@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>
         <?php if (not_empty($me['new_notifs'])) : ?>
-            (<?php echo fetch_or_get($me['new_notifs']); ?>)
+        (<?php echo fetch_or_get($me['new_notifs']); ?>)
         <?php endif; ?>
 
         <?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>
@@ -16,29 +16,31 @@
     <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='{%config theme_url%}/statics/css/styles.css'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
 
     <link rel='stylesheet' href='{%config theme_url%}/statics/css/inbox.css'>
 
     <style>
-        /* .Nav-bar .seach-bar-content .form-control input */
-        .Nav-bar,
-        .main .Post-bar,
-        .side-bar-r .rues-content .flex.col.gap-1 label,
-        .Nav-bar .seach-bar-content .form-control input,
-        .Nav-bar .User-account-dropdown,
-        .main .Post-bar .controls-content textarea {
-            background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
-        }
+    /* .Nav-bar .seach-bar-content .form-control input */
+    .Nav-bar,
+    .main .Post-bar,
+    .side-bar-r .rues-content .flex.col.gap-1 label,
+    .Nav-bar .seach-bar-content .form-control input,
+    .Nav-bar .User-account-dropdown,
+    .main .Post-bar .controls-content textarea {
+        background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
+    }
 
-        .Nav-bar .seach-bar-content .form-control input,
-        .Nav-bar .User-account-dropdown,
-        .main .Post-bar .controls-content textarea {
-            filter: brightness(75%);
-        }
+    .Nav-bar .seach-bar-content .form-control input,
+    .Nav-bar .User-account-dropdown,
+    .main .Post-bar .controls-content textarea {
+        filter: brightness(75%);
+    }
     </style>
 </head>
 
@@ -85,10 +87,13 @@
                 <ul class="panel-links-content absolute bg-3 target flex col gap-1">
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i>
                             Side Admin</a></li>
-                    <li><a class="flex center nd gap-1" href="home?page=1"><i class="material-symbols-outlined">description</i>
+                    <li><a class="flex center nd gap-1" href="home?page=1"><i
+                                class="material-symbols-outlined">description</i>
                             Timeline</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">tag</i>
                             Explore</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">forum</i>
@@ -97,13 +102,16 @@
                             Bookmarks</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i>
                             Control Panel</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">campaign</i>
                             Advertising</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i>
                             Lorem</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
+                    <li><a class="flex center nd gap-1" href="#"><i
+                                class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
                     <li><a class="flex center nd gap-1" href="logout"><i class="material-symbols-outlined">logout</i>
                             Logout</a></li>
                 </ul>
@@ -125,45 +133,31 @@
 
                 </div>
                 <div class="inbox_list">
-                    <div class="header flex row">
-                        <a href="inbox?mode=All">
-                            <div class="avatar">All</div>
-                        </a>
-                        <a href="inbox?mode=DMs">
-                            <div class="DMs">DMs</div>
-                        </a>
-                        <hr>
-                        <a href="inbox?mode=Mod_Mails">
-                            <div class="Mod_Mails">Mod Mails</div>
-                        </a>
-                    </div>
+
 
                     <?php global $user_list;
-                    if (not_empty($cl['conversations'])) :
-                        foreach ($cl['conversations'] as $key => $conversation) : ?>
-                            <a href="inbox?<?php if (not_empty($conversation['community_id'])) echo "community_id=" . $conversation['community_id'];
-                                            else echo "conversation=" . $conversation['id'];
-                                            if (not_empty($_GET['mode'])) echo "&mode=" . $_GET['mode']; ?>">
-
-                                <div class="inbox_item flex row <?php if ($cl['conversation_type'] == 'community' && $cl['conversation_id'] == $conversation['id'] && not_empty($conversation['community_id'])) {
-                                                                    echo "active";
-                                                                    global $client_avatar;
-                                                                    $client_avatar = $user_list[$key]['avatar'];
-                                                                } else if ($cl['conversation_type'] == 'user' && $cl['conversation_id'] == $conversation['id'] && not_empty($conversation['sender'])) {
+                    foreach ($cl['conversations'] as $key => $conversation) : ?>
+                    <?php if (not_empty($_GET['community_id'])) : ?>
+                    <a
+                        href="mod_mail?community_id=<?php echo $_GET['community_id'] ?>&conversation_id=<?php echo $conversation['id'] ?>">
+                        <?php else : ?>
+                        <a href="mod_mail?conversation_id=<?php echo $conversation['id'] ?>">
+                            <?php endif; ?>
+                            <div class="inbox_item flex row <?php if ($cl['conversation_id'] == $conversation['id']) {
                                                                     echo "active";
                                                                     global $client_avatar;
                                                                     $client_avatar = $user_list[$key]['avatar'];
                                                                 } ?>">
-                                    <div class="avatar user-image circle "> <img class="" src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
-                                    <div class="content ">
-                                        <div class="name"><?php echo $user_list[$key]['username'] ?></div>
-                                        <div class="text"><?php echo $user_list[$key]['message']; ?></div>
-                                    </div>
+                                <div class="avatar user-image circle "> <img class=""
+                                        src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
+                                <div class="content ">
+                                    <div class="name"><?php echo $user_list[$key]['username'] ?></div>
+                                    <div class="text"><?php echo $user_list[$key]['message']; ?></div>
                                 </div>
-                            </a>
+                            </div>
+                        </a>
 
-                    <?php endforeach;
-                    endif; ?>
+                        <?php endforeach; ?>
 
 
                 </div>
@@ -188,43 +182,77 @@
                     </div>
                 </div>
                 <div class="message_body row">
-                    <?php $date = "";
-                    if (not_empty($cl['messages'])) :
+                    <?php
+                    if (not_empty($_GET['community_id'])) :
+                        $date = "";
                         foreach ($cl['messages'] as $key => $message) : ?>
-                            <?php if ($message['owner'] == $me['id']) : ?>
-                                <div class="sender">
-                                    <div class="text">
-                                        <?php echo $message['message']; ?>
-                                        <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
-                                        </div>
+                    <?php if ($message['owner'] == 0) : ?>
+                    <div class="sender">
+                        <div class="text">
+                            <?php echo $message['message']; ?>
+                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                            </div>
 
-                                    </div>
-                                    <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
+                        </div>
+                        <div class="avatar"><img src="<?php convert_into_base64($cl['community_icon']); ?>"></div>
 
-                                </div>
-                            <?php else : ?>
-                                <div class="receiver">
-                                    <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
-                                    <div class="text">
-                                        <?php echo $message['message']; ?>
-                                        <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
-                                        </div>
+                    </div>
+                    <?php else : ?>
+                    <div class="receiver">
+                        <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
+                        <div class="text">
+                            <?php echo $message['message']; ?>
+                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                            </div>
 
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
 
-                            <?php if (count($cl['messages']) == ($key + 1)) : ?>
-                                <div class="date"><?php output_date($message['created_at']); ?></div>
-                            <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
-                                <div class="date"><?php output_date($message['created_at']); ?></div>
-                            <?php endif; ?>
-                    <?php endforeach;
-                    endif; ?>
+                    <?php if (count($cl['messages']) == ($key + 1)) : ?>
+                    <div class="date"><?php output_date($message['created_at']); ?></div>
+                    <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
+                    <div class="date"><?php output_date($message['created_at']); ?></div>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+                    <?php else : ?>
+                    <?php
+                        $date = "";
+                        foreach ($cl['messages'] as $key => $message) : ?>
+                    <?php if ($message['owner'] == $me['id']) : ?>
+                    <div class="sender">
+                        <div class="text">
+                            <?php echo $message['message']; ?>
+                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                            </div>
 
+                        </div>
+                        <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
+
+                    </div>
+                    <?php else : ?>
+                    <div class="receiver">
+                        <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
+                        <div class="text">
+                            <?php echo $message['message']; ?>
+                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                            </div>
+
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if (count($cl['messages']) == ($key + 1)) : ?>
+                    <div class="date"><?php output_date($message['created_at']); ?></div>
+                    <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
+                    <div class="date"><?php output_date($message['created_at']); ?></div>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+
+                    <?php endif; ?>
 
                 </div>
-                <form method="POST" action="native_api/inbox/send_message">
+                <form method="POST" action="native_api/inbox/send_mod_mail">
                     <div class="footer row flex">
                         <div class="camera">
                             <img src="<?php convert_into_base64("themes/default/statics/img/camera.png"); ?>">
@@ -246,12 +274,10 @@
                             </button>
                         </div>
                     </div>
-                    <?php if (not_empty($cl['conversation_id'])) : ?>
-                        <input type="hidden" name="conversation_id" value="<?php echo $cl['conversation_id'] ?>">
-                        <input type="hidden" name="conversation_type" value="<?php echo $cl['conversation_type'] ?>">
+                    <input type="hidden" name="conversation_id" value="<?php echo $cl['conversation_id'] ?>">
+                    <?php if (not_empty($_GET['community_id'])) : ?>
+                    <input type="hidden" name="owner" value="true">
                     <?php endif; ?>
-
-
                 </form>
 
             </div>

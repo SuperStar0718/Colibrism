@@ -42,6 +42,8 @@ function cl_get_timeline_feed($limit = false, $offset = 0, $onset = false)
 		foreach ($query_res as $row) {
 			$post_data = cl_raw_post_data($row['publication_id']);
 			if (not_empty($post_data)) {
+				// $post_data['flair_id']
+
 				$data[]             = cl_post_data($post_data);
 			}
 		}

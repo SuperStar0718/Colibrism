@@ -1,5 +1,5 @@
 <section class="main flex col nd gap-1">
-    <div class="Post-bar flex timeline gap-1">
+    <div class="Post-bar target flex timeline gap-1">
 
         <div class="controls-content">
             <p class="title">Your Timeline</p>
@@ -29,13 +29,13 @@
         <?php if ($cl['page'] > 0) : ?>
         <a href="home?page=<?php echo $cl['page'] ?>" class="active"><?php echo $cl['page'] ?></a>
         <?php endif; ?>
-        <?php if ($cl['page'] < $cl['total_number']/5) : ?>
+        <?php if ($cl['page'] < $cl['total_number'] / 5) : ?>
         <a href="home?page=<?php echo $cl['page'] + 1 ?>"><?php echo $cl['page'] + 1 ?></a>
         <?php endif; ?>
-        <?php if ($cl['page']+1 < $cl['total_number']/5) : ?>
+        <?php if ($cl['page'] + 1 < $cl['total_number'] / 5) : ?>
         <a href="home?page=<?php echo $cl['page'] + 2 ?>"><?php echo $cl['page'] + 2 ?></a>
         <?php endif; ?>
-        <a href="home?page=<?php echo ceil($cl['total_number']/5) ?>">&raquo;</a>
+        <a href="home?page=<?php echo ceil($cl['total_number'] / 5) ?>">&raquo;</a>
     </div>
 
 </section>

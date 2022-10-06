@@ -19,7 +19,7 @@ if (empty($cl['is_logged'])) {
 
 
     require_once(cl_full_path("core/apps/show_post_details/app_ctrl.php"));
-    require("preprocess.php");
+    require("apps/native/http/preprocess.php");
 
 
     $cl["page_kw"]     = $cl["config"]["keywords"];

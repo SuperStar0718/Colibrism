@@ -66,6 +66,8 @@ $applications       = array(
   "post_settings" => true,
   "inbox" => true,
   "profile" => true,
+  "mod_mail" => true,
+
 );
 
 $cl['profile_report_types'] = array(

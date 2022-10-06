@@ -65,14 +65,27 @@ function convert_into_base64($path)
 }
 
 if (not_empty($_GET['community_id'])) {
-    $db = $db->where("user_id", $me['id']);
     $db = $db->where('community_id', $_GET['community_id']);
     $result = $db->getOne(T_COMMUNITY_SETTINGS);
     if (not_empty($result)) {
-        $menu_links = json($result['menu_links']);
-        $cl['menu_links'] = $menu_links;
+        $cl['menu_links'] = json($result['menu_links']);
         $cl['post_flairs']  = json($result['post_flairs']);
+        $cl['display_set'] = json($result['display_settings']);
+        $cl['textarea_widget'] = json($result['textarea_widget']);
+        $cl['image_widget'] = json($result['image_widget']);
+        $temp = json($result['community_list_widget']);
+        if (not_empty($temp)) :
+            $array = array();
+            foreach ($temp as $item) :
+                $db = $db->where('community_id', $item['community_id']);
+                $result = $db->getone(T_COMMUNITY);
+                $array[] = $result;
+            endforeach;
+            $array[0]['widgetTitle'] =  $temp[0]['widgetTitle'];
+            $cl['community_list_widget'] = $array;
+        endif;
     }
+
     $db = $db->where('community_id', $_GET['community_id']);
     $result = $db->getOne(T_COMMUNITY);
     if (not_empty($result)) {

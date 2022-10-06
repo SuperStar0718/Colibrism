@@ -76,7 +76,9 @@
             <div class="Management-dislplay">
                 <h4>🎆 QUEUES</h4>
                 <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                    <li class="t-color-3">Mod Mail</li>
+                    <a href="mod_mail?community_id=<?php echo $_GET['community_id']; ?>">
+                        <li class="t-color-3">Mod Mail</li>
+                    </a>
                     <li class="t-color-3">Unmoderated Posts</li>
                     <li class="t-color-3">Reports</li>
                     <li class="t-color-3">Spam</li>
@@ -131,6 +133,28 @@
             </div>
         </div>
     </div>
+    <?php if (not_empty($cl['textarea_widget'])) foreach ($cl['textarea_widget'] as $widget) : ?>
+    <?php if ($widget['position'] == "rightsidebar") : ?>
+    <div class="Comunity-target target">
+        <h4 class="title"><?php echo $widget['widgetTitle']; ?></h4>
+        <hr>
+        <div class="comunyties-content flex col">
+            <?php echo $widget['widgetContent']; ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    <?php if (not_empty($cl['image_widget'])) foreach ($cl['image_widget'] as $widget) : ?>
+    <?php if ($widget['position'] == "rightsidebar") : ?>
+    <div class="Comunity-target target">
+        <h4 class="title"><?php echo $widget['widgetTitle']; ?></h4>
+        <hr>
+        <div class="comunyties-content flex col">
+            <img class="image_widget" src="<?php echo $widget['image_path']; ?>">
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php endforeach; ?>
 </section>
 
 <style>

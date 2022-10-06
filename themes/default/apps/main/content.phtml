@@ -93,7 +93,7 @@
                 <div class="user-image s-4 circle">
                     <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
                 </div>
-                <span>@Admin</span>
+                <span>@<?php echo $cl['me']['username'] ?></span>
                 <input class="hidden" id="test" type="checkbox" name="test">
                 <ul class="panel-links-content absolute bg-3 target flex col gap-1">
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i>
@@ -169,26 +169,30 @@
     <?php echo $cl["http_res"]; ?>
 
     <?php endif; ?>
-
-
+    <?php if ($cl['pn'] == 'community') : ?>
     <style>
-    /* .Nav-bar .seach-bar-content .form-control input */
     .Nav-bar,
     .main .Post-bar,
     .side-bar-r .rues-content .flex.col.gap-1 label,
     .Nav-bar .seach-bar-content .form-control input,
     .Nav-bar .User-account-dropdown,
-    .main .Post-bar .controls-content textarea {
-        background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
+    .main .Post-bar .controls-content textarea.bg-3 {
+        <?php if (not_empty($cl['display_set'])): ?>background-color: <?php echo $cl['display_set']['highlight_color'];
+        ?>;
+        <?php endif;
+        ?>
     }
 
     .Nav-bar .seach-bar-content .form-control input,
     .Nav-bar .User-account-dropdown,
-    .main .Post-bar .controls-content textarea {
-        filter: brightness(75%);
+    .main .Post-bar .controls-content textarea.bg-3 {
+        <?php if (not_empty($cl['display_set'])): ?>background-color: <?php echo $cl['display_set']['highlight_color'];
+        ?>;
+        filter: brightness(1.3) <?php endif;
+        ?>
     }
     </style>
-
+    <?php endif; ?>
 </body>
 
 </html>

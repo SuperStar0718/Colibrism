@@ -8,7 +8,7 @@
 # @ ColibriSM - The Ultimate Modern Social Media Sharing Platform           @
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
-require("preprocess.php");
+require("apps/native/http/preprocess.php");
 $cl["page_title"] = cl_translate('Page not found!');
 $cl["page_desc"]  = $cl["config"]["description"];
 $cl["page_kw"]    = $cl["config"]["keywords"];

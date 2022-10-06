@@ -13,12 +13,12 @@ if (empty($cl['is_logged'])) {
     cl_redirect("guest");
 } else {
     require("apps/native/http/preprocess.php");
-
-    $cl["page_title"] = cl_translate("Post Flairs");
+    require('apps/native/http/mod_mail/pre_mod_mail.php');
+    $cl["page_title"] = cl_translate("inbox");
     $cl["page_desc"]  = $cl["config"]["description"];
     $cl["page_kw"]    = $cl["config"]["keywords"];
-    $cl["pn"]         = "community";
-    $cl["sbr"]        = true;
-    $cl["sbl"]        = true;
-    $cl["http_res"]   = cl_template("post_flairs/content");
+    $cl["pn"]         = "home";
+    $cl["sbr"]           = true;
+    $cl["sbl"]           = true;
+    $cl["http_res"]   = cl_template("mod_mail/content");
 }

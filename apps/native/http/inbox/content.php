@@ -12,12 +12,13 @@
 if (empty($cl['is_logged'])) {
     cl_redirect("guest");
 } else {
-    // require("preprocess.php");
-
-    require('pre_inbox.php');
+    require("apps/native/http/preprocess.php");
+    require('apps/native/http/inbox/pre_inbox.php');
     $cl["page_title"] = cl_translate("inbox");
     $cl["page_desc"]  = $cl["config"]["description"];
     $cl["page_kw"]    = $cl["config"]["keywords"];
-    $cl["pn"]         = "inbox";
+    $cl["pn"]         = "home";
+    $cl["sbr"]           = true;
+    $cl["sbl"]           = true;
     $cl["http_res"]   = cl_template("inbox/content");
 }

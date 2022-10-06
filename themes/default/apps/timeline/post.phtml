@@ -7,7 +7,7 @@
     <a href="<?php echo (htmlentities("show_post_details" . "?post_description=" . $cl['li']['description'] . "&community_id=" . $cl['li']['community_id'])); ?>"
         class="target_a"></a>
 
-    <div class="Option-button flex center btn">
+    <!-- <div class="Option-button flex center btn">
         <div class="relative">
             <input type="checkbox" id="more_btn_<?php echo $cl['li']['id'] ?>" class="more_btn">
 
@@ -25,8 +25,8 @@
 
         </div>
 
-    </div>
-    <input type="checkbox" id="flair_modal_<?php echo $cl['li']['id'] ?>" class="flair_modal">
+    </div> -->
+    <!-- <input type="checkbox" id="flair_modal_<?php echo $cl['li']['id'] ?>" class="flair_modal">
 
     <div class="overlay_flair ">
         <label for="flair_modal_<?php echo $cl['li']['id'] ?>" class="close_flair"></label>
@@ -46,7 +46,7 @@
 
             </form>
         </div>
-    </div>
+    </div> -->
     <div class="teewt-data flex  gap-1">
         <div class="user-image-content">
             <div class="user-image s-2 circle">
@@ -55,15 +55,14 @@
         </div>
         <div class="teewt-content">
             <a href="profile?user_id=<?php echo $cl['li']['owner']['id']; ?>">
-                <h4 style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                <h4>
                     @<?php echo ($cl['li']['owner']['username']); ?>
                 </h4>
             </a>
             <div class="posted_title">
                 <div class="posted-by t-color-3">
                     posted by
-                    <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>"
-                        style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>">
                         <?php if (not_empty($cl['li']['community_name'])) echo $cl['li']['community_name'];
                             else echo $community['name']; ?>
                     </a>
@@ -95,12 +94,13 @@
                         // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
                         ?>
                 </div>
-                <div class="icon_middle"><img
-                        src="<?php convert_into_base64("themes/default/statics/img/image.png"); ?>"></div>
-
-                <div class="icon_middle"><img
-                        src="<?php convert_into_base64("themes/default/statics/img/lock.png"); ?>"></div>
-
+                <div class="icon_middle">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/image.png"); ?>">
+                </div>
+                <div class="icon_middle">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/lock.png"); ?>">
+                </div>
+                <div></div>
 
             </div>
             <p><?php echo $cl['li']['description']; ?></p>

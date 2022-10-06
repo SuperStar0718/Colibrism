@@ -16,7 +16,7 @@ if (empty($cl["is_logged"])) {
 
 
 
-	require("preprocess.php");
+	require("apps/native/http/preprocess.php");
 
 	$cl["page_title"]    = cl_translate("Community");
 	$cl["page_desc"]     = $cl["config"]["description"];

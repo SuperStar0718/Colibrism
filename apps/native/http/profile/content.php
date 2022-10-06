@@ -23,7 +23,7 @@ if (empty($cl["is_logged"])) {
 	$db = $db->where('id', $user_id);
 	global $me;
 	$me = $db->getone(T_USERS);
-	require("preprocess.php");
+	require("apps/native/http/preprocess.php");
 
 	$cl["page_title"]    = cl_translate("Profile");
 	$cl["page_desc"]     = $cl["config"]["description"];

@@ -6,10 +6,8 @@
             </div>
         </div>
         <div class="controls-content">
-            <textarea class="bg-3 t-color-3" for="tweet-input" rows="1" name="tweet-input"
-                placeholder="Make a Tweet..."></textarea>
-            <input type="radio" name="modal" id="tweet-input"
-                <?php if (not_empty($_SESSION['image_path']) || not_empty($_SESSION['poll_data'])) echo "checked"; ?>>
+            <textarea class="bg-3 t-color-3" for="tweet-input" rows="1" name="tweet-input" placeholder="Make a Tweet..."></textarea>
+            <input type="radio" name="modal" id="tweet-input" <?php if (not_empty($_SESSION['image_path']) || not_empty($_SESSION['poll_data'])) echo "checked"; ?>>
             <input type="radio" name="modal" id="cancel_window">
             <input type="radio" name="modal" id="poll">
             <div class="overlay overlay-hugeinc" id="create_post">
@@ -24,16 +22,13 @@
                             </form>
                         </div>
                     </div>
-                    <form action="<?php echo cl_link("native_api/home/upload_image"); ?>" enctype="multipart/form-data"
-                        method="POST">
+                    <form action="<?php echo cl_link("native_api/home/upload_image"); ?>" enctype="multipart/form-data" method="POST">
                         <div class="text">Make a Tweet :</div>
                         <div class="textarea">
-                            <textarea name="post_description"
-                                placeholder="Say anything..."><?php if (not_empty($_SESSION['post_description'])) echo $_SESSION['post_description']; ?></textarea>
+                            <textarea name="post_description" placeholder="Say anything..."><?php if (not_empty($_SESSION['post_description'])) echo $_SESSION['post_description']; ?></textarea>
                         </div>
                         <div class="preview">
-                            <img
-                                src="<?php echo $_SESSION['image_path'] ? convert_into_base64($_SESSION['image_path']) : ""; ?>">
+                            <img src="<?php echo $_SESSION['image_path'] ? convert_into_base64($_SESSION['image_path']) : ""; ?>">
                         </div>
 
                         <div class="add_image">
@@ -79,8 +74,7 @@
             </div> -->
             <input class="hidden" id="isPopupVisible" type="radio" name="modal">
             <div class="Poll-popup fixed flex center bg-glass">
-                <form action="<?php echo cl_link("native_api/home/create_poll"); ?>" enctype="multipart/form-data"
-                    method="POST">
+                <form action="<?php echo cl_link("native_api/home/create_poll"); ?>" enctype="multipart/form-data" method="POST">
                     <label class="quit-btn absolute btn t-color-3" for="tweet-input">⨯</label>
                     <h3 class="t-center">Create a poll</h3>
                     <div class="form-group">
@@ -136,38 +130,32 @@
     </div>
     <div class="main-content grid col nd gap-1">
         <?php if (not_empty($cl["tl_feed"])) : ?>
-        <?php foreach ($cl["tl_feed"] as $cl["li"]) : ?>
-        <?php echo cl_template('timeline/post'); ?>
-        <?php endforeach; ?>
+            <?php foreach ($cl["tl_feed"] as $cl["li"]) : ?>
+                <?php echo cl_template('timeline/post_community'); ?>
+            <?php endforeach; ?>
         <?php else : ?>
-        <?php echo cl_template('home/includes/no_posts'); ?>
+            <?php echo cl_template('home/includes/no_posts'); ?>
         <?php endif; ?>
     </div>
     <?php global $community; ?>
     <div class="pagination">
         <a href="community?community=<?php echo $community['community_id'] ?>&&page=1">&laquo;</a>
         <?php if ($cl['page'] - 2 > 0) : ?>
-        <a
-            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] - 2 ?>"><?php echo $cl['page'] - 2 ?></a>
+            <a href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] - 2 ?>"><?php echo $cl['page'] - 2 ?></a>
         <?php endif; ?>
 
         <?php if ($cl['page'] - 1 > 0) : ?>
-        <a
-            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] - 1 ?>"><?php echo $cl['page'] - 1 ?></a>
+            <a href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] - 1 ?>"><?php echo $cl['page'] - 1 ?></a>
         <?php endif; ?>
         <?php if ($cl['page'] > 0) : ?>
-        <a href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] ?>"
-            class="active"><?php echo $cl['page'] ?></a>
+            <a href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] ?>" class="active"><?php echo $cl['page'] ?></a>
         <?php endif; ?>
         <?php if ($cl['page'] < $cl['total_number'] / 5) : ?>
-        <a
-            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] + 1 ?>"><?php echo $cl['page'] + 1 ?></a>
+            <a href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] + 1 ?>"><?php echo $cl['page'] + 1 ?></a>
         <?php endif; ?>
         <?php if ($cl['page'] + 1 < $cl['total_number'] / 5) : ?>
-        <a
-            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] + 2 ?>"><?php echo $cl['page'] + 2 ?></a>
+            <a href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] + 2 ?>"><?php echo $cl['page'] + 2 ?></a>
         <?php endif; ?>
-        <a
-            href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo ceil($cl['total_number'] / 5) ?>">&raquo;</a>
+        <a href="community?community=<?php echo $community['community_id'] ?>&&page=<?php echo ceil($cl['total_number'] / 5) ?>">&raquo;</a>
     </div>
 </section>

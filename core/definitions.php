@@ -40,6 +40,10 @@ define("T_COMMUNITY_SETTINGS", "cl_community_settings");
 define("T_CONVERSATIONS", "cl_conversations");
 define("T_CONVERSATION_MESSAGE", "cl_conversation_messages");
 define("T_PEOPLE_FOLLOWING", "cl_people_following");
+define("T_POST_FLAIRS", "cl_post_flairs");
+define("T_MOD_MAILS", "cl_mod_mails");
+define("T_MOD_MAIL_MESSAGES", "cl_mod_mail_messages");
+
 
 global $image_path;
 $image_path = "";
