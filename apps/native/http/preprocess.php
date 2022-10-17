@@ -76,13 +76,14 @@ if (not_empty($_GET['community_id'])) {
         $temp = json($result['community_list_widget']);
         if (not_empty($temp)) :
             $array = array();
-            foreach ($temp as $item) :
-                $db = $db->where('community_id', $item['community_id']);
+            foreach ($temp['community_ids'] as $item) :
+                $db = $db->where('community_id', $item);
                 $result = $db->getone(T_COMMUNITY);
                 $array[] = $result;
             endforeach;
-            $array[0]['widgetTitle'] =  $temp[0]['widgetTitle'];
+            $array[0]['widgetTitle'] =  $temp['widgetTitle'];
             $cl['community_list_widget'] = $array;
+            $cl['community_list_widget']['original'] = $temp;
         endif;
     }
 

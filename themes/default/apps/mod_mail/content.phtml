@@ -136,7 +136,8 @@
 
 
                     <?php global $user_list;
-                    foreach ($cl['conversations'] as $key => $conversation) : ?>
+                    if (not_empty($cl['conversations']))
+                        foreach ($cl['conversations'] as $key => $conversation) : ?>
                     <?php if (not_empty($_GET['community_id'])) : ?>
                     <a
                         href="mod_mail?community_id=<?php echo $_GET['community_id'] ?>&conversation_id=<?php echo $conversation['id'] ?>">
@@ -274,7 +275,9 @@
                             </button>
                         </div>
                     </div>
+                    <?php if (not_empty($cl['conversation_id'])) : ?>
                     <input type="hidden" name="conversation_id" value="<?php echo $cl['conversation_id'] ?>">
+                    <?php endif; ?>
                     <?php if (not_empty($_GET['community_id'])) : ?>
                     <input type="hidden" name="owner" value="true">
                     <?php endif; ?>

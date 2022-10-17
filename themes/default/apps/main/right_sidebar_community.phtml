@@ -79,9 +79,13 @@
                     <a href="mod_mail?community_id=<?php echo $_GET['community_id']; ?>">
                         <li class="t-color-3">Mod Mail</li>
                     </a>
-                    <li class="t-color-3">Unmoderated Posts</li>
+                    <a href="unmoderated_posts?community_id=<?php echo $_GET['community_id']; ?>">
+                        <li class="t-color-3">Unmoderated Posts</li>
+                    </a>
                     <li class="t-color-3">Reports</li>
-                    <li class="t-color-3">Spam</li>
+                    <a href="spammed_posts?community_id=<?php echo $_GET['community_id']; ?>">
+                        <li class="t-color-3">Spam</li>
+                    </a>
                 </ul>
             </div>
             <div class="Management-dislplay">
@@ -133,28 +137,31 @@
             </div>
         </div>
     </div>
-    <?php if (not_empty($cl['textarea_widget'])) foreach ($cl['textarea_widget'] as $widget) : ?>
-    <?php if ($widget['position'] == "rightsidebar") : ?>
+    <?php if ($cl['page_title'] == cl_translate("Community")) : ?>
+    <?php if (not_empty($cl['textarea_widget'])) : ?>
+    <?php if ($cl['textarea_widget']['position'] == "rightsidebar") : ?>
     <div class="Comunity-target target">
-        <h4 class="title"><?php echo $widget['widgetTitle']; ?></h4>
+        <h4 class="title"><?php echo $cl['textarea_widget']['widgetTitle']; ?></h4>
         <hr>
         <div class="comunyties-content flex col">
-            <?php echo $widget['widgetContent']; ?>
+            <?php echo $cl['textarea_widget']['widgetContent']; ?>
         </div>
     </div>
     <?php endif; ?>
-    <?php endforeach; ?>
-    <?php if (not_empty($cl['image_widget'])) foreach ($cl['image_widget'] as $widget) : ?>
-    <?php if ($widget['position'] == "rightsidebar") : ?>
+    <?php endif; ?>
+    <?php if (not_empty($cl['image_widget'])) : ?>
+    <?php if ($cl['image_widget']['position'] == "rightsidebar") : ?>
     <div class="Comunity-target target">
-        <h4 class="title"><?php echo $widget['widgetTitle']; ?></h4>
+        <h4 class="title"><?php echo $cl['image_widget']['widgetTitle']; ?></h4>
         <hr>
         <div class="comunyties-content flex col">
-            <img class="image_widget" src="<?php echo $widget['image_path']; ?>">
+            <img class="image_widget" src="<?php echo $cl['image_widget']['image_path']; ?>">
         </div>
     </div>
     <?php endif; ?>
-    <?php endforeach; ?>
+    <?php endif; ?>
+    <?php endif; ?>
+
 </section>
 
 <style>

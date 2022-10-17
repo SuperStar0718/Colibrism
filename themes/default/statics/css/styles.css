@@ -683,7 +683,7 @@ input[type=color]::-webkit-color-swatch {
 
 .Main-dash-board {
   /* min-height: 100vh; */
-  grid-template-columns: minmax(25rem, 1fr) 85rem minmax(25rem, 1fr);
+  grid-template-columns: minmax(30rem, 1fr) 85rem minmax(30rem, 1fr);
   gap: 2rem;
   grid-template-areas: "l content r";
   margin-top: 8rem;
@@ -701,15 +701,19 @@ input[type=color]::-webkit-color-swatch {
   grid-area: r;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1500px) {
 
 
   .Main-dash-board {
-    grid-template-columns: minmax(25rem, 1fr) 58rem minmax(25rem, 1fr);
+    grid-template-columns: minmax(30rem, 1fr) 58rem minmax(30rem, 1fr);
+  }
+
+  .large-btns-content .btn.large {
+    min-width: max-content;
   }
 }
 
-@media screen and (max-width: 1136px) {
+@media screen and (max-width: 1240px) {
 
   .Main-dash-board {
     grid-template-areas: none;
@@ -872,10 +876,11 @@ input[type=color]::-webkit-color-swatch {
   margin-bottom: 3rem;
   position: fixed;
   /* height: 100vh; */
-  width: 88%;
+  width: 100%;
+  left: 0px;
   z-index: 200;
-  top: 0;
-  padding: 1rem 2rem 0.2rem 2rem;
+  top: 0px;
+  padding: 1rem 10rem 0.2rem 2rem;
   /* max-width: 130.8rem; */
   /* padding-right: 0px; */
 }
@@ -1306,6 +1311,7 @@ input[type=color]::-webkit-color-swatch {
 .Sidebar-widgets .widgets-content .config-2 .Upload-image,
 .Sidebar-widgets .widgets-content .config-3 .Community-list-widget-appearance {
   padding: 0px;
+  margin-bottom: 20px;
 }
 
 .Sidebar-widgets .widgets-content .config-1 {
@@ -2143,10 +2149,13 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .notifications-btn sup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  width: 15px;
+  width: 16px;
   height: 16px;
-  left: 29px;
+  left: 25px;
   top: 0px;
   background-color: #fa3232;
   border-radius: 50%;
@@ -2205,7 +2214,7 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: #283440;
 }
 
-.controls-content .title {
+.controls-content .content_title {
   padding-left: 10px;
   font-size: 20px;
   color: #78b4f1;
@@ -2275,8 +2284,10 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
 }
 
-.side-bar-l .Comunity-target .comunyties-content .Comunity-display {
-  align-items: center;
+.side-bar-l .Comunity-target .row.flex {
+  /* padding-bottom: 5px; */
+  padding-top: 10px;
+
 }
 
 .reaction-btns-content .award {
@@ -2423,7 +2434,7 @@ a .Big-button {
 }
 
 .Sidebar-widgets .widgets-content {
-  max-height: 700px;
+  max-height: 900px;
 }
 
 .Management-target form button {
@@ -2866,6 +2877,7 @@ button.submit_btn {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-top: 10px;
 }
 
 .community_container .user-image {
@@ -2874,4 +2886,207 @@ button.submit_btn {
 
 .Comunity-detail-target .mod_mail {
   align-self: center;
+}
+
+.notifications-btn:hover~.notification-list {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.notification-list:hover {
+  opacity: 1;
+  transform: scale(1);
+
+}
+
+.notification-list {
+  position: absolute;
+  width: 160px;
+  left: -5px;
+  top: 28px;
+  background: #344453;
+  border-radius: 5px;
+  padding: 10px;
+  transition: cubic-bezier(0.65, 0.05, 0.36, 1) 0.2s;
+  transform: scale(0);
+  opacity: 0;
+  transform-origin: 100% 0%;
+
+}
+
+.notification-list .notification:hover {
+  background-color: #3b627a;
+
+}
+
+.notification-list .notification .text {
+  color: #3dc0ff;
+
+}
+
+.notification-list .notification {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.4s;
+  padding: 5px 5px 5px 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.notification-list .sup {
+  color: white;
+  background-color: red;
+  margin-left: 15px;
+  padding: 0px 3px 0px 2px;
+  border-radius: 3px;
+  position: relative;
+  top: 3px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+}
+
+
+#drop-down-list:checked {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+}
+
+.edit_widget tr.title {
+  color: #c55959;
+}
+
+.edit_widget td,
+th {
+  border: none;
+}
+
+.edit_widget table {
+  border-collapse: collapse;
+  padding-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.edit_widget .edit {
+  padding: 3px;
+  background-color: #2ff54d;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit_widget tr.body {
+  height: 45px;
+  background-color: #2d3447;
+  border: none;
+}
+
+#textwidget_edit:checked~.Widget-appearance {
+  display: block !important;
+}
+
+#imagewidget_edit:checked~.Upload-image {
+  display: block !important;
+}
+
+#community_list_widget_edit:checked~.Community-list-widget-appearance {
+  display: block !important;
+}
+
+.edit_widget .delete {
+  padding: 3px;
+  background-color: #f52f2f;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+.preview .preview_body img {
+  height: 200px;
+  border-radius: 10px;
+}
+
+.preview .preview_body {
+  text-align: center;
+}
+
+.notification_title {
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
+}
+
+.notification .avatar img {
+  width: 40px;
+  margin: 10px;
+  border-radius: 25px;
+}
+
+.notification .avatar {
+  align-items: center;
+  display: flex;
+}
+
+.notifications .notification {
+  display: flex;
+  align-items: center;
+  background-color: #254648;
+  border: 1px solid green;
+  border-radius: 5px;
+  margin: 8px;
+}
+
+.notifications .notification.viewed {
+  display: flex;
+  align-items: center;
+  background-color: #1a2632;
+  border: 1px solid #30455a;
+  border-radius: 5px;
+  margin: 8px;
+}
+
+.notification .col-md-9 {
+  display: flex;
+  align-items: center;
+}
+
+.notification .actions {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.notification .actions .view {
+  background-color: #78c2ad;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.notification .actions .dismiss {
+  background-color: #ff7851;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.reaction-btns-content .large-btns-content img {
+  padding-right: 5px;
+  width: 25px;
+
+}
+
+.reaction-btns-content .large-btns-content a {
+  color: white;
+}
+
+.Tweet-target .spammed {
+  color: #ff583e;
+}
+
+.spam.large-btns-content .btn.large {
+  min-width: max-content;
 }

@@ -22,6 +22,7 @@ if (empty($cl["is_logged"])) {
 	$cl["page_desc"]     = $cl["config"]["description"];
 	$cl["page_kw"]       = $cl["config"]["keywords"];
 	$cl["pn"]            = "community";
+	$cl['appearance'] = true;
 	$cl["sbr"]           = true;
 	$cl["sbl"]           = true;
 	$cl['page']         = fetch_or_get($_GET['page'], 1);

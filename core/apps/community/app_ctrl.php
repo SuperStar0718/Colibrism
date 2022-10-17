@@ -63,6 +63,112 @@ function cl_get_community($limit = false, $offset = false, $onset = false)
 	return $data;
 }
 
+function cl_get_community_spammed($limit = false, $offset = false, $onset = false)
+{
+	global $db, $cl, $me, $community, $is_joined;
+	$offset = $limit * ($cl['page'] - 1);
+
+	if (empty($cl["is_logged"])) {
+		return false;
+	}
+
+	$data           = array();
+	$sql            = cl_sqltepmlate("apps/community/sql/fetch_timeline_feed_spammed", array(
+		"t_posts"   => T_POSTS,
+		"t_pubs"    => T_PUBS,
+		"t_conns"   => T_CONNECTIONS,
+		"t_reports" => T_PUB_REPORTS,
+		"limit"     => $limit,
+		"offset"    => $offset,
+		"onset"     => $onset,
+		"user_id"   => $me['id'],
+		"community_id" => $_GET['community_id']
+	));
+
+
+	$query_res = $db->rawQuery($sql);
+	$sql = "SELECT COUNT(posts.`id`) FROM `cl_posts` posts	INNER JOIN `cl_publications` pubs ON posts.`publication_id` = pubs.`id` WHERE posts.`community_id` = " . $_GET['community_id'];
+
+	$query_res_1 = $db->rawQuery($sql);
+	cl_queryset($query_res_1);
+	$cl['total_number'] = $query_res_1[0]["COUNT(posts.`id`)"];
+
+	if (cl_queryset($query_res)) {
+		foreach ($query_res as $row) {
+			$post_data = cl_raw_post_data($row['publication_id']);
+			if (not_empty($post_data)) {
+				$temp             = cl_post_data($post_data);
+				if (not_empty($row['flair_id'])) :
+					$db = $db->where('community_id', $row['community_id']);
+					$result = $db->getone(T_COMMUNITY_SETTINGS);
+					$flairs = json($result['post_flairs']);
+					foreach ($flairs as $flair) :
+						if (in_array($row['flair_id'], $flair)) :
+							$temp['post_flair'] = $flair;
+						endif;
+					endforeach;
+				// print_r($result);
+				endif;
+				$data[] = $temp;
+			}
+		}
+	};
+	// asdf;
+	return $data;
+}
+function cl_get_community_unmoderated($limit = false, $offset = false, $onset = false)
+{
+	global $db, $cl, $me, $community, $is_joined;
+	$offset = $limit * ($cl['page'] - 1);
+
+	if (empty($cl["is_logged"])) {
+		return false;
+	}
+
+	$data           = array();
+	$sql            = cl_sqltepmlate("apps/community/sql/fetch_timeline_feed_unmoderated", array(
+		"t_posts"   => T_POSTS,
+		"t_pubs"    => T_PUBS,
+		"t_conns"   => T_CONNECTIONS,
+		"t_reports" => T_PUB_REPORTS,
+		"limit"     => $limit,
+		"offset"    => $offset,
+		"onset"     => $onset,
+		"user_id"   => $me['id'],
+		"community_id" => $_GET['community_id']
+	));
+
+
+	$query_res = $db->rawQuery($sql);
+	$sql = "SELECT COUNT(posts.`id`) FROM `cl_posts` posts	INNER JOIN `cl_publications` pubs ON posts.`publication_id` = pubs.`id` WHERE posts.`community_id` = " . $_GET['community_id'];
+
+	$query_res_1 = $db->rawQuery($sql);
+	cl_queryset($query_res_1);
+	$cl['total_number'] = $query_res_1[0]["COUNT(posts.`id`)"];
+
+	if (cl_queryset($query_res)) {
+		foreach ($query_res as $row) {
+			$post_data = cl_raw_post_data($row['publication_id']);
+			if (not_empty($post_data)) {
+				$temp             = cl_post_data($post_data);
+				if (not_empty($row['flair_id'])) :
+					$db = $db->where('community_id', $row['community_id']);
+					$result = $db->getone(T_COMMUNITY_SETTINGS);
+					$flairs = json($result['post_flairs']);
+					foreach ($flairs as $flair) :
+						if (in_array($row['flair_id'], $flair)) :
+							$temp['post_flair'] = $flair;
+						endif;
+					endforeach;
+				// print_r($result);
+				endif;
+				$data[] = $temp;
+			}
+		}
+	};
+	// asdf;
+	return $data;
+}
 function cl_timeline_swifts()
 {
 	global $db, $cl, $me;

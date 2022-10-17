@@ -4,7 +4,7 @@
 
 .chat_body {
     max-width: 130.8rem;
-    width: 97%;
+    /* width: 97%; */
     height: 80vh;
     background-color: #1a2632;
     /* margin-top: 10vh; */
@@ -273,13 +273,14 @@
     overflow: hidden;
 }
 
-.inbox_list .header .avatar {
-    width: 40px;
+.inbox_list .header .active {
+    /* width: 40px; */
     display: flex;
     justify-content: center;
     border-radius: 14px;
     background-image: linear-gradient(45deg, #ff2200, #fecf34);
     cursor: pointer;
+    padding: 0px 5px 0px 5px;
     color: white;
 }
 

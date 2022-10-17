@@ -38,12 +38,14 @@ if (not_empty($community_id)) :
     $db = $db->where('community_id', $community_id);
     $db->orderBy('created_at', 'DESC');
     $result = $db->get(T_MOD_MAILS);
-    $cl['conversations'] = $result;
-    $cl['conversation_id']         = $conversation_id ? $conversation_id : $result[0]['id'];
-    $conversation_id =  $cl['conversation_id'];
-    $db = $db->where('community_id', $community_id);
-    $result = $db->getone(T_COMMUNITY);
-    $cl['community_icon'] = $result['icon'];
+    if (not_empty($result)) :
+        $cl['conversations'] = $result;
+        $cl['conversation_id']         = $conversation_id ? $conversation_id : $result[0]['id'];
+        $conversation_id =  $cl['conversation_id'];
+        $db = $db->where('community_id', $community_id);
+        $result = $db->getone(T_COMMUNITY);
+        $cl['community_icon'] = $result['icon'];
+    endif;
 // echo $cl['conversation_id'];
 // asdf;
 

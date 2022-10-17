@@ -1,130 +1,59 @@
-<div class="timeline-container" data-app="notifications">
-    <div class="timeline-header" data-el="tl-header">
-        <div class="timeline-header__topline">
-            <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
-        </div>
-        <div class="timeline-header__botline">
-            <div class="lp">
-                <div class="nav-link-holder">
-                    <a href="<?php echo cl_link("notifications"); ?>" data-spa="true">
-                        <?php echo cl_translate("Notifications"); ?>
-                    </a>
+<section class="main flex col nd gap-2">
+    <div class="target">
+        <div class="notification_title">My Notifications</div>
+        <div class="notifications container-fluid">
+            <div class="notification row">
+                <div class="col-md-9 col-sm-9 col-xs-9 col-lg-9 flex">
+                    <div class="avatar">
+                        <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
+                    </div>
+                    <div class="content ">
+                        jane invited you to join 'Familia' group.
+                    </div>
                 </div>
-            </div>
-            <div class="cp">
-                <a href="<?php echo cl_link('/'); ?>">
-                    <img src="{%config site_logo%}" alt="Logo">
-                </a>
-            </div>
-            <div class="rp">
-                <div class="nav-link-holder">
-                    <button class="go-options dropleft">
-                        <div class="dropdown-toggle icon go-options__icon" data-toggle="dropdown">
-                            <?php echo cl_icon('more_horiz'); ?>
-                        </div>
-                        <div class="dropdown-menu dropdown-icons">
-                            <a class="dropdown-item" href="<?php echo cl_link("settings/notifications"); ?>"
-                                data-spa="true">
-                                <span class="flex-item dropdown-item-icon">
-                                    <?php echo cl_icon('tune'); ?>
-                                </span>
-                                <span class="flex-item">
-                                    <?php echo cl_translate("Notification settings"); ?>
-                                </span>
-                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
-                                    <?php echo cl_icon('navigate_next'); ?>
-                                </span>
-                            </a>
-                            <?php if (not_empty($cl["notifs"])) : ?>
-                            <div class="dropdown-divider"></div>
-                            <a onclick="SMColibri.PS.notifs.delete_all_notifs();" class="dropdown-item" href="">
-                                <span class="flex-item dropdown-item-icon">
-                                    <?php echo cl_icon("delete"); ?>
-                                </span>
-                                <span class="flex-item">
-                                    <span><?php echo cl_translate("Delete all notification"); ?></span>
-                                </span>
-                            </a>
-                            <?php endif; ?>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
-                                <span class="flex-item dropdown-item-icon">
-                                    <?php echo cl_icon('arrow_back'); ?>
-                                </span>
-                                <span class="flex-item">
-                                    <?php echo cl_translate("Go back"); ?>
-                                </span>
-                                <span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo">
-                                    <?php echo cl_icon('reply_black'); ?>
-                                </span>
-                            </a>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="timeline-navbar">
-        <div class="timeline-navbar__item">
-            <a href="<?php echo cl_link("notifications"); ?>" data-spa="true">
-                <button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'notifs') {
-                                                                echo ('active');
-                                                            } ?>">
-                    <span class="btn-flex-inner">
-                        <span class="icon">
-                            <?php echo cl_icon("notifications"); ?>
-                        </span>
-                        <span class="text">
-                            <?php echo cl_translate("Notifications"); ?>
-                        </span>
-                    </span>
-                </button>
-            </a>
-        </div>
-        <div class="timeline-navbar__item">
-            <a href="<?php echo cl_link("mentions"); ?>" data-spa="true">
-                <button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'mentions') {
-                                                                echo ('active');
-                                                            } ?>">
-                    <span class="btn-flex-inner">
-                        <span class="icon">
-                            <?php echo cl_icon("alternate_email"); ?>
-                        </span>
-                        <span class="text">
-                            <?php echo cl_translate("Mentions"); ?>
-                        </span>
-                    </span>
-                </button>
-            </a>
-        </div>
-    </div>
-    <div class="d-block" id="vue-notifications-app">
-        <div class="notifications">
-            <?php if (not_empty($cl["notifs"])) : ?>
-            <div data-an="notifs-list" class="notifications-list">
-                <?php foreach ($cl["notifs"] as $cl['li']) : ?>
-                <?php echo cl_template('notifications/includes/list_item'); ?>
-                <?php endforeach; ?>
-            </div>
-            <?php else : ?>
-            <?php echo cl_template('notifications/includes/no_notifs'); ?>
-            <?php endif; ?>
-        </div>
+                <div class="actions col-md-3 col-sm-3 col-xs-3 col-lg-3">
+                    <form method="POST" action="#">
+                        <button class="view" type="submit" value="view">View</button>
+                        <button type="submit" class="dismiss" value="dismiss">Dismiss</button>
 
-        <?php if (count($cl["notifs"]) >= 45) : ?>
-        <div class="timeline-data-loader">
-            <button v-if="loading" class="btn btn-custom main-outline lg" disabled="true">
-                <?php echo cl_translate("Please wait"); ?>
-            </button>
-            <button v-else-if="loadmore" class="btn btn-custom main-outline lg" v-on:click="load_notifications">
-                <?php echo cl_translate("Show more"); ?>
-            </button>
-            <button v-else class="btn btn-custom main-outline lg" disabled="true">
-                <?php echo cl_translate("That is all for now!"); ?>
-            </button>
+                    </form>
+                </div>
+            </div>
+            <div class="notification viewed row">
+                <div class="col-md-9 col-sm-9 col-xs-9 col-lg-9 flex">
+                    <div class="avatar">
+                        <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
+                    </div>
+                    <div class="content ">
+                        jane invited you to join 'Familia' group.
+                    </div>
+                </div>
+                <div class="actions col-md-3 col-sm-3 col-xs-3 col-lg-3">
+                    <form method="POST" action="#">
+                        <!-- <button class="view" type="submit" value="view">View</button> -->
+                        <button type="submit" class="dismiss" value="dismiss">Dismiss</button>
+
+                    </form>
+                </div>
+            </div>
+            <div class="notification row">
+                <div class="col-md-9 col-sm-9 col-xs-9 col-lg-9 flex">
+                    <div class="avatar">
+                        <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
+                    </div>
+                    <div class="content ">
+                        jane invited you to join 'Familia' group.
+                    </div>
+                </div>
+                <div class="actions col-md-3 col-sm-3 col-xs-3 col-lg-3">
+                    <form method="POST" action="#">
+                        <button class="view" type="submit" value="view">View</button>
+                        <button type="submit" class="dismiss" value="dismiss">Dismiss</button>
+
+                    </form>
+                </div>
+            </div>
         </div>
-        <?php endif; ?>
     </div>
-    <?php //echo cl_template('notifications/scripts/app_master_script'); 
-    ?>
-</div>
+
+</section>

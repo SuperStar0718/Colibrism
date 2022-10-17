@@ -134,6 +134,14 @@ if (empty($cl["is_logged"])) {
     endif;
 
     return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'delete_textarea_widget') {
+    $community_id = fetch_or_get($_POST['community_id'], "");
+
+    $db           = $db->where('community_id', $community_id);
+    $result = $db->update(T_COMMUNITY_SETTINGS, array(
+        'textarea_widget' => null
+    ));
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'add_textarea_widget') {
     $widgetTitle = fetch_or_get($_POST['widgetTitle'], "");
     $position = fetch_or_get($_POST['position'], "rightsidebar");
@@ -143,39 +151,29 @@ if (empty($cl["is_logged"])) {
     if (not_empty($widgetTitle) && not_empty($position) && not_empty($widgetContent) && not_empty($community_id)) {
         $db           = $db->where('community_id', $community_id);
         $result = $db->getOne(T_COMMUNITY_SETTINGS);
+        $date = new DateTime();
+
         if (not_empty($result)) {
             $data['status']   = 200;
-            if (!not_empty($result['textarea_widget'])) {
-                $new_widget = array();
-                $new_widget[] = array(
-                    'widgetTitle' => $widgetTitle,
-                    'position' => $position,
-                    'widgetContent' => $widgetContent,
-                );
-                $db           = $db->where('community_id', $community_id);
-                $result = $db->update(T_COMMUNITY_SETTINGS, array(
-                    'textarea_widget' => json($new_widget, true)
-                ));
-            } else {
-                $textarea_widgets = json($result['textarea_widget']);
-                // if (count($post_flairs) > 9)
-                //     return header('Location: ' . $_SERVER['HTTP_REFERER']);
-                $new_widget = array(
-                    'widgetTitle' => $widgetTitle,
-                    'position' => $position,
-                    'widgetContent' => $widgetContent,
-                );
-                $textarea_widgets[] = $new_widget;
-                $db           = $db->where('community_id', $community_id);
-                $result = $db->update(T_COMMUNITY_SETTINGS, array(
-                    'textarea_widget' => json($textarea_widgets, true)
-                ));
-            }
+            $textarea_widgets = json($result['textarea_widget']);
+            // if (count($post_flairs) > 9)
+            //     return header('Location: ' . $_SERVER['HTTP_REFERER']);
+            $new_widget = array(
+                'widgetTitle' => $widgetTitle,
+                'position' => $position,
+                'widgetContent' => $widgetContent,
+                'created_at' => $date->format("m/d/Y"),
+            );
+            $db           = $db->where('community_id', $community_id);
+            $result = $db->update(T_COMMUNITY_SETTINGS, array(
+                'textarea_widget' => json($new_widget, true)
+            ));
         } else {
             $new_widget = array(
                 'widgetTitle' => $widgetTitle,
                 'position' => $position,
                 'widgetContent' => $widgetContent,
+                'created_at' =>  $date->format("m/d/Y"),
             );
             $insert_data = array(
                 "community_id" => $community_id,
@@ -184,6 +182,13 @@ if (empty($cl["is_logged"])) {
             $db->insert(T_COMMUNITY_SETTINGS, $insert_data);
         }
     }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'delete_image_widget') {
+    $community_id = fetch_or_get($_POST['community_id'], "");
+    $db           = $db->where('community_id', $community_id);
+    $result = $db->update(T_COMMUNITY_SETTINGS, array(
+        'image_widget' => null
+    ));
     return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'add_image_widget') {
     $widgetTitle = fetch_or_get($_POST['widgetTitle'], "");
@@ -212,12 +217,14 @@ if (empty($cl["is_logged"])) {
         $result = $db->getOne(T_COMMUNITY_SETTINGS);
         if (not_empty($result)) {
             $data['status']   = 200;
+            $date = new DateTime();
+
             if (!not_empty($result['image_widget'])) {
-                $new_widget = array();
-                $new_widget[] = array(
+                $new_widget = array(
                     'widgetTitle' => $widgetTitle,
                     'position' => $position,
                     'image_path' => $file_upload['filename'],
+                    'created_at' =>  $date->format("m/d/Y"),
                 );
                 $db           = $db->where('community_id', $community_id);
                 $result = $db->update(T_COMMUNITY_SETTINGS, array(
@@ -231,11 +238,11 @@ if (empty($cl["is_logged"])) {
                     'widgetTitle' => $widgetTitle,
                     'position' => $position,
                     'image_path' => $file_upload['filename'],
+                    'created_at' =>  $date->format("m/d/Y"),
                 );
-                $image_widgets[] = $new_widget;
                 $db           = $db->where('community_id', $community_id);
                 $result = $db->update(T_COMMUNITY_SETTINGS, array(
-                    'image_widget' => json($image_widgets, true)
+                    'image_widget' => json($new_widget, true)
                 ));
             }
         } else {
@@ -243,6 +250,7 @@ if (empty($cl["is_logged"])) {
                 'widgetTitle' => $widgetTitle,
                 'position' => $position,
                 'image_path' => $file_upload['filename'],
+                'created_at' =>  $date->format("m/d/Y"),
             );
             $insert_data = array(
                 "community_id" => $community_id,
@@ -252,6 +260,13 @@ if (empty($cl["is_logged"])) {
         }
     }
     return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'delete_community_list_widget') {
+    $community_id = fetch_or_get($_POST['community_id'], "");
+    $db           = $db->where('community_id', $community_id);
+    $result = $db->update(T_COMMUNITY_SETTINGS, array(
+        'community_list_widget' => null
+    ));
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'add_community_list_widget') {
     $widgetTitle = fetch_or_get($_POST['widgetTitle'], "");
     $community_id = fetch_or_get($_POST['community_id'], "");
@@ -259,6 +274,7 @@ if (empty($cl["is_logged"])) {
     $db = $db->where('community_id', $community_id_selected);
     $result = $db->getone(T_COMMUNITY);
     $community_name = $result['name'];
+    $date = new DateTime();
 
     if (not_empty($widgetTitle) && not_empty($community_id_selected) && not_empty($community_id)) {
         $db           = $db->where('community_id', $community_id);
@@ -266,10 +282,12 @@ if (empty($cl["is_logged"])) {
         if (not_empty($result)) {
             $data['status']   = 200;
             if (!not_empty($result['community_list_widget'])) {
-                $new_widget = array();
-                $new_widget[] = array(
+                $community_ids = array();
+                $community_ids[] = $community_id_selected;
+                $new_widget = array(
                     'widgetTitle' => $widgetTitle,
-                    'community_id' => $community_id_selected,
+                    'community_ids' => $community_ids,
+                    'created_at' =>  $date->format("m/d/Y"),
                 );
                 $db           = $db->where('community_id', $community_id);
                 $result = $db->update(T_COMMUNITY_SETTINGS, array(
@@ -277,20 +295,23 @@ if (empty($cl["is_logged"])) {
                 ));
             } else {
                 $community_list_widgets = json($result['community_list_widget']);
-                if (count($community_list_widgets) > 4)
+                $community_ids = $community_list_widgets['community_ids'];
+                if (count($community_ids) > 4)
                     return header('Location: ' . $_SERVER['HTTP_REFERER']);
-                $new_widget = array(
-                    'community_id' => $community_id_selected,
-                );
-                $community_list_widgets[] = $new_widget;
+                $community_ids[] = $community_id_selected;
+                $community_list_widgets['community_ids'] = $community_ids;
                 $db           = $db->where('community_id', $community_id);
                 $result = $db->update(T_COMMUNITY_SETTINGS, array(
-                    'community_list_widgets' => json($community_list_widgets, true)
+                    'community_list_widget' => json($community_list_widgets, true)
                 ));
             }
         } else {
+            $community_ids = array();
+            $community_ids[] = $community_id_selected;
             $new_widget = array(
-                'community_id' => $community_id_selected,
+                'widgetTitle' => $widgetTitle,
+                'community_ids' => $community_ids,
+                'created_at' =>  $date->format("m/d/Y"),
             );
             $insert_data = array(
                 "community_id" => $community_id,

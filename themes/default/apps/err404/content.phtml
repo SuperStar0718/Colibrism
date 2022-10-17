@@ -1,50 +1,129 @@
-<section class="main col nd gap-1">
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="timeline-container" data-app="err404">
-        <div class="timeline-header" data-el="tl-header">
-            <div class="timeline-header__topline">
-                <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <?php if (not_empty($me['new_notifs'])) : ?>
+        (<?php echo fetch_or_get($me['new_notifs']); ?>)
+        <?php endif; ?>
+
+        <?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>
+    </title>
+
+    <meta content="charset=UTF-8" />
+
+    <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]); ?>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <?php if ($cl["pn"] == 'thread') : ?>
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
+    <meta property="og:image:secure_url" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
+    <meta property="og:description"
+        content="<?php echo fetch_or_get($cl["page_desc"], $cl["config"]["description"]); ?>" />
+    <meta property="og:title" content="<?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>" />
+    <meta property="og:url" content="<?php echo fetch_or_get($cl["page_url"], $cl["config"]["url"]); ?>" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="<?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>" />
+    <meta name="twitter:description"
+        content="<?php echo fetch_or_get($cl["page_desc"], $cl["config"]["description"]); ?>" />
+    <meta name="twitter:image" content="<?php echo fetch_or_get($cl["page_image"], ''); ?>" />
+    <?php endif; ?>
+
+
+
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/styles.css">
+    <?php if ($cl["pn"] == "guest") : ?>
+    <link rel='stylesheet' href='{%config theme_url%}/statics/css/bootstrap.css'>
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/alert.css">
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/login.css">
+
+    <?php endif; ?>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
+
+    <link rel="icon" href="{%config site_fav%}" type="image/png">
+    <link rel="icon" href="{%config site_fav%}" type="image/x-icon">
+
+
+
+</head>
+
+<body class="m-a">
+
+
+    <main class="Main-dash-board grid js-c <?php echo (($cl["is_logged"]) ? "" : "guest-mode"); ?>">
+        <section class="main col nd gap-1">
+
+            <div class="timeline-container" data-app="err404">
+                <div class="timeline-header" data-el="tl-header">
+                    <div class="timeline-header__topline">
+                        <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+                    </div>
+                    <!-- <div class="timeline-header__botline">
+            <div class="lp">
+                <div class="nav-link-holder">
+                    <a href="<?php echo cl_link("404"); ?>" data-spa="true">
+                        <?php echo cl_translate('Error 404'); ?>
+                    </a>
+                </div>
             </div>
-            <!-- <div class="timeline-header__botline">
-                <div class="lp">
-                    <div class="nav-link-holder">
-                        <a href="<?php echo cl_link("404"); ?>" data-spa="true">
-                            <?php echo cl_translate('Error 404'); ?>
+            <div class="cp">
+                <a href="<?php echo cl_link('/'); ?>">
+                    <img src="{%config site_logo%}" alt="Logo">
+                </a>
+            </div>
+        </div> -->
+                </div>
+                <div class="timeline-placeholder">
+                    <div class="icon">
+                        <div class="icon__bg icon__bg_warning">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/error.png"); ?>">
+
+                        </div>
+                    </div>
+                    <div class="pl-message">
+                        <h4>
+                            <?php echo cl_translate('Page not found!'); ?>
+                        </h4>
+                        <p>
+                            <?php echo cl_translate("Sorry, we cannot find the page you are looking for.<br>You can return to the previous page."); ?>
+                        </p>
+                    </div>
+                    <div class="c2action-single">
+                        <a href="<?php echo cl_link('/'); ?>" data-spa="true">
+                            <button class="Big-button btn round">
+                                <?php echo cl_translate("Go to your feed"); ?>
+                            </button>
                         </a>
                     </div>
                 </div>
-                <div class="cp">
-                    <a href="<?php echo cl_link('/'); ?>">
-                        <img src="{%config site_logo%}" alt="Logo">
-                    </a>
-                </div>
-            </div> -->
-        </div>
-        <div class="timeline-placeholder">
-            <div class="icon">
-                <div class="icon__bg icon__bg_warning">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/error.png"); ?>">
+            </div>
+        </section>
+    </main>
 
-                </div>
-            </div>
-            <div class="pl-message">
-                <h4>
-                    <?php echo cl_translate('Page not found!'); ?>
-                </h4>
-                <p>
-                    <?php echo cl_translate("Sorry, we cannot find the page you are looking for.<br>You can return to the previous page."); ?>
-                </p>
-            </div>
-            <div class="c2action-single">
-                <a href="<?php echo cl_link('/'); ?>" data-spa="true">
-                    <button class="Big-button btn round">
-                        <?php echo cl_translate("Go to your feed"); ?>
-                    </button>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style>
 .timeline-container {
     background-color: #1a2632;

@@ -35,10 +35,13 @@
 
 
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/styles.css">
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/bootstrap_impove.css">
+
     <?php if ($cl["pn"] == "guest") : ?>
     <link rel='stylesheet' href='{%config theme_url%}/statics/css/bootstrap.css'>
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/alert.css">
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/login.css">
+
 
     <?php endif; ?>
     <link rel="stylesheet"
@@ -83,9 +86,71 @@
                             <img src="<?php convert_into_base64("themes/default/statics/img/email (1).png"); ?>">
                         </a>
                     </div>
-                    <div class="notifications-btn btn">
+                    <div class="notifications-btn dropdown-toggle btn">
                         <img src="<?php convert_into_base64("themes/default/statics/img/notification.png"); ?>">
                         <sup class="text-white bg-danger">3</sup>
+                    </div>
+                    <div class="notification-list dropdown-menu">
+                        <a href="notifications?subject=new_tweets">
+                            <div class="notification">
+                                <div class="text">
+                                    New Tweets
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=mentions">
+                            <div class="notification">
+                                <div class="text">
+                                    Mentions
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=dms">
+                            <div class="notification">
+                                <div class="text">
+                                    Dms
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=modmails">
+                            <div class="notification">
+                                <div class="text">
+                                    Modmails
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=retweets">
+                            <div class="notification">
+                                <div class="text">
+                                    Retweets
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=others">
+                            <div class="notification">
+                                <div class="text">
+                                    Others
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

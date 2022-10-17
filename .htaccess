@@ -16,6 +16,7 @@ RewriteEngine On
 # RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
                                             
 ErrorDocument 404 /index.php?app=err404
+Redirect 404 /index.php?app=err404 
 RewriteRule ^/$ index.php?app=home [QSA]
 RewriteRule ^language/(\w{2,25})(\/|)$ index.php?app=home&language=$1 [QSA]
 RewriteRule ^guest(\/|)$ index.php?app=guest [QSA]
@@ -25,8 +26,7 @@ RewriteRule ^admin_panel(\/|)$ index.php?app=cpanel [QSA]
 RewriteRule ^admin_panel/(\w{3,25})(\/|)$ index.php?app=cpanel&section=$1 [QSA]
 RewriteRule ^trending(\/|)$ index.php?app=trending [QSA]
 RewriteRule ^bookmarks(\/|)$ index.php?app=bookmarks [QSA]
-RewriteRule ^notifications(\/|)$ index.php?app=notifications&page=notifs [QSA]
-RewriteRule ^mentions(\/|)$ index.php?app=notifications&page=mentions [QSA]
+RewriteRule ^notifications(\/|)$ index.php?app=notifications [QSA]
 RewriteRule ^search(\/|)$ index.php?app=search [QSA]
 RewriteRule ^search/(htags|people|posts)(\/|)$ index.php?app=search&tab=$1 [QSA]
 RewriteRule ^thread/(\d+)(\/|)$ index.php?app=thread&thread_id=$1 [QSA]
@@ -78,7 +78,8 @@ RewriteRule ^download_info(\/|)$ index.php?app=download_info [QSA]
 RewriteRule ^start_up(\/|)$ index.php?app=start_up [QSA]
 RewriteRule ^inbox(\/|)$ index.php?app=inbox [QSA]
 RewriteRule ^mod_mail(\/|)$ index.php?app=mod_mail [QSA]
-
+RewriteRule ^unmoderated_posts(\/|)$ index.php?app=unmoderated_posts [QSA]
+RewriteRule ^spammed_posts(\/|)$ index.php?app=spammed_posts [QSA]
 RewriteRule ^oauth/twitter(\/|)$ index.php?app=oauth&provider=twitter [QSA]
 RewriteRule ^oauth/google(\/|)$ index.php?app=oauth&provider=google [QSA]
 RewriteRule ^oauth/facebook(\/|)$ index.php?app=oauth&provider=facebook [QSA]
@@ -89,9 +90,9 @@ RewriteRule ^mobile_api/(\w{3,32})$ api.php?api=mobile&app=$1 [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# RewriteRule ^(\w{3,25})(\/|)$ index.php?app=profile&uname=$1 [QSA]
+RewriteRule ^(\w{3,25})(\/|)$ index.php?app=err404 [QSA]
 RewriteRule ^(\w{3,25})/(following|followers|follow_requests)(\/|)$ index.php?app=connections&uname=$1&tab=$2 [QSA]
-# RewriteRule ^(\w{3,25})/(posts|media|likes)(\/|)$ index.php?app=profile&uname=$1&tab=$2 [QSA]
+RewriteRule ^(\w{3,25})/(posts|media|likes)(\/|)$ index.php?app=profile&uname=$1&tab=$2 [QSA]
 
 
 

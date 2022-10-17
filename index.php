@@ -63,9 +63,9 @@ if ($spa_load == '1') {
 	} elseif ($app_name == "madatory_join") {
 		$http_res = cl_template("madatory_join/content");
 		echo $http_res;
-		// } elseif ($app_name == "inbox") {
-		// 	$http_res = cl_template("inbox/content");
-		// 	echo $http_res;
+	} elseif ($app_name == "err404") {
+		$http_res = cl_template("err404/content");
+		echo $http_res;
 	} else {
 		$http_res = cl_template("main/content");
 		echo $http_res;

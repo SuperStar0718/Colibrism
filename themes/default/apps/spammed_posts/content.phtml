@@ -50,33 +50,7 @@
                     </form>
                 </div>
             </div>
-            <!-- <div class="overlay overlay-hugeinc" id="create_poll">
-                <div class="overlay_widget">
-                    <form action="<?php echo cl_link("native_api/home/create_poll"); ?>" enctype="multipart/form-data"
-                        method="POST">
-                        <div class="header">
-                            <div class="title">Create New Poll</div>
-                            <div class="cancel">
-                                <button type="submit" name="submit" value="exit">
-                                    <label for="cancel_window">✖</label>
-                                </button>
-                            </div>
-                        </div>
 
-                        <div class="poll">
-                            <input type="text" name="option_1" placeholder="Option-1"
-                                value="<?php if (not_empty($_SESSION['option_1'])) echo $_SESSION['option_1']; ?>">
-                            <input type="text" name="option_2" placeholder="Option-2"
-                                value="<?php if (not_empty($_SESSION['option_2'])) echo $_SESSION['option_2']; ?>">
-                            <input type="text" name="option_3" placeholder="Option-3"
-                                value="<?php if (not_empty($_SESSION['option_3'])) echo $_SESSION['option_3']; ?>">
-                        </div>
-                        <div class="submit">
-                            <button type="submit" name="submit" value="poll">Create Poll</button>
-                        </div>
-                    </form>
-                </div>
-            </div> -->
             <input class="hidden" id="isPopupVisible" type="radio" name="modal">
             <div class="Poll-popup fixed flex center bg-glass">
                 <form action="<?php echo cl_link("native_api/home/create_poll"); ?>" enctype="multipart/form-data"
@@ -137,7 +111,7 @@
     <div class="main-content grid col nd gap-1">
         <?php if (not_empty($cl["tl_feed"])) : ?>
         <?php foreach ($cl["tl_feed"] as $cl["li"]) : ?>
-        <?php echo cl_template('timeline/post_community'); ?>
+        <?php echo cl_template('timeline/post_spammed'); ?>
         <?php endforeach; ?>
         <?php else : ?>
         <?php echo cl_template('home/includes/no_posts'); ?>
@@ -145,29 +119,29 @@
     </div>
     <?php global $community; ?>
     <div class="pagination">
-        <a href="community?community_id=<?php echo $community['community_id'] ?>&page=1">&laquo;</a>
+        <a href="spammed_posts?community_id=<?php echo $community['community_id'] ?>&&page=1">&laquo;</a>
         <?php if ($cl['page'] - 2 > 0) : ?>
         <a
-            href="community?community_id=<?php echo $community['community_id'] ?>&page=<?php echo $cl['page'] - 2 ?>"><?php echo $cl['page'] - 2 ?></a>
+            href="spammed_posts?community_id=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] - 2 ?>"><?php echo $cl['page'] - 2 ?></a>
         <?php endif; ?>
 
         <?php if ($cl['page'] - 1 > 0) : ?>
         <a
-            href="community?community_id=<?php echo $community['community_id'] ?>&page=<?php echo $cl['page'] - 1 ?>"><?php echo $cl['page'] - 1 ?></a>
+            href="spammed_posts?community_id=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] - 1 ?>"><?php echo $cl['page'] - 1 ?></a>
         <?php endif; ?>
         <?php if ($cl['page'] > 0) : ?>
-        <a href="community?community_id=<?php echo $community['community_id'] ?>&page=<?php echo $cl['page'] ?>"
+        <a href="spammed_posts?community_id=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] ?>"
             class="active"><?php echo $cl['page'] ?></a>
         <?php endif; ?>
         <?php if ($cl['page'] < $cl['total_number'] / 5) : ?>
         <a
-            href="community?community_id=<?php echo $community['community_id'] ?>&page=<?php echo $cl['page'] + 1 ?>"><?php echo $cl['page'] + 1 ?></a>
+            href="spammed_posts?community_id=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] + 1 ?>"><?php echo $cl['page'] + 1 ?></a>
         <?php endif; ?>
         <?php if ($cl['page'] + 1 < $cl['total_number'] / 5) : ?>
         <a
-            href="community?community_id=<?php echo $community['community_id'] ?>&page=<?php echo $cl['page'] + 2 ?>"><?php echo $cl['page'] + 2 ?></a>
+            href="spammed_posts?community_id=<?php echo $community['community_id'] ?>&&page=<?php echo $cl['page'] + 2 ?>"><?php echo $cl['page'] + 2 ?></a>
         <?php endif; ?>
         <a
-            href="community?community_id=<?php echo $community['community_id'] ?>&page=<?php echo ceil($cl['total_number'] / 5) ?>">&raquo;</a>
+            href="spammed_posts?community_id=<?php echo $community['community_id'] ?>&&page=<?php echo ceil($cl['total_number'] / 5) ?>">&raquo;</a>
     </div>
 </section>

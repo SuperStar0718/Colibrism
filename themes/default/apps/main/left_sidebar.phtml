@@ -46,7 +46,7 @@
     <div class="Comunity-target target">
         <h4>COMMUNITIES YOU HAVE FOLLOWED</h4>
         <hr>
-        <div class="comunyties-content flex col">
+        <div class="col">
             <?php shuffle($cl['communities_followed']); ?>
 
             <?php if (count($cl['communities_followed']) > 5) : ?>
@@ -58,27 +58,29 @@
             <?php for ($x = 0; $x < $count; $x++) {
                 $community = $cl['communities_followed'][$x];
             ?>
-            <div class="Comunity-display grid">
-                <div class="comunity-image-content">
-                    <div class="user-image s-2 circle">
+            <div class="row flex">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="user-image circle">
                         <?php if (!empty($community['icon'])) : ?>
                         <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="comunity-data-content">
+                <div class="col-lg-6 col-md-6 col-sm-4 col-xs-4">
                     <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
                         <h4><?php echo $community['name'] ?></h4>
                     </a>
                     <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
                 </div>
-                <form method="POST" action="native_api/main/join">
-                    <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
-                    <div class="comunkarity-action-content flex center">
-                        <button class="follow-btn mintext btn" type="submit"
-                            style="background-color: #c14848;">Leave</button>
-                    </div>
-                </form>
+                <div class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
+                    <form method="POST" action="native_api/main/join">
+                        <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
+                        <div class="comunkarity-action-content flex center">
+                            <button class="follow-btn mintext btn" type="submit"
+                                style="background-color: #c14848;">Leave</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <?php  } ?>

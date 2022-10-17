@@ -110,11 +110,13 @@
 
         </div>
     </div>
+    <?php if ($cl['page_title'] == cl_translate("Community")) : ?>
     <?php if (not_empty($cl['community_list_widget'])) : ?>
     <div class="Comunity-target target">
         <h4 class="title"><?php echo $cl['community_list_widget'][0]['widgetTitle']; ?></h4>
         <hr>
         <?php foreach ($cl['community_list_widget'] as $widget) : ?>
+        <?php if (not_empty($widget['name'])) : ?>
         <div class="community_container">
             <div class="user-image s-2 circle">
                 <?php if (!empty($widget['icon'])) : ?>
@@ -127,31 +129,34 @@
                 </a>
             </div>
         </div>
+        <?php endif; ?>
         <?php endforeach; ?>
     </div>
     <?php endif; ?>
-    <?php if (not_empty($cl['textarea_widget'])) foreach ($cl['textarea_widget'] as $widget) : ?>
-    <?php if ($widget['position'] == "leftsidebar") : ?>
+    <?php if (not_empty($cl['textarea_widget'])) : ?>
+    <?php if ($cl['textarea_widget']['position'] == "leftsidebar" && not_empty($cl['textarea_widget'])) : ?>
     <div class="Comunity-target target">
-        <h4 class="title"><?php echo $widget['widgetTitle']; ?></h4>
+        <h4 class="title"><?php echo $cl['textarea_widget']['widgetTitle']; ?></h4>
         <hr>
         <div class="comunyties-content flex col">
-            <?php echo $widget['widgetContent']; ?>
+            <?php echo $cl['textarea_widget']['widgetContent']; ?>
         </div>
     </div>
     <?php endif; ?>
-    <?php endforeach; ?>
-    <?php if (not_empty($cl['image_widget'])) foreach ($cl['image_widget'] as $widget) : ?>
-    <?php if ($widget['position'] == "leftsidebar") : ?>
+    <?php endif; ?>
+    <?php if (not_empty($cl['image_widget'])) : ?>
+    <?php if ($cl['image_widget']['position'] == "leftsidebar") : ?>
     <div class="Comunity-target target">
-        <h4 class="title"><?php echo $widget['widgetTitle']; ?></h4>
+        <h4 class="title"><?php echo $cl['image_widget']['widgetTitle']; ?></h4>
         <hr>
         <div class="comunyties-content flex col">
-            <img class="image_widget" src="<?php echo $widget['image_path']; ?>">
+            <img class="image_widget" src="<?php echo $cl['image_widget']['image_path']; ?>">
         </div>
     </div>
     <?php endif; ?>
-    <?php endforeach; ?>
+    <?php endif; ?>
+    <?php endif; ?>
+
     <div class=" Big-button btn round">AWARD STORE
     </div>
     <div class="Big-button btn round">DONATORS</div>

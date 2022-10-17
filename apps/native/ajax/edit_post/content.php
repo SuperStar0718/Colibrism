@@ -105,4 +105,51 @@ if (empty($cl["is_logged"])) {
 	$query_res = $db->rawQuery($sql);
 	cl_queryset($query_res);
 	return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'approve') {
+	$post_id          = fetch_or_get($_GET["post_id"], 0);
+	$db = $db->where('id', $post_id);
+	$db->update(T_PUBS, array(
+		'status' => 'active'
+	));
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'remove') {
+	$post_id          = fetch_or_get($_GET["post_id"], 0);
+	$db = $db->where('id', $post_id);
+	$db->delete(T_PUBS);
+	$db = $db->where('publication_id', $post_id);
+	$db->delete(T_POSTS);
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'spam') {
+	$post_id          = fetch_or_get($_GET["post_id"], 0);
+	$db = $db->where('publication_id', $post_id);
+	$result = $db->getone(T_POSTS);
+	$user_id = $result['user_id'];
+	$community_id = $result['community_id'];
+
+	$db = $db->where('user_id', $user_id);
+	$db = $db->where('community_id', $community_id);
+	$db->delete(T_POSTS);
+
+	$db = $db->where('user_id', $user_id);
+	$db = $db->where('communty_id',  $community_id);
+	$db->delete(T_PUBS);
+
+	$db = $db->where('community_id', $community_id);
+	$result = $db->getone(T_COMMUNITY_SETTINGS);
+	if (not_empty($result['banned_user'])) :
+		$users = json($result['banned_user']);
+		$users[] = $user_id;
+		$db = $db->where('community_id', $community_id);
+		$db->update(T_COMMUNITY_SETTINGS, array(
+			'banned_user' => json($users, true)
+		));
+	else :
+		$users = array();
+		$users[] = $user_id;
+		$db = $db->where('community_id', $community_id);
+		$db->update(T_COMMUNITY_SETTINGS, array(
+			'banned_user' => json($users, true)
+		));
+	endif;
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

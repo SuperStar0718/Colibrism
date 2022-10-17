@@ -31,18 +31,23 @@
                 </label>
             </div>
             <div class="config-1">
-                <div class="Widget-appearance target">
-                    <form class="flex col gap-1" name="widget-appearance-form" method="POST" action="native_api/community_settings/add_textarea_widget">
+                <input type="radio" id="textwidget_edit" hidden>
+                <div class="Widget-appearance target"
+                    style="<?php if (not_empty($cl['textarea_widget'])) echo "display: none;" ?>">
+                    <form class="flex col gap-1" name="widget-appearance-form" method="POST"
+                        action="native_api/community_settings/add_textarea_widget">
                         <h2>Textarea widget appearance</h2>
                         <hr>
                         <div class="form-group">
                             <label for="widgetTitle">Widget Title</label>
                             <div class="form-control">
-                                <input class="bg-3" id="widgetTitle" type="text" name="widgetTitle" placeholder="lorem">
+                                <input class="bg-3" id="widgetTitle" type="text" name="widgetTitle" placeholder="lorem"
+                                    value="<?php if (not_empty($cl['textarea_widget'])) echo $cl['textarea_widget']['widgetTitle'] ?>">
                             </div>
                             <p class="mintext t-color-3">Lorem ipsum dolor sit, amet consectetur</p>
                             <label class="toggle_switch" for="toggle">
-                                <input class="input" type="checkbox" id="toggle" name="position" value="leftsidebar">
+                                <input class="input" type="checkbox" id="toggle" name="position" value="leftsidebar"
+                                    <?php if (not_empty($cl['textarea_widget']) && $cl['textarea_widget']['position'] == "leftsidebar") echo "checked"; ?>>
                                 <div class="toggle-wrapper"><span class="selector"></span></div>
                                 <p class="notification"><span class="selected"></span></p>
                             </label>
@@ -52,7 +57,8 @@
                         <div class="fform-group">
                             <label for="widgetContent">Text</label>
                             <div class="form-control">
-                                <textarea class="bg-3" id="widgetContent" name="widgetContent" placeholder="lorem" rows="10"></textarea>
+                                <textarea class="bg-3" id="widgetContent" name="widgetContent" placeholder="lorem"
+                                    rows="10"><?php if (not_empty($cl['textarea_widget'])) echo $cl['textarea_widget']['widgetContent'] ?></textarea>
                             </div>
                             <p class="mintext t-color-3">Lorem ipsum dolor sit, amet consectetur</p>
                         </div>
@@ -63,34 +69,76 @@
                         </div>
                     </form>
                 </div>
+                <?php if (not_empty($cl['textarea_widget'])) : ?>
+                <div class="edit_widget">
+                    <table>
+                        <tr class="title">
+                            <th>Widget Title</th>
+                            <th>Date Created</th>
+                            <th>Action Buttons</th>
+                        </tr>
+                        <tr class="body">
+                            <td><?php echo $cl['textarea_widget']['widgetTitle'] ?></td>
+                            <td><?php echo $cl['textarea_widget']['created_at'] ?></td>
+                            <td class="actions">
+                                <form method="POST" action="native_api/community_settings/delete_textarea_widget">
+                                    <input type="text" name="community_id" value="<?php echo $_GET['community_id']; ?>"
+                                        hidden>
+                                    <label class="edit" for="textwidget_edit">Edit</label>
+                                    <button type="submit" class="delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <?php endif; ?>
             </div>
             <div class="config-2">
-                <div class="Upload-image target">
+                <input type="radio" id="imagewidget_edit" hidden>
+                <div class="Upload-image target"
+                    style="<?php if (not_empty($cl['image_widget'])) echo "display: none;" ?>">
                     <h2>Images</h2><a class="flex nd al-c gap-1" href="#"><i class="material-symbols-outlined">info</i>
                         Images</a>
                     <hr class="mt-1">
                     <p class="t-color-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere repellat nam
                         provident.</p>
-                    <form class="flex col gap-1" name="upload-image-form" action="native_api/community_settings/add_image_widget" method="POST" enctype="multipart/form-data">
+                    <form class="flex col gap-1" name="upload-image-form"
+                        action="native_api/community_settings/add_image_widget" method="POST"
+                        enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="widgetTitle">Widget title</label>
                             <p class="mintext t-color-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                 Beatae animi, minus vel suscipit.</p>
                             <div class="form-control">
-                                <input class="bg-3" id="widgetTitle" type="text" name="widgetTitle" placeholder="some title" value="My Image Stand">
+                                <input class="bg-3" id="widgetTitle" type="text" name="widgetTitle"
+                                    placeholder="some title"
+                                    value="<?php if (not_empty($cl['image_widget'])) echo $cl['image_widget']['widgetTitle'] ?>">
                             </div>
                             <p class="mintext t-color-3">Lorem ipsum dolor sit amet consectetur.</p>
                             <label class="toggle_switch" for="toggle_img">
-                                <input class="input" type="checkbox" id="toggle_img" name="position" value="leftsidebar">
+                                <input class="input" type="checkbox" id="toggle_img" name="position" value="leftsidebar"
+                                    <?php if (not_empty($cl['image_widget']) && $cl['image_widget']['position'] == "leftsidebar") echo "checked"; ?>>
                                 <div class="toggle-wrapper"><span class="selector"></span></div>
                                 <p class="notification"><span class="selected"></span></p>
                             </label>
                         </div>
+                        <?php if (not_empty($cl['image_widget']['image_path'])) : ?>
+                        <div class="preview">
+                            <div class="preview_title">Preview</div>
+                            <div class="preview_body">
+                                <img src="<?php echo $cl['image_widget']['image_path']; ?>">
+
+                            </div>
+                        </div>
+                        <?php endif; ?>
                         <div class="form-group drop-image-content">
                             <label for="imageFile">Image</label>
                             <p class="mintext t-color-3">Lorem ipsum dolor sit amet.</p>
-                            <label class="dropImg btn flex center col nd bg-3" for="imageFile"><i class="material-symbols-outlined fill">backup</i></label>
-                            <input class="hidden" id="imageFile" type="file" name="imageFile" accept="image/png, image/jpeg">
+                            <label class="dropImg btn flex center col nd bg-3" for="imageFile"><i
+                                    class="material-symbols-outlined fill">backup</i></label>
+                            <input class="hidden" id="imageFile" type="file" name="imageFile"
+                                accept="image/png, image/jpeg"
+                                value="<?php if (not_empty($cl['image_widget'])) echo $cl['image_widget']['image_path'] ?>">
                         </div>
                         <input type="text" name="community_id" value="<?php echo $_GET['community_id']; ?>" hidden>
                         <div class="btns-content flex col gap-1 mt-1">
@@ -102,17 +150,47 @@
                         <div class="delete-widget-btn btn primary">DELETE WIDGET</div>
                     </div>
                 </div>
+                <?php if (not_empty($cl['image_widget'])) : ?>
+                <div class="edit_widget">
+                    <table>
+                        <tr class="title">
+                            <th>Widget Title</th>
+                            <th>Date Created</th>
+                            <th>Action Buttons</th>
+                        </tr>
+                        <tr class="body">
+                            <td><?php echo $cl['image_widget']['widgetTitle'] ?></td>
+                            <td><?php echo $cl['image_widget']['created_at'] ?></td>
+                            <td class="actions">
+                                <form method="POST" action="native_api/community_settings/delete_image_widget">
+                                    <input type="text" name="community_id" value="<?php echo $_GET['community_id']; ?>"
+                                        hidden>
+                                    <label class="edit" for="imagewidget_edit">Edit</label>
+                                    <button type="submit" class="delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <?php endif; ?>
             </div>
             <div class="config-3">
-                <div class="Community-list-widget-appearance target">
-                    <h2>Community List Widget Appearance</h2><a class="flex nd al-c gap-1" href="#"><i class="material-symbols-outlined">info</i> Community list widget appearance</a>
+                <input type="radio" id="community_list_widget_edit" hidden>
+
+                <div class="Community-list-widget-appearance target"
+                    style="<?php if (not_empty($cl['community_list_widget'])) echo "display: none;" ?>">
+                    <h2>Community List Widget Appearance</h2><a class="flex nd al-c gap-1" href="#"><i
+                            class="material-symbols-outlined">info</i> Community list widget appearance</a>
                     <hr class="mt-1">
-                    <form class="flex col gap-1 mt-1" name="community-list-widget-appearance-from" method="POST" action="native_api/community_settings/add_community_list_widget">
+                    <form class="flex col gap-1 mt-1" name="community-list-widget-appearance-from" method="POST"
+                        action="native_api/community_settings/add_community_list_widget">
                         <div class="from-section">
                             <div class="from-group">
                                 <label for="widgetTitle">Widget title</label>
                                 <div class="form-control">
-                                    <input class="bg-3" id="widgetTitle" type="text" name="widgetTitle" placeholder="some title">
+                                    <input class="bg-3" id="widgetTitle" type="text" name="widgetTitle"
+                                        placeholder="some title"
+                                        value="<?php if (not_empty($cl['community_list_widget'])) echo $cl['community_list_widget']['original']['widgetTitle'] ?>">
                                 </div>
                                 <p class="mintext t-color-3">Lorem ipsum dolor sit amet.</p>
                             </div>
@@ -130,8 +208,10 @@
                                 <select class="bg-3" id="communityChice" name="communityChice">
                                     <option value="Choose a community">Choose a community</option>
                                     <?php foreach ($cl['communities_followed'] as $item) : ?>
-                                        <option value="<?php echo $item['community_id'] ?>"><?php echo $item['name'] ?>
-                                        </option>
+                                    <?php if (!in_array($item['community_id'], $cl['community_list_widget']['original']['community_ids'])) : ?>
+                                    <option value="<?php echo $item['community_id'] ?>"><?php echo $item['name'] ?>
+                                    </option>
+                                    <?php endif; ?>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -144,6 +224,29 @@
                         </div>
                     </form>
                 </div>
+                <?php if (not_empty($cl['community_list_widget']['original'])) : ?>
+                <div class="edit_widget">
+                    <table>
+                        <tr class="title">
+                            <th>Widget Title</th>
+                            <th>Date Created</th>
+                            <th>Action Buttons</th>
+                        </tr>
+                        <tr class="body">
+                            <td><?php echo $cl['community_list_widget']['original']['widgetTitle'] ?></td>
+                            <td><?php echo $cl['community_list_widget']['original']['created_at'] ?></td>
+                            <td class="actions">
+                                <form method="POST" action="native_api/community_settings/delete_community_list_widget">
+                                    <input type="text" name="community_id" value="<?php echo $_GET['community_id']; ?>"
+                                        hidden>
+                                    <label class="edit" for="community_list_widget_edit">Edit</label>
+                                    <button type="submit" class="delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

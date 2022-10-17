@@ -103,11 +103,11 @@ if (empty($cl["is_logged"])) {
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
         $poll_data = array();
-        $poll_data[0] = $_SESSION['answer-1'];
-        $poll_data[1] = $_SESSION['answer-2'];
-        $poll_data[2] = $_SESSION['answer-3'];
-        $poll_data[3] = $_SESSION['answer-4'];
-        $poll_data[4] = $_SESSION['answer-5'];
+        $poll_data[0] = fetch_or_get($_SESSION['answer-1']);
+        $poll_data[1] = fetch_or_get($_SESSION['answer-2']);
+        $poll_data[2] = fetch_or_get($_SESSION['answer-3']);
+        $poll_data[3] = fetch_or_get($_SESSION['answer-4']);
+        $poll_data[4] = fetch_or_get($_SESSION['answer-5']);
         $image_src = "";
         if (not_empty($_FILES['image']) && not_empty($_FILES['image']['tmp_name'])) {
             $file_info      = array(
@@ -141,7 +141,7 @@ if (empty($cl["is_logged"])) {
                 "user_id"   => $me['id'],
                 "text"      => cl_text_secure($post_text),
                 "description" => cl_text_secure($post_description),
-                "status"    => "active",
+                "status"    => "inactive",
                 "type"      => "text",
                 "thread_id" => $thread_id,
                 "time"      => time(),

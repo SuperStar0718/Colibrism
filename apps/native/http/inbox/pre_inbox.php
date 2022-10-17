@@ -32,6 +32,8 @@ if ($mode == "DMs") :
     $result = $db->get(T_CONVERSATIONS);
     if (count($result) > 0) {
         $cl['conversations'] = $result;
+    } else {
+        return;
     }
     global $user_list;
     $user_list = array();
@@ -69,6 +71,11 @@ elseif ($mode == 'Mod_Mails') :
     $db = $db->where('user', $me['id']);
     $db->orderBy("created_at", "DESC");
     $result = $db->get(T_MOD_MAILS);
+    if (count($result) > 0) {
+        $cl['conversations'] = $result;
+    } else {
+        return;
+    }
     $cl['conversations'] = $result;
     global $user_list;
     $user_list = array();
@@ -105,6 +112,11 @@ elseif ($mode == 'All') :
     $query_res = $db->rawQuery($sql);
     cl_queryset($query_res);
     $result = $query_res;
+    if (count($result) > 0) {
+        $cl['conversations'] = $result;
+    } else {
+        return;
+    }
     $cl['conversations'] = array();
     global $user_list;
     $user_list = array();

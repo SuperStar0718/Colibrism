@@ -1166,7 +1166,7 @@ if ($action == 'upload_post_image') {
     // if (in_array($bg_color, array_keys($cl["bg_colors"])) && in_array($skin_color, array_keys($cl["color_schemes"]))) {
     $data['status'] = 200;
 
-    cl_update_user_data($me["id"], $community_id, array(
+    cl_update_community_data($me["id"], $community_id, array(
         "display_settings" => json(array(
             // "color_scheme" => cl_text_secure($skin_color),
             // "background"   => cl_text_secure($bg_color),
