@@ -152,4 +152,25 @@ if (empty($cl["is_logged"])) {
 		));
 	endif;
 	return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'spam_action') {
+	$post_id          = fetch_or_get($_GET["post_id"], 0);
+	$db = $db->where('id', $post_id);
+	$db->update(T_PUBS, array(
+		'status' => 3
+	));
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'bookmark') {
+	$post_id          = fetch_or_get($_GET["post_id"], 0);
+	$db->insert(T_BOOKMARKS, array(
+		'publication_id' => $post_id,
+		'user_id' => $me['id'],
+	));
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == 'un_bookmark') {
+	$post_id          = fetch_or_get($_GET["post_id"], 0);
+
+	$db = $db->where('publication_id', $post_id);
+	$db = $db->where('user_id', $me['id']);
+	$db->delete(T_BOOKMARKS);
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

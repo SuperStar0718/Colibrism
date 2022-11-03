@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -11,16 +11,15 @@
 
 if (empty($cl['is_logged'])) {
 	cl_redirect("guest");
-}
-
-else {
+} else {
 	require_once(cl_full_path("core/apps/bookmarks/app_ctrl.php"));
+	require("apps/native/http/preprocess.php");
 
 	$cl["page_title"] = cl_translate("Bookmarks");
-$cl["page_desc"]  = $cl["config"]["description"];
-$cl["page_kw"]    = $cl["config"]["keywords"];
-$cl["pn"]         = "bookmarks";
-$cl["sbr"]        = true;
+	$cl["page_desc"]  = $cl["config"]["description"];
+	$cl["page_kw"]    = $cl["config"]["keywords"];
+	$cl["pn"]         = "home";
+	$cl["sbr"]        = true;
 	$cl["sbl"]        = true;
 	$cl["bookmarks"]  = cl_get_bookmarks($me['id'], 30);
 	$cl["http_res"]   = cl_template("bookmarks/content");

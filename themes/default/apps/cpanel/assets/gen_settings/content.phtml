@@ -14,7 +14,7 @@
                     <a href="">
                         Manage general site settings
                     </a>
-                </li> 
+                </li>
             </ol>
         </div>
     </div>
@@ -36,7 +36,8 @@
                                         Site name
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config name%}" name="name" type="text" class="form-control" placeholder="Enter the name of your site">
+                                        <input value="{%config name%}" name="name" type="text" class="form-control"
+                                            placeholder="Enter the name of your site">
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +47,8 @@
                                         Site title
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config title%}" name="title" type="text" class="form-control" placeholder="Enter the title of your site">
+                                        <input value="{%config title%}" name="title" type="text" class="form-control"
+                                            placeholder="Enter the title of your site">
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +60,8 @@
                                         E-mail address
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config email%}" name="email" class="form-control" placeholder="Enter the email address of your site">
+                                        <input value="{%config email%}" name="email" class="form-control"
+                                            placeholder="Enter the email address of your site">
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +71,8 @@
                                         SEO keywords
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config keywords%}" name="keywords" class="form-control" placeholder="Enter SEO keywords of your site">
+                                        <input value="{%config keywords%}" name="keywords" class="form-control"
+                                            placeholder="Enter SEO keywords of your site">
                                     </div>
                                 </div>
                             </div>
@@ -80,19 +84,22 @@
                                         Site description
                                     </label>
                                     <div class="form-line">
-                                        <textarea name="description" class="form-control" rows="2" placeholder="Enter a description of your site">{%config description%}</textarea>
+                                        <textarea name="description" class="form-control" rows="2"
+                                            placeholder="Enter a description of your site">{%config description%}</textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 no-mb">
-                                <button data-an="submit-ctrl" type="submit" class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                <button data-an="submit-ctrl" type="submit"
+                                    class="btn bg-blue btn-block btn-lg waves-effect ttup">
                                     Save changes
                                 </button>
                             </div>
                         </div>
-                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
                     </form>
                 </div>
             </div>
@@ -105,7 +112,7 @@
                     </h2>
                 </div>
                 <div class="body">
-                    <form class="form" data-an="form">
+                    <form class="form" data-an="form" method="post" action="native_api/cpanel/save_settings">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group" data-an="acc_validation-input">
@@ -113,9 +120,13 @@
                                         Account activation
                                     </label>
                                     <div class="form-line">
-                                        <select name="acc_validation" class="form-control selectpicker">
-                                            <option <?php if($cl['config']['acc_validation'] == 'on') {echo('selected');} ?> value="on">On</option>
-                                            <option <?php if($cl['config']['acc_validation'] == 'off') {echo('selected');} ?> value="off">Off</option>
+                                        <select name="acc_validation" class="form-control">
+                                            <option <?php if ($cl['config']['acc_validation'] == 'on') {
+                                                        echo ('selected');
+                                                    } ?> value="on">On</option>
+                                            <option <?php if ($cl['config']['acc_validation'] == 'off') {
+                                                        echo ('selected');
+                                                    } ?> value="off">Off</option>
                                         </select>
                                     </div>
                                 </div>
@@ -126,7 +137,8 @@
                                         Giphy api
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config giphy_api_key%}" name="giphy_api_key" class="form-control" placeholder="Enter Giphy GIFS API Key">
+                                        <input value="{%config giphy_api_key%}" name="giphy_api_key"
+                                            class="form-control" placeholder="Enter Giphy GIFS API Key">
                                     </div>
                                 </div>
                             </div>
@@ -138,10 +150,12 @@
                                         FFMPEG binary
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config ffmpeg_binary%}" name="ffmpeg_binary" class="form-control" placeholder="Enter the path to the FFMPEG binary file">
+                                        <input value="{%config ffmpeg_binary%}" name="ffmpeg_binary"
+                                            class="form-control" placeholder="Enter the path to the FFMPEG binary file">
                                     </div>
                                     <small class="info-feedback">
-                                        If the ffmpeg system is installed on your server, then in this field you need to put the path to it, otherwise leave the default value
+                                        If the ffmpeg system is installed on your server, then in this field you need to
+                                        put the path to it, otherwise leave the default value
                                     </small>
                                     <hr>
                                 </div>
@@ -155,11 +169,13 @@
                                         Default site currency
                                     </label>
                                     <div class="form-line">
-                                        <select name="site_currency" data-size="5" class="form-control selectpicker">
-                                            <?php foreach ($cl['site_currencies'] as $k => $v): ?>
-                                                <option value="<?php echo($k); ?>" <?php if($k == $cl['config']['site_currency']) { echo('selected'); } ?>>
-                                                    <?php echo($v['name']); ?> (<?php echo($v['symbol']); ?>)
-                                                </option>
+                                        <select name="site_currency" data-size="5" class="form-control">
+                                            <?php foreach ($cl['site_currencies'] as $k => $v) : ?>
+                                            <option value="<?php echo ($k); ?>" <?php if ($k == $cl['config']['site_currency']) {
+                                                                                        echo ('selected');
+                                                                                    } ?>>
+                                                <?php echo ($v['name']); ?> (<?php echo ($v['symbol']); ?>)
+                                            </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -171,11 +187,15 @@
                                         Currency symbol position
                                     </label>
                                     <div class="form-line">
-                                        <select name="currency_symbol_pos" data-size="2" class="form-control selectpicker">
-                                            <option value="before" <?php if($cl['config']['currency_symbol_pos'] == "before") { echo('selected'); } ?>>
+                                        <select name="currency_symbol_pos" data-size="2" class="form-control ">
+                                            <option value="before" <?php if ($cl['config']['currency_symbol_pos'] == "before") {
+                                                                        echo ('selected');
+                                                                    } ?>>
                                                 Before
                                             </option>
-                                            <option value="after" <?php if($cl['config']['currency_symbol_pos'] == "after") { echo('selected'); } ?>>
+                                            <option value="after" <?php if ($cl['config']['currency_symbol_pos'] == "after") {
+                                                                        echo ('selected');
+                                                                    } ?>>
                                                 After
                                             </option>
                                         </select>
@@ -188,7 +208,8 @@
                                         Wallet topup min amount
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config wallet_min_amount%}" name="wallet_min_amount" class="form-control" placeholder="Enter the min user wallet topup amount">
+                                        <input value="{%config wallet_min_amount%}" name="wallet_min_amount"
+                                            class="form-control" placeholder="Enter the min user wallet topup amount">
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +221,9 @@
                                         Page update time interval
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config page_update_interval%}" name="page_update_interval" class="form-control" placeholder="Enter the time interval for page update. Default (30) seconds">
+                                        <input value="{%config page_update_interval%}" name="page_update_interval"
+                                            class="form-control"
+                                            placeholder="Enter the time interval for page update. Default (30) seconds">
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +233,9 @@
                                         Chat update time interval
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config chat_update_interval%}" name="chat_update_interval" class="form-control" placeholder="Enter the time interval for chat update. Default (5) seconds">
+                                        <input value="{%config chat_update_interval%}" name="chat_update_interval"
+                                            class="form-control"
+                                            placeholder="Enter the time interval for chat update. Default (5) seconds">
                                     </div>
                                 </div>
                             </div>
@@ -220,11 +245,13 @@
                                         User default country
                                     </label>
                                     <div class="form-line">
-                                        <select data-size="5" name="country_id" class="form-control selectpicker">
-                                            <?php foreach ($cl['countries'] as $k => $v): ?>
-                                                <option value="<?php echo($k); ?>" <?php if($k == $cl['config']['country_id']) { echo('selected'); } ?>>
-                                                    <?php echo($v); ?>
-                                                </option>
+                                        <select data-size="5" name="country_id" class="form-control ">
+                                            <?php foreach ($cl['countries'] as $k => $v) : ?>
+                                            <option value="<?php echo ($k); ?>" <?php if ($k == $cl['config']['country_id']) {
+                                                                                        echo ('selected');
+                                                                                    } ?>>
+                                                <?php echo ($v); ?>
+                                            </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -238,7 +265,8 @@
                                         Maximum post character length
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config max_post_len%}" name="max_post_len" class="form-control" placeholder="Enter the maximum length of the post text (for example, 600).">
+                                        <input value="{%config max_post_len%}" name="max_post_len" class="form-control"
+                                            placeholder="Enter the maximum length of the post text (for example, 600).">
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +277,9 @@
                                         Max post audio record length
                                     </label>
                                     <div class="form-line">
-                                        <input value="{%config post_arec_length%}" name="post_arec_length" class="form-control" placeholder="Enter the post audio record max length. Default (30) seconds">
+                                        <input value="{%config post_arec_length%}" name="post_arec_length"
+                                            class="form-control"
+                                            placeholder="Enter the post audio record max length. Default (30) seconds">
                                     </div>
                                 </div>
                             </div>
@@ -261,22 +291,46 @@
                                         Max upload size
                                     </label>
                                     <div class="form-line">
-                                        <select data-size="5" name="max_upload_size" class="form-control selectpicker">
-                                            <option value="2097152" <?php echo (($cl['config']['max_upload_size'] == '2097152') ? 'selected': ''); ?>>2 MB</option>
-                                            <option value="6291456" <?php echo (($cl['config']['max_upload_size'] == '6291456') ? 'selected': ''); ?>>6 MB</option>
-                                            <option value="12582912" <?php echo (($cl['config']['max_upload_size'] == '12582912') ? 'selected': ''); ?>>12 MB</option>
-                                            <option value="25165824" <?php echo (($cl['config']['max_upload_size'] == '25165824') ? 'selected': ''); ?>>24 MB</option>
-                                            <option value="50331648" <?php echo (($cl['config']['max_upload_size'] == '50331648') ? 'selected': ''); ?>>48 MB</option>
-                                            <option value="100663296" <?php echo (($cl['config']['max_upload_size'] == '100663296') ? 'selected': ''); ?>>96 MB</option>
-                                            <option value="268435456" <?php echo (($cl['config']['max_upload_size'] == '268435456')? 'selected': ''); ?>>256 MB</option>
-                                            <option value="536870912" <?php echo (($cl['config']['max_upload_size'] == '536870912') ? 'selected': ''); ?>>512 MB</option>
-                                            <option value="1073741824" <?php echo (($cl['config']['max_upload_size'] == '1073741824') ? 'selected': ''); ?>>1 GB</option>
-                                            <option value="5368709120" <?php echo (($cl['config']['max_upload_size'] == '5368709120') ? 'selected': ''); ?>>5 GB</option>
-                                            <option value="10737418240" <?php echo (($cl['config']['max_upload_size'] == '10737418240') ? 'selected': ''); ?>>10 GB</option>
+                                        <select data-size="5" name="max_upload_size" class="form-control ">
+                                            <option value="2097152"
+                                                <?php echo (($cl['config']['max_upload_size'] == '2097152') ? 'selected' : ''); ?>>
+                                                2 MB</option>
+                                            <option value="6291456"
+                                                <?php echo (($cl['config']['max_upload_size'] == '6291456') ? 'selected' : ''); ?>>
+                                                6 MB</option>
+                                            <option value="12582912"
+                                                <?php echo (($cl['config']['max_upload_size'] == '12582912') ? 'selected' : ''); ?>>
+                                                12 MB</option>
+                                            <option value="25165824"
+                                                <?php echo (($cl['config']['max_upload_size'] == '25165824') ? 'selected' : ''); ?>>
+                                                24 MB</option>
+                                            <option value="50331648"
+                                                <?php echo (($cl['config']['max_upload_size'] == '50331648') ? 'selected' : ''); ?>>
+                                                48 MB</option>
+                                            <option value="100663296"
+                                                <?php echo (($cl['config']['max_upload_size'] == '100663296') ? 'selected' : ''); ?>>
+                                                96 MB</option>
+                                            <option value="268435456"
+                                                <?php echo (($cl['config']['max_upload_size'] == '268435456') ? 'selected' : ''); ?>>
+                                                256 MB</option>
+                                            <option value="536870912"
+                                                <?php echo (($cl['config']['max_upload_size'] == '536870912') ? 'selected' : ''); ?>>
+                                                512 MB</option>
+                                            <option value="1073741824"
+                                                <?php echo (($cl['config']['max_upload_size'] == '1073741824') ? 'selected' : ''); ?>>
+                                                1 GB</option>
+                                            <option value="5368709120"
+                                                <?php echo (($cl['config']['max_upload_size'] == '5368709120') ? 'selected' : ''); ?>>
+                                                5 GB</option>
+                                            <option value="10737418240"
+                                                <?php echo (($cl['config']['max_upload_size'] == '10737418240') ? 'selected' : ''); ?>>
+                                                10 GB</option>
                                         </select>
                                     </div>
                                     <small class="info-feedback">
-                                        Select the maximum limit for uploaded media files such as videos, images,  etc. If the user-selected media file exceeds the limit you set, they will receive an error message and will not be able to upload the file.
+                                        Select the maximum limit for uploaded media files such as videos, images, etc.
+                                        If the user-selected media file exceeds the limit you set, they will receive an
+                                        error message and will not be able to upload the file.
                                     </small>
                                     <hr>
                                 </div>
@@ -289,19 +343,22 @@
                                         Google analytics
                                     </label>
                                     <div class="form-line">
-                                        <textarea name="google_analytics" class="form-control" rows="5" placeholder="Put your Google Analytics JS code here">{%config google_analytics%}</textarea>
+                                        <textarea name="google_analytics" class="form-control" rows="5"
+                                            placeholder="Put your Google Analytics JS code here">{%config google_analytics%}</textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 no-mb">
-                                <button data-an="submit-ctrl" type="submit" class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                <button data-an="submit-ctrl" type="submit"
+                                    class="btn bg-blue btn-block btn-lg waves-effect ttup">
                                     Save changes
                                 </button>
                             </div>
                         </div>
-                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                        <input type="hidden" class="d-none"
+                            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
                     </form>
                 </div>
             </div>
@@ -309,4 +366,5 @@
     </div>
 </div>
 
-<?php //echo cl_template('cpanel/assets/gen_settings/scripts/app_master_script'); ?>
+<?php //echo cl_template('cpanel/assets/gen_settings/scripts/app_master_script'); 
+?>

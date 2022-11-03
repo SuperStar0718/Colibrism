@@ -48,13 +48,15 @@
                                         User registration system
                                     </label>
                                     <div class="form-line">
-                                        <select name="user_signup" class="form-control selectpicker">
-                                            <option value="on"
-                                                <?php if($cl['config']['user_signup'] == "on") { echo('selected'); } ?>>
+                                        <select name="user_signup" class="form-control">
+                                            <option value="on" <?php if ($cl['config']['user_signup'] == "on") {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Enabled
                                             </option>
-                                            <option value="off"
-                                                <?php if($cl['config']['user_signup'] == "off") { echo('selected'); } ?>>
+                                            <option value="off" <?php if ($cl['config']['user_signup'] == "off") {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Disabled
                                             </option>
                                         </select>
@@ -66,7 +68,7 @@
 
                                         All users who have an invite link will be able to register on your site: <a
                                             href="<?php echo cl_link('admin_panel/invite_users'); ?>"><b>Invite users to
-                                                <?php echo($cl['config']['name']); ?></b></a>
+                                                <?php echo ($cl['config']['name']); ?></b></a>
                                     </small>
                                 </div>
                             </div>
@@ -76,13 +78,15 @@
                                         Cookie warning popup
                                     </label>
                                     <div class="form-line">
-                                        <select name="cookie_warning_popup" class="form-control selectpicker">
-                                            <option value="on"
-                                                <?php if($cl['config']['cookie_warning_popup'] == "on") { echo('selected'); } ?>>
+                                        <select name="cookie_warning_popup" class="form-control">
+                                            <option value="on" <?php if ($cl['config']['cookie_warning_popup'] == "on") {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Enabled
                                             </option>
-                                            <option value="off"
-                                                <?php if($cl['config']['cookie_warning_popup'] == "off") { echo('selected'); } ?>>
+                                            <option value="off" <?php if ($cl['config']['cookie_warning_popup'] == "off") {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Disabled
                                             </option>
                                         </select>
@@ -102,13 +106,15 @@
                                         E-Mail Notifications system
                                     </label>
                                     <div class="form-line">
-                                        <select name="email_notifications" class="form-control selectpicker">
-                                            <option value="on"
-                                                <?php if($cl["config"]["email_notifications"] == "on") { echo('selected'); } ?>>
+                                        <select name="email_notifications" class="form-control ">
+                                            <option value="on" <?php if ($cl["config"]["email_notifications"] == "on") {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Enabled
                                             </option>
-                                            <option value="off"
-                                                <?php if($cl["config"]["email_notifications"] == "off") { echo('selected'); } ?>>
+                                            <option value="off" <?php if ($cl["config"]["email_notifications"] == "off") {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Disabled
                                             </option>
                                         </select>
@@ -133,13 +139,15 @@
                                         Swifts system status (Daily stories)
                                     </label>
                                     <div class="form-line">
-                                        <select name="swift_system_status" class="form-control selectpicker">
-                                            <option value="on"
-                                                <?php if($cl["config"]["swift_system_status"] == "on") { echo('selected'); } ?>>
+                                        <select name="swift_system_status" class="form-control ">
+                                            <option value="on" <?php if ($cl["config"]["swift_system_status"] == "on") {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Enabled
                                             </option>
-                                            <option value="off"
-                                                <?php if($cl["config"]["swift_system_status"] == "off") { echo('selected'); } ?>>
+                                            <option value="off" <?php if ($cl["config"]["swift_system_status"] == "off") {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Disabled
                                             </option>
                                         </select>
@@ -161,11 +169,12 @@
                             </button>
                         </div>
                         <input type="hidden" class="d-none"
-                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php //echo cl_template('cpanel/assets/toggle_features/scripts/app_master_script'); ?>
+<?php //echo cl_template('cpanel/assets/toggle_features/scripts/app_master_script'); 
+?>

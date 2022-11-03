@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -11,12 +11,13 @@
 
 if (empty($cl["is_logged"])) {
 	cl_redirect("guest");
-}
-else {
+} else {
 
 	require_once(cl_full_path("core/apps/wallet/app_ctrl.php"));
+	require("apps/native/http/preprocess.php");
 
-	if ($cl['config']['stripe_method_status'] == 'on') {	
+
+	if ($cl['config']['stripe_method_status'] == 'on') {
 		$cl["app_statics"] = array(
 			"scripts" => array(
 				cl_js_template("statics/js/libs/Stripe/stripe")
@@ -27,7 +28,7 @@ else {
 	$cl["page_title"]     = cl_translate("Wallet");
 	$cl["page_desc"]      = $cl["config"]["description"];
 	$cl["page_kw"]        = $cl["config"]["keywords"];
-	$cl["pn"]             = "wallet";
+	$cl["pn"]             = "home";
 	$cl["sbr"]            = true;
 	$cl["sbl"]            = true;
 	$cl["wallet_history"] = cl_get_account_wallet_history();

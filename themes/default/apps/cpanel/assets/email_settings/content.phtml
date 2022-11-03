@@ -71,12 +71,14 @@
                                         SMTP encryption
                                     </label>
                                     <div class="form-line">
-                                        <select name="smtp_encryption" class="form-control selectpicker">
-                                            <option value="ssl"
-                                                <?php if($cl['config']['smtp_encryption'] == 'ssl') { echo('selected'); } ?>>
+                                        <select name="smtp_encryption" class="form-control">
+                                            <option value="ssl" <?php if ($cl['config']['smtp_encryption'] == 'ssl') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 SSL</option>
-                                            <option value="tls"
-                                                <?php if($cl['config']['smtp_encryption'] == 'tls') { echo('selected'); } ?>>
+                                            <option value="tls" <?php if ($cl['config']['smtp_encryption'] == 'tls') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 TLS</option>
                                         </select>
                                     </div>
@@ -91,12 +93,14 @@
                                         SMTP server
                                     </label>
                                     <div class="form-line">
-                                        <select name="smtp_or_mail" class="form-control selectpicker">
-                                            <option value="smtp"
-                                                <?php if($cl['config']['smtp_or_mail'] == 'smtp') { echo('selected'); } ?>>
+                                        <select name="smtp_or_mail" class="form-control">
+                                            <option value="smtp" <?php if ($cl['config']['smtp_or_mail'] == 'smtp') {
+                                                                        echo ('selected');
+                                                                    } ?>>
                                                 SMTP</option>
-                                            <option value="mail"
-                                                <?php if($cl['config']['smtp_or_mail'] == 'mail') { echo('selected'); } ?>>
+                                            <option value="mail" <?php if ($cl['config']['smtp_or_mail'] == 'mail') {
+                                                                        echo ('selected');
+                                                                    } ?>>
                                                 MAIL</option>
                                         </select>
                                     </div>
@@ -140,7 +144,7 @@
                             </div>
                         </div>
                         <input type="hidden" class="d-none"
-                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
                     </form>
                 </div>
             </div>
@@ -200,7 +204,7 @@
                             </div>
                         </div>
                         <input type="hidden" class="d-none"
-                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
                     </form>
                 </div>
             </div>
@@ -208,4 +212,5 @@
     </div>
 </div>
 
-<?php //echo cl_template('cpanel/assets/email_settings/scripts/app_master_script'); ?>
+<?php //echo cl_template('cpanel/assets/email_settings/scripts/app_master_script'); 
+?>

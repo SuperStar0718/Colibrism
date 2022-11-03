@@ -1,0 +1,24 @@
+<?php
+global $community, $is_moderator;
+?>
+
+<div class="Tweet-target target col nd gap-1">
+
+    <div class="Option-button flex center btn">
+        <?php echo $cl['li']['name']; ?>
+    </div>
+
+    <div class="teewt-data flex  gap-1">
+        <div class="user-image-content">
+            <div class="user-image s-2 circle">
+                <?php if (not_empty($cl['li']['icon'])) : ?>
+                <img src="<?php if (not_empty($cl['li']['icon'])) convert_into_base64($cl['li']['icon']); ?>"
+                    alt="Avatar">
+                <?php endif; ?>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

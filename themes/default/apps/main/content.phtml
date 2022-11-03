@@ -36,10 +36,10 @@
 
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/styles.css">
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/bootstrap_impove.css">
+    <link rel="stylesheet" href="{%config theme_url%}/statics/css/alert.css">
 
     <?php if ($cl["pn"] == "guest") : ?>
     <link rel='stylesheet' href='{%config theme_url%}/statics/css/bootstrap.css'>
-    <link rel="stylesheet" href="{%config theme_url%}/statics/css/alert.css">
     <link rel="stylesheet" href="{%config theme_url%}/statics/css/login.css">
 
 
@@ -161,32 +161,50 @@
                 <span>@<?php echo $cl['me']['username'] ?></span>
                 <input class="hidden" id="test" type="checkbox" name="test">
                 <ul class="panel-links-content absolute bg-3 target flex col gap-1">
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i>
-                            Side Admin</a></li>
-                    <li><a class="flex center nd gap-1" href="home"><i class="material-symbols-outlined">description</i>
-                            Timeline</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
+                    <li>
+                        <a class="flex center nd gap-1" href="#">
+                            <i class="material-symbols-outlined">account_circle</i>
+                            <?php echo $cl['me']['username'] ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex center nd gap-1" href="home">
+                            <i class="material-symbols-outlined">description</i>
+                            Timeline
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex center nd gap-1" href="notifications">
+                            <i class="material-symbols-outlined">notifications_active</i>
+                            Notifications
+                        </a>
+                    </li>
                     <li><a class="flex center nd gap-1" href="#"><i
                                 class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">tag</i>
+                    <li><a class="flex center nd gap-1" href="explorer"><i class="material-symbols-outlined">tag</i>
                             Explore</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">forum</i>
-                            Messages</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">bookmark</i>
+                    <li>
+                        <a class="flex center nd gap-1" href="inbox">
+                            <i class="material-symbols-outlined">forum</i>
+                            Messages
+                        </a>
+                    </li>
+                    <li><a class="flex center nd gap-1" href="bookmarks"><i
+                                class="material-symbols-outlined">bookmark</i>
                             Bookmarks</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i>
+                    <li><a class="flex center nd gap-1" href="admin_panel"><i
+                                class="material-symbols-outlined">gpp_maybe</i>
                             Control Panel</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i
+                    <li><a class="flex center nd gap-1" href="wallet"><i
                                 class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">campaign</i>
                             Advertising</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i>
                             Lorem</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
+                                class="material-symbols-outlined">manage_accounts</i> Profile Settings</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
+                                class="material-symbols-outlined">display_settings</i> Display Settings</a></li>
                     <li><a class="flex center nd gap-1" href="logout"><i class="material-symbols-outlined">logout</i>
                             Logout</a></li>
                 </ul>
@@ -221,7 +239,12 @@
         <?php if ($cl["pn"] == "home") : ?>
         <?php echo cl_template('main/right_sidebar'); ?>
         <?php elseif ($cl['pn'] == 'community') : ?>
+        <?php if ($is_moderator) : ?>
         <?php echo cl_template('main/right_sidebar_community'); ?>
+        <?php else : ?>
+        <?php echo cl_template('main/right_sidebar'); ?>
+        <?php endif; ?>
+
         <?php elseif ($cl['pn'] == "profile") : ?>
         <?php echo cl_template('main/right_sidebar_profile'); ?>
         <?php endif; ?>

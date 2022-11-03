@@ -164,7 +164,7 @@ elseif ($mode == 'All') :
         endif;
     endforeach;
 
-    if (not_empty($conversation_id) || not_empty($cl['conversations'][0]['sender'])) :
+    if (not_empty($conversation_id) || (not_empty($cl['conversations'][0]['sender']) && empty($conversation_id) && empty($community_id))) :
         $cl['conversation_id']         = fetch_or_get($_GET['conversation'], $cl['conversations'][0]['id']);
         $cl['conversation_type'] = 'user';
         $cl['messages'] = array();
@@ -174,7 +174,7 @@ elseif ($mode == 'All') :
         foreach ($result as $message) :
             array_push($cl['messages'], $message);
         endforeach;
-    elseif (not_empty($community_id)  || not_empty($cl['conversations'][0]['community_id'])) :
+    elseif (not_empty($community_id)  || (not_empty($cl['conversations'][0]['community_id']) && empty($conversation_id) && empty($community_id))) :
         $community_id = fetch_or_get($_GET['community_id'], '');
         $db = $db->where('community_id', $community_id);
         $db = $db->where('user', $me['id']);

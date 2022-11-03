@@ -344,4 +344,46 @@ if (empty($cl["is_logged"])) {
         ));
     endif;
     return cl_redirect("mod_mail?conversation_id=" . $conversation_id);
+} else if ($action == 'invite_moderator') {
+    $community_id = fetch_or_get($_POST['community_id'], "");
+    $username = fetch_or_get($_POST['username'], "");
+    $everything = fetch_or_get($_POST['everything'], "");
+    $manage_users = fetch_or_get($_POST['manage_users'], "");
+    $create_live_chats = fetch_or_get($_POST['create_live_chats'], "");
+    $manage_settings = fetch_or_get($_POST['manage_settings'], "");
+    $manage_flair = fetch_or_get($_POST['manage_flair'], "");
+    $manage_mod_mail = fetch_or_get($_POST['manage_mod_mail'], "");
+    $manage_posts_comments = fetch_or_get($_POST['manage_posts_comments'], "");
+    $manage_wiki_pages = fetch_or_get($_POST['manage_wiki_pages'], "");
+
+    $db = $db->where('username', $username);
+    $result = $db->getone(T_USERS);
+    if (not_empty($result)) :
+        $id = $result['id'];
+        $permission = array();
+        if ($everything) :
+            $permission[] = "everything";
+        else :
+            $permission[] = $manage_users ? "manage_users" : '';
+            $permission[] = $create_live_chats ? "create_live_chats" : "";
+            $permission[] = $manage_settings ? "manage_settings" : "";
+            $permission[] = $manage_flair ? "manage_flair" : "";
+            $permission[] = $manage_mod_mail ? "manage_mod_mail" : "";
+            $permission[] = $manage_posts_comments ? "manage_posts_comments" : "";
+            $permission[] = $manage_wiki_pages ? "manage_wiki_pages" : "";
+        endif;
+        print_r($permission);
+        $db = $db->where('community_id', $community_id);
+        $result = $db->getone(T_COMMUNITY);
+        $moderators = $result['moderator'];
+        $moderators_decode = json($moderators);
+        $moderators_decode[] = array(
+            $id => $permission
+        );
+        $db = $db->where('community_id', $community_id);
+        $db->update(T_COMMUNITY, array(
+            'moderator' => json($moderators_decode, true)
+        ));
+    endif;
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

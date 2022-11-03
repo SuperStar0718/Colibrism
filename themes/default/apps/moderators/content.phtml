@@ -1,63 +1,133 @@
-<div class="timeline-container" data-app="homepage">
+  <div class="moderator_main">
+      <div class="alert_body">
+          <input type="checkbox" id="alert_close" hidden>
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+                      <button type="button" class="close font__size-18" data-dismiss="alert">
+                          <label for="alert_close" class="close_button">
+                              <span aria-hidden="true"><i class="fa fa-times alertprimary"></i></span>
+                              <span class="sr-only">Close</span>
+                          </label>
 
-    <div class="user-profile">
+                      </button>
+                      <i class="start-icon fa fa-thumbs-up faa-bounce animated"></i>
+                      <strong class="font__weight-semibold">Well done!</strong> Register Success.
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="header">
+          <label class="btn">Leave as mod</label>
+          <label for="invite_mod" class="btn">Invite user as mod</label>
+          <input type="checkbox" id="invite_mod" hidden>
+          <div class="invite_mod_overlay">
+              <div class="main_body">
+                  <form method="POST" action="native_api/community_settings/invite_moderator">
+                      <div class="header_overlay">
+                          <div class="title">Invite Moderators</div>
+                          <div class="close"><label for="invite_mod">✖</label></div>
+                      </div>
+                      <div class="options">
+                          <div class="username">
+                              <input type="text" name="username" placeholder="Enter Username" name="username">
+                          </div>
+                          <div class="title">Give them access to...</div>
+                          <div class="everything sub">
+                              <input type="checkbox" id="everything" name="everything">
+                              <label for="everything">Everything</label>
+                              <div class="desc">Full access including the ability to manage moderator access and
+                                  permissions</div>
+                          </div>
+                          <div class="manage_users sub">
+                              <input type="checkbox" id="manage_users" name="manage_users">
+                              <label for="manage_users">Manage Users</label>
+                              <div class="desc">Access mod notes, ban and mute users, and approve submitters.</div>
+                          </div>
+                          <div class="create_live_chats sub">
+                              <input type="checkbox" id="create_live_chats" name="create_live_chats">
+                              <label for="create_live_chats">Create Live Chats</label>
+                              <div class="desc">Create live chat posts in this community.</div>
+                          </div>
+                          <div class="manage_settings sub">
+                              <input type="checkbox" id="manage_settings" name="manage_settings">
+                              <label for="manage_settings">Manage Settings</label>
+                              <div class="desc">Manage community settings, appearance, emojis, rules, and AutoMod.
+                              </div>
+                          </div>
+                          <div class="manage_flair sub">
+                              <input type="checkbox" id="manage_flair" name="manage_flair">
+                              <label for="manage_flair">Manage Flair</label>
+                              <div class="desc">Create and manage user and post flair.</div>
+                          </div>
+                          <div class="manage_mod_mail sub">
+                              <input type="checkbox" id="manage_mod_mail" name="manage_mod_mail">
+                              <label for="manage_mod_mail">Manage Mod Mail</label>
+                              <div class="desc">Read and respond to modmail and mute users.</div>
+                          </div>
+                          <div class="manage_posts_comments sub">
+                              <input type="checkbox" id="manage_posts_comments" name="manage_posts_comments">
+                              <label for="manage_posts_comments">Manage Posts & Comments</label>
+                              <div class="desc">Access queues, take action on content, and manage collections and
+                                  events.
+                              </div>
+                          </div>
+                          <div class="manage_wiki_pages sub">
+                              <input type="checkbox" id="manage_wiki_pages" name="manage_wiki_pages">
+                              <label for="manage_wiki_pages">Manage Wiki Pages</label>
+                              <div class="desc">Create and manage wiki pages and AutoMod.</div>
+                          </div>
+                          <div class="desc">
+                              * Note: To manage AutoMod, mods must have access to Wiki pages and Mange Settings. To
+                              mute
+                              users, mods must have access to Mod Mail and Manage Users.
+                          </div>
+                          <input type="hidden" value="<?php echo $_GET['community_id']; ?>" name="community_id">
+                      </div>
+                      <div class="footer">
+                          <label for="invite_mod">Cancel</label>
+                          <div class="invite">
+                              <button type="submit">Invite</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
 
-
-        <div class="user-profile__body" style="display:flex;">
-            <div class="user-profile__name" style="padding-left:60px; padding-top:10px;">
-                <h4>
-
-                    <span class="user-name-holder__name" style="font-weight:bold">
-                        <?php echo ("c/Torify Moderators"); ?>
-                    </span>
-
-                </h4>
-            </div>
-        </div>
-
-
-    </div>
-    <div style="background-color:#dae0e6;padding-left:10px;padding-top:10px;padding-right:10px;padding-bottom:10px;">
-        <div style="background-color:#edeff1;padding-left:3%; padding-bottom:5px;padding-top:5px;">
-            <form action="" class="">
-                <div class="input-group col-sm-4  ">
-                    <input type="text" class="form-control form-control-sm" placeholder="Search Here">
-                    <button type="submit" class="input-group-text btn-success"><i class="fa fa-search"
-                            style="z-index: 10;"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="container"
-            style="margin-bottom:30px;padding-left:30px; align-items: center;padding-right:30px;padding-top:5px;padding-bottom:5px;display:flex;background-color:white;">
-
-            <img src="{%config theme_url%}/Homepage_files/1.png"
-                style="height: 30px; width:30px;border: 3px solid white;z-index: 300;">
-            <div>Ok-Manufacturer3200</div>
-            <div style="padding-left:40px;padding-right:40%;">2 days ago</div>
-            <p style="font-weight:bold;margin-bottom:0px;">
-                (Main Moderator)
-            </p>
-
-        </div>
-        <p style="margin-bottom:5px;">You can edit these moderators</p>
-        <div class="container"
-            style="padding-left:30px; align-items: center;padding-right:30px;padding-top:5px;padding-bottom:5px;display:flex;background-color:white;">
-
-            <img src="{%config theme_url%}/Homepage_files/1.png"
-                style="height: 30px; width:30px;border: 3px solid white;z-index: 300;">
-            <div>Ok-Manufacturer3200</div>
-            <div style="padding-left:40px;padding-right:40%;">2 days ago</div>
-            <button type="button" class="btn" style="color:blue;">Remove</button>
-
-        </div>
-        <div style="height: 300px;"></div>
-    </div>
-    <?php if ($cl["config"]["swift_system_status"] == "on"): ?>
-    <?php echo cl_template("home/modals/swift_lightbox"); ?>
-    <?php echo cl_template("home/modals/swift_pubbox"); ?>
-    <?php endif; ?>
-
-    <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
-    <?php //echo cl_template("home/scripts/app_master_script"); ?>
-</div>
+      </div>
+      <div class="main">
+          <div class="search_bar">
+              <form action="" method="POST">
+                  <input type="text" placeholder="Search for a user" name="search">
+                  <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+          </div>
+          <div class="item row">
+              <div class="avatar col-md-4 col-sm-4 col-lg-4">
+                  <img class="" src="<?php convert_into_base64($cl['moderators'][0]['avatar']); ?>">
+                  <p><?php echo $cl['moderators'][0]['username']; ?></p>
+              </div>
+              <div class="age col-md-5 col-sm-5 col-lg-5 ">16 days ago</div>
+              <div class="action col-md-2 col-sm-2 col-lg-2">Everything</div>
+          </div>
+      </div>
+      <div class="moder_lists main">
+          <p>You can edit these moderators</p>
+          <?php foreach ($cl['moderators'] as $key => $moderator) : ?>
+              <?php if ($key == 0) continue; ?>
+              <div class="item row">
+                  <div class="avatar col-md-4 col-sm-4 col-lg-4">
+                      <img class="" src="<?php convert_into_base64($moderator['avatar']); ?>">
+                      <p><?php echo $moderator['username'] ?></p>
+                  </div>
+                  <div class="age col-md-5 col-sm-5 col-lg-5">16 days ago</div>
+                  <div class="action col-md-2 col-sm-2 col-lg-2">
+                      Everything
+                      <label>
+                          <img class="" src="<?php convert_into_base64("themes/default/statics/img/edit (1).png"); ?>">
+                      </label>
+                  </div>
+              </div>
+          <?php endforeach; ?>
+      </div>
+  </div>

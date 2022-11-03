@@ -1,5 +1,7 @@
 <?php
-global $cl, $db, $me, $voted;
+global $cl, $db, $me, $voted, $is_moderator, $is_banned;
+$is_moderator = false;
+$is_banned = false;
 $voted = array(array());
 $sql = "SELECT * FROM cl_community WHERE community_id IN(SELECT community_id FROM cl_community_following WHERE follow_user_id=" . $me['id'] . ")";
 $query_res = $db->rawQuery($sql);
@@ -90,12 +92,30 @@ if (not_empty($_GET['community_id'])) {
     $db = $db->where('community_id', $_GET['community_id']);
     $result = $db->getOne(T_COMMUNITY);
     if (not_empty($result)) {
-        // global $community;
-        $community = $result;
-        $db = $db->where('id', $community['moderator']);
-        $result = $db->getone(T_USERS);
-        $community['moderator_name'] = $result['username'];
+        $cl['moderators'] = array();
+        $moderators = json($result['moderator']);
+        foreach ($moderators as $moderator) :
+            foreach ($moderator as $key => $value) :
+                $db = $db->where('id', $key);
+                $result = $db->getone(T_USERS);
+                $result['permission'] = $value;
+                $cl['moderators'][] = $result;
+                if ($me['id'] == $key)
+                    $is_moderator = true;
+            endforeach;
+        endforeach;
     }
+
+    $db = $db->where('community_id', $_GET['community_id']);
+    $result  = $db->getone(T_COMMUNITY_SETTINGS);
+    if (not_empty($result['banned_user'])) :
+        $banned_users = json($result['banned_user']);
+        foreach ($banned_users as $user) :
+            if ($me['id'] == $user) :
+                $is_banned = true;
+            endif;
+        endforeach;
+    endif;
 }
 $cl['following_people'] = array();
 $db = $db->where('user_id', $cl['me']['id']);

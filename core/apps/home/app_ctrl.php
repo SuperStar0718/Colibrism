@@ -50,7 +50,22 @@ function cl_get_timeline_feed($limit = false, $offset = 0, $onset = false)
 	}
 	return $data;
 }
+function cl_get_community_list($limit, $page)
+{
+	global $db, $cl, $me;
+	$offset = $limit * ($page - 1) + 1;
 
+	if (empty($cl["is_logged"])) {
+		return false;
+	}
+	$result = $db->get(T_COMMUNITY);
+	$cl['total_number'] = count($result);
+
+	$data           = array();
+	$sql = "WITH Row_count AS (SELECT ROW_NUMBER() OVER() AS num , community_id, name, icon FROM `cl_community`) SELECT * FROM Row_count WHERE num  BETWEEN " . $offset . " AND " . ($offset + $limit - 1);
+	$data = $db->rawQuery($sql);
+	return $data;
+}
 function cl_timeline_swifts()
 {
 	global $db, $cl, $me;

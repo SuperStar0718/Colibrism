@@ -91,8 +91,12 @@
             <div class="Management-dislplay">
                 <h4>🎆 USER MANAGEMENT</h4>
                 <ul style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                    <li class="t-color-3">Banning</li>
-                    <li class="t-color-3">Moderators</li>
+                    <a href="banning?community_id=<?php echo $_GET['community_id']; ?>">
+                        <li class="t-color-3">Banning</li>
+                    </a>
+                    <a href="moderators?community_id=<?php echo $_GET['community_id']; ?>">
+                        <li class="t-color-3">Moderators</li>
+                    </a>
                     <li class="t-color-3">Approved Users</li>
                 </ul>
             </div>
@@ -123,7 +127,6 @@
                     <a href="sidebar_widget?community_id=<?php echo $cl['community_id']; ?>">
                         <li class="t-color-3">Sidebar Widget</li>
                     </a>
-                    <li class="t-color-3">Community Settings</li>
                     <a href="community_menu?community_id=<?php echo $cl['community_id']; ?>">
                         <li class="t-color-3">Menu</li>
                     </a>

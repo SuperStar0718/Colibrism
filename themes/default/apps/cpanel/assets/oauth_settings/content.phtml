@@ -57,12 +57,14 @@
                                         Status
                                     </label>
                                     <div class="form-line">
-                                        <select name="facebook_oauth" class="form-control selectpicker">
-                                            <option value="on"
-                                                <?php if($cl['config']['facebook_oauth'] == 'on') { echo('selected'); } ?>>
+                                        <select name="facebook_oauth" class="form-control">
+                                            <option value="on" <?php if ($cl['config']['facebook_oauth'] == 'on') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 On</option>
-                                            <option value="off"
-                                                <?php if($cl['config']['facebook_oauth'] == 'off') { echo('selected'); } ?>>
+                                            <option value="off" <?php if ($cl['config']['facebook_oauth'] == 'off') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Off</option>
                                         </select>
                                     </div>
@@ -98,12 +100,14 @@
                                         Status
                                     </label>
                                     <div class="form-line">
-                                        <select name="twitter_oauth" class="form-control selectpicker">
-                                            <option value="on"
-                                                <?php if($cl['config']['twitter_oauth'] == 'on') { echo('selected'); } ?>>
+                                        <select name="twitter_oauth" class="form-control">
+                                            <option value="on" <?php if ($cl['config']['twitter_oauth'] == 'on') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 On</option>
-                                            <option value="off"
-                                                <?php if($cl['config']['twitter_oauth'] == 'off') { echo('selected'); } ?>>
+                                            <option value="off" <?php if ($cl['config']['twitter_oauth'] == 'off') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Off</option>
                                         </select>
                                     </div>
@@ -139,12 +143,14 @@
                                         Status
                                     </label>
                                     <div class="form-line">
-                                        <select name="google_oauth" class="form-control selectpicker">
-                                            <option value="on"
-                                                <?php if($cl['config']['google_oauth'] == 'on') { echo('selected'); } ?>>
+                                        <select name="google_oauth" class="form-control">
+                                            <option value="on" <?php if ($cl['config']['google_oauth'] == 'on') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 On</option>
-                                            <option value="off"
-                                                <?php if($cl['config']['google_oauth'] == 'off') { echo('selected'); } ?>>
+                                            <option value="off" <?php if ($cl['config']['google_oauth'] == 'off') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Off</option>
                                         </select>
                                     </div>
@@ -160,11 +166,12 @@
                             </div>
                         </div>
                         <input type="hidden" class="d-none"
-                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php //echo cl_template('cpanel/assets/oauth_settings/scripts/app_master_script'); ?>
+<?php //echo cl_template('cpanel/assets/oauth_settings/scripts/app_master_script'); 
+?>

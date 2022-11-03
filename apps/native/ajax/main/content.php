@@ -1190,10 +1190,17 @@ if ($action == 'upload_post_image') {
     if (not_empty($title) && not_empty($name) && not_empty($property)) {
         global $db, $cl, $me;
         $user = $me['id'];
+        $moderators = array();
+        $moderators[] = array(
+            $user => 'everything'
+        );
         $me['community'] = $name;
-        $sql = "insert into cl_community(title, name,property,moderator) values ('$title','$name','$property','$user') ";
-        $query_res = $db->rawQuery($sql);
-        cl_queryset($query_res);
+        $db->insert(T_COMMUNITY, array(
+            'title' => $title,
+            'name' => $name,
+            'property' => $property,
+            'moderator' => json($moderators, true)
+        ));
 
         $sql = "select community_id from cl_community where title='$title' and name = '$name'";
         $query_res = $db->rawQuery($sql);

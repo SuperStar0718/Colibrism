@@ -43,23 +43,25 @@
         </div>
         <div class="comunity-mods-content">
             <h4 class="t-center">Community Mods</h4>
+            <?php foreach ($cl['moderators'] as $moderator) : ?>
             <ul>
-                <li><a href="profile?user_id=<?php echo $community['moderator'] ?>">
+                <li><a href="profile?user_id=<?php echo $moderator['id'] ?>">
                         <h3
                             style="color: <?php if (not_empty($cl['display_set']['link_color'])) echo $cl['display_set']['link_color']; ?>">
-                            @<?php echo $community['moderator_name'] ?></h3>
+                            @<?php echo $moderator['username'] ?></h3>
                     </a></li>
                 <!-- <li><a href="#">
                         <h3>@someone</h3>
                     </a></li> -->
             </ul>
+            <?php endforeach; ?>
         </div>
         <div class="theme-switcher-content flex nd">
             <div>
                 Created by :
-                <a href="profile?user_id=<?php echo $community['moderator'] ?>">
+                <a href="profile?user_id=<?php echo $cl['moderators'][0]['id'] ?>">
                     <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                        @<?php echo $community['moderator_name'] ?></h3>
+                        @<?php echo $cl['moderators'][0]['username'] ?></h3>
                 </a>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -10,23 +10,20 @@
 # @*************************************************************************@
 
 if (empty($cl['is_logged'])) {
-	$data         = array(
-		'code'    => 401,
-		'data'    => array(),
-		'message' => 'Unauthorized Access'
-	);
-}
-else {
-    $user_id   = fetch_or_get($_POST['user_id'], false); 
+    $data         = array(
+        'code'    => 401,
+        'data'    => array(),
+        'message' => 'Unauthorized Access'
+    );
+} else {
+    $user_id   = fetch_or_get($_POST['user_id'], false);
     $user_data = cl_raw_user_data($user_id);
 
     if (empty($user_data) || $user_id == $me['id']) {
         $data['code']    = 400;
         $data['message'] = "User id is missing or invalid";
         $data['data']    = array();
-    }
-
-    else {
+    } else {
         if (cl_is_blocked($me['id'], $user_id)) {
             $data['message'] = "User profile unblocked successfully";
 
@@ -34,9 +31,7 @@ else {
                 'user_id'    => $me['id'],
                 'profile_id' => $user_id
             ));
-        }
-
-        else{
+        } else {
             $data['message'] = "User profile blocked successfully";
             $insert_id       = cl_db_insert(T_BLOCKS, array(
                 'user_id'    => $me['id'],
@@ -55,7 +50,7 @@ else {
             }
         }
 
-        $data['code'] = 200;       
+        $data['code'] = 200;
         $data['data'] = array();
     }
 }

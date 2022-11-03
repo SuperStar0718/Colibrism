@@ -1,0 +1,98 @@
+<div class="moderator_main banning">
+    <div class="header">
+        <label for="ban_user" class="btn">Ban user</label>
+        <input type="checkbox" id="ban_user" hidden>
+        <div class="invite_mod_overlay">
+            <div class="main_body">
+                <form method="POST" action="native_api/community_settings/invite_moderator">
+                    <div class="header_overlay">
+                        <div class="title">Ban a user:</div>
+                        <div class="close"><label for="ban_user">✖</label></div>
+                    </div>
+                    <div class="options">
+                        <div class="username">
+                            ENTER USERNAME:
+                            <input type="text" name="username" placeholder="u/username" name="username">
+                        </div>
+                        <div class="reason">
+                            REASON FOR BAN
+                            <select name="reason" id="reason">
+                                <option value="">Volvo</option>
+                                <option value="">Saab</option>
+                                <option value="">Opel</option>
+                                <option value="">Audi</option>
+                            </select>
+                        </div>
+                        <div class="mod_note">
+                            MOD NOTE
+                            <input type="text" name="mod_note" placeholder="Mod note">
+                        </div>
+                        <div class="period">
+                            HOW LONG?
+                            <div>
+                                <input type="number" min="1" name="period" class="spin">
+                                <label class="days">Days</label>
+                                <input type="checkbox" id="permanent" name="permanent">
+                                <label for="permanent">Permanent</label>
+                            </div>
+                        </div>
+
+                        <input type="hidden" value="<?php echo $_GET['community_id']; ?>" name="community_id">
+                    </div>
+                    <div class="ban_footer">
+                        <div class="note">
+                            Note to include in ba message:
+                            <textarea name="note"></textarea>
+                        </div>
+                        <div class="bottom">
+                            <div>Visible to banned user</div>
+                            <div class="actions">
+                                <label for="ban_user">Cancel</label>
+                                <div class="invite">
+                                    <button type="submit">Invite</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="top_title">
+            Banned users
+        </div>
+        <div class="search_bar">
+            <form action="" method="POST">
+                <input type="text" placeholder="Search for a user" name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <input type="checkbox" id="details" hidden>
+
+        <div class="item row">
+            <div class="avatar col-md-4 col-sm-4 col-lg-4">
+                <img class="" src="<?php convert_into_base64($cl['moderators'][0]['avatar']); ?>">
+                <p><?php echo $cl['moderators'][0]['username']; ?></p>
+            </div>
+            <div class="age col-md-4 col-sm-4 col-lg-4 ">16 days ago</div>
+            <div class="action edit col-md-4 col-sm-4 col-lg-4">
+                <label class="edit">
+                    Edit
+                </label>
+                <label for="details" class="detail">More details</label>
+            </div>
+
+        </div>
+
+        <div class="details row">
+            <div>
+                <p class="title">MOD NOTE:</p> We wont like any sort of fud in the community
+            </div>
+            <div>
+                <p class="title">BANNED FOR:</p> NO fud
+            </div>
+        </div>
+    </div>
+
+</div>

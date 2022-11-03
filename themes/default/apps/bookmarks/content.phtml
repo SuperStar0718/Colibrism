@@ -1,37 +1,20 @@
-<div class="timeline-container" data-app="bookmarks">
-    <div class="timeline-header" data-el="tl-header">
-        <div class="timeline-header__topline">
-            <div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
+<section class="main flex col nd gap-1">
+
+    <div class="Post-bar target flex timeline gap-1">
+
+        <div class="controls-content">
+            <p class="content_title">BOOKMARKS</p>
+            <p class="subtitle">This is where all saved posts from communities you joined and members you followed will
+                show
+                up.</p>
         </div>
-        <div class="timeline-header__botline">
-            <div class="lp">
-                <div class="nav-link-holder">
-                    <a href="<?php echo cl_link('bookmarks'); ?>" data-spa="true">
-                        <?php echo cl_translate("Bookmarks"); ?>
-                    </a>
-                </div>
-            </div>
-            <div class="cp">
-                <a href="<?php echo cl_link('/'); ?>">
-                    <img src="{%config site_logo%}" alt="Logo">
-                </a>
-            </div>
-            <div class="rp">
-                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
-                    <div class="nav-link-holder">
-                        <span class="go-back">
-                            <?php echo cl_icon('arrow_back'); ?>
-                        </span>
-                    </div>
-                </a>
-            </div>
-        </div>
+
     </div>
     <?php if (not_empty($cl["bookmarks"])) : ?>
     <div class="timeline-posts-container">
-        <div class="timeline-posts-ls" data-an="entry-list">
+        <div class="timeline-posts-ls gap-1 grid col nd" data-an="entry-list">
             <?php foreach ($cl["bookmarks"] as $cl['li']) : ?>
-            <?php echo cl_template('timeline/post'); ?>
+            <?php echo cl_template('timeline/post_bookmarks'); ?>
             <?php endforeach; ?>
         </div>
 
@@ -69,5 +52,5 @@
     <?php endif; ?>
 
     <?php //echo cl_template('bookmarks/scripts/app_master_script'); 
-	?>
-</div>
+    ?>
+</section>

@@ -69,6 +69,9 @@ $applications       = array(
   "mod_mail" => true,
   "unmoderated_posts" => true,
   "spammed_posts" => true,
+  "moderators" => true,
+  "banning" => true,
+  "explorer" => true,
 );
 
 $cl['profile_report_types'] = array(

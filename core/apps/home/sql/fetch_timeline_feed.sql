@@ -17,9 +17,10 @@ SELECT ROW_NUMBER() OVER() AS num, posts.`id` as offset_id, posts.`publication_i
 	
 	INNER JOIN `<?php echo($data['t_pubs']); ?>` pubs ON posts.`publication_id` = pubs.`id`
 	INNER JOIN `<?php echo($data['t_community']); ?>` community ON posts.`community_id` = community.`community_id` 
-	WHERE posts.`user_id` = <?php echo($data['user_id']); ?>
+	WHERE (posts.`user_id` = <?php echo($data['user_id']); ?>
 	OR posts.`community_id` IN (SELECT `community_id` FROM `cl_community_following` WHERE `follow_user_id`=<?php echo($data['user_id']); ?>)
-	OR posts.`user_id` IN (SELECT `people_id` FROM `cl_people_following` WHERE `user_id` = <?php echo($data['user_id']); ?>)
+	OR posts.`user_id` IN (SELECT `people_id` FROM `cl_people_following` WHERE `user_id` = <?php echo($data['user_id']); ?>))
+	-- AND posts.`community_id` NOT IN (SELECT `community_id` FROM `cl_blocks` WHERE `user_id`=<?php echo($data['user_id']); ?>)
 	ORDER BY posts.`id` DESC
 )
 SELECT  *  FROM Row_count 	

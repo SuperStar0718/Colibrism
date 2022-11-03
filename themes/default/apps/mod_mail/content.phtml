@@ -59,7 +59,7 @@
         <div class="other flex nd center">
             <input class="hidden" id="showPanelButons" type="checkbox" name="showPanelButons">
             <div class="panel-btns-content flex nd">
-                <a class="home-link btn round" href="home?page=1">
+                <a class="home-link btn round" href="home">
                     <img src="<?php convert_into_base64("themes/default/statics/img/home.png"); ?>">&nbsp;Home</a>
                 <div class="notifications-content flex center">
                     <div class="ford-points-btn btn">
@@ -70,11 +70,72 @@
 
                             <img src="<?php convert_into_base64("themes/default/statics/img/email (1).png"); ?>">
                         </a>
-
                     </div>
-                    <div class="notifications-btn btn">
+                    <div class="notifications-btn dropdown-toggle btn">
                         <img src="<?php convert_into_base64("themes/default/statics/img/notification.png"); ?>">
                         <sup class="text-white bg-danger">3</sup>
+                    </div>
+                    <div class="notification-list dropdown-menu">
+                        <a href="notifications?subject=new_tweets">
+                            <div class="notification">
+                                <div class="text">
+                                    New Tweets
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=mentions">
+                            <div class="notification">
+                                <div class="text">
+                                    Mentions
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=dms">
+                            <div class="notification">
+                                <div class="text">
+                                    Dms
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=modmails">
+                            <div class="notification">
+                                <div class="text">
+                                    Modmails
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=retweets">
+                            <div class="notification">
+                                <div class="text">
+                                    Retweets
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
+                        <a href="notifications?subject=others">
+                            <div class="notification">
+                                <div class="text">
+                                    Others
+                                </div>
+                                <div class="sup">
+                                    4
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -82,23 +143,39 @@
                 <div class="user-image s-4 circle">
                     <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
                 </div>
-                <span>@Admin</span>
+                <span>@<?php echo $cl['me']['username'] ?></span>
                 <input class="hidden" id="test" type="checkbox" name="test">
                 <ul class="panel-links-content absolute bg-3 target flex col gap-1">
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">account_circle</i>
-                            Side Admin</a></li>
-                    <li><a class="flex center nd gap-1" href="home?page=1"><i
-                                class="material-symbols-outlined">description</i>
-                            Timeline</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">notifications_active</i> Notifications</a></li>
+                    <li>
+                        <a class="flex center nd gap-1" href="#">
+                            <i class="material-symbols-outlined">account_circle</i>
+                            <?php echo $cl['me']['username'] ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex center nd gap-1" href="home">
+                            <i class="material-symbols-outlined">description</i>
+                            Timeline
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex center nd gap-1" href="notifications">
+                            <i class="material-symbols-outlined">notifications_active</i>
+                            Notifications
+                        </a>
+                    </li>
                     <li><a class="flex center nd gap-1" href="#"><i
                                 class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">tag</i>
+                    <li><a class="flex center nd gap-1" href="explorer"><i class="material-symbols-outlined">tag</i>
                             Explore</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">forum</i>
-                            Messages</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">bookmark</i>
+                    <li>
+                        <a class="flex center nd gap-1" href="inbox">
+                            <i class="material-symbols-outlined">forum</i>
+                            Messages
+                        </a>
+                    </li>
+                    <li><a class="flex center nd gap-1" href="bookmarks"><i
+                                class="material-symbols-outlined">bookmark</i>
                             Bookmarks</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i>
                             Control Panel</a></li>
@@ -109,9 +186,9 @@
                     <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i>
                             Lorem</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">manage_accounts</i> Profile Sttings</a></li>
+                                class="material-symbols-outlined">manage_accounts</i> Profile Settings</a></li>
                     <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">display_settings</i> Display Sttings</a></li>
+                                class="material-symbols-outlined">display_settings</i> Display Settings</a></li>
                     <li><a class="flex center nd gap-1" href="logout"><i class="material-symbols-outlined">logout</i>
                             Logout</a></li>
                 </ul>
