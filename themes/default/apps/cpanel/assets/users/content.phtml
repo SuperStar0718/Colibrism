@@ -29,177 +29,70 @@
                         </h2>
                     </div>
                     <div class="body p-b-0 responsive">
-                        <form class="form filter-data-form">
+                        <form class="form filter-data-form" method="POST" action="./users">
                             <div class="filter-data-form-option">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                        <span>
-                                            Status
-                                        </span>
-                                        <span>{{sorting.status.title}}</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a v-on:click="apply_status($event)" data-value="all" class="dropdown-item"
-                                            href="">
+                                <label>
+                                    Status
+                                </label>
+                                <div class="form-line">
+                                    <select name="status" class="form-control">
+                                        <option value="" <?php if (empty($cl['filter']['status'])) {
+                                                                echo ('selected');
+                                                            } ?>>
                                             All
-                                        </a>
-                                        <a v-on:click="apply_status($event)" data-value="active" class="dropdown-item"
-                                            href="">
+                                        </option>
+                                        <option value="active" <?php if (not_empty($cl['filter']['status']) && $cl['filter']['status'] == 'active') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                             Active
-                                        </a>
-                                        <a v-on:click="apply_status($event)" data-value="blocked" class="dropdown-item"
-                                            href="">
+                                        </option>
+                                        <option value="blocked" <?php if (not_empty($cl['filter']['status']) && $cl['filter']['status'] == 'blocked') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                             Blocked
-                                        </a>
-                                    </div>
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="filter-data-form-option">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                        <span>
-                                            Type
-                                        </span>
-                                        <span>{{sorting.type.title}}</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a v-on:click="apply_type($event)" data-value="all" class="dropdown-item"
-                                            href="">
+
+                                <label>
+                                    Type
+                                </label>
+                                <div class="form-line">
+                                    <select name="type" class="form-control">
+                                        <option value="" <?php if (empty($cl['filter']['type'])) {
+                                                                echo ('selected');
+                                                            } ?>>
                                             All
-                                        </a>
-                                        <a v-on:click="apply_type($event)" data-value="admin" class="dropdown-item"
-                                            href="">
+                                        </option>
+                                        <option value="admin" <?php if (not_empty($cl['filter']['type']) && $cl['filter']['type'] == 'admin') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                             Admin
-                                        </a>
-                                        <a v-on:click="apply_type($event)" data-value="user" class="dropdown-item"
-                                            href="">
+                                        </option>
+                                        <option value="user" <?php if (not_empty($cl['filter']['type']) && $cl['filter']['type'] == 'user') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                             User
-                                        </a>
-                                    </div>
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="filter-data-form-option">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                        <span>
-                                            Username
-                                        </span>
-                                        <span>{{sorting.username.title}}</span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-input">
-                                        <table>
-                                            <tr>
-                                                <td class="label">
-                                                    <span>
-                                                        Username
-                                                    </span>
-                                                </td>
-                                                <td class="input">
-                                                    <input v-model="sorting.username.value" type="text"
-                                                        placeholder="Search for users by name">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="apply-filter" colspan="2">
-                                                    <button v-on:click="apply_username" type="button">
-                                                        Apply
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                <label>
+                                    Username
+                                </label>
+                                <div class="form-line">
+                                    <input type="text" name="username" class="form-control"
+                                        placeholder="<?php if (not_empty($cl['filter']['username'])) echo $cl['filter']['username']; ?>">
                                 </div>
                             </div>
+
+
                             <div class="filter-data-form-option">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                        <span>
-                                            E-mail address
-                                        </span>
-                                        <span>{{sorting.email.title}}</span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-input">
-                                        <table>
-                                            <tr>
-                                                <td class="label">
-                                                    <span>
-                                                        User e-mail
-                                                    </span>
-                                                </td>
-                                                <td class="input">
-                                                    <input v-model="sorting.email.value" type="text"
-                                                        placeholder="Search for users by email">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="apply-filter" colspan="2">
-                                                    <button v-on:click="apply_email" type="button">
-                                                        Apply
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-data-form-option">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                        <span>
-                                            IP
-                                        </span>
-                                        <span>{{sorting.ip.title}}</span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-input">
-                                        <table>
-                                            <tr>
-                                                <td class="label">
-                                                    <span>
-                                                        IP
-                                                    </span>
-                                                </td>
-                                                <td class="input">
-                                                    <input v-model="sorting.ip.value" type="text"
-                                                        placeholder="Search for users by IP">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="apply-filter" colspan="2">
-                                                    <button v-on:click="apply_ip" type="button">
-                                                        Apply
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-data-form-option">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                        <span>
-                                            Country
-                                        </span>
-                                        <span>{{sorting.country.title}}</span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-list">
-                                        <a v-on:click="apply_country($event)" data-value="any" class="dropdown-item"
-                                            href="">
-                                            Any
-                                        </a>
-                                        <?php foreach ($cl['countries'] as $cid => $cname): ?>
-                                        <a v-on:click="apply_country($event)" data-value="<?php echo($cid); ?>"
-                                            class="dropdown-item" href="">
-                                            <?php echo($cname); ?>
-                                        </a>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-data-form-option">
-                                <button v-on:click="reset_form" type="button" v-bind:disabled="allow2reset != true"
-                                    class="reset-filter">
-                                    Reset filter
+                                <button type="submit" class="reset-filter">
+                                    Action
                                 </button>
                             </div>
                         </form>
@@ -211,7 +104,7 @@
                 <div class="card" data-an="info-content">
                     <div class="header">
                         <h2>
-                            Manage site users - ({{total_users}})
+                            Manage site users - (<?php echo $cl['total_users'] ?>)
                         </h2>
                     </div>
                     <div class="body">
@@ -223,13 +116,11 @@
                                         <th>
                                             Username
                                         </th>
+
                                         <th>
-                                            E-mail address
+                                            PIN
                                         </th>
-                                        <th>
-                                            Country
-                                        </th>
-                                        <th>IP</th>
+                                        <th>Mnemonic</th>
                                         <th>
                                             Type
                                         </th>
@@ -248,24 +139,23 @@
                                     </tr>
                                 </thead>
                                 <tbody data-an="users-list">
-                                    <?php if (not_empty($cl['site_users'])): ?>
-                                    <?php foreach ($cl['site_users'] as $cl['li']): ?>
+                                    <?php if (not_empty($cl['site_users'])) : ?>
+                                    <?php foreach ($cl['site_users'] as $cl['li']) : ?>
                                     <?php echo cl_template('cpanel/assets/users/includes/list_item'); ?>
                                     <?php endforeach; ?>
-                                    <?php else: ?>
+                                    <?php else : ?>
                                     <?php echo cl_template('cpanel/assets/users/includes/empty_table'); ?>
                                     <?php endif; ?>
                                 </tbody>
                             </table>
 
                             <div class="table-pagination">
-                                <a v-if="show_ctrls" v-bind:class="{'disabled': dis_prev_ctrl}"
-                                    v-on:click="paginate('up')" href="" class="pagination-ctrls prev">
+                                <a <?php if ($_GET['page'] > 1) echo ("href='./users?page=" . (string)($_GET['page'] - 1) . "'"); ?>
+                                    class="pagination-ctrls prev">
                                     <?php echo cl_ikon("chevron-left"); ?>
                                 </a>
-
-                                <a v-if="show_ctrls" v-bind:class="{'disabled': dis_next_ctrl}"
-                                    v-on:click="paginate('down')" href="" class="pagination-ctrls next">
+                                <a <?php if (count($cl['site_users']) > 1) echo ("href='./users?page=" . (string)($_GET['page'] ? $_GET['page'] + 1 : 2) . "'"); ?>
+                                    class="pagination-ctrls prev">
                                     <?php echo cl_ikon("chevron-right"); ?>
                                 </a>
                             </div>
@@ -276,4 +166,5 @@
         </div>
     </div>
 </div>
-<?php //echo cl_template('cpanel/assets/users/scripts/app_master_script'); ?>
+<?php //echo cl_template('cpanel/assets/users/scripts/app_master_script'); 
+?>

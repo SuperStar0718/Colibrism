@@ -14,7 +14,7 @@
                     <a href="">
                         Invite users
                     </a>
-                </li> 
+                </li>
             </ol>
         </div>
     </div>
@@ -26,7 +26,7 @@
                         Manage user invitation links
                     </h2>
                 </div>
-                
+
                 <div class="body">
                     <div class="inline-alertbox-wrapper">
                         <div class="inline-alertbox info">
@@ -35,7 +35,8 @@
                             </div>
                             <div class="alert-message">
                                 <p>
-                                    Please note that this function makes sense to be used only if you have disabled the user registration system.
+                                    Please note that this function makes sense to be used only if you have disabled the
+                                    user registration system.
                                 </p>
                             </div>
                         </div>
@@ -75,10 +76,11 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <span v-bind:data-clipboard-text="item_data.link" class="icon pointer clip-board-copy">
+                                    <span v-bind:data-clipboard-text="item_data.link"
+                                        class="icon pointer clip-board-copy">
                                         <?php echo cl_ikon("copy"); ?>
                                     </span>
-                                </td>   
+                                </td>
                                 <td>
                                     <span v-if="item_data.role == 'admin'" class="badge">
                                         Admin
@@ -119,7 +121,8 @@
                                             No links found
                                         </h4>
                                         <p>
-                                            It looks like you don't have invite links yet. Click the (Create) button to create a new link
+                                            It looks like you don't have invite links yet. Click the (Create) button to
+                                            create a new link
                                         </p>
                                     </div>
                                 </td>
@@ -136,65 +139,67 @@
                         Create new invite link
                     </h2>
                 </div>
-                    <div class="body">
-                        <form class="form" data-an="form">
-                            <div class="form-group">
-                                <label>
-                                    Expire after
-                                </label>
-                                <div class="form-line">
-                                    <select name="expires_at" class="form-control selectpicker">
-                                        <option value="1">
-                                            1 day
-                                        </option>
-                                        <option value="3">
-                                            3 days
-                                        </option>
-                                        <option value="7">
-                                            7 days
-                                        </option>
-                                        <option value="15">
-                                            15 days
-                                        </option>
-                                        <option value="30">
-                                            30 days
-                                        </option>
-                                    </select>
-                                </div>
+                <div class="body">
+                    <form class="form" data-an="form" method="POST" action="../native_api/cpanel/create_invite_link">
+                        <div class="form-group">
+                            <label>
+                                Expire after
+                            </label>
+                            <div class="form-line">
+                                <select name="expires_at" class="form-control">
+                                    <option value="1">
+                                        1 day
+                                    </option>
+                                    <option value="3">
+                                        3 days
+                                    </option>
+                                    <option value="7">
+                                        7 days
+                                    </option>
+                                    <option value="15">
+                                        15 days
+                                    </option>
+                                    <option value="30">
+                                        30 days
+                                    </option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label>
-                                    User role (Admin or User)
-                                </label>
-                                <div class="form-line">
-                                    <select name="role" class="form-control selectpicker">
-                                        <option value="user">
-                                            Regular user
-                                        </option>
-                                        <option value="admin">
-                                            Admin user
-                                        </option>
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                User role (Admin or User)
+                            </label>
+                            <div class="form-line">
+                                <select name="role" class="form-control ">
+                                    <option value="user">
+                                        Regular user
+                                    </option>
+                                    <option value="admin">
+                                        Admin user
+                                    </option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label>
-                                    Max number of use
-                                </label>
-                                <div class="form-line">
-                                    <input value="1" name="mnu" type="number" class="form-control" placeholder="E. g. 5">
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Max number of use
+                            </label>
+                            <div class="form-line">
+                                <input value="1" name="mnu" type="number" class="form-control" placeholder="E. g. 5">
                             </div>
-                            <div class="form-group no-mb">
-                                <button data-an="submit-ctrl" type="submit" class="btn bg-blue btn-block btn-lg waves-effect ttup">
-                                    Create
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="form-group no-mb">
+                            <button data-an="submit-ctrl" type="submit"
+                                class="btn bg-blue btn-block btn-lg waves-effect ttup">
+                                Create
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php //echo cl_template('cpanel/assets/invite_users/scripts/app_master_script'); ?>
+</div>
+<?php //echo cl_template('cpanel/assets/invite_users/scripts/app_master_script'); 
+?>

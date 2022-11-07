@@ -1283,4 +1283,12 @@ if ($action == 'upload_post_image') {
         cl_queryset($query_res);
         return cl_redirect("community?community_id=$community_id");
     }
+} else if ($action == "delete_user") {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+
+    $user_id  = $_GET['user_id'];
+    $db = $db->where('id', $user_id);
+    $db->delete(T_USERS);
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

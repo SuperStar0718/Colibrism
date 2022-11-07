@@ -1688,7 +1688,7 @@ div.inline-alertbox-wrapper div.inline-alertbox.error div.icon i {
 }
 
 .bg-blue {
-  background-color: #2196F3 !important;
+  background-color: #e91e63 !important;
   color: #fff;
 }
 
@@ -2418,7 +2418,7 @@ form.filter-data-form div.filter-data-form-option div.dropdown button.dropdown-t
 }
 
 form.filter-data-form div.filter-data-form-option div.dropdown button.dropdown-toggle span:nth-child(1) {
-  color: #657786;
+  color: #d4dfe9;
   font-weight: normal;
   margin-right: 5px;
 }
@@ -2500,7 +2500,7 @@ form.filter-data-form div.filter-data-form-option>button.reset-filter {
   line-height: 40px;
   color: #fff;
   font-size: 13px;
-  border-radius: 1px;
+  border-radius: 5px;
   background: #1ca1f3;
   border: 1px solid #e6ecf0;
   box-shadow: none;
@@ -2913,7 +2913,7 @@ form.filter-data-form div.filter-data-form-option>button.reset-filter:disabled {
 }
 
 .card .header {
-  color: #5a6070;
+  color: #d4dfe9;
   padding: 20px;
   position: relative;
   border-bottom: 1px solid #4d4f50;
@@ -2974,7 +2974,7 @@ form.filter-data-form div.filter-data-form-option>button.reset-filter:disabled {
 
 .card .body {
   font-size: 14px;
-  color: #555;
+  color: #b6bec7;
   padding: 20px;
 }
 
@@ -4004,7 +4004,7 @@ form.filter-data-form div.filter-data-form-option>button.reset-filter:disabled {
 .modal.confirm-actions-modal div.modal-body p {
   font-size: 13px;
   line-height: 20px;
-  color: #657786;
+  color: #d4dfe9;
   padding: 0;
   margin: 0;
   text-align: center;
@@ -4059,7 +4059,7 @@ form.filter-data-form div.filter-data-form-option>button.reset-filter:disabled {
 
 .modal.popup-ticket-modal div.user-info div.uname a {
   font-size: 13px;
-  color: #657786;
+  color: #d4dfe9;
   line-height: 11px;
   display: block;
 }
@@ -4630,7 +4630,7 @@ table.table tbody tr th {
 
 table.table tbody tr td time,
 table.table tbody tr th time {
-  color: #657786;
+  color: #d4dfe9;
 }
 
 table.table tbody tr td b.num,
@@ -4645,8 +4645,9 @@ table.table tbody tr th div.select-box select {
   border: none;
   padding: 5px 10px 5px;
   background: transparent;
+  background-color: #191c24;
   cursor: pointer;
-  color: #14171a;
+  color: #d4dfe9;
 }
 
 table.table tbody tr td span.icon,
@@ -4671,7 +4672,7 @@ table.table tbody tr th span.icon.pointer {
 
 table.table tbody tr td span.icon.pointer svg,
 table.table tbody tr th span.icon.pointer svg {
-  stroke: #657786;
+  stroke: #d4dfe9;
 }
 
 table.table tbody tr td span.icon.pointer:hover svg,
@@ -4689,7 +4690,7 @@ table.table tbody tr th span.icon.not-allowed {
 
 table.table tbody tr td span.icon.not-allowed svg,
 table.table tbody tr th span.icon.not-allowed svg {
-  stroke: #657786;
+  stroke: #d4dfe9;
 }
 
 table.table tbody tr td div.user-info-holder,
@@ -4752,7 +4753,7 @@ table.table tbody tr td div.user-info-holder div.uname-holder a,
 table.table tbody tr th div.user-info-holder div.uname-holder a {
   font-size: 13px;
   line-height: 16px;
-  color: #657786;
+  color: #d4dfe9;
 }
 
 table.table tbody tr td div.banner-flag,
@@ -4775,11 +4776,12 @@ table.table tbody tr th div.dropdown {
   position: relative;
 }
 
-table.table tbody tr td div.dropdown a.dropdown-toggle svg,
-table.table tbody tr th div.dropdown a.dropdown-toggle svg {
+table.table tbody tr td label svg,
+table.table tbody tr th label svg {
+  cursor: pointer;
   width: 20px;
   height: 20px;
-  stroke: #657786;
+  stroke: #d4dfe9;
 }
 
 table.table tbody tr td div.dropdown div.dropdown-menu,
@@ -4824,7 +4826,7 @@ table.table tbody tr th div.empty-table h4 {
 table.table tbody tr td div.empty-table p,
 table.table tbody tr th div.empty-table p {
   font-size: 13px;
-  color: #657786;
+  color: #d4dfe9;
   line-height: 22px;
   padding: 0;
   margin: 0;
@@ -4864,7 +4866,7 @@ table.table thead tr th {
   padding: 10px;
   border-bottom: 1px solid #4d4f50;
   border-top: none !important;
-  color: #657786;
+  color: #d4dfe9;
   font-weight: normal;
   font-size: 11px;
   text-transform: uppercase;
@@ -5073,7 +5075,7 @@ div.regular-table div.table-pagination a.pagination-ctrls:last-child {
   display: block;
   font-size: 13px;
   line-height: 140%;
-  color: #1ca1f3;
+  color: #8b3434;
   margin-top: 10px;
 }
 
@@ -5211,7 +5213,7 @@ fieldset[disabled] .form-control {
 }
 
 .breadcrumb li a {
-  color: #657786;
+  color: #d4dfe9;
   text-decoration: none;
   padding: 0;
   margin: 0;
@@ -5220,7 +5222,7 @@ fieldset[disabled] .form-control {
 
 .breadcrumb>li+li:before {
   content: '/';
-  color: #657786;
+  color: #d4dfe9;
   font-size: 14px;
   margin-left: 10px;
   margin-right: 10px;
@@ -5984,12 +5986,12 @@ div.acp-main-left-sidebar ul.menu-list li.menu-list-item a.menu-list-item-link s
 div.acp-main-left-sidebar ul.menu-list li.menu-list-item a.menu-list-item-link span.icon svg {
   width: 100%;
   height: 100%;
-  stroke: #5a6070;
+  stroke: #d4dfe9;
 }
 
 div.acp-main-left-sidebar ul.menu-list li.menu-list-item a.menu-list-item-link span.text {
   font-size: 14px;
-  color: #5a6070;
+  color: #d4dfe9;
   font-weight: 500;
   line-height: 18px;
   margin-left: 15px;
@@ -6189,7 +6191,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 body section.content div.main-content-block-body div.cp-app-container div.row div.card {
   background-color: #191c24;
-  color: #5a6070;
+  color: #d4dfe9;
   border-radius: 5px;
 }
 
@@ -6201,7 +6203,7 @@ body section.content div.main-content-block-body div.cp-app-container div.row di
 
 .form-control {
   background-color: #0b0e16;
-  color: #5a6070;
+  color: #d4dfe9;
   border-radius: 5px;
 }
 
@@ -6225,4 +6227,92 @@ div select.form-control::-webkit-scrollbar-thumb:hover {
 
 div.body div.inline-alertbox-wrapper div.alert-message {
   background-color: #71b2f3;
+}
+
+ul.menu-list li.menu-list-item label::before {
+  content: none;
+}
+
+ul.menu-list li.menu-list-item label {
+  width: 100%;
+  padding-left: 0px;
+}
+
+#user_tickets:checked~div.submenu-list {
+  display: block !important;
+}
+
+#advertising:checked~div.submenu-list {
+  display: block !important;
+}
+
+#affiliates:checked~div.submenu-list {
+  display: block !important;
+}
+
+#reports:checked~div.submenu-list {
+  display: block !important;
+}
+
+#db_cleaning:checked~div.submenu-list {
+  display: block !important;
+}
+
+.filter-data-form-option select.form-control {
+  height: unset !important;
+}
+
+.filter-data-form-option label {
+  margin-right: 10px;
+  margin-bottom: 0px;
+
+}
+
+.filter-data-form-option {
+  display: flex;
+  align-items: center;
+}
+
+tr td label.label {
+  padding: unset;
+}
+
+tr td label.label::after {
+  content: none;
+}
+
+tr td label.label::before {
+  content: none;
+}
+
+tr td input.show_menu:checked {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  display: block !important;
+}
+
+tr td input.show_menu:checked~div.dropdown-menu {
+  display: block;
+}
+
+tr td div.dropdown-menu {
+  position: absolute;
+  top: unset;
+  left: unset;
+  box-shadow: rgb(0 0 0 / 20%) 0px 0px 15px, rgb(0 0 0 / 15%) 0px 0px 3px 1px;
+  background-color: #191c24;
+}
+
+tr td div.dropdown-menu.dropdown-menu-right a.dropdown-item {
+  color: #c8dfe9;
+
+}
+
+tr td div.dropdown-menu.dropdown-menu-right a.dropdown-item:hover {
+  color: #f8f9fa;
+  background-color: #16181b;
 }

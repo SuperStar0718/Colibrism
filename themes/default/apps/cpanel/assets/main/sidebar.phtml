@@ -2,11 +2,11 @@
     <div class="admin-info">
         <div class="user-info">
             <div class="avatar">
-                <img src="<?php echo($me['avatar']); ?>" alt="Avatar">
+                <img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
             </div>
             <div class="uname">
                 <h5>
-                    <?php echo($me['name']); ?>
+                    <?php echo ($me['name']); ?>
                 </h5>
                 <div>
                     administrator
@@ -30,7 +30,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'dashboard') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'dashboard') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/dashboard'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("chart"); ?>
@@ -40,7 +42,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'gen_settings') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'gen_settings') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/gen_settings'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("settings"); ?>
@@ -50,7 +54,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'toggle_features') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'toggle_features') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/toggle_features'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("control-centre"); ?>
@@ -60,27 +66,11 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'email_settings') {echo('active');} ?>">
-            <a href="<?php echo cl_link('admin_panel/email_settings'); ?>" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("envelope"); ?>
-                </span>
-                <span class="text">
-                    SMTP settings
-                </span>
-            </a>
-        </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'oauth_settings') {echo('active');} ?>">
-            <a href="<?php echo cl_link('admin_panel/oauth_settings'); ?>" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("entrance"); ?>
-                </span>
-                <span class="text">
-                    oAuth login
-                </span>
-            </a>
-        </li>
-        <li class="menu-list-item <?php if(in_array($cl["cp_section"], array('users', 'wallet_balance'))) {echo('active');} ?>">
+
+
+        <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('users', 'wallet_balance'))) {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/users'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("people"); ?>
@@ -90,17 +80,10 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'invite_users') {echo('active');} ?>">
-            <a href="<?php echo cl_link('admin_panel/invite_users'); ?>" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("person-add"); ?>
-                </span>
-                <span class="text">
-                    Invite users <span class="badge">New</span>
-                </span>
-            </a>
-        </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'publications') {echo('active');} ?>">
+
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'publications') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/publications'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("feed"); ?>
@@ -110,7 +93,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'themes') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'themes') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/themes'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("marker"); ?>
@@ -120,7 +105,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'display_settings') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'display_settings') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/display_settings'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("colours"); ?>
@@ -130,127 +117,155 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if(in_array($cl["cp_section"], array('account_verification'))) {echo('active open');} ?>">
-            <a data-toggle-menu="1" href="" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("inbox-alt"); ?>
-                </span>
-                <span class="text">
-                    User Tickets
-                </span>
-                <span class="chevron-down">
-                    <?php echo cl_ikon("chevron-down"); ?>
-                </span>
-            </a>
+        <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('account_verification'))) {
+                                        echo ('active open');
+                                    } ?>">
+            <input type="checkbox" id="user_tickets" hidden>
+            <label for="user_tickets">
+                <a data-toggle-menu="1" class="menu-list-item-link">
+                    <span class="icon">
+                        <?php echo cl_ikon("inbox-alt"); ?>
+                    </span>
+                    <span class="text">
+                        User Tickets
+                    </span>
+                    <span class="chevron-down">
+                        <?php echo cl_ikon("chevron-down"); ?>
+                    </span>
+                </a>
+            </label>
             <div class="submenu-list">
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'account_verification'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/account_verification'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'account_verification') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/account_verification'); ?>">
                     Account verification
                 </a>
             </div>
         </li>
-        <li class="menu-list-item <?php if(in_array($cl["cp_section"], array('payment_gateways'))) {echo('active open');} ?>">
-            <a data-toggle-menu="1" href="" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("swap-vertical"); ?>
-                </span>
-                <span class="text">
-                    APIs
-                </span>
-                <span class="chevron-down">
-                    <?php echo cl_ikon("chevron-down"); ?>
-                </span>
-            </a>
-            <div class="submenu-list">
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'payment_gateways'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/payment_gateways'); ?>">
-                    Payment gateways
+
+        <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('ads_settings', 'manage_ads'))) {
+                                        echo ('active open');
+                                    } ?>">
+            <input type="checkbox" id="advertising" hidden>
+            <label for="advertising">
+                <a data-toggle-menu="1" class="menu-list-item-link">
+                    <span class="icon">
+                        <?php echo cl_ikon("horn"); ?>
+                    </span>
+                    <span class="text">
+                        Advertising
+                    </span>
+                    <span class="chevron-down">
+                        <?php echo cl_ikon("chevron-down"); ?>
+                    </span>
                 </a>
-            </div>
-        </li>
-        <li class="menu-list-item <?php if(in_array($cl["cp_section"], array('ads_settings', 'manage_ads'))) {echo('active open');} ?>">
-            <a data-toggle-menu="1" class="menu-list-item-link" href="">
-                <span class="icon">
-                    <?php echo cl_ikon("horn"); ?>
-                </span>
-                <span class="text">
-                    Advertising
-                </span>
-                <span class="chevron-down">
-                    <?php echo cl_ikon("chevron-down"); ?>
-                </span>
-            </a>
+            </label>
             <div class="submenu-list">
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'ads_settings'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/ads_settings'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'ads_settings') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/ads_settings'); ?>">
                     Settings
                 </a>
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'manage_ads'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/manage_ads'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'manage_ads') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/manage_ads'); ?>">
                     Manage ads
                 </a>
             </div>
         </li>
-        <li class="menu-list-item <?php if(in_array($cl["cp_section"], array('affiliate_settings', 'affiliate_payouts'))) {echo('active open');} ?>">
-            <a data-toggle-menu="1" class="menu-list-item-link" href="">
-                <span class="icon">
-                    <?php echo cl_ikon("support-alt"); ?>
-                </span>
-                <span class="text">
-                    Affiliates
-                </span>
-                <span class="chevron-down">
-                    <?php echo cl_ikon("chevron-down"); ?>
-                </span>
-            </a>
+        <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('affiliate_settings', 'affiliate_payouts'))) {
+                                        echo ('active open');
+                                    } ?>">
+            <input type="checkbox" id="affiliates" hidden>
+            <label for="affiliates">
+                <a data-toggle-menu="1" class="menu-list-item-link">
+                    <span class="icon">
+                        <?php echo cl_ikon("support-alt"); ?>
+                    </span>
+                    <span class="text">
+                        Affiliates
+                    </span>
+                    <span class="chevron-down">
+                        <?php echo cl_ikon("chevron-down"); ?>
+                    </span>
+                </a>
+            </label>
             <div class="submenu-list">
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'affiliate_settings'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/affiliate_settings'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'affiliate_settings') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/affiliate_settings'); ?>">
                     Settings
                 </a>
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'affiliate_payouts'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/affiliate_payouts'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'affiliate_payouts') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/affiliate_payouts'); ?>">
                     Payouts
                 </a>
             </div>
         </li>
-        <li class="menu-list-item <?php if(in_array($cl["cp_section"], array('account_reports', 'post_reports'))) {echo('active open');} ?>">
-            <a data-toggle-menu="1" class="menu-list-item-link" href="">
-                <span class="icon">
-                    <?php echo cl_ikon("danger"); ?>
-                </span>
-                <span class="text">
-                    Reports
-                </span>
-                <span class="chevron-down">
-                    <?php echo cl_ikon("chevron-down"); ?>
-                </span>
-            </a>
+        <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('account_reports', 'post_reports'))) {
+                                        echo ('active open');
+                                    } ?>">
+            <input type="checkbox" id="reports" hidden>
+            <label for="reports">
+                <a data-toggle-menu="1" class="menu-list-item-link">
+                    <span class="icon">
+                        <?php echo cl_ikon("danger"); ?>
+                    </span>
+                    <span class="text">
+                        Reports
+                    </span>
+                    <span class="chevron-down">
+                        <?php echo cl_ikon("chevron-down"); ?>
+                    </span>
+                </a>
+            </label>
             <div class="submenu-list">
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'account_reports'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/account_reports'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'account_reports') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/account_reports'); ?>">
                     Account reports
                 </a>
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'post_reports'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/post_reports'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'post_reports') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/post_reports'); ?>">
                     Publication reports
                 </a>
             </div>
         </li>
-        <li class="menu-list-item <?php if(in_array($cl["cp_section"], array('delete_swifts', 'delete_spam_accounts'))) {echo('active open');} ?>">
-            <a data-toggle-menu="1" class="menu-list-item-link" href="">
-                <span class="icon">
-                    <?php echo cl_ikon("bin"); ?>
-                </span>
-                <span class="text">
-                    DB Cleaning
-                </span>
-                <span class="chevron-down">
-                    <?php echo cl_ikon("chevron-down"); ?>
-                </span>
-            </a>
+        <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('delete_swifts', 'delete_spam_accounts'))) {
+                                        echo ('active open');
+                                    } ?>">
+            <input type="checkbox" id="db_cleaning" hidden>
+            <label for="db_cleaning">
+                <a data-toggle-menu="1" class="menu-list-item-link">
+                    <span class="icon">
+                        <?php echo cl_ikon("bin"); ?>
+                    </span>
+                    <span class="text">
+                        DB Cleaning
+                    </span>
+                    <span class="chevron-down">
+                        <?php echo cl_ikon("chevron-down"); ?>
+                    </span>
+                </a>
+            </label>
             <div class="submenu-list">
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'delete_swifts'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/delete_swifts'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'delete_swifts') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/delete_swifts'); ?>">
                     Remove expired swifts
                 </a>
-                <a class="submenu-list-item <?php if($cl["cp_section"] == 'delete_spam_accounts'){echo('active');} ?>" href="<?php echo cl_link('admin_panel/delete_spam_accounts'); ?>">
+                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'delete_spam_accounts') {
+                                                echo ('active');
+                                            } ?>" href="<?php echo cl_link('admin_panel/delete_spam_accounts'); ?>">
                     Remove spam accounts
                 </a>
             </div>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'google_ads') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'google_ads') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/google_ads'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("layout-left"); ?>
@@ -260,7 +275,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'aws3') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'aws3') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/aws3'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("cloud-upload"); ?>
@@ -270,7 +287,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'push_notifications') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'push_notifications') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/push_notifications'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("bell"); ?>
@@ -280,7 +299,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'changelogs') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'changelogs') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/changelogs'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("book"); ?>
@@ -290,7 +311,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'backups') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'backups') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/backups'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("save"); ?>
@@ -300,7 +323,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'languages') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'languages') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/languages'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("language"); ?>
@@ -310,17 +335,10 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'recaptcha') {echo('active');} ?>">
-            <a href="<?php echo cl_link('admin_panel/recaptcha'); ?>" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("ok-circle"); ?>
-                </span>
-                <span class="text">
-                    Google reCAPTCHA
-                </span>
-            </a>
-        </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'sitemap') {echo('active');} ?>">
+
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'sitemap') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/sitemap'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("map"); ?>
@@ -330,7 +348,9 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if($cl["cp_section"] == 'app_links') {echo('active');} ?>">
+        <li class="menu-list-item <?php if ($cl["cp_section"] == 'app_links') {
+                                        echo ('active');
+                                    } ?>">
             <a href="<?php echo cl_link('admin_panel/app_links'); ?>" class="menu-list-item-link">
                 <span class="icon">
                     <?php echo cl_ikon("iphone"); ?>
@@ -352,6 +372,6 @@
         </li>
     </ul>
     <div class="sb-footer">
-        &copy; {%config name%} - <?php echo date('Y'); ?>.  <b>(v<?php echo $cl["config"]["version"]; ?>)</b>
+        &copy; {%config name%} - <?php echo date('Y'); ?>. <b>(v<?php echo $cl["config"]["version"]; ?>)</b>
     </div>
 </div>
