@@ -23,7 +23,7 @@
             <div class="card" id="vue-cpanel-account-verification-app">
                 <div class="header">
                     <h2>
-                        Account Verification requests - ({{total_requests}})
+                        Account Verification requests - (<?php echo $cl['requests_total'] ?>)
                     </h2>
                 </div>
                 <div class="body">
@@ -35,9 +35,7 @@
                                     <th>
                                         Username
                                     </th>
-                                    <th>
-                                        E-mail address
-                                    </th>
+
                                     <th>
                                         Last seen
                                     </th>
@@ -54,20 +52,20 @@
                                 </tr>
                             </thead>
                             <tbody data-an="requests-list">
-                                <?php if (not_empty($cl['requests'])): ?>
-                                <?php foreach ($cl['requests'] as $cl['li']): ?>
+                                <?php if (not_empty($cl['requests'])) : ?>
+                                <?php foreach ($cl['requests'] as $cl['li']) : ?>
                                 <?php echo cl_template('cpanel/assets/account_verification/includes/list_item'); ?>
                                 <?php endforeach; ?>
-                                <?php else: ?>
+                                <?php else : ?>
                                 <tr>
                                     <td colspan="7">
                                         <div class="empty-table">
                                             <span class="icon">
                                                 <?php echo cl_ikon("verified"); ?>
                                             </span>
-                                            <h4><?php echo('No requests found'); ?></h4>
+                                            <h4><?php echo ('No requests found'); ?></h4>
                                             <p>
-                                                <?php echo('It looks like there are no account verification requests in your database yet. All account verification requests will be displayed here.'); ?>
+                                                <?php echo ('It looks like there are no account verification requests in your database yet. All account verification requests will be displayed here.'); ?>
                                             </p>
                                         </div>
                                     </td>
@@ -76,13 +74,12 @@
                             </tbody>
                         </table>
                         <div class="table-pagination">
-                            <a v-if="show_ctrls" v-bind:class="{'disabled': dis_prev_ctrl}" v-on:click="paginate('up')"
-                                href="" class="pagination-ctrls prev">
+                            <a <?php if ($_GET['page'] > 1) echo ("href='./users?page=" . (string)($_GET['page'] - 1) . "'"); ?>
+                                class="pagination-ctrls prev">
                                 <?php echo cl_ikon("chevron-left"); ?>
                             </a>
-
-                            <a v-if="show_ctrls" v-bind:class="{'disabled': dis_next_ctrl}"
-                                v-on:click="paginate('down')" href="" class="pagination-ctrls next">
+                            <a <?php if (count($cl['requests']) > 1) echo ("href='./users?page=" . (string)($_GET['page'] ? $_GET['page'] + 1 : 2) . "'"); ?>
+                                class="pagination-ctrls prev">
                                 <?php echo cl_ikon("chevron-right"); ?>
                             </a>
                         </div>
@@ -92,4 +89,5 @@
         </div>
     </div>
 </div>
-<?php //echo cl_template('cpanel/assets/account_verification/scripts/app_master_script'); ?>
+<?php //echo cl_template('cpanel/assets/account_verification/scripts/app_master_script'); 
+?>

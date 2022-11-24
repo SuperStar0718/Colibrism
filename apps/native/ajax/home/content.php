@@ -81,7 +81,6 @@ if (empty($cl["is_logged"])) {
 
         $_SESSION['image_path'] = $file_upload['filename'];;
 
-        return header('Location: ' . $_SERVER['HTTP_REFERER']);
         //return cl_redirect('home');
     } else if ($_POST['submit'] == "tweet") {
 
@@ -97,17 +96,17 @@ if (empty($cl["is_logged"])) {
         $community_id = fetch_or_get($_POST['community_id'], "");
         $gif_src          = fetch_or_get($_POST['gif_src'], "");
         $og_data          = fetch_or_get($_POST['og_data'], array());
-        $poll_data        = fetch_or_get($_POST['poll_data'], array());
         $thread_id        = fetch_or_get($_POST['thread_id'], 0);
         $post_privacy     = fetch_or_get($_POST['privacy'], "everyone");
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
         $poll_data = array();
-        $poll_data[0] = fetch_or_get($_SESSION['answer-1']);
-        $poll_data[1] = fetch_or_get($_SESSION['answer-2']);
-        $poll_data[2] = fetch_or_get($_SESSION['answer-3']);
-        $poll_data[3] = fetch_or_get($_SESSION['answer-4']);
-        $poll_data[4] = fetch_or_get($_SESSION['answer-5']);
+        $poll_data[] = fetch_or_get($_SESSION['subject'], "");
+        for ($i = 1; $i < 6; $i++) {
+            if ($_SESSION['answer-' . $i] == "") continue;
+            $poll_data[] = $_SESSION['answer-' . $i];
+        }
+
         $image_src = "";
         if (not_empty($_FILES['image']) && not_empty($_FILES['image']['tmp_name'])) {
             $file_info      = array(
@@ -206,9 +205,11 @@ if (empty($cl["is_logged"])) {
         $_SESSION['answer-3'] = "";
         $_SESSION['answer-4'] = "";
         $_SESSION['answer-5'] = "";
+        $_SESSION['subject'] = "";
         $_SESSION['post_description'] = '';
         return cl_redirect('home');
     }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'exit_post') {
     $_SESSION['image_path'] = "";
     $_SESSION['poll_data'] = "";
@@ -217,6 +218,7 @@ if (empty($cl["is_logged"])) {
     $_SESSION['answer-3'] = "";
     $_SESSION['answer-4'] = "";
     $_SESSION['answer-5'] = "";
+    $_SESSION['subject'] = "";
     $_SESSION['post_description'] = '';
     return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'exit_poll') {
@@ -232,11 +234,13 @@ if (empty($cl["is_logged"])) {
         $poll_data[2] = $_POST['answer-3'];
         $poll_data[3] = $_POST['answer-4'];
         $poll_data[4] = $_POST['answer-5'];
+        $poll_data[5] = $_POST['subject'];
         $_SESSION['answer-1'] = $poll_data[0];
         $_SESSION['answer-2'] = $poll_data[1];
         $_SESSION['answer-3'] = $poll_data[2];
         $_SESSION['answer-4'] = $poll_data[3];
         $_SESSION['answer-5'] = $poll_data[4];
+        $_SESSION['subject'] = $poll_data[5];
     }
     return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

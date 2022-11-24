@@ -46,13 +46,15 @@
                                         Advertising system
                                     </label>
                                     <div class="form-line">
-                                        <select name="advertising_system" class="form-control selectpicker">
-                                            <option value="on"
-                                                <?php if($cl['config']['advertising_system'] == 'on') { echo('selected'); } ?>>
+                                        <select name="advertising_system" class="form-control">
+                                            <option value="on" <?php if ($cl['config']['advertising_system'] == 'on') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Enabled
                                             </option>
-                                            <option value="off"
-                                                <?php if($cl['config']['advertising_system'] == 'off') { echo('selected'); } ?>>
+                                            <option value="off" <?php if ($cl['config']['advertising_system'] == 'off') {
+                                                                    echo ('selected');
+                                                                } ?>>
                                                 Disabled
                                             </option>
                                         </select>
@@ -68,7 +70,7 @@
                             </div>
                         </div>
                         <input type="hidden" class="d-none"
-                            value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                            value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
                     </form>
                 </div>
             </div>
@@ -76,4 +78,5 @@
     </div>
 </div>
 
-<?php //echo cl_template('cpanel/assets/ads_settings/scripts/app_master_script'); ?>
+<?php //echo cl_template('cpanel/assets/ads_settings/scripts/app_master_script'); 
+?>

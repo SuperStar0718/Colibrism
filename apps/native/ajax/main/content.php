@@ -735,7 +735,7 @@ if ($action == 'upload_post_image') {
     } else {
         $data['err_code'] = 0;
         $data['status']   = 400;
-        $post_id          = fetch_or_get($_POST['id'], 0);
+        $post_id          = fetch_or_get($_GET['post_id'], 0);
 
         if (is_posnum($post_id)) {
             $post_data = cl_raw_post_data($post_id);
@@ -746,7 +746,6 @@ if ($action == 'upload_post_image') {
 
                 if (not_empty($post_owner)) {
                     if ($post_data['target'] == 'publication') {
-
                         $data['posts_total'] = ($post_owner['posts'] -= 1);
                         $data['posts_total'] = ((is_posnum($data['posts_total'])) ? $data['posts_total'] : 0);
 
@@ -769,6 +768,7 @@ if ($action == 'upload_post_image') {
             }
         }
     }
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'load_likes') {
     $data['err_code'] = 0;
     $data['status']   = 400;
@@ -1146,39 +1146,29 @@ if ($action == 'upload_post_image') {
     setcookie("__c_u_a__", "1", strtotime("+3 years"), '/') or die('unable to create cookie');
 
     $data["status"] = 200;
-} else if ($action == "save_display_settings") {
-    $data['err_code'] = 0;
-    $data['status']   = 400;
+// } else if ($action == "save_display_settings") {
+//     $data['err_code'] = 0;
+//     $data['status']   = 400;
 
-    // $bg_color   = fetch_or_get($_POST["bg"], "default");
-    // $skin_color = fetch_or_get($_POST["color"], "default");
-    $base = fetch_or_get($_POST["base"], "");
-    $links = fetch_or_get($_POST["links"], "");
-    // $title = fetch_or_get($_POST["title"], "#0000ff");
-    $highlight = fetch_or_get($_POST["highlight"], "");
-    $community_id = fetch_or_get($_POST["community_id"], "");
+//     $bg_color   = fetch_or_get($_POST["default_color_scheme"], "default");
+//     $skin_color = fetch_or_get($_POST["default_bg_color"], "default");
 
-    // $main_menu = fetch_or_get($_POST["main_menu"], "#0000ff");
+   
+//     $data['status'] = 200;
 
-    // echo $base;
-
-
-    // if (in_array($bg_color, array_keys($cl["bg_colors"])) && in_array($skin_color, array_keys($cl["color_schemes"]))) {
-    $data['status'] = 200;
-
-    cl_update_community_data($me["id"], $community_id, array(
-        "display_settings" => json(array(
-            // "color_scheme" => cl_text_secure($skin_color),
-            // "background"   => cl_text_secure($bg_color),
-            "base_color" => cl_text_secure($base),
-            "link_color" => cl_text_secure($links),
-            // "title" => cl_text_secure($title),
-            "highlight_color" => cl_text_secure($highlight)
-            // "main_menu" => cl_text_secure($main_menu),
-        ), true)
-    ));
-    // }
-    return cl_redirect("community?community_id=$community_id");
+//     cl_update_community_data($me["id"], $community_id, array(
+//         "display_settings" => json(array(
+//             // "color_scheme" => cl_text_secure($skin_color),
+//             // "background"   => cl_text_secure($bg_color),
+//             "base_color" => cl_text_secure($base),
+//             "link_color" => cl_text_secure($links),
+//             // "title" => cl_text_secure($title),
+//             "highlight_color" => cl_text_secure($highlight)
+//             // "main_menu" => cl_text_secure($main_menu),
+//         ), true)
+//     ));
+//     // }
+//     return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == "create_community") {
     $data['err_code'] = 0;
     $data['status']   = 400;
@@ -1290,5 +1280,23 @@ if ($action == 'upload_post_image') {
     $user_id  = $_GET['user_id'];
     $db = $db->where('id', $user_id);
     $db->delete(T_USERS);
+    return header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else if ($action == "save_changes") {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+    print_r($_POST);
+    $user_id = fetch_or_get($_POST['user_id'], "");
+    $type = fetch_or_get($_POST['type'], "");
+    $verified = fetch_or_get($_POST['verified'], "");
+    $status = fetch_or_get($_POST['status'], "off");
+
+    $db = $db->where('id', $user_id);
+    $db->update(T_USERS, array(
+        'admin' => $type == 'admin' ? '1' : '0',
+        'verified' => $verified == 'Y' ? '1' : '0',
+        'active' => $status == 'on' ? '1' : '2'
+    ));
+
+
     return header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

@@ -2,51 +2,12 @@
 <?php echo cl_template('timeline/ad'); ?>
 <?php else :
     global $community;
+
 ?>
+
 <div class="Tweet-target target col nd gap-1">
-    <a href="<?php echo (htmlentities("show_post_details" . "?post_description=" . $cl['li']['description'] . "&community_id=" . $cl['li']['community_id'])); ?>"
-        class="target_a"></a>
+    <a href="<?php echo (htmlentities("show_post_details" . "?post_id=" . $cl['li']['id'])); ?>" class="target_a"></a>
 
-    <!-- <div class="Option-button flex center btn">
-        <div class="relative">
-            <input type="checkbox" id="more_btn_<?php echo $cl['li']['id'] ?>" class="more_btn">
-
-            <label for="more_btn_<?php echo $cl['li']['id'] ?>">
-                <img src="<?php convert_into_base64("themes/default/statics/img/more.png"); ?>" alt="Avatar">
-            </label>
-
-            <div class="dropdown">
-                <label for="flair_modal_<?php echo $cl['li']['id'] ?>">
-                    <i class="material-symbols-outlined">add_circle</i>
-                    ADD POST FLAIR</label>
-
-            </div>
-
-
-        </div>
-
-    </div> -->
-    <!-- <input type="checkbox" id="flair_modal_<?php echo $cl['li']['id'] ?>" class="flair_modal">
-
-    <div class="overlay_flair ">
-        <label for="flair_modal_<?php echo $cl['li']['id'] ?>" class="close_flair"></label>
-        <div class="main_widget flex">
-            <form action="" method="POST">
-                <div>
-                    <input type="radio" id="paste_btn">
-                    <input type="text" placeholder="Input Flair ID">
-                    <?php if (not_empty($_COOKIE['flair_id'])) : ?>
-                    <input type="text" class="show_id" value="<?php echo  $_COOKIE['flair_id']; ?>">
-                    <?php endif; ?>
-                    <label for="paste_btn">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/copy.png"); ?>">
-                    </label>
-                </div>
-                <input type="submit" value="SAVE">
-
-            </form>
-        </div>
-    </div> -->
     <div class="teewt-data flex  gap-1">
         <div class="user-image-content">
             <div class="user-image s-2 circle">
@@ -115,7 +76,8 @@
                         <span><?php echo count(json_decode($cl['li']['downvote_count'])); ?></span>
                     </div>
                     <div class="teewt-shared-count-content">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/refresh.png"); ?>">
+                        <img
+                            src="<?php convert_into_base64("themes/default/statics/img/refresh_" . $cl['display_set']['background'] . ".png"); ?>">
 
                         <span> 124</span>
                     </div>
@@ -130,10 +92,9 @@
         <div class="r-action-btns-content flex">
             <?php if (!in_array($me['id'], json_decode($cl['li']['upvote_count']))) { ?>
             <a href="native_api/edit_post/up_vote?post_id=<?php echo $cl['li']['id']; ?>">
-
                 <div class="r-action-btn btn bg-3">
                     <img
-                        src="<?php convert_into_base64("themes/default/statics/img/sort-arrows-couple-pointing-up-and-down (1).png"); ?>">
+                        src="<?php convert_into_base64("themes/default/statics/img/up-arrow_" . $cl['display_set']['background'] . ".png");   ?>">
 
 
                 </div>
@@ -142,7 +103,7 @@
             <?php } else { ?>
             <div class="r-action-btn desabled btn bg-3">
                 <img
-                    src="<?php convert_into_base64("themes/default/statics/img/sort-arrows-couple-pointing-up-and-down (1).png"); ?>">
+                    src="<?php convert_into_base64("themes/default/statics/img/up-arrow_" . $cl['display_set']['background'] . ".png");   ?>">
 
 
             </div>
@@ -153,13 +114,13 @@
 
                 <div class="r-action-btn btn bg-3">
                     <img
-                        src="<?php convert_into_base64("themes/default/statics/img/sort-arrows-couple-pointing-up-and-down (2).png"); ?>">
+                        src="<?php convert_into_base64("themes/default/statics/img/down-arrow_" . $cl['display_set']['background'] . ".png"); ?>">
                 </div>
             </a>
             <?php } else { ?>
             <div class="r-action-btn desabled btn bg-3">
                 <img
-                    src="<?php convert_into_base64("themes/default/statics/img/sort-arrows-couple-pointing-up-and-down (2).png"); ?>">
+                    src="<?php convert_into_base64("themes/default/statics/img/down-arrow_" . $cl['display_set']['background'] . ".png"); ?>">
 
 
             </div>
@@ -212,14 +173,16 @@
         </div>
         <div class="large-btns-content flex wrap">
             <div class="btn large bg-3">
-                <img src="<?php convert_into_base64("themes/default/statics/img/refresh.png"); ?>">
+                <img
+                    src="<?php convert_into_base64("themes/default/statics/img/refresh_" . $cl['display_set']['background'] . ".png"); ?>">
 
                 Retweet
             </div>
             <a href="native_api/edit_post/bookmark?post_id=<?php echo $cl['li']['id'] ?>">
 
                 <div class="btn large bg-3">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/file (2).png"); ?>">
+                    <img
+                        src="<?php convert_into_base64("themes/default/statics/img/file_" . $cl['display_set']['background'] . ".png"); ?>">
                     Save
                 </div>
             </a>

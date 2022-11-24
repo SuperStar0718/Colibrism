@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -17,7 +17,6 @@ $cl["app_statics"] = array(
 		cl_static_file_path("apps/cpanel/statics/plugins/chartjs/Chart.bundle.js")
 	)
 );
-
 $cl['total_users']  = cl_admin_total_users();
 $cl['total_posts']  = cl_admin_total_posts();
 $cl['total_images'] = cl_admin_total_posts('image');

@@ -1,208 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
+<section class="main flex col nd gap-1">
 
-<head>
-    <meta charset="UTF-8">
-    <title>
-        <?php if (not_empty($me['new_notifs'])) : ?>
-        (<?php echo fetch_or_get($me['new_notifs']); ?>)
-        <?php endif; ?>
-
-        <?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>
-    </title>
-
-    <meta content="charset=UTF-8" />
-    <link rel="icon" href="http://localhost/ColibriSM/themes/default/statics/img/favicon.png" type="image/png">
-    <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]); ?>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='{%config theme_url%}/statics/css/styles.css'>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
-    <link rel='stylesheet'
-        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
-
-    <link rel='stylesheet' href='{%config theme_url%}/statics/css/inbox.css'>
-
-    <style>
-    /* .Nav-bar .seach-bar-content .form-control input */
-    .Nav-bar,
-    .main .Post-bar,
-    .side-bar-r .rues-content .flex.col.gap-1 label,
-    .Nav-bar .seach-bar-content .form-control input,
-    .Nav-bar .User-account-dropdown,
-    .main .Post-bar .controls-content textarea {
-        background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
-    }
-
-    .Nav-bar .seach-bar-content .form-control input,
-    .Nav-bar .User-account-dropdown,
-    .main .Post-bar .controls-content textarea {
-        filter: brightness(75%);
-    }
-    </style>
-</head>
-
-<body class="m-a">
-
-    <section class="main flex col nd gap-1">
-
-        <div class="Post-bar target flex timeline gap-1">
-            <div class="controls-content">
-                <p class="content_title">MY MESSAGES</p>
-                <p class="subtitle">HERE YOU CAN SEE AND REPLY TO ALL YOUR DIRECT MESSAGES AND MODMAIL MESSAGES.</p>
-            </div>
+    <div class="Post-bar target flex timeline gap-1">
+        <div class="controls-content">
+            <p class="content_title">MY MESSAGES</p>
+            <p class="subtitle">HERE YOU CAN SEE AND REPLY TO ALL YOUR DIRECT MESSAGES AND MODMAIL MESSAGES.</p>
         </div>
-        <div class="msg_container">
-            <div class="chat_body row">
-                <div class="left-sidebar">
-                    <div class="title flex">
-                        <div class="text">
-                            Chat
-                        </div>
-
-
+    </div>
+    <div class="msg_container">
+        <div class="chat_body row">
+            <div class="left-sidebar">
+                <div class="title flex">
+                    <div class="text">
+                        Chat
                     </div>
-                    <div class="inbox_list">
-                        <div class="header flex row">
-                            <a href="inbox?mode=All">
-                                <div
-                                    class="<?php if ($_GET['mode'] == "All" || $_GET['mode'] == "")  echo "active";  ?> avatar">
-                                    All</div>
-                            </a>
-                            <hr>
-                            <a href="inbox?mode=DMs">
-                                <div class="<?php if ($_GET['mode'] == "DMs")  echo "active"; ?> DMs">DMs</div>
-                            </a>
-                            <hr>
-                            <a href="inbox?mode=Mod_Mails">
-                                <div class="<?php if ($_GET['mode'] == "Mod_Mails")  echo "active"; ?>  Mod_Mails">
-                                    Mod Mails</div>
-                            </a>
-                        </div>
 
-                        <?php global $user_list;
-                        if (not_empty($cl['conversations']) && not_empty($cl['conversation_type'])) :
-                            foreach ($cl['conversations'] as $key => $conversation) : ?>
-                        <a href="inbox?<?php if (not_empty($conversation['community_id'])) echo "community_id=" . $conversation['community_id'];
-                                                else echo "conversation=" . $conversation['id'];
-                                                if (not_empty($_GET['mode'])) echo "&mode=" . $_GET['mode']; ?>">
 
-                            <div class="inbox_item flex row <?php if ($cl['conversation_type'] == 'community' && $cl['conversation_id'] == $conversation['id'] && not_empty($conversation['community_id'])) {
-                                                                        echo "active";
-                                                                        global $client_avatar;
-                                                                        $client_avatar = $user_list[$key]['avatar'];
-                                                                    } else if ($cl['conversation_type'] == 'user' && $cl['conversation_id'] == $conversation['id'] && not_empty($conversation['sender'])) {
-                                                                        echo "active";
-                                                                        global $client_avatar;
-                                                                        $client_avatar = $user_list[$key]['avatar'];
-                                                                    } ?>">
-                                <div class="avatar user-image circle "> <img class=""
-                                        src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
-                                <div class="content ">
-                                    <div class="name"><?php echo $user_list[$key]['username'] ?></div>
-                                    <div class="text"><?php echo $user_list[$key]['message']; ?></div>
-                                </div>
-                            </div>
+                </div>
+                <div class="inbox_list">
+                    <div class="header flex row">
+                        <a href="inbox?mode=All">
+                            <div
+                                class="<?php if ($_GET['mode'] == "All" || $_GET['mode'] == "")  echo "active";  ?> avatar">
+                                All</div>
                         </a>
-
-                        <?php endforeach;
-                        endif; ?>
-
-
+                        <hr>
+                        <a href="inbox?mode=DMs">
+                            <div class="<?php if ($_GET['mode'] == "DMs")  echo "active"; ?> DMs">DMs</div>
+                        </a>
+                        <hr>
+                        <a href="inbox?mode=Mod_Mails">
+                            <div class="<?php if ($_GET['mode'] == "Mod_Mails")  echo "active"; ?>  Mod_Mails">
+                                Mod Mails</div>
+                        </a>
                     </div>
-                </div>
-                <div class="message ">
-                    <div class="title flex row">
-                        <div class="text">Title</div>
-                        <div class="icon">
-                            <div>
-                                <img src="<?php convert_into_base64("themes/default/statics/img/settings.png"); ?>">
-                            </div>
-                            <div>
-                                <img src="<?php convert_into_base64("themes/default/statics/img/resize (1).png"); ?>">
-                            </div>
-                            <div>
-                                <img src="<?php convert_into_base64("themes/default/statics/img/down.png"); ?>">
-                            </div>
-                            <div>
-                                <img src="<?php convert_into_base64("themes/default/statics/img/close.png"); ?>">
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class="message_body row">
-                        <?php $date = "";
-                        if (not_empty($cl['messages'])) :
-                            foreach ($cl['messages'] as $key => $message) : ?>
-                        <?php if ($message['owner'] == $me['id']) : ?>
-                        <div class="sender">
-                            <div class="text">
-                                <?php echo $message['message']; ?>
-                                <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
-                                </div>
+                    <?php global $user_list;
+                    if (not_empty($cl['conversations']) && not_empty($cl['conversation_type'])) :
+                        foreach ($cl['conversations'] as $key => $conversation) : ?>
+                    <a href="inbox?<?php if (not_empty($conversation['community_id'])) echo "community_id=" . $conversation['community_id'];
+                                            else echo "conversation=" . $conversation['id'];
+                                            if (not_empty($_GET['mode'])) echo "&mode=" . $_GET['mode']; ?>">
 
-                            </div>
-                            <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
-
-                        </div>
-                        <?php else : ?>
-                        <div class="receiver">
-                            <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
-                            <div class="text">
-                                <?php echo $message['message']; ?>
-                                <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
-                                </div>
-
+                        <div class="inbox_item flex row <?php if ($cl['conversation_type'] == 'community' && $cl['conversation_id'] == $conversation['id'] && not_empty($conversation['community_id'])) {
+                                                                    echo "active";
+                                                                    global $client_avatar;
+                                                                    $client_avatar = $user_list[$key]['avatar'];
+                                                                } else if ($cl['conversation_type'] == 'user' && $cl['conversation_id'] == $conversation['id'] && not_empty($conversation['sender'])) {
+                                                                    echo "active";
+                                                                    global $client_avatar;
+                                                                    $client_avatar = $user_list[$key]['avatar'];
+                                                                } ?>">
+                            <div class="avatar user-image circle "> <img class=""
+                                    src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
+                            <div class="content ">
+                                <div class="name"><?php echo $user_list[$key]['username'] ?></div>
+                                <div class="text"><?php echo $user_list[$key]['message']; ?></div>
                             </div>
                         </div>
-                        <?php endif; ?>
+                    </a>
 
-                        <?php if (count($cl['messages']) == ($key + 1)) : ?>
-                        <div class="date"><?php output_date($message['created_at']); ?></div>
-                        <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
-                        <div class="date"><?php output_date($message['created_at']); ?></div>
-                        <?php endif; ?>
-                        <?php endforeach;
-                        endif; ?>
+                    <?php endforeach;
+                    endif; ?>
 
-
-                    </div>
-                    <form method="POST" action="native_api/inbox/send_message">
-                        <div class="footer row flex">
-                            <div class="camera">
-                                <img src="<?php convert_into_base64("themes/default/statics/img/camera.png"); ?>">
-                            </div>
-                            <div class="input_body flex">
-                                <div class="type_content">
-                                    <textarea placeholder="Message" name="message"></textarea>
-                                </div>
-                                <div class="gif">
-                                    <img src="<?php convert_into_base64("themes/default/statics/img/gif.png"); ?>">
-                                </div>
-                                <div class="emoji">
-                                    <img src="<?php convert_into_base64("themes/default/statics/img/happy.png"); ?>">
-                                </div>
-                            </div>
-                            <div class="send">
-                                <button type="submit" class="submit">
-                                    <img src="<?php convert_into_base64("themes/default/statics/img/send.png"); ?>">
-                                </button>
-                            </div>
-                        </div>
-                        <?php if (not_empty($cl['conversation_id'])) : ?>
-                        <input type="hidden" name="conversation_id" value="<?php echo $cl['conversation_id'] ?>">
-                        <input type="hidden" name="conversation_type" value="<?php echo $cl['conversation_type'] ?>">
-                        <?php endif; ?>
-
-
-                    </form>
 
                 </div>
             </div>
-        </div>
-    </section>
-</body>
+            <div class="message ">
+                <div class="title flex row">
+                    <div class="text">Title</div>
+                    <div class="icon">
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/settings.png"); ?>">
+                        </div>
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/resize (1).png"); ?>">
+                        </div>
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/down.png"); ?>">
+                        </div>
+                        <div>
+                            <img src="<?php convert_into_base64("themes/default/statics/img/close.png"); ?>">
+                        </div>
 
-</html>
+                    </div>
+                </div>
+                <div class="message_body row">
+                    <?php $date = "";
+                    if (not_empty($cl['messages'])) :
+                        foreach ($cl['messages'] as $key => $message) : ?>
+                    <?php if ($message['owner'] == $me['id']) : ?>
+                    <div class="sender">
+                        <div class="text">
+                            <?php echo $message['message']; ?>
+                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                            </div>
+
+                        </div>
+                        <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
+
+                    </div>
+                    <?php else : ?>
+                    <div class="receiver">
+                        <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
+                        <div class="text">
+                            <?php echo $message['message']; ?>
+                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                            </div>
+
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if (count($cl['messages']) == ($key + 1)) : ?>
+                    <div class="date"><?php output_date($message['created_at']); ?></div>
+                    <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
+                    <div class="date"><?php output_date($message['created_at']); ?></div>
+                    <?php endif; ?>
+                    <?php endforeach;
+                    endif; ?>
+
+
+                </div>
+                <form method="POST" action="native_api/inbox/send_message">
+                    <div class="footer row flex">
+                        <div class="camera">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/camera.png"); ?>">
+                        </div>
+                        <div class="input_body flex">
+                            <div class="type_content">
+                                <textarea placeholder="Message" name="message"></textarea>
+                            </div>
+                            <div class="gif">
+                                <img src="<?php convert_into_base64("themes/default/statics/img/gif.png"); ?>">
+                            </div>
+                            <div class="emoji">
+                                <img src="<?php convert_into_base64("themes/default/statics/img/happy.png"); ?>">
+                            </div>
+                        </div>
+                        <div class="send">
+                            <button type="submit" class="submit">
+                                <img src="<?php convert_into_base64("themes/default/statics/img/send.png"); ?>">
+                            </button>
+                        </div>
+                    </div>
+                    <?php if (not_empty($cl['conversation_id'])) : ?>
+                    <input type="hidden" name="conversation_id" value="<?php echo $cl['conversation_id'] ?>">
+                    <input type="hidden" name="conversation_type" value="<?php echo $cl['conversation_type'] ?>">
+                    <?php endif; ?>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>

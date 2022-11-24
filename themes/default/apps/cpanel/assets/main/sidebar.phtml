@@ -93,18 +93,7 @@
                 </span>
             </a>
         </li>
-        <li class="menu-list-item <?php if ($cl["cp_section"] == 'themes') {
-                                        echo ('active');
-                                    } ?>">
-            <a href="<?php echo cl_link('admin_panel/themes'); ?>" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("marker"); ?>
-                </span>
-                <span class="text">
-                    Themes
-                </span>
-            </a>
-        </li>
+
         <li class="menu-list-item <?php if ($cl["cp_section"] == 'display_settings') {
                                         echo ('active');
                                     } ?>">
@@ -120,7 +109,9 @@
         <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('account_verification'))) {
                                         echo ('active open');
                                     } ?>">
-            <input type="checkbox" id="user_tickets" hidden>
+            <input type="checkbox" id="user_tickets" hidden <?php if (in_array($cl["cp_section"], array('account_verification'))) {
+                                                                echo ('checked');
+                                                            } ?>>
             <label for="user_tickets">
                 <a data-toggle-menu="1" class="menu-list-item-link">
                     <span class="icon">
@@ -146,7 +137,9 @@
         <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('ads_settings', 'manage_ads'))) {
                                         echo ('active open');
                                     } ?>">
-            <input type="checkbox" id="advertising" hidden>
+            <input type="checkbox" id="advertising" hidden <?php if (in_array($cl["cp_section"], array('ads_settings', 'manage_ads'))) {
+                                                                echo ('checked');
+                                                            } ?>>
             <label for="advertising">
                 <a data-toggle-menu="1" class="menu-list-item-link">
                     <span class="icon">
@@ -176,7 +169,9 @@
         <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('affiliate_settings', 'affiliate_payouts'))) {
                                         echo ('active open');
                                     } ?>">
-            <input type="checkbox" id="affiliates" hidden>
+            <input type="checkbox" id="affiliates" hidden <?php if (in_array($cl["cp_section"], array('affiliate_settings', 'affiliate_payouts'))) {
+                                                                echo ('checked');
+                                                            } ?>>
             <label for="affiliates">
                 <a data-toggle-menu="1" class="menu-list-item-link">
                     <span class="icon">
@@ -206,7 +201,9 @@
         <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('account_reports', 'post_reports'))) {
                                         echo ('active open');
                                     } ?>">
-            <input type="checkbox" id="reports" hidden>
+            <input type="checkbox" id="reports" hidden <?php if (in_array($cl["cp_section"], array('account_reports', 'post_reports'))) {
+                                                            echo ('checked');
+                                                        } ?>>
             <label for="reports">
                 <a data-toggle-menu="1" class="menu-list-item-link">
                     <span class="icon">
@@ -233,72 +230,10 @@
                 </a>
             </div>
         </li>
-        <li class="menu-list-item <?php if (in_array($cl["cp_section"], array('delete_swifts', 'delete_spam_accounts'))) {
-                                        echo ('active open');
-                                    } ?>">
-            <input type="checkbox" id="db_cleaning" hidden>
-            <label for="db_cleaning">
-                <a data-toggle-menu="1" class="menu-list-item-link">
-                    <span class="icon">
-                        <?php echo cl_ikon("bin"); ?>
-                    </span>
-                    <span class="text">
-                        DB Cleaning
-                    </span>
-                    <span class="chevron-down">
-                        <?php echo cl_ikon("chevron-down"); ?>
-                    </span>
-                </a>
-            </label>
-            <div class="submenu-list">
-                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'delete_swifts') {
-                                                echo ('active');
-                                            } ?>" href="<?php echo cl_link('admin_panel/delete_swifts'); ?>">
-                    Remove expired swifts
-                </a>
-                <a class="submenu-list-item <?php if ($cl["cp_section"] == 'delete_spam_accounts') {
-                                                echo ('active');
-                                            } ?>" href="<?php echo cl_link('admin_panel/delete_spam_accounts'); ?>">
-                    Remove spam accounts
-                </a>
-            </div>
-        </li>
-        <li class="menu-list-item <?php if ($cl["cp_section"] == 'google_ads') {
-                                        echo ('active');
-                                    } ?>">
-            <a href="<?php echo cl_link('admin_panel/google_ads'); ?>" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("layout-left"); ?>
-                </span>
-                <span class="text">
-                    Google Ads
-                </span>
-            </a>
-        </li>
-        <li class="menu-list-item <?php if ($cl["cp_section"] == 'aws3') {
-                                        echo ('active');
-                                    } ?>">
-            <a href="<?php echo cl_link('admin_panel/aws3'); ?>" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("cloud-upload"); ?>
-                </span>
-                <span class="text">
-                    AWS3 Storage
-                </span>
-            </a>
-        </li>
-        <li class="menu-list-item <?php if ($cl["cp_section"] == 'push_notifications') {
-                                        echo ('active');
-                                    } ?>">
-            <a href="<?php echo cl_link('admin_panel/push_notifications'); ?>" class="menu-list-item-link">
-                <span class="icon">
-                    <?php echo cl_ikon("bell"); ?>
-                </span>
-                <span class="text">
-                    Push notifications
-                </span>
-            </a>
-        </li>
+
+
+
+
         <li class="menu-list-item <?php if ($cl["cp_section"] == 'changelogs') {
                                         echo ('active');
                                     } ?>">

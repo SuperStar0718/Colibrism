@@ -16,7 +16,7 @@ SELECT posts.`id` as offset_id, posts.`publication_id`, posts.`type`, posts.`use
 
 
 
-		WHERE pubs.`description`= "<?php echo ($_GET['post_description']); ?>"
+		WHERE pubs.`id`= "<?php echo ($data['post_id']); ?>"
 
 	
 

@@ -72,7 +72,7 @@ if (not_empty($_GET['community_id'])) {
     if (not_empty($result)) {
         $cl['menu_links'] = json($result['menu_links']);
         $cl['post_flairs']  = json($result['post_flairs']);
-        $cl['display_set'] = json($result['display_settings']);
+        // $cl['display_set'] = json($result['display_settings']);
         $cl['textarea_widget'] = json($result['textarea_widget']);
         $cl['image_widget'] = json($result['image_widget']);
         $temp = json($result['community_list_widget']);

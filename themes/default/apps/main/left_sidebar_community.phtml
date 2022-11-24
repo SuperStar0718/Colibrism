@@ -28,7 +28,7 @@
             <?php foreach ($cl['menu_links'] as $menu_link) : ?>
             <div class="grid-h">
                 <a href="<?php echo $menu_link['url']; ?>" target="_blank">
-                    <div class="Big-button btn round" style="color: <?php echo $cl['display_set']['link_color']; ?>">
+                    <div class="Big-button btn round">
                         <div><?php echo $menu_link['tapTitle']; ?></div>
                     </div>
                 </a>
@@ -102,8 +102,7 @@
                 <form method="POST" action="native_api/main/join">
                     <input type="hidden" name="community_id" value="<?php echo $com['community_id'] ?>">
                     <div class="comunkarity-action-content flex center">
-                        <button class="follow-btn mintext btn" type="submit"
-                            style="background-color: #c14848;">Leave</button>
+                        <button class="follow-btn highlight_button_dark mintext btn" type="submit">Leave</button>
                     </div>
                 </form>
             </div>

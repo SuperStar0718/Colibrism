@@ -34,23 +34,8 @@ if (empty($cl['is_logged'])) {
     );
 
     $media_type       = (($cl['page_tab'] == 'media') ? true : false);
-    $post_description = (not_empty($_GET['post_description']) ? true : false);
-    $community_id = (not_empty($_GET['community_id']) ? true : false);
-    $cl["user_posts"] = cl_get_profile_posts_details(6, 30, $media_type, $post_description, $community_id);
-
-    $temp = $_GET['community_id'];
-    $sql = "SELECT * from `cl_community` where `community_id`=$temp";
-    $query_res = $db->rawQuery($sql);
-    cl_queryset($query_res);
-    global $community;
-    $community = $query_res[0];
-
-    $temp_id = $me['id'];
-    $sql = "SELECT * from `cl_join_list` where `community_id`=$temp and `user_id`=$temp_id";
-    $query_res = $db->rawQuery($sql);
-    cl_queryset($query_res);
-    $is_joined = $query_res;
-
+    $post_id = fetch_or_get($_GET['post_id'], "");
+    $cl["user_posts"] = cl_get_profile_posts_details(6, 30, $media_type, $post_id);
 
     $cl["http_res"] = cl_template("show_post_details/content");
 }

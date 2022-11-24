@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -9,32 +9,22 @@
 # @ Copyright (c) 2020 - 2021 ColibriSM. All rights reserved.               @
 # @*************************************************************************@
 
-function cl_admin_get_verification_requests($args = array()) {
-	global $db;
+function cl_admin_get_verification_requests($args = array())
+{
+    global $db;
 
-	$args           = (is_array($args)) ? $args : array();
-    $options        = array(
-        "offset"    => false,
-        "limit"     => 10,
-        "offset_to" => false,
-        "order"     => 'DESC'
-    );
+    $args           = (is_array($args)) ? $args : array();
+    $offset         = $args['limit'] * ($args['page'] - 1);
 
-    $args           = array_merge($options, $args);
-    $offset         = $args['offset'];
     $limit          = $args['limit'];
-    $order          = $args['order'];
-    $offset_to      = $args['offset_to'];
     $data           = array();
     $t_users        = T_USERS;
     $t_reqs         = T_VERIFICATIONS;
-    $sql            = cl_sqltepmlate('apps/cpanel/account_verification/sql/fetch_requests',array(
+    $sql            = cl_sqltepmlate('apps/cpanel/account_verification/sql/fetch_requests', array(
         'offset'    => $offset,
         't_users'   => $t_users,
         't_reqs'    => $t_reqs,
         'limit'     => $limit,
-        'offset_to' => $offset_to,
-        'order'     => $order
     ));
 
     $data     = array();
@@ -53,17 +43,18 @@ function cl_admin_get_verification_requests($args = array()) {
     return $data;
 }
 
-function cl_admin_get_verification_request_data($req_id = false) {
-	global $db;
+function cl_admin_get_verification_request_data($req_id = false)
+{
+    global $db;
 
-	if (not_num($req_id)) {
-		return array();
-	}
+    if (not_num($req_id)) {
+        return array();
+    }
 
     $data         = array();
     $t_users      = T_USERS;
     $t_reqs       = T_VERIFICATIONS;
-    $sql          = cl_sqltepmlate('apps/cpanel/account_verification/sql/fetch_request_data',array(
+    $sql          = cl_sqltepmlate('apps/cpanel/account_verification/sql/fetch_request_data', array(
         't_users' => $t_users,
         't_reqs'  => $t_reqs,
         'req_id'  => $req_id,
@@ -85,10 +76,11 @@ function cl_admin_get_verification_request_data($req_id = false) {
     return $data;
 }
 
-function cl_admin_get_verification_requests_total() {
-	global $db;
+function cl_admin_get_verification_requests_total()
+{
+    global $db;
 
-	$qr = $db->getValue(T_VERIFICATIONS, 'COUNT(*)');
+    $qr = $db->getValue(T_VERIFICATIONS, 'COUNT(*)');
 
-	return (is_posnum($qr)) ? $qr : 0;
+    return (is_posnum($qr)) ? $qr : 0;
 }

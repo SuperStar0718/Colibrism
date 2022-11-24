@@ -158,7 +158,8 @@ elseif ($mode == 'All') :
                 $db = $db->where('conversation_id', $result['id']);
                 $db->orderBy('created_at', 'DESC');
                 $res = $db->getone(T_CONVERSATION_MESSAGE);
-                $result1['message'] = $res['message'];
+                if (not_empty($res['message']))
+                    $result1['message'] = $res['message'];
                 array_push($user_list, $result1);
             endif;
         endif;

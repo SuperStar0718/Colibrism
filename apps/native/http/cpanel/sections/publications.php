@@ -1,4 +1,4 @@
-<?php 
+<?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
 # @ Author_url 1: https://www.instagram.com/mansur_tl                       @
@@ -10,6 +10,7 @@
 # @*************************************************************************@
 
 require_once(cl_full_path("core/apps/cpanel/posts/app_ctrl.php"));
+$page = fetch_or_get($_GET['page'], 1);
 
-$cl['posts']    = cl_admin_get_posts(array('limit' => 10));    
+$cl['posts']    = cl_admin_get_posts(array('limit' => 10, 'page' => $page));
 $cl['http_res'] = cl_template("cpanel/assets/publications/content");

@@ -24,8 +24,8 @@
                             </form>
                         </div>
                     </div>
-                    <form action="<?php echo cl_link("native_api/home/upload_image"); ?>" enctype="multipart/form-data"
-                        method="POST">
+                    <form autocomplete="off" action="<?php echo cl_link("native_api/home/upload_image"); ?>"
+                        enctype="multipart/form-data" method="POST">
                         <div class="text">Make a Tweet :</div>
                         <div class="textarea">
                             <textarea name="post_description"
@@ -37,10 +37,10 @@
                         </div>
 
                         <div class="add_image">
-                            <label class="btn">+ Add Image</label>
+                            <label class="btn" for="open_image">+ Add Image</label>
                             <button type="submit" name="submit" value="preview">Preview</button>
                             <label class="btn" for="isPopupVisible">Create Poll</label>
-                            <input type="file" name="image">
+                            <input type="file" name="image" id="open_image" hidden>
 
                         </div>
                         <input type="hidden" value="<?php echo $cl['community_id']; ?>" name="community_id">
@@ -50,37 +50,10 @@
                     </form>
                 </div>
             </div>
-            <!-- <div class="overlay overlay-hugeinc" id="create_poll">
-                <div class="overlay_widget">
-                    <form action="<?php echo cl_link("native_api/home/create_poll"); ?>" enctype="multipart/form-data"
-                        method="POST">
-                        <div class="header">
-                            <div class="title">Create New Poll</div>
-                            <div class="cancel">
-                                <button type="submit" name="submit" value="exit">
-                                    <label for="cancel_window">✖</label>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="poll">
-                            <input type="text" name="option_1" placeholder="Option-1"
-                                value="<?php if (not_empty($_SESSION['option_1'])) echo $_SESSION['option_1']; ?>">
-                            <input type="text" name="option_2" placeholder="Option-2"
-                                value="<?php if (not_empty($_SESSION['option_2'])) echo $_SESSION['option_2']; ?>">
-                            <input type="text" name="option_3" placeholder="Option-3"
-                                value="<?php if (not_empty($_SESSION['option_3'])) echo $_SESSION['option_3']; ?>">
-                        </div>
-                        <div class="submit">
-                            <button type="submit" name="submit" value="poll">Create Poll</button>
-                        </div>
-                    </form>
-                </div>
-            </div> -->
             <input class="hidden" id="isPopupVisible" type="radio" name="modal">
             <div class="Poll-popup fixed flex center bg-glass">
-                <form action="<?php echo cl_link("native_api/home/create_poll"); ?>" enctype="multipart/form-data"
-                    method="POST">
+                <form autocomplete="off" action="<?php echo cl_link("native_api/home/create_poll"); ?>"
+                    enctype="multipart/form-data" method="POST">
                     <label class="quit-btn absolute btn t-color-3" for="tweet-input">⨯</label>
                     <h3 class="t-center">Create a poll</h3>
                     <div class="form-group">

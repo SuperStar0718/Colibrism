@@ -1,65 +1,66 @@
-<tr data-list-item="<?php echo($cl['li']['id']); ?>">
+<tr data-list-item="<?php echo ($cl['li']['id']); ?>">
     <td scope="row">
-        <?php echo($cl['li']['id']); ?>
+        <?php echo ($cl['li']['id']); ?>
     </td>
     <td>
-    	<?php if ($cl['li']['type'] == 'image'): ?>
-    		<span class="icon">
-    			<?php echo cl_ikon("image"); ?>
-    		</span>
-    	<?php elseif($cl['li']['type'] == 'video'): ?>
-			<span class="icon">
-    			<?php echo cl_ikon("video"); ?>
-    		</span>
-    	<?php elseif($cl['li']['type'] == 'gif'): ?>
-			<span class="icon">
-    			<?php echo cl_ikon("gif"); ?>
-    		</span>
-    	<?php else: ?>
-    		<span class="icon">
-    			<?php echo cl_ikon("text"); ?>
-    		</span>
-    	<?php endif; ?>
+        <?php if ($cl['li']['type'] == 'image') : ?>
+        <span class="icon">
+            <?php echo cl_ikon("image"); ?>
+        </span>
+        <?php elseif ($cl['li']['type'] == 'video') : ?>
+        <span class="icon">
+            <?php echo cl_ikon("video"); ?>
+        </span>
+        <?php elseif ($cl['li']['type'] == 'gif') : ?>
+        <span class="icon">
+            <?php echo cl_ikon("gif"); ?>
+        </span>
+        <?php else : ?>
+        <span class="icon">
+            <?php echo cl_ikon("text"); ?>
+        </span>
+        <?php endif; ?>
     </td>
     <td>
-    	<?php if ($cl['li']['target'] == 'publication'): ?>
-    		Publication
-		<?php else: ?>
-			Reply
-		<?php endif; ?>
+        <?php if ($cl['li']['target'] == 'publication') : ?>
+        Publication
+        <?php else : ?>
+        Reply
+        <?php endif; ?>
     </td>
     <td>
-    	<b class="num">
-    		<?php echo($cl['li']['replys_count']); ?>
-    	</b>
+        <b class="num">
+            <?php echo ($cl['li']['replys_count']); ?>
+        </b>
     </td>
     <td>
-    	<b class="num">
-    		<?php echo($cl['li']['likes_count']); ?>
-    	</b>
+        <b class="num">
+            <?php echo ($cl['li']['likes_count']); ?>
+        </b>
     </td>
     <td>
-    	<b class="num">
-    		<?php echo($cl['li']['reposts_count']); ?>
-    	</b>
+        <b class="num">
+            <?php echo ($cl['li']['reposts_count']); ?>
+        </b>
     </td>
     <td>
-    	<time>
-    		<?php echo($cl['li']['time']); ?>
-    	</time>
+        <time>
+            <?php echo ($cl['li']['time']); ?>
+        </time>
     </td>
     <td>
-    	<div class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <?php echo cl_ikon("hamburger"); ?>
+        <input id="menu_<?php echo $cl['li']['id']; ?>" type="checkbox" hidden class="show_menu">
+        <label for="menu_<?php echo $cl['li']['id']; ?>" class="label">
+            <?php echo cl_ikon("hamburger"); ?>
+        </label>
+        <div class="dropdown-menu dropdown-menu-right">
+            <a href="../show_post_details?post_id=<?php echo $cl['li']['id'] ?>" class="dropdown-item">
+                Show thread
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="<?php echo($cl['li']['url']); ?>" class="dropdown-item">
-                    Show thread
-                </a>
-                <a href="" class="dropdown-item" onclick="SMC_CPanel.delete_post('<?php echo($cl['li']['id']); ?>');">
-                    Delete
-                </a>
+
+            <a href="../native_api/main/delete_post?post_id=<?php echo $cl['li']['id']; ?>" class="dropdown-item">
+                Delete
+            </a>
             </ul>
         </div>
     </td>

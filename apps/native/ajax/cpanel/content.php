@@ -65,12 +65,12 @@ if (empty($cl['is_admin'])) {
 	$data['err_code'] = 0;
 	$html_arr         = array();
 
-		$users          = cl_admin_get_users(array(
-			'limit'     => 7,
-			'filter'    => $filter_data
-		));
+	$users          = cl_admin_get_users(array(
+		'limit'     => 7,
+		'filter'    => $filter_data
+	));
 
-	
+
 
 	if (not_empty($users)) {
 		foreach ($users as $cl['li']) {
@@ -306,10 +306,13 @@ if (empty($cl['is_admin'])) {
 	$data['err_code'] = 0;
 	$cl['req_data']   = cl_admin_get_verification_request_data($request_id);
 
+
 	if (not_empty($cl['req_data'])) {
 		$data['status'] = 200;
 		$data['html']   = cl_template('cpanel/assets/account_verification/modals/popup_ticket');
+		// $cl['popup_modal'] = cl_template('cpanel/assets/account_verification/modals/popup_ticket');
 	}
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'delete_verifreq_data') {
 	$request_id       = fetch_or_get($_GET['id'], 'none');
 	$data['status']   = 404;
@@ -331,6 +334,7 @@ if (empty($cl['is_admin'])) {
 		$data['status']  = 400;
 		$data['message'] = "An error occurred while processing your request. Please try again later.";
 	}
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == 'verify_user_account') {
 	$request_id       = fetch_or_get($_GET['id'], 'none');
 	$data['status']   = 404;
@@ -359,6 +363,7 @@ if (empty($cl['is_admin'])) {
 		$data['status']  = 400;
 		$data['message'] = "An error occurred while processing your request. Please try again later.";
 	}
+	return header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else if ($action == "update_sitemap") {
 	$data['status']   = 404;
 	$data['err_code'] = 0;
@@ -809,7 +814,7 @@ $db = $db->where("time", (time() - 604800), "<"); $qr=$db->delete(T_ACC_VALIDS);
 
     require_once(cl_full_path("core/apps/cpanel/invite_users/app_ctrl.php"));
 
-    $invite_links = cl_admin_get_user_invitations();
+    // $invite_links = cl_admin_get_user_invitations();
     $data["links"] = $invite_links;
     } else if ($action == "delete_invite_link") {
     $data['status'] = 400;

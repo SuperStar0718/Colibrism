@@ -1,368 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="msg_container">
+    <div class="chat_body row">
+        <div class="left-sidebar">
+            <div class="title flex">
+                <div class="text">
+                    Chat
+                </div>
 
-<head>
-    <meta charset="UTF-8">
-    <title>
-        <?php if (not_empty($me['new_notifs'])) : ?>
-        (<?php echo fetch_or_get($me['new_notifs']); ?>)
-        <?php endif; ?>
 
-        <?php echo fetch_or_get($cl["page_title"], $cl["config"]["title"]); ?>
-    </title>
+            </div>
+            <div class="inbox_list">
 
-    <meta content="charset=UTF-8" />
-    <link rel="icon" href="http://localhost/ColibriSM/themes/default/statics/img/favicon.png" type="image/png">
-    <meta name="image" content="<?php echo fetch_or_get($cl['page_img'], $cl["config"]["site_logo"]); ?>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='{%config theme_url%}/statics/css/styles.css'>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
-    <link rel='stylesheet'
-        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
+                <?php global $user_list;
+                if (not_empty($cl['conversations']))
+                    foreach ($cl['conversations'] as $key => $conversation) : ?>
+                <?php if (not_empty($_GET['community_id'])) : ?>
+                <a
+                    href="mod_mail?community_id=<?php echo $_GET['community_id'] ?>&conversation_id=<?php echo $conversation['id'] ?>">
+                    <?php else : ?>
+                    <a href="mod_mail?conversation_id=<?php echo $conversation['id'] ?>">
+                        <?php endif; ?>
+                        <div class="inbox_item flex row <?php if ($cl['conversation_id'] == $conversation['id']) {
+                                                                echo "active";
+                                                                global $client_avatar;
+                                                                $client_avatar = $user_list[$key]['avatar'];
+                                                            } ?>">
+                            <div class="avatar user-image circle "> <img class=""
+                                    src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
+                            <div class="content ">
+                                <div class="name"><?php echo $user_list[$key]['username'] ?></div>
+                                <div class="text"><?php echo $user_list[$key]['message']; ?></div>
+                            </div>
+                        </div>
+                    </a>
 
-    <link rel='stylesheet' href='{%config theme_url%}/statics/css/inbox.css'>
+                    <?php endforeach; ?>
 
-    <style>
-    /* .Nav-bar .seach-bar-content .form-control input */
-    .Nav-bar,
-    .main .Post-bar,
-    .side-bar-r .rues-content .flex.col.gap-1 label,
-    .Nav-bar .seach-bar-content .form-control input,
-    .Nav-bar .User-account-dropdown,
-    .main .Post-bar .controls-content textarea {
-        background-color: <?php echo $cl['display_set']['highlight_color'] ?>;
-    }
 
-    .Nav-bar .seach-bar-content .form-control input,
-    .Nav-bar .User-account-dropdown,
-    .main .Post-bar .controls-content textarea {
-        filter: brightness(75%);
-    }
-    </style>
-</head>
-
-<body class="m-a">
-    <nav class="Nav-bar flex center gap-2 nd">
-        <div class="page-logo-content"></div>
-        <div class="content">
-            <label class="btn hidden" for="showSeachBar"><i class="material-symbols-outlined">search</i></label>
-            <label class="btn hidden" for="showPanelButons"><i class="material-symbols-outlined">sort</i></label>
-        </div>
-        <div class="seach-bar-content flex center">
-            <div class="form-control">
-                <input class="target" type="text" placeholder="# explore">
             </div>
         </div>
-        <div class="other flex nd center">
-            <input class="hidden" id="showPanelButons" type="checkbox" name="showPanelButons">
-            <div class="panel-btns-content flex nd">
-                <a class="home-link btn round" href="home">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/home.png"); ?>">&nbsp;Home</a>
-                <div class="notifications-content flex center">
-                    <div class="ford-points-btn btn">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/grid (1).png"); ?>">
+        <div class="message ">
+            <div class="title flex row">
+                <div class="text">Title</div>
+                <div class="icon">
+                    <div>
+                        <img src="<?php convert_into_base64("themes/default/statics/img/settings.png"); ?>">
                     </div>
-                    <div class="messages-btn btn">
-                        <a href="inbox">
+                    <div>
+                        <img src="<?php convert_into_base64("themes/default/statics/img/resize (1).png"); ?>">
+                    </div>
+                    <div>
+                        <img src="<?php convert_into_base64("themes/default/statics/img/down.png"); ?>">
+                    </div>
+                    <div>
+                        <img src="<?php convert_into_base64("themes/default/statics/img/close.png"); ?>">
+                    </div>
 
-                            <img src="<?php convert_into_base64("themes/default/statics/img/email (1).png"); ?>">
-                        </a>
-                    </div>
-                    <div class="notifications-btn dropdown-toggle btn">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/notification.png"); ?>">
-                        <sup class="text-white bg-danger">3</sup>
-                    </div>
-                    <div class="notification-list dropdown-menu">
-                        <a href="notifications?subject=new_tweets">
-                            <div class="notification">
-                                <div class="text">
-                                    New Tweets
-                                </div>
-                                <div class="sup">
-                                    4
-                                </div>
-                            </div>
-                        </a>
-                        <a href="notifications?subject=mentions">
-                            <div class="notification">
-                                <div class="text">
-                                    Mentions
-                                </div>
-                                <div class="sup">
-                                    4
-                                </div>
-                            </div>
-                        </a>
-                        <a href="notifications?subject=dms">
-                            <div class="notification">
-                                <div class="text">
-                                    Dms
-                                </div>
-                                <div class="sup">
-                                    4
-                                </div>
-                            </div>
-                        </a>
-                        <a href="notifications?subject=modmails">
-                            <div class="notification">
-                                <div class="text">
-                                    Modmails
-                                </div>
-                                <div class="sup">
-                                    4
-                                </div>
-                            </div>
-                        </a>
-                        <a href="notifications?subject=retweets">
-                            <div class="notification">
-                                <div class="text">
-                                    Retweets
-                                </div>
-                                <div class="sup">
-                                    4
-                                </div>
-                            </div>
-                        </a>
-                        <a href="notifications?subject=others">
-                            <div class="notification">
-                                <div class="text">
-                                    Others
-                                </div>
-                                <div class="sup">
-                                    4
-                                </div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
-            <label class="User-account-dropdown btn mintext bg-3 round flex center nd gap-1" for="test">
-                <div class="user-image s-4 circle">
-                    <img src="<?php convert_into_base64($me['avatar']); ?>" alt="Avatar">
-                </div>
-                <span>@<?php echo $cl['me']['username'] ?></span>
-                <input class="hidden" id="test" type="checkbox" name="test">
-                <ul class="panel-links-content absolute bg-3 target flex col gap-1">
-                    <li>
-                        <a class="flex center nd gap-1" href="#">
-                            <i class="material-symbols-outlined">account_circle</i>
-                            <?php echo $cl['me']['username'] ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="flex center nd gap-1" href="home">
-                            <i class="material-symbols-outlined">description</i>
-                            Timeline
-                        </a>
-                    </li>
-                    <li>
-                        <a class="flex center nd gap-1" href="notifications">
-                            <i class="material-symbols-outlined">notifications_active</i>
-                            Notifications
-                        </a>
-                    </li>
-                    <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">local_fire_department</i> Trending</a></li>
-                    <li><a class="flex center nd gap-1" href="explorer"><i class="material-symbols-outlined">tag</i>
-                            Explore</a></li>
-                    <li>
-                        <a class="flex center nd gap-1" href="inbox">
-                            <i class="material-symbols-outlined">forum</i>
-                            Messages
-                        </a>
-                    </li>
-                    <li><a class="flex center nd gap-1" href="bookmarks"><i
-                                class="material-symbols-outlined">bookmark</i>
-                            Bookmarks</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">gpp_maybe</i>
-                            Control Panel</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">account_balance_wallet</i> Wallet</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">campaign</i>
-                            Advertising</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i class="material-symbols-outlined">group_work</i>
-                            Lorem</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">manage_accounts</i> Profile Settings</a></li>
-                    <li><a class="flex center nd gap-1" href="#"><i
-                                class="material-symbols-outlined">display_settings</i> Display Settings</a></li>
-                    <li><a class="flex center nd gap-1" href="logout"><i class="material-symbols-outlined">logout</i>
-                            Logout</a></li>
-                </ul>
-                <div class="aux-div fixed hidden"></div>
-            </label>
-            <div class="showmore-btn btn flex center">
-                <img src="<?php convert_into_base64("themes/default/statics/img/shield (1).png"); ?>">
-            </div>
-        </div>
-    </nav>
-    <div class="msg_container">
-        <div class="chat_body row">
-            <div class="left-sidebar">
-                <div class="title flex">
+            <div class="message_body row">
+                <?php
+                if (not_empty($_GET['community_id'])) :
+                    $date = "";
+                    foreach ($cl['messages'] as $key => $message) : ?>
+                <?php if ($message['owner'] == 0) : ?>
+                <div class="sender">
                     <div class="text">
-                        Chat
+                        <?php echo $message['message']; ?>
+                        <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
+                        </div>
+
                     </div>
-
-
-                </div>
-                <div class="inbox_list">
-
-
-                    <?php global $user_list;
-                    if (not_empty($cl['conversations']))
-                        foreach ($cl['conversations'] as $key => $conversation) : ?>
-                    <?php if (not_empty($_GET['community_id'])) : ?>
-                    <a
-                        href="mod_mail?community_id=<?php echo $_GET['community_id'] ?>&conversation_id=<?php echo $conversation['id'] ?>">
-                        <?php else : ?>
-                        <a href="mod_mail?conversation_id=<?php echo $conversation['id'] ?>">
-                            <?php endif; ?>
-                            <div class="inbox_item flex row <?php if ($cl['conversation_id'] == $conversation['id']) {
-                                                                    echo "active";
-                                                                    global $client_avatar;
-                                                                    $client_avatar = $user_list[$key]['avatar'];
-                                                                } ?>">
-                                <div class="avatar user-image circle "> <img class=""
-                                        src="<?php convert_into_base64($user_list[$key]['avatar']); ?>"></div>
-                                <div class="content ">
-                                    <div class="name"><?php echo $user_list[$key]['username'] ?></div>
-                                    <div class="text"><?php echo $user_list[$key]['message']; ?></div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <?php endforeach; ?>
-
+                    <div class="avatar"><img src="<?php convert_into_base64($cl['community_icon']); ?>"></div>
 
                 </div>
-            </div>
-            <div class="message ">
-                <div class="title flex row">
-                    <div class="text">Title</div>
-                    <div class="icon">
-                        <div>
-                            <img src="<?php convert_into_base64("themes/default/statics/img/settings.png"); ?>">
-                        </div>
-                        <div>
-                            <img src="<?php convert_into_base64("themes/default/statics/img/resize (1).png"); ?>">
-                        </div>
-                        <div>
-                            <img src="<?php convert_into_base64("themes/default/statics/img/down.png"); ?>">
-                        </div>
-                        <div>
-                            <img src="<?php convert_into_base64("themes/default/statics/img/close.png"); ?>">
+                <?php else : ?>
+                <div class="receiver">
+                    <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
+                    <div class="text">
+                        <?php echo $message['message']; ?>
+                        <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
                         </div>
 
                     </div>
                 </div>
-                <div class="message_body row">
-                    <?php
-                    if (not_empty($_GET['community_id'])) :
-                        $date = "";
-                        foreach ($cl['messages'] as $key => $message) : ?>
-                    <?php if ($message['owner'] == 0) : ?>
-                    <div class="sender">
-                        <div class="text">
-                            <?php echo $message['message']; ?>
-                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
-                            </div>
+                <?php endif; ?>
 
+                <?php if (count($cl['messages']) == ($key + 1)) : ?>
+                <div class="date"><?php output_date($message['created_at']); ?></div>
+                <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
+                <div class="date"><?php output_date($message['created_at']); ?></div>
+                <?php endif; ?>
+                <?php endforeach; ?>
+                <?php else : ?>
+                <?php
+                    $date = "";
+                    foreach ($cl['messages'] as $key => $message) : ?>
+                <?php if ($message['owner'] == $me['id']) : ?>
+                <div class="sender">
+                    <div class="text">
+                        <?php echo $message['message']; ?>
+                        <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
                         </div>
-                        <div class="avatar"><img src="<?php convert_into_base64($cl['community_icon']); ?>"></div>
 
                     </div>
-                    <?php else : ?>
-                    <div class="receiver">
-                        <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
-                        <div class="text">
-                            <?php echo $message['message']; ?>
-                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
-                            </div>
-
-                        </div>
-                    </div>
-                    <?php endif; ?>
-
-                    <?php if (count($cl['messages']) == ($key + 1)) : ?>
-                    <div class="date"><?php output_date($message['created_at']); ?></div>
-                    <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
-                    <div class="date"><?php output_date($message['created_at']); ?></div>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
-                    <?php else : ?>
-                    <?php
-                        $date = "";
-                        foreach ($cl['messages'] as $key => $message) : ?>
-                    <?php if ($message['owner'] == $me['id']) : ?>
-                    <div class="sender">
-                        <div class="text">
-                            <?php echo $message['message']; ?>
-                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
-                            </div>
-
-                        </div>
-                        <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
-
-                    </div>
-                    <?php else : ?>
-                    <div class="receiver">
-                        <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
-                        <div class="text">
-                            <?php echo $message['message']; ?>
-                            <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
-                            </div>
-
-                        </div>
-                    </div>
-                    <?php endif; ?>
-
-                    <?php if (count($cl['messages']) == ($key + 1)) : ?>
-                    <div class="date"><?php output_date($message['created_at']); ?></div>
-                    <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
-                    <div class="date"><?php output_date($message['created_at']); ?></div>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
-
-                    <?php endif; ?>
+                    <div class="avatar"><img src="<?php convert_into_base64($me['avatar']); ?>"></div>
 
                 </div>
-                <form method="POST" action="native_api/inbox/send_mod_mail">
-                    <div class="footer row flex">
-                        <div class="camera">
-                            <img src="<?php convert_into_base64("themes/default/statics/img/camera.png"); ?>">
+                <?php else : ?>
+                <div class="receiver">
+                    <div class="avatar"><img src="<?php convert_into_base64($client_avatar); ?>"></div>
+                    <div class="text">
+                        <?php echo $message['message']; ?>
+                        <div class="time"><?php echo date('H:i A', strtotime($message['created_at'])); ?>
                         </div>
-                        <div class="input_body flex">
-                            <div class="type_content">
-                                <textarea placeholder="Message" name="message"></textarea>
-                            </div>
-                            <div class="gif">
-                                <img src="<?php convert_into_base64("themes/default/statics/img/gif.png"); ?>">
-                            </div>
-                            <div class="emoji">
-                                <img src="<?php convert_into_base64("themes/default/statics/img/happy.png"); ?>">
-                            </div>
-                        </div>
-                        <div class="send">
-                            <button type="submit" class="submit">
-                                <img src="<?php convert_into_base64("themes/default/statics/img/send.png"); ?>">
-                            </button>
-                        </div>
+
                     </div>
-                    <?php if (not_empty($cl['conversation_id'])) : ?>
-                    <input type="hidden" name="conversation_id" value="<?php echo $cl['conversation_id'] ?>">
-                    <?php endif; ?>
-                    <?php if (not_empty($_GET['community_id'])) : ?>
-                    <input type="hidden" name="owner" value="true">
-                    <?php endif; ?>
-                </form>
+                </div>
+                <?php endif; ?>
+
+                <?php if (count($cl['messages']) == ($key + 1)) : ?>
+                <div class="date"><?php output_date($message['created_at']); ?></div>
+                <?php elseif (date('M, d, Y', strtotime($cl['messages'][$key]['created_at'])) != date('M, d, Y', strtotime($cl['messages'][$key + 1]['created_at']))) : ?>
+                <div class="date"><?php output_date($message['created_at']); ?></div>
+                <?php endif; ?>
+                <?php endforeach; ?>
+
+                <?php endif; ?>
 
             </div>
+            <form method="POST" action="native_api/inbox/send_mod_mail">
+                <div class="footer row flex">
+                    <div class="camera">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/camera.png"); ?>">
+                    </div>
+                    <div class="input_body flex">
+                        <div class="type_content">
+                            <textarea placeholder="Message" name="message"></textarea>
+                        </div>
+                        <div class="gif">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/gif.png"); ?>">
+                        </div>
+                        <div class="emoji">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/happy.png"); ?>">
+                        </div>
+                    </div>
+                    <div class="send">
+                        <button type="submit" class="submit">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/send.png"); ?>">
+                        </button>
+                    </div>
+                </div>
+                <?php if (not_empty($cl['conversation_id'])) : ?>
+                <input type="hidden" name="conversation_id" value="<?php echo $cl['conversation_id'] ?>">
+                <?php endif; ?>
+                <?php if (not_empty($_GET['community_id'])) : ?>
+                <input type="hidden" name="owner" value="true">
+                <?php endif; ?>
+            </form>
+
         </div>
     </div>
-</body>
-
-</html>
+</div>

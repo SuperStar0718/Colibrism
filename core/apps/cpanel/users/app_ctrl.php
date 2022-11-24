@@ -40,12 +40,5 @@ function cl_admin_get_users($args = array()) {
             $data[]             = $row;
         }
     }
-$sql            = cl_sqltepmlate('apps/cpanel/users/sql/fetch_site_users',array(
-        't_users'   => $t_users,
-        'limit'     => false,
-        'filter'    => $filter,
-    ));
-    $users = $db->rawQuery($sql);
-    $cl['total_users'] = count($users);
     return $data;
 }

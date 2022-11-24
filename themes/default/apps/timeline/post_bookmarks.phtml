@@ -115,7 +115,8 @@
                         <span><?php echo count(json_decode($cl['li']['downvote_count'])); ?></span>
                     </div>
                     <div class="teewt-shared-count-content">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/refresh.png"); ?>">
+                        <img
+                            src="<?php convert_into_base64("themes/default/statics/img/refresh_" . $cl['display_set']['background'] . ".png"); ?>">
 
                         <span> 124</span>
                     </div>
@@ -212,7 +213,8 @@
         </div>
         <div class="large-btns-content flex wrap">
             <div class="btn large bg-3">
-                <img src="<?php convert_into_base64("themes/default/statics/img/refresh.png"); ?>">
+                <img
+                    src="<?php convert_into_base64("themes/default/statics/img/refresh_" . $cl['display_set']['background'] . ".png"); ?>">
 
                 Retweet
             </div>

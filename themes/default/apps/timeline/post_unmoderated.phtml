@@ -1,80 +1,77 @@
 <?php if ($cl['li']['advertising']) : ?>
-<?php echo cl_template('timeline/ad'); ?>
+    <?php echo cl_template('timeline/ad'); ?>
 <?php else :
     global $community;
     // print_r($cl['li']);
 ?>
 
-<div class="Tweet-target target col nd gap-1"
-    <?php if (not_empty($cl['li']['post_flair'])) echo "style='background-color:" . $cl['li']['post_flair']['post_back_color'] . "';" ?>>
-    <a href="<?php echo (htmlentities("show_post_details" . "?post_description=" . $cl['li']['description'] . "&community_id=" . $cl['li']['community_id'])); ?>"
-        class="target_a"></a>
+    <div class="Tweet-target target col nd gap-1" <?php if (not_empty($cl['li']['post_flair'])) echo "style='background-color:" . $cl['li']['post_flair']['post_back_color'] . "';" ?>>
+        <a href="<?php echo (htmlentities("show_post_details" . "?post_description=" . $cl['li']['description'] . "&community_id=" . $cl['li']['community_id'])); ?>" class="target_a"></a>
 
-    <div class="Option-button flex center btn">
-        <div class="relative">
-            <input type="checkbox" id="more_btn_<?php echo $cl['li']['id'] ?>" class="more_btn">
+        <div class="Option-button flex center btn">
+            <div class="relative">
+                <input type="checkbox" id="more_btn_<?php echo $cl['li']['id'] ?>" class="more_btn">
 
-            <label for="more_btn_<?php echo $cl['li']['id'] ?>">
-                <img src="<?php convert_into_base64("themes/default/statics/img/more.png"); ?>" alt="Avatar">
-            </label>
+                <label for="more_btn_<?php echo $cl['li']['id'] ?>">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/more.png"); ?>" alt="Avatar">
+                </label>
 
-            <div class="dropdown">
-                <label for="flair_modal_<?php echo $cl['li']['id'] ?>">
-                    <i class="material-symbols-outlined">add_circle</i>
-                    ADD POST FLAIR</label>
+                <div class="dropdown">
+                    <label for="flair_modal_<?php echo $cl['li']['id'] ?>">
+                        <i class="material-symbols-outlined">add_circle</i>
+                        ADD POST FLAIR</label>
 
-            </div>
-
-
-        </div>
-
-    </div>
-    <input type="checkbox" id="flair_modal_<?php echo $cl['li']['id'] ?>" class="flair_modal">
-
-    <div class="overlay_flair ">
-        <label for="flair_modal_<?php echo $cl['li']['id'] ?>" class="close_flair"></label>
-        <div class="main_widget flex">
-            <form action="native_api/community_settings/paste_flair" method="POST">
-                <div>
-                    <input type="radio" id="paste_btn_<?php echo $cl['li']['id'] ?>" class="paste_btn">
-                    <input type="text" placeholder="Input Flair ID">
-
-                    <?php if (not_empty($_COOKIE['flair_id'])) : ?>
-                    <input type="text" class="show_id" name="flair_id" value="<?php echo  $_COOKIE['flair_id']; ?>">
-                    <input type="text" name="community_id" value="<?php echo $_GET['community_id'] ?>" hidden>
-                    <input type="text" name="post_id" value="<?php echo $cl['li']['id'] ?>" hidden>
-                    <?php endif; ?>
-                    <label for="paste_btn_<?php echo $cl['li']['id'] ?>">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/copy.png"); ?>">
-                    </label>
                 </div>
-                <input type="submit" value="SAVE">
 
-            </form>
+
+            </div>
+
         </div>
-    </div>
-    <div class="teewt-data flex  gap-1">
-        <div class="user-image-content">
-            <div class="user-image s-2 circle">
-                <img src="<?php convert_into_base64($cl['li']['owner']['avatar']); ?>" alt="Avatar">
+        <input type="checkbox" id="flair_modal_<?php echo $cl['li']['id'] ?>" class="flair_modal">
+
+        <div class="overlay_flair ">
+            <label for="flair_modal_<?php echo $cl['li']['id'] ?>" class="close_flair"></label>
+            <div class="main_widget flex">
+                <form action="native_api/community_settings/paste_flair" method="POST">
+                    <div>
+                        <input type="radio" id="paste_btn_<?php echo $cl['li']['id'] ?>" class="paste_btn">
+                        <input type="text" placeholder="Input Flair ID">
+
+                        <?php if (not_empty($_COOKIE['flair_id'])) : ?>
+                            <input type="text" class="show_id" name="flair_id" value="<?php echo  $_COOKIE['flair_id']; ?>">
+                            <input type="text" name="community_id" value="<?php echo $_GET['community_id'] ?>" hidden>
+                            <input type="text" name="post_id" value="<?php echo $cl['li']['id'] ?>" hidden>
+                        <?php endif; ?>
+                        <label for="paste_btn_<?php echo $cl['li']['id'] ?>">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/copy.png"); ?>">
+                        </label>
+                    </div>
+                    <input type="submit" value="SAVE">
+
+                </form>
             </div>
         </div>
-        <div class="teewt-content">
-            <a href="profile?user_id=<?php echo $cl['li']['owner']['id']; ?>">
-                <h4 style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                    @<?php echo ($cl['li']['owner']['username']); ?>
-                </h4>
-            </a>
-            <div class="posted_title">
-                <div class="posted-by t-color-3">
-                    posted by
-                    <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>"
-                        style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                        <?php if (not_empty($cl['li']['community_name'])) echo $cl['li']['community_name'];
+        <div class="teewt-data flex  gap-1">
+            <div class="user-image-content">
+                <div class="user-image s-2 circle">
+                    <img src="<?php convert_into_base64($cl['li']['owner']['avatar']); ?>" alt="Avatar">
+                </div>
+            </div>
+            <div class="teewt-content">
+                <a href="profile?user_id=<?php echo $cl['li']['owner']['id']; ?>">
+                    <h4>
+                        @<?php echo ($cl['li']['owner']['username']); ?>
+                    </h4>
+                </a>
+                <div class="posted_title">
+                    <div class="posted-by t-color-3">
+                        posted by
+                        <a href="<?php echo ("community" . "?community_id=" . $cl['li']['community_id']); ?>">
+                            <?php if (not_empty($cl['li']['community_name'])) echo $cl['li']['community_name'];
                             else echo $community['name']; ?>
-                    </a>
-                    ●
-                    <?php
+                        </a>
+                        ●
+                        <?php
                         $now = new DateTime();
 
                         $date = new DateTime($cl['li']['time']);
@@ -100,153 +97,140 @@
                         else echo $sec . "seconds ago";
                         // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
                         ?>
-                </div>
-                <div class="icon_middle">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/image.png"); ?>">
-                </div>
-                <div class="icon_middle">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/lock.png"); ?>">
-                </div>
-                <?php if (not_empty($cl['li']['post_flair']['flairText'])) : ?>
-                <div class="flair_text flex"
-                    style="background-color: <?php echo $cl['li']['post_flair']['flair_back_color'] ?>; color: <?php echo $cl['li']['post_flair']['flair_text_color']; ?>">
-                    <?php echo $cl['li']['post_flair']['flairText'] ?>
-                </div>
-                <?php endif; ?>
-                <div></div>
+                    </div>
+                    <div class="icon_middle">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/image.png"); ?>">
+                    </div>
+                    <div class="icon_middle">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/lock.png"); ?>">
+                    </div>
+                    <?php if (not_empty($cl['li']['post_flair']['flairText'])) : ?>
+                        <div class="flair_text flex" style="background-color: <?php echo $cl['li']['post_flair']['flair_back_color'] ?>; color: <?php echo $cl['li']['post_flair']['flair_text_color']; ?>">
+                            <?php echo $cl['li']['post_flair']['flairText'] ?>
+                        </div>
+                    <?php endif; ?>
+                    <div></div>
 
+                </div>
+                <p><?php echo $cl['li']['description']; ?></p>
+                <div class="teewt-reactions-content flex nd">
+                    <div class="main-reactions-content flex">
+                        <div class="teewt-likes-count-content">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/thumbs_up.png"); ?>">
+                            <span><?php echo count(json_decode($cl['li']['upvote_count'])); ?></span>
+
+                            <img src="<?php convert_into_base64("themes/default/statics/img/thumbs_down.png"); ?>">
+
+                            <span><?php echo count(json_decode($cl['li']['downvote_count'])); ?></span>
+                        </div>
+                        <div class="teewt-shared-count-content">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/refresh_" . $cl['display_set']['background'] . ".png"); ?>">
+
+                            <span> 124</span>
+                        </div>
+                    </div>
+                    <div class="teewt-comments-count-content mintext t-color-3"><span>45 Comments</span>
+                    </div>
+                </div>
             </div>
-            <p><?php echo $cl['li']['description']; ?></p>
-            <div class="teewt-reactions-content flex nd">
-                <div class="main-reactions-content flex">
-                    <div class="teewt-likes-count-content">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/thumbs_up.png"); ?>">
-                        <span><?php echo count(json_decode($cl['li']['upvote_count'])); ?></span>
+        </div>
 
-                        <img src="<?php convert_into_base64("themes/default/statics/img/thumbs_down.png"); ?>">
+        <div class="reaction-btns-content flex nd wrap">
+            <div class="r-action-btns-content flex">
+                <?php if (!in_array($me['id'], json_decode($cl['li']['upvote_count']))) { ?>
+                    <a href="native_api/edit_post/up_vote?post_id=<?php echo $cl['li']['id']; ?>">
+                        <div class="r-action-btn btn bg-3">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/up-arrow_" . $cl['display_set']['background'] . ".png");   ?>">
 
-                        <span><?php echo count(json_decode($cl['li']['downvote_count'])); ?></span>
+
+                        </div>
+
+                    </a>
+                <?php } else { ?>
+                    <div class="r-action-btn desabled btn bg-3">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/up-arrow_" . $cl['display_set']['background'] . ".png");   ?>">
+
+
                     </div>
-                    <div class="teewt-shared-count-content">
-                        <img src="<?php convert_into_base64("themes/default/statics/img/refresh.png"); ?>">
+                <?php } ?>
+                <?php if (!in_array($me['id'], json_decode($cl['li']['downvote_count']))) { ?>
 
-                        <span> 124</span>
+                    <a href="native_api/edit_post/down_vote?post_id=<?php echo $cl['li']['id'] ?>">
+
+                        <div class="r-action-btn btn bg-3">
+                            <img src="<?php convert_into_base64("themes/default/statics/img/down-arrow_" . $cl['display_set']['background'] . ".png"); ?>">
+                        </div>
+                    </a>
+                <?php } else { ?>
+                    <div class="r-action-btn desabled btn bg-3">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/down-arrow_" . $cl['display_set']['background'] . ".png"); ?>">
+
+
+                    </div>
+                <?php } ?>
+            </div>
+            <input type="checkbox" id="award_<?php echo $cl['li']['id'] ?>" class="award">
+            <div class="award_window">
+                <div class="award_window_body">
+                    <div class="award_image">
+                        <div style="background-image: url('themes/default/statics/img/Awards/7c2f679102faa666537fd6e9dfca15.png');">
+                        </div>
+                        <div style="background-image: url('themes/default/statics/img/Awards/2b1705f353f6aa39c3ce8af75c0d53.png');">
+                        </div>
+                        <div style="background-image: url('themes/default/statics/img/Awards/39ea697e96ea785feb5d7404023d97.png');">
+                        </div>
+                        <div style="background-image: url('themes/default/statics/img/Awards/71a424fcea3aa44956d5d48cda4b00.png');">
+                        </div>
+                        <div style="background-image: url('themes/default/statics/img/Awards/60265dff45ceb1d57ad22c14830cd8.png');">
+                        </div>
+                        <div style="background-image: url('themes/default/statics/img/Awards/d50d9a0be45f9ca79ae545c889cc4b.png');">
+                        </div>
+                        <div style="background-image: url('themes/default/statics/img/Awards/f48bb9fdc5e6832a8bda29dfd943ae.png');">
+                        </div>
+                        <div style="background-image: url('themes/default/statics/img/Awards/Screenshot_13.png');">
+                        </div>
+                        <div style="background-image: url('themes/default/statics/img/Awards/Screenshot_23.png');">
+                        </div>
+                    </div>
+                    <div>
+                        YOU HAVE NOT PURCHASED ANY AWARD YET, GO TO AWARD STORE TO BUY PACKS OF AWARD
+                        BY CLICKING
+                        <a href="#"> HERE</a>
                     </div>
                 </div>
-                <div class="teewt-comments-count-content mintext t-color-3"><span>45 Comments</span>
+            </div>
+            <div class="r-action-btns-content flex">
+
+                <div class="r-action-btn btn bg-3">
+                    <label for="award_<?php echo $cl['li']['id'] ?>">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/award.png"); ?>">
+                    </label>
+                </div>
+            </div>
+            <div class="large-btns-content flex wrap">
+                <a href="native_api/edit_post/approve?post_id=<?php echo $cl['li']['id'] ?>">
+                    <div class="btn large bg-3">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/check-mark_" . $cl['display_set']['background'] . ".png"); ?>">
+
+                        Approve
+                    </div>
+                </a>
+                <a href="native_api/edit_post/remove?post_id=<?php echo $cl['li']['id'] ?>">
+                    <div class="btn large bg-3">
+                        <img src="<?php convert_into_base64("themes/default/statics/img/block_" . $cl['display_set']['background'] . ".png"); ?>">
+
+                        Remove
+                    </div>
+                </a>
+            </div>
+            <div class="r-action-btns-content flex">
+
+                <div class="r-action-btn btn bg-3">
+                    <img src="<?php convert_into_base64("themes/default/statics/img/link.png"); ?>">
+
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="reaction-btns-content flex nd wrap">
-        <div class="r-action-btns-content flex">
-            <?php if (!in_array($me['id'], json_decode($cl['li']['upvote_count']))) { ?>
-            <a href="native_api/edit_post/up_vote?post_id=<?php echo $cl['li']['id']; ?>">
-
-                <div class="r-action-btn btn bg-3">
-                    <img
-                        src="<?php convert_into_base64("themes/default/statics/img/sort-arrows-couple-pointing-up-and-down (1).png"); ?>">
-
-
-                </div>
-
-            </a>
-            <?php } else { ?>
-            <div class="r-action-btn desabled btn bg-3">
-                <img
-                    src="<?php convert_into_base64("themes/default/statics/img/sort-arrows-couple-pointing-up-and-down (1).png"); ?>">
-
-
-            </div>
-            <?php } ?>
-            <?php if (!in_array($me['id'], json_decode($cl['li']['downvote_count']))) { ?>
-
-            <a href="native_api/edit_post/down_vote?post_id=<?php echo $cl['li']['id'] ?>">
-
-                <div class="r-action-btn btn bg-3">
-                    <img
-                        src="<?php convert_into_base64("themes/default/statics/img/sort-arrows-couple-pointing-up-and-down (2).png"); ?>">
-                </div>
-            </a>
-            <?php } else { ?>
-            <div class="r-action-btn desabled btn bg-3">
-                <img
-                    src="<?php convert_into_base64("themes/default/statics/img/sort-arrows-couple-pointing-up-and-down (2).png"); ?>">
-
-
-            </div>
-            <?php } ?>
-        </div>
-        <input type="checkbox" id="award_<?php echo $cl['li']['id'] ?>" class="award">
-        <div class="award_window">
-            <div class="award_window_body">
-                <div class="award_image">
-                    <div
-                        style="background-image: url('themes/default/statics/img/Awards/7c2f679102faa666537fd6e9dfca15.png');">
-                    </div>
-                    <div
-                        style="background-image: url('themes/default/statics/img/Awards/2b1705f353f6aa39c3ce8af75c0d53.png');">
-                    </div>
-                    <div
-                        style="background-image: url('themes/default/statics/img/Awards/39ea697e96ea785feb5d7404023d97.png');">
-                    </div>
-                    <div
-                        style="background-image: url('themes/default/statics/img/Awards/71a424fcea3aa44956d5d48cda4b00.png');">
-                    </div>
-                    <div
-                        style="background-image: url('themes/default/statics/img/Awards/60265dff45ceb1d57ad22c14830cd8.png');">
-                    </div>
-                    <div
-                        style="background-image: url('themes/default/statics/img/Awards/d50d9a0be45f9ca79ae545c889cc4b.png');">
-                    </div>
-                    <div
-                        style="background-image: url('themes/default/statics/img/Awards/f48bb9fdc5e6832a8bda29dfd943ae.png');">
-                    </div>
-                    <div style="background-image: url('themes/default/statics/img/Awards/Screenshot_13.png');">
-                    </div>
-                    <div style="background-image: url('themes/default/statics/img/Awards/Screenshot_23.png');">
-                    </div>
-                </div>
-                <div>
-                    YOU HAVE NOT PURCHASED ANY AWARD YET, GO TO AWARD STORE TO BUY PACKS OF AWARD
-                    BY CLICKING
-                    <a href="#"> HERE</a>
-                </div>
-            </div>
-        </div>
-        <div class="r-action-btns-content flex">
-
-            <div class="r-action-btn btn bg-3">
-                <label for="award_<?php echo $cl['li']['id'] ?>">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/award.png"); ?>">
-                </label>
-            </div>
-        </div>
-        <div class="large-btns-content flex wrap">
-            <a href="native_api/edit_post/approve?post_id=<?php echo $cl['li']['id'] ?>">
-                <div class="btn large bg-3">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/check-mark.png"); ?>">
-
-                    Approve
-                </div>
-            </a>
-            <a href="native_api/edit_post/remove?post_id=<?php echo $cl['li']['id'] ?>">
-                <div class="btn large bg-3">
-                    <img src="<?php convert_into_base64("themes/default/statics/img/block.png"); ?>">
-
-                    Remove
-                </div>
-            </a>
-        </div>
-        <div class="r-action-btns-content flex">
-
-            <div class="r-action-btn btn bg-3">
-                <img src="<?php convert_into_base64("themes/default/statics/img/link.png"); ?>">
-
-            </div>
-        </div>
-    </div>
-</div>
 
 <?php endif; ?>

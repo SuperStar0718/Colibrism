@@ -44,7 +44,7 @@
 
     </div>
     <div class="Comunity-target target">
-        <h4>COMMUNITIES YOU HAVE FOLLOWED</h4>
+        <h4 class="title">COMMUNITIES YOU HAVE FOLLOWED</h4>
         <hr>
         <div class="col">
             <?php shuffle($cl['communities_followed']); ?>
@@ -76,8 +76,7 @@
                     <form method="POST" action="native_api/main/join">
                         <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
                         <div class="comunkarity-action-content flex center">
-                            <button class="follow-btn mintext btn" type="submit"
-                                style="background-color: #c14848;">Leave</button>
+                            <button class="follow-btn highlight_button_dark mintext btn" type="submit">Leave</button>
                         </div>
                     </form>
                 </div>
@@ -90,18 +89,3 @@
     <div class="Big-button btn round">AWARD STORE</div>
     <div class="Big-button btn round">DONATORS</div>
 </section>
-<style>
-.Management-dislplay li,
-.comunyties-content .Comunity-display .comunity-data-content h4 {
-    color: <?php echo $cl['display_set']['link_color'];
-    ?>;
-}
-
-.Management-target .t-center,
-.Rules-target .t-center,
-.side-bar-l .Comunity-target h3,
-.Comunity-detail-target .comunity-mods-content .t-center {
-    color: <?php echo $cl['display_set']['base_color'];
-    ?>;
-}
-</style>

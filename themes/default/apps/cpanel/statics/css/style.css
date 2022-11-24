@@ -1,6 +1,82 @@
 /* Alerts ===================================== */
 @import url(../css/materialize.css);
 
+body[data-skin="default"] {
+  --cl-primary-color: #009EFF;
+  --cl-primary-color-darken-5: #008ee6;
+  --cl-primary-link-color: #1b95e0;
+}
+
+body[data-skin="green"] {
+  --cl-primary-color: #2fbf63;
+  --cl-primary-color-darken-5: #2aab58;
+  --cl-primary-link-color: #0aa943;
+}
+
+body[data-skin="yellow"] {
+  --cl-primary-color: #fdad1f;
+  --cl-primary-color-darken-5: #fda406;
+  --cl-primary-link-color: #fdad1f;
+}
+
+body[data-skin="pink"] {
+  --cl-primary-color: #e0245e;
+  --cl-primary-color-darken-5: #cd1d53;
+  --cl-primary-link-color: #e0245e;
+}
+
+body[data-skin="purple"] {
+  --cl-primary-color: #794bc4;
+  --cl-primary-color-darken-5: #6c3db9;
+  --cl-primary-link-color: #794bc4;
+}
+
+body[data-skin="orange"] {
+  --cl-primary-color: #f45d22;
+  --cl-primary-color-darken-5: #f14c0c;
+  --cl-primary-link-color: #f45d22;
+}
+
+body[data-bg="dark"] {
+  --cl-primary-bg-color: #0b0e16;
+  --cl-secondary-bg-color: #191c24;
+  --cl-third-bg-color: #283440;
+  --cl-notification-bg-color: #254648;
+  --cl-notification-border-color: green;
+  --cl-highlight-color: #545429;
+  --cl-primary-border-color: #323c42;
+  --cl-secondary-border-color: #464646;
+  --cl-primary-text-color: #ffffff;
+  --cl-secondary-text-color: #747c8b;
+  --cl-input-placeholder-color: #5b7083;
+  --cl-input-bg-color: #253341;
+  --cl-primary-box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
+  --cl-secondary-box-shadow: rgba(0, 0, 0, 0.10) 0px 10px 30px 0px;
+  --cl-modal-backdrop: rgba(0, 0, 0, 0.65);
+  --cl-event-hover-bg: #1a2e3b;
+}
+
+body[data-bg="default"] {
+  --cl-primary-bg-color: #f8f8f8;
+  --cl-secondary-bg-color: #ffffff;
+  --cl-third-bg-color: #ffffff;
+  --cl-notification-bg-color: #d0eaff;
+  --cl-notification-border-color: green;
+  --cl-primary-border-color: #dedede;
+  --cl-secondary-border-color: #c9c9c9;
+  --cl-primary-text-color: #14171a;
+  --cl-secondary-text-color: #657786;
+  --cl-highlight-color: #d3d3d3;
+
+  --cl-input-placeholder-color: #5b7083;
+  --cl-input-bg-color: #F0F2F5;
+  --cl-primary-box-shadow: rgba(0, 0, 0, 0.20) 0px 10px 30px 0px;
+  --cl-secondary-box-shadow: rgba(0, 0, 0, 0.12) 0px 10px 30px 0px;
+  --cl-modal-backdrop: rgba(0, 0, 0, 0.65);
+  --cl-event-hover-bg: #f5f8fa;
+}
+
+
 div.inline-alertbox-wrapper {
   width: 100%;
   display: block;
@@ -1688,7 +1764,7 @@ div.inline-alertbox-wrapper div.inline-alertbox.error div.icon i {
 }
 
 .bg-blue {
-  background-color: #e91e63 !important;
+  background-color: var(--cl-primary-color) !important;
   color: #fff;
 }
 
@@ -2501,7 +2577,7 @@ form.filter-data-form div.filter-data-form-option>button.reset-filter {
   color: #fff;
   font-size: 13px;
   border-radius: 5px;
-  background: #1ca1f3;
+  background: var(--cl-primary-color);
   border: 1px solid #e6ecf0;
   box-shadow: none;
   font-weight: 500;
@@ -2913,10 +2989,10 @@ form.filter-data-form div.filter-data-form-option>button.reset-filter:disabled {
 }
 
 .card .header {
-  color: #d4dfe9;
+  color: var(--cl-secondary-text-color);
   padding: 20px;
   position: relative;
-  border-bottom: 1px solid #4d4f50;
+  border-bottom: 1px solid var(--cl-primary-border-color);
 }
 
 .card .header .header-dropdown {
@@ -2974,7 +3050,7 @@ form.filter-data-form div.filter-data-form-option>button.reset-filter:disabled {
 
 .card .body {
   font-size: 14px;
-  color: #b6bec7;
+  color: var(--cl-primary-text-color);
   padding: 20px;
 }
 
@@ -4621,16 +4697,16 @@ table.table tbody tr td,
 table.table tbody tr th {
   padding: 15px;
   border-top: none !important;
-  border-bottom: 1px solid #363636;
-  color: #14171a;
+  border-bottom: 1px solid var(--cl-primary-border-color);
+  color: var(--cl-primary-text-color);
   font-size: 13px;
-  color: #14171a;
+
   vertical-align: middle;
 }
 
 table.table tbody tr td time,
 table.table tbody tr th time {
-  color: #d4dfe9;
+  color: var(--cl-secondary-text-color);
 }
 
 table.table tbody tr td b.num,
@@ -4645,9 +4721,9 @@ table.table tbody tr th div.select-box select {
   border: none;
   padding: 5px 10px 5px;
   background: transparent;
-  background-color: #191c24;
+  /* background-color: var(--cl-secondary-bg-color); */
   cursor: pointer;
-  color: #d4dfe9;
+  color: var(--cl-secondary-text-color);
 }
 
 table.table tbody tr td span.icon,
@@ -4753,7 +4829,7 @@ table.table tbody tr td div.user-info-holder div.uname-holder a,
 table.table tbody tr th div.user-info-holder div.uname-holder a {
   font-size: 13px;
   line-height: 16px;
-  color: #d4dfe9;
+  color: var(--cl-secondary-text-color);
 }
 
 table.table tbody tr td div.banner-flag,
@@ -4781,7 +4857,7 @@ table.table tbody tr th label svg {
   cursor: pointer;
   width: 20px;
   height: 20px;
-  stroke: #d4dfe9;
+  stroke: var(--cl-secondary-text-color);
 }
 
 table.table tbody tr td div.dropdown div.dropdown-menu,
@@ -4864,9 +4940,9 @@ table.table tbody tr.danger th {
 
 table.table thead tr th {
   padding: 10px;
-  border-bottom: 1px solid #4d4f50;
+  border-bottom: 1px solid var(--cl-primary-border-color);
   border-top: none !important;
-  color: #d4dfe9;
+  color: var(--cl-primary-text-color);
   font-weight: normal;
   font-size: 11px;
   text-transform: uppercase;
@@ -4899,7 +4975,7 @@ div.regular-table div.table-pagination {
 }
 
 div.regular-table div.table-pagination a.pagination-ctrls {
-  background: #1ca1f3;
+  background: var(--cl-primary-color);
   color: #fff;
   cursor: pointer;
   transition: all 0.27s ease-in-out;
@@ -5213,7 +5289,7 @@ fieldset[disabled] .form-control {
 }
 
 .breadcrumb li a {
-  color: #d4dfe9;
+  color: var(--cl-secondary-text-color);
   text-decoration: none;
   padding: 0;
   margin: 0;
@@ -6057,6 +6133,21 @@ div.acp-main-left-sidebar ul.menu-list li.menu-list-item:active {
   background: rgb(0 0 0 / 51%);
 }
 
+div.acp-main-left-sidebar ul.menu-list li.menu-list-item div.submenu-list a:hover {
+  color: #d10f10;
+}
+
+
+div.acp-main-left-sidebar ul.menu-list li.menu-list-item.active>label a span.text,
+div.acp-main-left-sidebar ul.menu-list li.menu-list-item:hover>label a span.text,
+div.acp-main-left-sidebar ul.menu-list li.menu-list-item:active>label a span.text {
+  color: #d10f10;
+}
+
+div.acp-main-left-sidebar ul.menu-list li.menu-list-item div.submenu-list a.active {
+  color: #d10f10;
+}
+
 div.acp-main-left-sidebar ul.menu-list li.menu-list-item.active>a span.text,
 div.acp-main-left-sidebar ul.menu-list li.menu-list-item:hover>a span.text,
 div.acp-main-left-sidebar ul.menu-list li.menu-list-item:active>a span.text {
@@ -6066,6 +6157,12 @@ div.acp-main-left-sidebar ul.menu-list li.menu-list-item:active>a span.text {
 div.acp-main-left-sidebar ul.menu-list li.menu-list-item.active>a span.icon svg,
 div.acp-main-left-sidebar ul.menu-list li.menu-list-item:hover>a span.icon svg,
 div.acp-main-left-sidebar ul.menu-list li.menu-list-item:active>a span.icon svg {
+  stroke: #d10f10;
+}
+
+div.acp-main-left-sidebar ul.menu-list li.menu-list-item.active>label a span.icon svg,
+div.acp-main-left-sidebar ul.menu-list li.menu-list-item:hover>label a span.icon svg,
+div.acp-main-left-sidebar ul.menu-list li.menu-list-item:active>label a span.icon svg {
   stroke: #d10f10;
 }
 
@@ -6173,7 +6270,7 @@ div.acp-main-left-sidebar div.sb-footer {
 /*# sourceMappingURL=style.css.map */
 body section.content,
 body {
-  background-color: #0b0e16;
+  background-color: var(--cl-primary-bg-color);
 }
 
 body::-webkit-scrollbar {
@@ -6190,26 +6287,27 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 body section.content div.main-content-block-body div.cp-app-container div.row div.card {
-  background-color: #191c24;
+  background-color: var(--cl-secondary-bg-color);
   color: #d4dfe9;
   border-radius: 5px;
 }
 
 .form-control:focus {
-  background-color: #0b0e16;
-  color: #cdcccc;
+  background-color: var(--cl-primary-bg-color);
+  color: var(--cl-secondary-text-color);
   border-radius: 5px;
 }
 
 .form-control {
-  background-color: #0b0e16;
-  color: #d4dfe9;
+  background-color: var(--cl-primary-bg-color);
+  color: var(--cl-secondary-text-color);
+
   border-radius: 5px;
 }
 
 
 section.content div.main-content-block-body div.current-page-name div.lp h2 {
-  color: #e91e63;
+  color: var(--cl-primary-text-color);
 }
 
 div select.form-control::-webkit-scrollbar {
@@ -6304,15 +6402,61 @@ tr td div.dropdown-menu {
   top: unset;
   left: unset;
   box-shadow: rgb(0 0 0 / 20%) 0px 0px 15px, rgb(0 0 0 / 15%) 0px 0px 3px 1px;
-  background-color: #191c24;
+  background-color: var(--cl-primary-bg-color);
 }
 
 tr td div.dropdown-menu.dropdown-menu-right a.dropdown-item {
-  color: #c8dfe9;
+  color: var(--cl-primary-text-color);
 
 }
 
 tr td div.dropdown-menu.dropdown-menu-right a.dropdown-item:hover {
-  color: #f8f9fa;
-  background-color: #16181b;
+  filter: contrast(0.9);
+}
+
+.main-content-block-body .card .body .regular-table .table tbody tr td,
+.body.responsive table.table tbody tr td {
+  color: var(--cl-secondary-text-color);
+}
+
+.main-content-block-body .card .body .regular-table .table tbody tr td b.num {
+  color: var(--cl-secondary-text-color);
+
+}
+
+#modal {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2000;
+}
+
+#modal:checked {
+  width: 0px;
+  height: 0px;
+
+}
+
+#modal:checked~#test-modal {
+  display: none;
+}
+
+#test-modal {
+  display: block;
+}
+
+tbody tr td div.dropdown-menu.dropdown-menu-right a.dropdown-item button:hover {
+  color: var(--cl-primary-text-color);
+
+}
+
+tbody tr td div.dropdown-menu.dropdown-menu-right a.dropdown-item button {
+  background-color: unset;
+  border: unset;
+  color: var(--cl-primary-text-color);
+  padding: unset;
+  cursor: pointer;
 }

@@ -1,4 +1,3 @@
-"moderators" => true,
 <?php
 # @*************************************************************************@
 # @ Software author: Mansur Altamirov (Mansur_TL)                           @
