@@ -18,7 +18,7 @@
 
                 Member Since :
                 <?php $now = new DateTime();
-                $date = new DateTime($me['joined']);
+                $date = new DateTime("@{$me['joined']}");
                 //echo $date->diff($now)->format("%h Hours %i Minute %s Seconds");
                 $year =  $date->diff($now)->format("%y");
                 $day = $date->diff($now)->format("%d");
@@ -30,7 +30,6 @@
                 elseif ($hour != "0") echo $hour . " Hours Ago";
                 elseif ($min != "0") echo $min . " Mins Ago";
                 else echo $sec . " Seconds Ago";
-                // echo $date->diff($now)->format("%y years %d days %h hours %i minutes"); 
                 ?>
             </span>
         </div>

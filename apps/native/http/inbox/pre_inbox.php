@@ -88,7 +88,7 @@ elseif ($mode == 'Mod_Mails') :
         $result = array(
             'avatar' => $temp['icon'],
             'username' => $temp['name'],
-            'message' => $res['message']
+            'message' => isset($res['message']) ? $res['message'] : ''
         );
 
         array_push($user_list, $result);
@@ -134,7 +134,7 @@ elseif ($mode == 'All') :
             $result = array(
                 'avatar' => $temp['icon'],
                 'username' => $temp['name'],
-                'message' => $res['message']
+                'message' => isset($res['message']) ? $res['message'] : '' 
             );
 
             array_push($user_list, $result);

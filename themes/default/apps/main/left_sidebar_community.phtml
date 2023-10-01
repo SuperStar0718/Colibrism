@@ -60,8 +60,8 @@
             <div>
                 Created by :
                 <a href="profile?user_id=<?php echo $cl['moderators'][0]['id'] ?>">
-                    <h3 style="color: <?php echo $cl['display_set']['link_color']; ?>">
-                        @<?php echo $cl['moderators'][0]['username'] ?></h3>
+                    <h3 style="color: <?php if(isset($cl['display_set']['link_color'])): echo $cl['display_set']['link_color']; endif; ?>">
+                        @<?php if(isset($cl['moderators'][0])): echo $cl['moderators'][0]['username']; endif; ?></h3>
                 </a>
             </div>
         </div>

@@ -30,9 +30,14 @@
                 <?php $random = array_rand($cl['communities_can_follow'], 6); ?>
                 <?php else : ?>
                 <?php $random = array_rand($cl['communities_can_follow'], count($cl['communities_can_follow']));
-                    shuffle($cl['communities_can_follow']); ?>
+                    shuffle($cl['communities_can_follow']); print_r($random); ?>
                 <?php endif; ?>
-                <?php foreach ($random as  $index) {
+
+                <?php 
+                    if(is_int($random)):
+                        $random = array($random);
+                    endif;
+                    foreach ($random as  $index) {
                     $community = $cl['communities_can_follow'][$index];
                 ?>
                 <!-- <div class="Comunity-display grid">

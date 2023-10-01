@@ -94,16 +94,18 @@ if (not_empty($_GET['community_id'])) {
     if (not_empty($result)) {
         $cl['moderators'] = array();
         $moderators = json($result['moderator']);
-        foreach ($moderators as $moderator) :
-            foreach ($moderator as $key => $value) :
-                $db = $db->where('id', $key);
-                $result = $db->getone(T_USERS);
-                $result['permission'] = $value;
-                $cl['moderators'][] = $result;
-                if ($me['id'] == $key)
-                    $is_moderator = true;
+        if(not_empty($result['moderator'])):
+            foreach ($moderators as $moderator) :
+                foreach ($moderator as $key => $value) :
+                    $db = $db->where('id', $key);
+                    $result = $db->getone(T_USERS);
+                    $result['permission'] = $value;
+                    $cl['moderators'][] = $result;
+                    if ($me['id'] == $key)
+                        $is_moderator = true;
+                endforeach;
             endforeach;
-        endforeach;
+        endif;
     }
 
     $db = $db->where('community_id', $_GET['community_id']);

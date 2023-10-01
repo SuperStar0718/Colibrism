@@ -1897,7 +1897,7 @@ input[type=color]::-webkit-color-swatch {
 }
 
 .Wellcome-bar {
-  z-index: 100;
+  /* z-index: 100; */
   left: 0;
   width: 100vw;
   top: 0;
@@ -3773,4 +3773,10 @@ section.main div.Tweet-target div.teewt-data div.publication-poll__inner label d
 
 section.main div.Tweet-target div.teewt-data div.publication-poll__inner input:checked~label div.content {
   display: block;
+}
+.text-center{
+  text-align: center;
+}
+.font-weight-bold{
+  font-weight: bold;
 }
