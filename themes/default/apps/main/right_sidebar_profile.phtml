@@ -78,42 +78,45 @@
         <h4 class="title">COMMUNITIES TO FOLLOW</h4>
         <hr>
         <div class="comunyties-content flex col">
-            <?php if (count($cl['communities_can_follow']) > 5) : ?>
-            <?php $random = array_rand($cl['communities_can_follow'], 5); ?>
-            <?php else : ?>
-            <?php $random = array_rand($cl['communities_can_follow'], count($cl['communities_can_follow']));
-                shuffle($cl['communities_can_follow']); ?>
-            <?php endif; ?>
+            <?php if (count($cl['communities_can_follow']) >0) : ?>
+                <?php if (count($cl['communities_can_follow']) > 5) : ?>
+                <?php $random = array_rand($cl['communities_can_follow'], 5); ?>
+                <?php else : ?>
+                <?php $random = array_rand($cl['communities_can_follow'], count($cl['communities_can_follow']));
+                    shuffle($cl['communities_can_follow']); ?>
+                <?php endif; ?>
 
-            <?php foreach ($random as  $index) {
-                $community = $cl['communities_can_follow'][$index];
-            ?>
-            <div class="Comunity-display grid">
-                <div class="comunity-image-content">
-                    <div class="user-image s-2 circle">
-                        <?php if (!empty($community['icon'])) : ?>
-                        <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
-                        <?php endif; ?>
+                <?php foreach ($random as  $index) {
+                    $community = $cl['communities_can_follow'][$index];
+                ?>
+                <div class="Comunity-display grid">
+                    <div class="comunity-image-content">
+                        <div class="user-image s-2 circle">
+                            <?php if (!empty($community['icon'])) : ?>
+                            <img src="<?php convert_into_base64($community['icon']); ?>" alt="Avatar">
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="comunity-data-content">
-                    <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
-                        <h4><?php echo $community['name'] ?></h4>
-                    </a>
-                    <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
-                </div>
-                <form method="POST" action="native_api/profile/follow_community">
-                    <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
-                    <input type="hidden" name="user_id" value="<?php echo $me['id']; ?>">
-
-                    <div class="comunkarity-action-content flex center">
-                        <button class="follow-btn mintext btn" type="submit">Join</button>
+                    <div class="comunity-data-content">
+                        <a href="<?php echo ("community" . "?community_id=" . $community['community_id']); ?>">
+                            <h4><?php echo $community['name'] ?></h4>
+                        </a>
+                        <p class="t-color-3 mintext"><?php echo $community['members']; ?> Members</p>
                     </div>
-                </form>
-            </div>
+                    <form method="POST" action="native_api/main/follow">
+                        <input type="hidden" name="community_id" value="<?php echo $community['community_id'] ?>">
+                        <div class="comunkarity-action-content flex center">
+                            <button class="follow-btn mintext btn" type="submit">Join</button>
+                        </div>
+                    </form>
+                </div>
 
-            <?php  } ?>
-
+                <?php  } ?>
+            <?php else: ?>
+                <div class="text-center font-weight-bold">
+                    No Community yet.
+                </div>
+            <?php endif;?>
         </div>
     </div>
     <div class="Comunity-target target">
